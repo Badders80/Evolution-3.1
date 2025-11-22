@@ -13,13 +13,8 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "postinstall": "next telemetry disable",
-    "db:migrate": "node scripts/migrate-via-api.js",
-    "db:verify": "node scripts/verify-schema.js",
     "db:query": "node scripts/db-query.js",
-    "db:types": "node scripts/generate-types.js",
-    "db:test": "node scripts/test-typed-sdk.js",
-    "db:seed": "node scripts/seed-syndicators.js",
-    "db:seed:test-trade": "node scripts/seed-test-trade.js"
+    "db:types": "node scripts/generate-types.js"
   },
   "dependencies": {
     "@once-ui-system/core": "^1.5.1",
