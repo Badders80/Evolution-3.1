@@ -98,7 +98,7 @@
 
 ### Run Security Check:
 ```bash
-cd ~/Evolution-3.0
+cd ~/Evolution-3.1
 ./scripts/verify-security.sh
 ```
 

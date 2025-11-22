@@ -14,7 +14,7 @@
 1. Go to: https://supabase.com/dashboard/project/coqtijrftaklcwgbnqef/settings/api
 2. Click "Reset service_role key"
 3. Copy the NEW service role key
-4. Update `/home/evo/Evolution-3.0/.env.local`:
+4. Update `/home/evo/Evolution-3.1/.env.local`:
    ```
    SUPABASE_SERVICE_ROLE_KEY=<new_key_here>
    ```

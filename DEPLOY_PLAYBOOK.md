@@ -6,7 +6,7 @@ Purpose: A quick reference for managing staging and production deployments of th
 
 | Environment | URL | Description |
 | --- | --- | --- |
-| Staging (Preview) | https://evolution-3-0.vercel.app | Automatically built for every branch/PR; use for QA before release. |
+| Staging (Preview) | https://evolution-3-1.vercel.app | Automatically built for every branch/PR; use for QA before release. |
 | Production (Live) | https://www.evolutionstables.nz | Auto-deployed when `main` updates; this is the public site. |
 
 ## 🚀 Deployment Workflow
@@ -23,7 +23,7 @@ Purpose: A quick reference for managing staging and production deployments of th
    git commit -m "Update homepage layout"
    git push origin feature/update-homepage
    ```
-   Vercel provides a preview URL such as `https://evolution-3-0-git-feature-update-homepage.vercel.app` for validation.
+   Vercel provides a preview URL such as `https://evolution-3-1-git-feature-update-homepage.vercel.app` for validation.
 3. **Review and test**
    - Check desktop/mobile layouts.
    - Verify links, forms, Supabase auth, and asset loading.
@@ -42,7 +42,7 @@ Purpose: A quick reference for managing staging and production deployments of th
 
 ## ⏪ Rollback Procedure
 
-1. Open Vercel Dashboard → `evolution-3-0` → Deployments.
+1. Open Vercel Dashboard → `evolution-3-1` → Deployments.
 2. Locate a previous deployment with a green checkmark.
 3. Click the ⋮ menu → **Promote to Production** to instantly revert.
 
@@ -77,8 +77,8 @@ Examples: `feature/add-faq-section`, `fix/footer-spacing`, `hotfix/supabase-logi
 
 ## ✅ Summary
 
-- Project: `evolution-3-0`
-- Repository: `Badders80/evolution-3.0`
+- Project: `evolution-3-1`
+- Repository: `Badders80/evolution-3.1`
 - Pipelines: automated previews for branches, automated production deploys from `main`
 - No manual uploads—Vercel handles builds and deployments end to end.
 

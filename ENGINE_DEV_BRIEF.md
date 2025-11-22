@@ -1,5 +1,5 @@
 # Evolution Engine — Developer Brief  
-_Authoritative Architecture Document for evolution-3.0_
+_Authoritative Architecture Document for evolution-3.1_
 
 This document defines the architecture, structure, and development rules for all Evolution Engine modules.  
 It is the single source of truth for:

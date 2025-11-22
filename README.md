@@ -1,4 +1,4 @@
-# Evolution 3.0
+# Evolution 3.1
 
 A modern Next.js application built with TypeScript, Tailwind CSS, and Framer Motion for Evolution Stables.
 
