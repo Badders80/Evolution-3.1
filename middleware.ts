@@ -13,10 +13,8 @@ const publicPaths = [
   '/terms',
   '/mystable',
   '/demo',
-  '/engine',
+  '/valuation',
 ];
-
-const adminPaths = ['/admin'];
 
 const isPublicPath = (pathname: string) =>
   publicPaths.some(path => {
@@ -26,9 +24,6 @@ const isPublicPath = (pathname: string) =>
 
     return pathname === path || pathname.startsWith(`${path}/`);
   });
-
-const isAdminPath = (pathname: string) =>
-  adminPaths.some(path => pathname === path || pathname.startsWith(`${path}/`));
 
 export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
@@ -49,23 +44,6 @@ export async function middleware(req: NextRequest) {
       const loginUrl = new URL('/auth', req.url);
       loginUrl.searchParams.set('redirectedFrom', pathname);
       return NextResponse.redirect(loginUrl);
-    }
-
-    // Additional check for admin routes
-    if (isAdminPath(pathname)) {
-      // Cast to any here to avoid issues if the generated Database types
-      // do not include the profiles table/role field used for admin checks.
-      const { data: profile } = await (supabase as any)
-        .from('profiles')
-        .select('role')
-        .eq('id', session.user.id)
-        .single();
-
-      // Check if user has admin role
-      if (!profile || profile.role !== 'admin') {
-        console.warn(`User ${session.user.email} attempted to access admin route without permission`);
-        return NextResponse.redirect(new URL('/', req.url));
-      }
     }
 
     return res;
