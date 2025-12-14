@@ -1,12 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
 import Image from 'next/image';
-import Link from 'next/link';
-import type { Session } from '@supabase/supabase-js';
-import { useSupabase } from '@/providers/supabase-provider';
-import Modal from '@/components/ui/Modal';
 
 // Mock data for demonstration
 const mockPortfolio = {
@@ -57,58 +52,11 @@ const mockHorses = [
 ];
 
 export default function MyStablePage() {
-  const router = useRouter();
-  const { supabase } = useSupabase();
-  const [session, setSession] = useState<Session | null>(null);
-  const [checkingSession, setCheckingSession] = useState(true);
-  const [showModal, setShowModal] = useState(false);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [hasReducedHeight, setHasReducedHeight] = useState(false);
   const [showComingSoon, setShowComingSoon] = useState(false);
 
   useEffect(() => {
-    let isActive = true;
-
-    const hydrateSession = async () => {
-      const { data } = await supabase.auth.getSession();
-      if (!isActive) return;
-
-      setSession(data.session);
-      setCheckingSession(false);
-
-      if (!data.session) {
-        setShowModal(true);
-        router.prefetch('/auth');
-      }
-    };
-
-    hydrateSession();
-
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event, nextSession) => {
-      if (!isActive) {
-        return;
-      }
-
-      setSession(nextSession);
-      setShowModal(!nextSession);
-    });
-
-    return () => {
-      isActive = false;
-      subscription.unsubscribe();
-    };
-  }, [supabase, router]);
-
-  useEffect(() => {
-    if (!session) {
-      setIsTransitioning(false);
-      setHasReducedHeight(false);
-      setShowComingSoon(false);
-      return;
-    }
-
     const fadeTimer = setTimeout(() => setIsTransitioning(true), 1800);
     const heightTimer = setTimeout(() => setHasReducedHeight(true), 2200);
     const comingSoonTimer = setTimeout(() => setShowComingSoon(true), 3200);
@@ -118,37 +66,9 @@ export default function MyStablePage() {
       clearTimeout(heightTimer);
       clearTimeout(comingSoonTimer);
     };
-  }, [session]);
+  }, []);
 
-  const firstName = session?.user?.user_metadata?.full_name?.split(' ')[0] || 
-                    session?.user?.email?.split('@')[0] || 
-                    'User';
-
-  if (checkingSession) {
-    return (
-      <div className="flex min-h-screen items-center justify-center bg-background text-foreground">
-        <div className="h-12 w-12 animate-spin rounded-full border-2 border-primary border-t-transparent" />
-      </div>
-    );
-  }
-
-  if (!session) {
-    return (
-      <>
-        <div className="min-h-screen bg-black/80 backdrop-blur-sm" />
-        {showModal && (
-          <Modal
-            title="Sign in required"
-            message="You must be signed in to access your stable."
-            confirmLabel="Sign In"
-            cancelLabel="Go Home"
-            onConfirm={() => router.push('/auth?redirectedFrom=/mystable')}
-            onCancel={() => router.push('/')}
-          />
-        )}
-      </>
-    );
-  }
+  const firstName = 'Owner';
 
   return (
     <main className="min-h-screen bg-[#0a0a0a] text-white pt-24">
@@ -339,24 +259,6 @@ export default function MyStablePage() {
           </div>
         </section>
 
-        {/* Evolution Stables Engine Section */}
-        <div className="border-t border-neutral-800 pt-12 mt-24">
-          <div className="flex flex-col items-center text-center gap-4">
-            <h3 className="text-xl font-medium">Evolution Stables Engine</h3>
-            <p className="text-sm text-neutral-400 max-w-md">
-              Studio • Valuation • Registration
-              <br/>
-              Powerful tools for owners, trainers, and partners.
-            </p>
-
-            <Link
-              href="/engine"
-              className="px-5 py-2.5 rounded-md bg-white text-black hover:bg-neutral-200 transition"
-            >
-              Open Evolution Stables Engine
-            </Link>
-          </div>
-        </div>
       </div>
     </main>
   );
