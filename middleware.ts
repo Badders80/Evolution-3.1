@@ -28,6 +28,11 @@ const isPublicPath = (pathname: string) =>
 export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
+  // Allow public interest capture endpoint so marketing forms work when logged out
+  if (pathname.startsWith('/api/interest')) {
+    return NextResponse.next();
+  }
+
   if (isPublicPath(pathname)) {
     return NextResponse.next();
   }

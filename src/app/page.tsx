@@ -1,16 +1,15 @@
 'use client';
 
-import React from 'react';
+import { useState } from 'react';
 import Image from 'next/image';
 import { FixedBg } from '@/components/ui/FixedBg';
 import { GrassBg } from '@/components/ui/GrassBg';
 import { Footer } from '@/components/site/Footer';
 import { SplitFaq } from '@/components/ui/SplitFaq';
-import { Button } from '@/components/ui/Button';
 import { HeroSection } from '@/components/site/HeroSection';
-import { SectionTemplate } from '@/components/sections/SectionTemplate';
 import { PressMentions } from '@/components/site/PressMentions';
 import { pressArticles } from '@/lib/press-articles';
+import { InterestForm } from '@/components/interest/InterestForm';
 
 const faqItems = [
   {
@@ -44,13 +43,7 @@ const faqItems = [
 ];
 
 const Home = () => {
-
-  const scrollToId = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+  const [mode, setMode] = useState<'idle' | 'form' | 'success'>('idle');
 
   return (
     <div className="min-h-screen">
@@ -76,20 +69,32 @@ const Home = () => {
               Racehorse ownership has changed. Evolution Stables removes the barriers that once made it complex and inaccessible — opening the door for first-timers and seasoned fans alike to not just watch, but own the experience
             </p>
 
-            {/* CTA Button */}
             <div className="relative group inline-block">
-              {/* Subtle breathing glow on hover */}
-              <div className="absolute -inset-[2px] rounded-full bg-gradient-to-r from-white/5 via-white/10 to-white/5 blur-md opacity-0 group-hover:opacity-60 transition-opacity duration-500" />
-              {/* Gold accent on hover - bottom highlight */}
-              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[1px] w-0 bg-gradient-to-r from-transparent via-primary to-transparent opacity-0 blur-[2px] group-hover:w-full group-hover:opacity-100 transition-all duration-500 ease-out" />
-              <button
-                onClick={() => scrollToId('get-started')}
-                className="relative inline-flex items-center justify-center whitespace-nowrap rounded-full px-8 py-3.5 text-[11px] font-light tracking-wider uppercase text-white/70 transition-all duration-300 hover:text-white hover:scale-105 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary/50 bg-white/[0.03] hover:bg-white/[0.06] border border-white/[0.06] hover:border-white/[0.12] overflow-hidden"
-              >
-                {/* Gentle shimmer animation - avoids center for text clarity */}
-                <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.02] to-transparent animate-shimmer opacity-50" />
-                <span className="relative z-10 inline-block transition-all duration-300 group-hover:scale-110">JOIN THE EVOLUTION</span>
-              </button>
+              {mode === 'idle' && (
+                <>
+                  <div className="absolute -inset-[2px] rounded-full bg-gradient-to-r from-white/5 via-white/10 to-white/5 blur-md opacity-0 group-hover:opacity-60 transition-opacity duration-500" />
+                  <div className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[1px] w-0 bg-gradient-to-r from-transparent via-primary to-transparent opacity-0 blur-[2px] group-hover:w-full group-hover:opacity-100 transition-all duration-500 ease-out" />
+                  <button
+                    onClick={() => setMode('form')}
+                    className="relative inline-flex items-center justify-center whitespace-nowrap rounded-full px-8 py-3.5 text-[11px] font-light tracking-wider uppercase text-white/70 transition-all duration-300 hover:text-white hover:scale-105 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary/50 bg-white/[0.03] hover:bg-white/[0.06] border border-white/[0.06] hover:border-white/[0.12] overflow-hidden"
+                  >
+                    <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.02] to-transparent animate-shimmer opacity-50" />
+                    <span className="relative z-10 inline-block transition-all duration-300 group-hover:scale-110">JOIN THE EVOLUTION</span>
+                  </button>
+                </>
+              )}
+              {mode === 'form' && (
+                <InterestForm
+                  campaignKey="about_join_evolution"
+                  onSuccess={() => setMode('success')}
+                  onCancel={() => setMode('idle')}
+                />
+              )}
+              {mode === 'success' && (
+                <div className="text-sm text-neutral-400">
+                  Welcome to the Evolution
+                </div>
+              )}
             </div>
           </div>
         </section>
