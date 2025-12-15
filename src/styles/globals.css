@@ -34,6 +34,7 @@
   --font-body: 'Geist Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-display: 'Geist Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-mono: 'Geist Mono', ui-monospace, SFMono-Regular, 'Roboto Mono', monospace;
+  /* Single source of truth for the Evolution gold accent */
   --evolution-gold: #d4a964;
   color-scheme: dark;
 }
@@ -50,6 +51,46 @@ body {
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  /* The Gold Wave Animation for marquee letter treatments */
+  @keyframes gold-letter-wave {
+    0%, 100% {
+      color: rgba(255, 255, 255, 0.6);
+      transform: scale(1);
+      font-weight: 300;
+    }
+    20% {
+      color: var(--evolution-gold);
+      transform: scale(1.08);
+      font-weight: 400;
+      text-shadow: 0 0 10px color-mix(in srgb, var(--evolution-gold) 30%, transparent);
+    }
+    50% {
+      color: var(--evolution-gold);
+      transform: scale(1.08);
+      text-shadow: 0 0 10px color-mix(in srgb, var(--evolution-gold) 20%, transparent);
+    }
+    80% {
+      color: rgba(255, 255, 255, 0.8);
+      transform: scale(1);
+      font-weight: 300;
+      text-shadow: none;
+    }
+  }
+
+  .animate-gold-wave {
+    animation: gold-letter-wave 8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  }
+
+  /* Subtle shimmer that glides around the outer border */
+  @keyframes border-shimmer-move {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+
+  .animate-border-shimmer {
+    animation: border-shimmer-move 8s linear infinite;
   }
   
   /* Shimmer animation for premium effect */
@@ -132,7 +173,26 @@ body {
   .animate-evo-text-pulse-gold {
     animation: evo-text-pulse-gold 6s ease-in-out infinite;
   }
-  
+
+  /* --------------------------------------------------
+     Motion Preferences — Mature Accessibility Layer
+     -------------------------------------------------- */
+  @media (prefers-reduced-motion: reduce) {
+    .animate-gold-wave,
+    .animate-border-shimmer,
+    .animate-text-pulse,
+    .animate-text-shimmer,
+    .animate-text-fade {
+      animation: none !important;
+    }
+
+    .transition-all,
+    .transition-opacity,
+    .transition-transform {
+      transition-duration: 0.01ms !important;
+    }
+  }
+ 
   /* Fade in animation */
   @keyframes fade-in {
     from {

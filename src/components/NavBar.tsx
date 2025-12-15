@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { LOGOS } from '@/lib/assets';
 import { useSupabase, useSession } from '@/providers/supabase-provider';
 import { useRouter, usePathname } from 'next/navigation';
+import { GlowPillButton } from '@/components/ui/GlowPillButton';
 
 /**
  * Navigation links configuration
@@ -213,20 +214,9 @@ export function NavBar() {
             </span>
           )}
           {!session && (
-            <div className="relative group hidden lg:block">
-              {/* Subtle breathing glow on hover */}
-              <div className="absolute -inset-[2px] rounded-full bg-gradient-to-r from-white/5 via-white/10 to-white/5 blur-md opacity-0 group-hover:opacity-60 transition-opacity duration-500" />
-              {/* Gold accent on hover - bottom highlight */}
-              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[1px] w-0 bg-gradient-to-r from-transparent via-primary to-transparent opacity-0 blur-[2px] group-hover:w-full group-hover:opacity-100 transition-all duration-500 ease-out" />
-              <button
-                onClick={handleGetStarted}
-                className="relative inline-flex items-center justify-center whitespace-nowrap rounded-full px-6 py-2.5 text-[11px] font-light tracking-wider uppercase text-white/70 transition-all duration-300 hover:text-white hover:scale-105 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary/50 bg-white/[0.03] hover:bg-white/[0.06] border border-white/[0.06] hover:border-white/[0.12] overflow-hidden"
-              >
-                {/* Gentle shimmer animation - avoids center for text clarity */}
-                <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.02] to-transparent animate-shimmer opacity-50" />
-                <span className="relative z-10 inline-block transition-all duration-300 group-hover:scale-110">Get Started</span>
-              </button>
-            </div>
+            <GlowPillButton onClick={handleGetStarted} wrapperClassName="hidden lg:block">
+              Get Started
+            </GlowPillButton>
           )}
           {session && (
             <button
