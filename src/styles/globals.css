@@ -119,6 +119,19 @@ body {
   .animate-evo-text-pulse {
     animation: evo-text-pulse 4.5s ease-in-out infinite;
   }
+
+  @keyframes evo-text-pulse-gold {
+    0%, 100% {
+      color: rgba(255, 255, 255, 0.7);
+    }
+    50% {
+      color: #d4a964;
+    }
+  }
+
+  .animate-evo-text-pulse-gold {
+    animation: evo-text-pulse-gold 6s ease-in-out infinite;
+  }
   
   /* Fade in animation */
   @keyframes fade-in {
