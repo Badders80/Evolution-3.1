@@ -48,7 +48,14 @@ export function NavBar() {
    * Navigate to authentication page
    */
   const handleGetStarted = () => {
-    router.push('/auth');
+    const basePath =
+      !pathname || pathname.startsWith('/auth') ? '/mystable' : pathname;
+    const redirectTarget =
+      typeof window !== 'undefined' && window.location.search
+        ? `${basePath}${window.location.search}`
+        : basePath;
+
+    router.push(`/auth?redirectedFrom=${encodeURIComponent(redirectTarget)}`);
   };
 
   /**
@@ -294,4 +301,3 @@ export function NavBar() {
     </nav>
   );
 }
-

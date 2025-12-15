@@ -1,7 +1,5 @@
-import { createMiddlewareClient } from '@supabase/auth-helpers-nextjs';
-import type { NextRequest } from 'next/server';
-import { NextResponse } from 'next/server';
-import type { Database } from '@/lib/database.types';
+import { NextRequest, NextResponse } from 'next/server';
+import { createServerClient } from '@supabase/ssr';
 
 const publicPaths = [
   '/',
@@ -11,9 +9,9 @@ const publicPaths = [
   '/marketplace',
   '/privacy',
   '/terms',
-  '/mystable',
   '/demo',
   '/valuation',
+  '/mystable',
 ];
 
 const isPublicPath = (pathname: string) =>
@@ -25,46 +23,52 @@ const isPublicPath = (pathname: string) =>
     return pathname === path || pathname.startsWith(`${path}/`);
   });
 
-export async function middleware(req: NextRequest) {
-  const { pathname } = req.nextUrl;
+const copyCookies = (from: NextResponse, to: NextResponse) => {
+  from.cookies.getAll().forEach(cookie => {
+    to.cookies.set(cookie);
+  });
+};
 
-  // Allow public interest capture endpoint so marketing forms work when logged out
-  if (pathname.startsWith('/api/interest')) {
-    return NextResponse.next();
+export async function middleware(request: NextRequest) {
+  const response = NextResponse.next();
+
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+  if (!url || !anonKey) {
+    console.warn('Missing Supabase env vars in middleware.');
+    return response;
   }
 
-  if (isPublicPath(pathname)) {
-    return NextResponse.next();
+  const supabase = createServerClient(url, anonKey, {
+    cookies: {
+      getAll() {
+        return request.cookies.getAll();
+      },
+      setAll(cookies) {
+        cookies.forEach(({ name, value, options }) => {
+          response.cookies.set(name, value, options);
+        });
+      },
+    },
+  });
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user && !isPublicPath(request.nextUrl.pathname)) {
+    const redirectTarget = `${request.nextUrl.pathname}${request.nextUrl.search}`;
+    const loginUrl = new URL('/auth', request.url);
+    loginUrl.searchParams.set('redirectedFrom', redirectTarget);
+    const redirectResponse = NextResponse.redirect(loginUrl);
+    copyCookies(response, redirectResponse);
+    return redirectResponse;
   }
 
-  const res = NextResponse.next();
-
-  try {
-    const supabase = createMiddlewareClient<Database>({ req, res });
-    const {
-      data: { session },
-    } = await supabase.auth.getSession();
-
-    if (!session) {
-      const loginUrl = new URL('/auth', req.url);
-      loginUrl.searchParams.set('redirectedFrom', pathname);
-      return NextResponse.redirect(loginUrl);
-    }
-
-    return res;
-  } catch (error) {
-    console.error('Auth middleware error:', error);
-    const loginUrl = new URL('/auth', req.url);
-    loginUrl.searchParams.set('redirectedFrom', pathname);
-    return NextResponse.redirect(loginUrl);
-  }
+  return response;
 }
 
 export const config = {
-  matcher: [
-    // Skip Next.js internals and all static files, unless found in search params
-    '/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)',
-    // Always run for API routes
-    '/(api|trpc)(.*)',
-  ],
+  matcher: ['/((?!_next/static|_next/image|favicon.ico|robots.txt|sitemap.xml).*)'],
 };

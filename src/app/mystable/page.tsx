@@ -57,14 +57,8 @@ export default function MyStablePage() {
   const [showComingSoon, setShowComingSoon] = useState(false);
 
   useEffect(() => {
-    const fadeTimer = setTimeout(() => setIsTransitioning(true), 1800);
-    const heightTimer = setTimeout(() => setHasReducedHeight(true), 2200);
-    const comingSoonTimer = setTimeout(() => setShowComingSoon(true), 3200);
-
     return () => {
-      clearTimeout(fadeTimer);
-      clearTimeout(heightTimer);
-      clearTimeout(comingSoonTimer);
+      // Timers temporarily disabled to keep dashboard visible during testing
     };
   }, []);
 

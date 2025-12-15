@@ -34,6 +34,7 @@
   --font-body: 'Geist Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-display: 'Geist Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-mono: 'Geist Mono', ui-monospace, SFMono-Regular, 'Roboto Mono', monospace;
+  --evolution-gold: #d4a964;
   color-scheme: dark;
 }
 
@@ -86,6 +87,37 @@ body {
       transparent 96%
     );
     background-size: 200% 100%;
+  }
+
+  @keyframes evo-pulse {
+    0% {
+      opacity: 0.4;
+    }
+    50% {
+      opacity: 0.85;
+    }
+    100% {
+      opacity: 0.4;
+    }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .animate-evo-pulse {
+      animation: evo-pulse 1.8s ease-in-out infinite;
+    }
+  }
+
+  @keyframes evo-text-pulse {
+    0%, 100% {
+      color: #000000;
+    }
+    50% {
+      color: #d4a964;
+    }
+  }
+
+  .animate-evo-text-pulse {
+    animation: evo-text-pulse 4.5s ease-in-out infinite;
   }
   
   /* Fade in animation */

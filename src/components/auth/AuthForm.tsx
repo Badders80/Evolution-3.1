@@ -4,11 +4,11 @@ import { useEffect, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { Auth } from '@supabase/auth-ui-react'
 import { ThemeSupa } from '@supabase/auth-ui-shared'
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
-import Image from 'next/image'
+import { createBrowserSupabaseClient } from '@/lib/supabase/client'
+
 export default function AuthForm() {
   console.log('AuthForm component rendering')
-  const supabase = createClientComponentClient()
+  const [supabase] = useState(() => createBrowserSupabaseClient())
   const router = useRouter()
   const searchParams = useSearchParams()
   const [redirectTo, setRedirectTo] = useState<string>()
@@ -18,15 +18,10 @@ export default function AuthForm() {
   const redirectTarget = redirectTargetRaw.startsWith('/') ? redirectTargetRaw : '/mystable'
 
   useEffect(() => {
-    console.log('Running checkSession effect')
     const checkSession = async () => {
-      console.log('Checking session...')
       try {
-        const { data, error } = await supabase.auth.getSession()
-        console.log('Session data:', data)
-        if (error) console.error('Session error:', error)
+        const { data } = await supabase.auth.getSession()
         if (data?.session) {
-          console.log('Session found, redirecting to:', redirectTarget)
           router.replace(redirectTarget)
         }
       } catch (error) {
@@ -44,18 +39,12 @@ export default function AuthForm() {
   }, [redirectTarget])
 
   useEffect(() => {
-    const resolveOrigin = () => {
-      if (typeof window !== 'undefined') {
-        return window.location.origin
-      }
-      return process.env.NEXT_PUBLIC_SITE_URL
+    if (typeof window !== 'undefined') {
+      const origin = window.location.origin
+      const callbackUrl = new URL('/auth/callback', origin)
+      callbackUrl.searchParams.set('redirectedFrom', redirectTarget)
+      setRedirectTo(callbackUrl.toString())
     }
-
-    const origin = resolveOrigin()
-    if (!origin) return
-
-    const callbackUrl = new URL('/auth/callback', origin)
-    setRedirectTo(callbackUrl.toString())
   }, [redirectTarget])
 
   useEffect(() => {

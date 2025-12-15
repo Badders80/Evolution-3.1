@@ -1,63 +1,58 @@
 'use client';
 
-import { createContext, useContext, useEffect, useState } from 'react';
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
+import React, { createContext, useContext, useEffect, useState } from 'react';
+import type { Session, SupabaseClient } from '@supabase/supabase-js';
+import { createBrowserSupabaseClient } from '@/lib/supabase/client';
 import { useRouter } from 'next/navigation';
-import type { SupabaseClient, Session } from '@supabase/supabase-js';
-import type { Database } from '@/lib/database.types';
 
-type SupabaseContext = {
-  supabase: ReturnType<typeof createClientComponentClient<Database>>;
+type SupabaseContextType = {
+  supabase: SupabaseClient;
   session: Session | null;
 };
 
-const Context = createContext<SupabaseContext | undefined>(undefined);
+const SupabaseContext = createContext<SupabaseContextType | undefined>(undefined);
 
-export default function SupabaseProvider({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export function SupabaseProvider({ children }: { children: React.ReactNode }) {
+  const [supabase] = useState(() => createBrowserSupabaseClient());
   const [session, setSession] = useState<Session | null>(null);
-  const supabase = createClientComponentClient<Database>();
   const router = useRouter();
 
   useEffect(() => {
-    // Get the initial session
     supabase.auth.getSession().then(({ data }) => {
       setSession(data.session);
     });
 
-    // Listen for auth state changes
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
-      setSession(session);
-      router.refresh();
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((event, currentSession) => {
+      setSession(currentSession);
+      if (event === 'SIGNED_IN' || event === 'SIGNED_OUT') {
+        router.refresh();
+      }
     });
 
     return () => {
-      subscription?.unsubscribe();
+      subscription.unsubscribe();
     };
-  }, [router, supabase]);
+  }, [supabase, router]);
 
-  return (
-    <Context.Provider value={{ supabase, session }}>
-      {children}
-    </Context.Provider>
-  );
+  return <SupabaseContext.Provider value={{ supabase, session }}>{children}</SupabaseContext.Provider>;
 }
 
 export const useSupabase = () => {
-  const context = useContext(Context);
+  const context = useContext(SupabaseContext);
   if (context === undefined) {
-    throw new Error('useSupabase must be used inside SupabaseProvider');
+    throw new Error('useSupabase must be used within SupabaseProvider');
   }
   return context;
 };
 
 export const useSession = () => {
-  const context = useContext(Context);
+  const context = useContext(SupabaseContext);
   if (context === undefined) {
-    throw new Error('useSession must be used inside SupabaseProvider');
+    throw new Error('useSession must be used within SupabaseProvider');
   }
   return context.session;
 };
+
+export default SupabaseProvider;

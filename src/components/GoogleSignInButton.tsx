@@ -12,7 +12,12 @@ export default function GoogleSignInButton() {
 
   const handleGoogleSignIn = useCallback(async () => {
     const redirectTo = new URL('/auth/callback', window.location.origin);
-    redirectTo.searchParams.set('redirectedFrom', '/mystable');
+    const basePath =
+      window.location.pathname.startsWith('/auth')
+        ? '/mystable'
+        : window.location.pathname || '/mystable';
+    const redirectTarget = `${basePath}${window.location.search ?? ''}`;
+    redirectTo.searchParams.set('redirectedFrom', redirectTarget);
 
     const { error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
