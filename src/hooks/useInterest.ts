@@ -1,42 +1,28 @@
-"use client"
+'use client';
 
-import { useState, useCallback } from "react"
-import {
-  submitInterest,
-  type SubmitInterestInput,
-  type SubmitInterestResult,
-} from "@/services/interest"
+import { useState } from 'react';
+import { submitInterest } from '@/services/interest/submitInterest';
 
-export type UseInterestReturn = {
-  submit: (input: SubmitInterestInput) => Promise<SubmitInterestResult>
-  isSubmitting: boolean
-}
+export function useInterest() {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-export function useInterest(): UseInterestReturn {
-  const [isSubmitting, setIsSubmitting] = useState(false)
+  const submit = async (email: string, campaignKey: string, source?: string) => {
+    if (isSubmitting) return;
 
-  const submit = useCallback(
-    async (input: SubmitInterestInput): Promise<SubmitInterestResult> => {
-      if (isSubmitting) {
-        return {
-          success: false,
-          error: "Submission already in progress",
-        }
-      }
+    setIsSubmitting(true);
+    setError(null);
 
-      setIsSubmitting(true)
+    try {
+      await submitInterest({ email, campaignKey, source });
+    } catch (err: any) {
+      const message = err?.message ?? 'Unable to register interest';
+      setError(message);
+      throw err;
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
-      try {
-        return await submitInterest(input)
-      } finally {
-        setIsSubmitting(false)
-      }
-    },
-    [isSubmitting]
-  )
-
-  return {
-    submit,
-    isSubmitting,
-  }
+  return { submit, isSubmitting, error };
 }

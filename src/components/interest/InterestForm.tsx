@@ -17,9 +17,8 @@ export function InterestForm({
   onCancel,
 }: InterestFormProps) {
   const [email, setEmail] = useState("")
-  const [error, setError] = useState<string | null>(null)
   const inputRef = useRef<HTMLInputElement>(null)
-  const { submit, isSubmitting } = useInterest()
+  const { submit, isSubmitting, error } = useInterest()
 
   useEffect(() => {
     inputRef.current?.focus()
@@ -27,22 +26,15 @@ export function InterestForm({
 
   const handleSubmit = async (event?: FormEvent) => {
     event?.preventDefault()
-    setError(null)
-
     const nextEmail = email.trim()
     if (!nextEmail || isSubmitting) return
 
-    const result = await submit({
-      email: nextEmail,
-      campaignKey,
-      source,
-    })
-
-    if (result.success) {
+    try {
+      await submit(nextEmail, campaignKey, source)
       setEmail("")
       onSuccess()
-    } else {
-      setError(result.error)
+    } catch {
+      // error handled via hook state
     }
   }
 

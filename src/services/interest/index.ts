@@ -1,2 +1,1 @@
-export * from "./types"
-export * from "./submitInterest"
+export * from './submitInterest';
