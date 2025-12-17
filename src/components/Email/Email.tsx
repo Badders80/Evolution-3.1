@@ -57,10 +57,14 @@ export const Email = () => {
             />
             <button
               type="submit"
-              disabled={isSubmitting || !email.trim()}
-              className="static w-full md:w-auto md:absolute md:right-1.5 md:top-1/2 md:-translate-y-1/2 md:z-20 rounded-full px-6 py-2.5 text-[11px] font-light uppercase tracking-wider text-white bg-white/[0.03] border border-white/[0.06] backdrop-blur-sm transition-all duration-300 hover:text-white hover:border-white/20 hover:scale-[1.02] cursor-pointer disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:scale-100 disabled:hover:border-white/[0.06]"
+              disabled={isSubmitting}
+              aria-disabled={!email.trim()}
+              className="static w-full md:w-auto md:absolute md:right-1.5 md:top-1/2 md:-translate-y-1/2 md:z-20 relative overflow-hidden rounded-full px-6 py-2.5 text-[11px] font-light uppercase tracking-wider text-white border border-white/20 bg-white/[0.02] backdrop-blur-sm transition-all duration-300 hover:border-white/40 hover:scale-[1.03] cursor-pointer disabled:cursor-not-allowed"
             >
-              Join the Evolution
+              <div className="absolute inset-0 pointer-events-none">
+                <div className="absolute -inset-y-4 -inset-x-1/2 bg-gradient-to-r from-transparent via-white/30 to-transparent opacity-30 blur-xl animate-border-shimmer" />
+              </div>
+              <span className="relative z-10">Join the Evolution</span>
             </button>
           </div>
         )}
