@@ -49,7 +49,7 @@ export const Email = () => {
           <button
             type="submit"
             disabled={isSubmitting || !email.trim()}
-            className="absolute right-1.5 top-1/2 -translate-y-1/2 rounded-full px-6 py-2.5 text-[11px] font-light uppercase tracking-wider text-white/70 bg-white/[0.03] border border-white/[0.06] backdrop-blur-sm transition-all duration-300 hover:scale-[1.03] hover:border-white/10 disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:scale-100 disabled:hover:border-white/[0.06]"
+            className="absolute right-1.5 top-1/2 -translate-y-1/2 z-20 rounded-full px-6 py-2.5 text-[11px] font-light uppercase tracking-wider text-white/70 bg-white/[0.03] border border-white/[0.06] backdrop-blur-sm transition-all duration-300 hover:scale-[1.03] hover:border-white/10 disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:scale-100 disabled:hover:border-white/[0.06]"
           >
             {hasSubmitted ? <span className="text-white/80">Welcome to the Evolution</span> : <span>Join the Evolution</span>}
           </button>
