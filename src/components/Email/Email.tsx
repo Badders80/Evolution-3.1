@@ -32,28 +32,38 @@ export const Email = () => {
   return (
     <div className="max-w-lg mt-8">
       <form onSubmit={handleSubmit} className="relative group">
-        <div className="relative flex items-center w-full rounded-full border border-white/[0.06] bg-zinc-900/60 p-1.5 overflow-hidden transition-all duration-500 group-focus-within:border-white/30 group-focus-within:shadow-[0_0_20px_rgba(255,255,255,0.05)]">
-          <div className="absolute inset-0 opacity-20 transition-opacity duration-700 pointer-events-none mix-blend-overlay group-hover:opacity-40 group-focus-within:opacity-40">
-            <div className="w-1/2 h-full bg-gradient-to-r from-transparent via-white/30 to-transparent blur-xl animate-border-shimmer -skew-x-12" />
-          </div>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Enter your email address"
-            required
-            className="flex-1 bg-transparent pl-6 pr-32 py-3 text-sm text-white placeholder:text-white/30 focus:outline-none font-light rounded-full relative z-10"
-            aria-label="Email address"
-            disabled={isSubmitting}
-          />
-          <button
-            type="submit"
-            disabled={isSubmitting || !email.trim()}
-            className="absolute right-1.5 top-1/2 -translate-y-1/2 z-20 rounded-full px-6 py-2.5 text-[11px] font-light uppercase tracking-wider text-white/70 bg-white/[0.03] border border-white/[0.06] backdrop-blur-sm transition-all duration-300 hover:scale-[1.03] hover:border-white/10 disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:scale-100 disabled:hover:border-white/[0.06]"
+        {hasSubmitted ? (
+          <div
+            className="flex w-full items-center justify-center rounded-full border border-white/[0.08] bg-white/[0.04] px-6 py-4 text-sm tracking-wide text-white animate-fade-in"
+            role="status"
+            aria-live="polite"
           >
-            {hasSubmitted ? <span className="text-white/80">Welcome to the Evolution</span> : <span>Join the Evolution</span>}
-          </button>
-        </div>
+            Welcome to the Evolution
+          </div>
+        ) : (
+          <div className="relative flex flex-col md:flex-row items-stretch md:items-center gap-2 md:gap-0 w-full rounded-full border border-white/[0.06] bg-zinc-900/60 p-1.5 overflow-hidden transition-all duration-500 group-focus-within:border-white/30 group-focus-within:shadow-[0_0_20px_rgba(255,255,255,0.05)]">
+            <div className="absolute inset-0 opacity-20 transition-opacity duration-700 pointer-events-none mix-blend-overlay group-hover:opacity-40 group-focus-within:opacity-40">
+              <div className="w-1/2 h-full bg-gradient-to-r from-transparent via-white/30 to-transparent blur-xl animate-border-shimmer -skew-x-12" />
+            </div>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Enter your email address"
+              required
+              className="w-full md:flex-1 bg-transparent pl-6 pr-6 md:pr-32 py-3 text-sm text-white placeholder:text-white/30 focus:outline-none font-light rounded-full relative z-10"
+              aria-label="Email address"
+              disabled={isSubmitting}
+            />
+            <button
+              type="submit"
+              disabled={isSubmitting || !email.trim()}
+              className="static w-full md:w-auto md:absolute md:right-1.5 md:top-1/2 md:-translate-y-1/2 md:z-20 rounded-full px-6 py-2.5 text-[11px] font-light uppercase tracking-wider text-white bg-white/[0.03] border border-white/[0.06] backdrop-blur-sm transition-all duration-300 hover:text-white hover:border-white/20 hover:scale-[1.02] cursor-pointer disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:scale-100 disabled:hover:border-white/[0.06]"
+            >
+              Join the Evolution
+            </button>
+          </div>
+        )}
       </form>
     </div>
   );
