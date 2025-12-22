@@ -58,3 +58,4 @@ Misc
 GOOGLE_OAUTH_CREDENTIALS.md
 OAUTH_SETUP.md
 .venv/
+.env.local
