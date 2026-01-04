@@ -1,62 +1,17 @@
-See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-# commit and push repo update - race update
-Dependencies
-/node_modules
-/.pnp
-.pnp.js
-Testing
-/coverage
-Next.js
-/.next/
-/out/
-Production
-/build
-# Environment
-.env*.local
-.env
-.env.*
-!.env.example # Keep example file
+# Dependencies
+node_modules/
+.pnp/
 
-# Security - Never commit these
-**/service-role-key*
-**/service_role_key*
-**/*secret*
-**/*SECRET*
-**/*key*.json
-**/*KEY*.json
-Vercel
-.vercel
-TypeScript
-*.tsbuildinfo
-next-env.d.ts
-*storybook.log
-storybook-static
-Debug
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-IDEs and editors
-.vscode/
-.idea/
-*.suo
-.ntvs
-*.njsproj
-*.sln
-*.sw?
-OS generated files
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
-Logs
-*.log
-Misc
-*.pem
-.clerk/
-GOOGLE_OAUTH_CREDENTIALS.md
-OAUTH_SETUP.md
-.venv/
+# Production
+build/
+dist/
+
+# Environment
+.env
 .env.local
+
+# Logs
+*.log
+
+# IDE
+.vscode/
