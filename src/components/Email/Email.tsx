@@ -30,7 +30,7 @@ export const Email = () => {
   };
 
   return (
-    <div className="max-w-lg mt-8">
+    <div className="mx-auto mt-16 w-full max-w-[620px]">
       <form onSubmit={handleSubmit} className="relative group">
         {hasSubmitted ? (
           <div
@@ -41,7 +41,7 @@ export const Email = () => {
             Welcome to the Evolution
           </div>
         ) : (
-          <div className="relative flex flex-col md:flex-row items-stretch md:items-center gap-2 md:gap-0 w-full rounded-full border border-white/[0.06] bg-zinc-900/60 p-1.5 overflow-hidden transition-all duration-500 group-focus-within:border-white/30 group-focus-within:shadow-[0_0_20px_rgba(255,255,255,0.05)]">
+          <div className="relative flex flex-col md:flex-row items-stretch md:items-center gap-2 md:gap-0 w-full md:rounded-full md:border md:border-white/[0.06] md:bg-zinc-900/60 md:p-1.5 md:overflow-hidden transition-all duration-500 group-focus-within:border-white/30 group-focus-within:shadow-[0_0_20px_rgba(255,255,255,0.05)]">
             <div className="absolute inset-0 opacity-20 transition-opacity duration-700 pointer-events-none mix-blend-overlay group-hover:opacity-40 group-focus-within:opacity-40">
               <div className="w-1/2 h-full bg-gradient-to-r from-transparent via-white/30 to-transparent blur-xl animate-border-shimmer -skew-x-12" />
             </div>
@@ -51,7 +51,7 @@ export const Email = () => {
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Enter your email address"
               required
-              className="w-full md:flex-1 bg-transparent pl-6 pr-6 md:pr-32 py-3 text-sm text-white placeholder:text-white/30 focus:outline-none font-light rounded-full relative z-10"
+              className="w-full md:flex-1 rounded-full border border-white/[0.06] bg-zinc-900/60 pl-6 pr-6 md:pr-32 py-3 text-sm text-white placeholder:text-white/30 focus:outline-none font-light relative z-10 md:border-0 md:bg-transparent"
               aria-label="Email address"
               disabled={isSubmitting}
             />
