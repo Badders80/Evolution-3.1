@@ -1,6 +1,6 @@
 # WSL2 Network & DNS Configuration Guide
 
-Complete guide to fix WSL2 networking issues and DNS resolution problems, including Supabase CLI installation.
+Complete guide to fix WSL2 networking issues and DNS resolution problems.
 
 ---
 
@@ -79,7 +79,7 @@ When WSL2 starts, Windows automatically:
 This causes:
 - "Operation not permitted" errors when trying to edit DNS
 - Network failures if Windows' DNS bridge breaks
-- Inability to install tools like Supabase CLI
+- Inability to install CLI tools
 
 ### The Fix Sequence
 
@@ -172,7 +172,6 @@ sudo chattr +i /etc/resolv.conf
 
 ```bash
 ping google.com
-ping cli.supabase.com
 ```
 
 **Expected output:**
@@ -181,18 +180,6 @@ ping cli.supabase.com
 ```
 
 ✅ If you see replies, DNS is working correctly.
-
----
-
-## 🧰 Step 5 – Install Supabase CLI
-
-**Inside Ubuntu:**
-
-```bash
-curl -fsSL https://cli.supabase.com/install.sh | sh
-```
-
-This should now complete without network errors.
 
 ---
 
@@ -256,7 +243,6 @@ By setting `generateResolvConf = false`:
 - [ ] Replaced `/etc/resolv.conf` with custom DNS
 - [ ] Locked DNS file with `chattr +i`
 - [ ] Verified with `ping google.com`
-- [ ] Installed Supabase CLI successfully
 
 ---
 
@@ -265,7 +251,7 @@ By setting `generateResolvConf = false`:
 Your WSL2 network stack is now:
 - ✅ Fixed and persistent
 - ✅ DNS will not reset on each boot
-- ✅ Supabase CLI and other tools install cleanly
+- ✅ CLI tools install cleanly
 - ✅ No more "Operation not permitted" errors
 - ✅ Stable network connectivity
 
@@ -275,4 +261,3 @@ Your WSL2 network stack is now:
 
 - [WSL Configuration Documentation](https://learn.microsoft.com/en-us/windows/wsl/wsl-config)
 - [WSL Networking Guide](https://learn.microsoft.com/en-us/windows/wsl/networking)
-- [Supabase CLI Documentation](https://supabase.com/docs/guides/cli)

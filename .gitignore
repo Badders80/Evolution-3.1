@@ -5,6 +5,8 @@ node_modules/
 # Production
 build/
 dist/
+out/
+.next/
 
 # Environment
 .env
@@ -15,3 +17,34 @@ dist/
 
 # IDE
 .vscode/
+
+# Cache
+.turbo/
+.vercel/
+**/.next/cache/
+**/.next/cache/webpack/
+
+# Build output
+.next/
+out/
+
+# Cache directories
+.turbo/
+.vercel/
+**/.next/cache/
+
+# Large webpack caches
+*.pack
+.next
+
+# Build output
+.next/
+out/
+
+# Cache directories
+.turbo/
+.vercel/
+**/.next/cache/
+
+# Large webpack caches
+*.pack

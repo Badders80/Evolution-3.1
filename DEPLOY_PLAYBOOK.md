@@ -26,7 +26,7 @@ Purpose: A quick reference for managing staging and production deployments of th
    Vercel provides a preview URL such as `https://evolution-3-1-git-feature-update-homepage.vercel.app` for validation.
 3. **Review and test**
    - Check desktop/mobile layouts.
-   - Verify links, forms, Supabase auth, and asset loading.
+   - Verify links, forms, auth, and asset loading.
    - Confirm environment-specific variables behave correctly.
 4. **Merge to production**
    ```bash
@@ -48,14 +48,7 @@ Purpose: A quick reference for managing staging and production deployments of th
 
 ## 🔑 Environment Variables
 
-Manage variables in Vercel → Settings → Environment Variables.
-
-| Scope | Purpose | Example |
-| --- | --- | --- |
-| Preview | Staging keys / test APIs | `NEXT_PUBLIC_SUPABASE_URL_STAGING` |
-| Production | Live API connections | `NEXT_PUBLIC_SUPABASE_URL` |
-
-Vercel selects the appropriate scope at build time.
+Manage variables in Vercel → Settings → Environment Variables and keep preview/production values consistent with their targets.
 
 ## 🧩 Branch Naming
 
@@ -63,7 +56,7 @@ Vercel selects the appropriate scope at build time.
 - Fixes: `fix/<description>`
 - Hotfixes: `hotfix/<description>`
 
-Examples: `feature/add-faq-section`, `fix/footer-spacing`, `hotfix/supabase-login`
+Examples: `feature/add-faq-section`, `fix/footer-spacing`, `hotfix/login-redirect`
 
 ## 🧭 Quick Reference
 
