@@ -24,6 +24,10 @@ out/
 **/.next/cache/
 **/.next/cache/webpack/
 
+# Local helper scripts
+quick-fix-commands.sh
+evolution-git-cleanup.sh
+
 # Build output
 .next/
 out/
