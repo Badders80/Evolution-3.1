@@ -48,3 +48,8 @@ out/
 
 # Large webpack caches
 *.pack
+
+# Operational/maintenance scripts
+quick-fix-commands.sh
+evolution-git-cleanup.sh
+check-required-env-vars.sh
