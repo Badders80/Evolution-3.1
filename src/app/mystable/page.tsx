@@ -57,8 +57,17 @@ export default function MyStablePage() {
   const [showComingSoon, setShowComingSoon] = useState(false);
 
   useEffect(() => {
+    const blurTimer = window.setTimeout(() => {
+      setIsTransitioning(true);
+    }, 2200);
+
+    const comingSoonTimer = window.setTimeout(() => {
+      setShowComingSoon(true);
+    }, 2800);
+
     return () => {
-      // Timers temporarily disabled to keep dashboard visible during testing
+      window.clearTimeout(blurTimer);
+      window.clearTimeout(comingSoonTimer);
     };
   }, []);
 
