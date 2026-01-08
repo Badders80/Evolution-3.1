@@ -4,7 +4,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { LOGOS } from '@/lib/assets';
-import { useSupabase, useSession } from '@/providers/supabase-provider';
+import { useSession, signOut } from 'next-auth/react';
 import { useRouter, usePathname } from 'next/navigation';
 import { GlowPillButton } from '@/components/ui/GlowPillButton';
 
@@ -34,8 +34,7 @@ export function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [visible, setVisible] = useState(false);
-  const { supabase } = useSupabase();
-  const session: any = useSession(); // Using any as a temporary workaround
+  const { data: session } = useSession();
   const router = useRouter();
   const pathname = usePathname();
   const hideNav = pathname?.startsWith('/auth');
@@ -63,8 +62,7 @@ export function NavBar() {
    * Sign out user and refresh router
    */
   const handleSignOut = async () => {
-    await supabase.auth.signOut();
-    router.refresh();
+    await signOut({ callbackUrl: '/' });
   };
 
   /**
@@ -118,26 +116,18 @@ export function NavBar() {
   const logoSrc = LOGOS.simple.grey;
 
   /**
-   * Extract user's display name from session metadata
-   * Tries multiple name fields, falls back to email username
+   * Extract user's display name from session
+   * Tries name field, falls back to email username
    */
   const displayName = useMemo(() => {
-    if (!session) return undefined;
+    if (!session?.user) return undefined;
 
-    const metadata = session.user?.user_metadata ?? {};
-    const rawName =
-      metadata.preferred_name ||
-      metadata.full_name ||
-      metadata.fullName ||
-      metadata.first_name ||
-      metadata.firstName ||
-      metadata.name;
-
-    if (typeof rawName === 'string' && rawName.trim().length > 0) {
-      return rawName.trim().split(' ')[0];
+    const name = session.user.name;
+    if (typeof name === 'string' && name.trim().length > 0) {
+      return name.trim().split(' ')[0];
     }
 
-    const email = session.user?.email ?? '';
+    const email = session.user.email ?? '';
     if (email) {
       return email.split('@')[0];
     }

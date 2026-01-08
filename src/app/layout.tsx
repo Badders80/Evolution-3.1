@@ -5,8 +5,7 @@ import '@once-ui-system/core/css/styles.css';
 import "../styles/globals.css";
 import "../styles/brand.css";
 import { NavBar } from "@/components/NavBar";
-import SupabaseProvider from "@/providers/supabase-provider";
-import { OnceUIProvider } from "@/providers/once-ui-provider";
+import { AppProviders } from "@/providers/app-providers";
 import { StructuredData } from "@/components/seo/StructuredData";
 import { getPressArticlesForStructuredData } from "@/lib/press-articles";
 
@@ -98,14 +97,12 @@ export default function RootLayout({
         <StructuredData pressArticles={getPressArticlesForStructuredData()} />
       </head>
       <body className="min-h-screen bg-black antialiased" suppressHydrationWarning>
-        <OnceUIProvider>
-          <SupabaseProvider>
-            <NavBar />
-            <div className="min-h-screen flex flex-col">
-              <main className="flex-1">{children}</main>
-            </div>
-          </SupabaseProvider>
-        </OnceUIProvider>
+        <AppProviders>
+          <NavBar />
+          <div className="min-h-screen flex flex-col">
+            <main className="flex-1">{children}</main>
+          </div>
+        </AppProviders>
       </body>
     </html>
   );
