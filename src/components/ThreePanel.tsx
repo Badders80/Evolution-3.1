@@ -1,5 +1,3 @@
-import GoogleSignInButton from './GoogleSignInButton';
-
 type PanelProps = {
   icon: React.ReactNode;
   title: string;
@@ -21,12 +19,6 @@ export function ThreePanel({ panels }: { panels: PanelProps[] }) {
         ))}
       </div>
       
-      <div className="pt-8 border-t border-gray-700">
-        <div className="text-center">
-          <p className="text-white mb-4">Sign in to access exclusive content</p>
-          <GoogleSignInButton />
-        </div>
-      </div>
     </div>
   );
 }
