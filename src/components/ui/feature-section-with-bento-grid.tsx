@@ -1,5 +1,5 @@
 import { User } from 'lucide-react';
-import { Badge } from '@/components/ui/badge';
+import { Badge } from '@/components/ui/Badge';
 
 function Feature() {
   return (
