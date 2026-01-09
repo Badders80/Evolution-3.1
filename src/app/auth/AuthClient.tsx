@@ -1,7 +1,7 @@
 'use client';
 
 import { signIn } from 'next-auth/react';
-import { useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import Image from 'next/image';
 import { useState } from 'react';
 import { LOGOS } from '@/lib/assets';
@@ -9,6 +9,7 @@ import { submitInterest } from '@/services/interest/submitInterest';
 
 export function AuthClient() {
   const searchParams = useSearchParams();
+  const router = useRouter();
   const redirectTo = searchParams.get('redirectedFrom') || '/';
   const [email, setEmail] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -32,6 +33,9 @@ export function AuthClient() {
       });
       setStatusMessage('Thanks! You are on the list.');
       setEmail('');
+      window.setTimeout(() => {
+        router.push(redirectTo);
+      }, 1200);
     } finally {
       setIsSubmitting(false);
     }

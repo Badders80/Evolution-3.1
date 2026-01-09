@@ -48,8 +48,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    site: '@evostables',
-    creator: '@evostables',
+    site: '@EvolutionStables',
+    creator: '@EvolutionStables',
     title: 'Evolution Stables - Digital Racehorse Ownership',
     description: 'Own racehorses through digital-syndication. Making racehorse ownership accessible, transparent, and liquid.',
   },

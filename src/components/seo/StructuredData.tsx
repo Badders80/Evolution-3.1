@@ -31,7 +31,7 @@ export function StructuredData({ pressArticles = [] }: StructuredDataProps) {
     description: 'Digital-syndication platform for racehorse ownership. Making racehorse ownership accessible, transparent, and liquid through modern technology and blockchain innovation.',
     foundingDate: '2024',
     sameAs: [
-      'https://x.com/evostables',
+      'https://x.com/EvolutionStables',
       'https://instagram.com/evostables',
       'https://www.linkedin.com/in/alex-baddeley/',
     ],

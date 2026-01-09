@@ -135,7 +135,7 @@ export const About = () => {
                 className={
                   isSticky
                     ? 'fixed left-1/2 top-1/2 z-50 w-full max-w-[760px] -translate-x-1/2 -translate-y-1/2 px-4 text-center'
-                    : 'mx-auto w-full max-w-[760px] px-4 text-center'
+                    : 'w-[calc(100%+6rem)] -mx-12 px-4 text-center max-w-[760px] sm:mx-auto sm:w-full sm:max-w-[760px]'
                 }
               >
                 <div

@@ -53,7 +53,7 @@ export function Footer() {
           {/* Right: Social Icons */}
           <div className="flex items-center justify-start gap-6 md:justify-end">
             <a
-              href="https://x.com/evostables"
+              href="https://x.com/EvolutionStables"
               target="_blank"
               rel="noopener noreferrer"
               className="transition flex items-center"
@@ -147,7 +147,7 @@ export function FooterBar() {
 
           <div className="flex items-center justify-start gap-6 md:justify-end">
             <a
-              href="https://x.com/evostables"
+              href="https://x.com/EvolutionStables"
               target="_blank"
               rel="noopener noreferrer"
               className="transition flex items-center"

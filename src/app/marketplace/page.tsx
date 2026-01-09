@@ -27,8 +27,8 @@ const defaultBackground = (
 );
 
 const layoutClassMap = {
-  wide: 'aspect-[8/3] lg:col-span-2 lg:aspect-[2/1]',
-  standard: 'aspect-[8/3] lg:col-span-1 lg:aspect-square',
+  wide: 'aspect-[4/3] lg:col-span-2 lg:aspect-[2/1]',
+  standard: 'aspect-[4/3] lg:col-span-1 lg:aspect-square',
 };
 
 type ModuleCardConfig = {
