@@ -51,7 +51,10 @@ const Home = () => {
         
         <About />
         
-        <section className="px-0 md:px-0 m-0 p-0 border-none">
+        <section
+          className="px-0 md:px-0 m-0 p-0 border-none"
+          data-cta-overlay="off"
+        >
           <FixedBg src="/images/Background-hooves-back-and-white.jpg" height="h-[50vh]" />
         </section>
 
@@ -144,7 +147,10 @@ const Home = () => {
             </div>
         </section>
 
-        <section className="px-0 md:px-0 m-0 p-0 border-none">
+        <section
+          className="px-0 md:px-0 m-0 p-0 border-none"
+          data-cta-overlay="off"
+        >
           <FixedBg src="/images/Landscape-digitaloverlay.jpg" height="h-[50vh]" />
         </section>
 

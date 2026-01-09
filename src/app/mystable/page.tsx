@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
+import { FooterBar } from '@/components/site/Footer';
 
 // Mock data for demonstration
 const mockPortfolio = {
@@ -262,6 +263,9 @@ export default function MyStablePage() {
           </div>
         </section>
 
+      </div>
+      <div className="mt-24">
+        <FooterBar />
       </div>
     </main>
   );

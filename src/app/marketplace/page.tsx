@@ -13,6 +13,7 @@ import {
 } from 'react-icons/lu';
 
 import { BentoGrid, BentoCard } from '@/components/layout/Bento';
+import { FooterBar } from '@/components/site/Footer';
 
 type LayoutKey =
   | 'middle-tall'
@@ -211,6 +212,9 @@ export default function MarketplacePage() {
             )}
           </BentoGrid>
         </section>
+      </div>
+      <div className="mt-24">
+        <FooterBar />
       </div>
     </main>
   );

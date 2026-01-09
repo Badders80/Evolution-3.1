@@ -24,6 +24,10 @@ export const Email = () => {
       await submit(trimmed, 'about_join_evolution', 'about');
       setEmail('');
       setHasSubmitted(true);
+      if (typeof window !== 'undefined') {
+        sessionStorage.setItem('es_cta_dismissed', 'true');
+        window.dispatchEvent(new CustomEvent('es_cta_submitted'));
+      }
     } catch (error) {
       console.error('Interest submission failed', error);
     }
