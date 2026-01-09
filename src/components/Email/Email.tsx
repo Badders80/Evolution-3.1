@@ -25,7 +25,7 @@ export const Email = () => {
       setEmail('');
       setHasSubmitted(true);
       if (typeof window !== 'undefined') {
-        sessionStorage.setItem('es_cta_dismissed', 'true');
+        localStorage.setItem('es_cta_submitted', 'true');
         window.dispatchEvent(new CustomEvent('es_cta_submitted'));
       }
     } catch (error) {
@@ -34,7 +34,7 @@ export const Email = () => {
   };
 
   return (
-    <div className="mx-auto mt-16 w-full max-w-[620px]">
+    <div className="mx-auto mt-0 w-full max-w-[620px]">
       <form onSubmit={handleSubmit} className="relative group">
         {hasSubmitted ? (
           <div

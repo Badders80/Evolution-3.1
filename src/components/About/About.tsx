@@ -8,16 +8,25 @@ export const About = () => {
   const [ctaHeight, setCtaHeight] = useState<number | null>(null);
   const [isSticky, setIsSticky] = useState(false);
   const [isDismissed, setIsDismissed] = useState(false);
+  const [hasSubmitted, setHasSubmitted] = useState(false);
+  const [isOverMission, setIsOverMission] = useState(false);
+
+  const ctaCopy =
+    'Unlock the thrill of ownership with early access and behind-the-scenes coverage - it is easier than you think.';
+  const shouldShowCta = !isDismissed && !hasSubmitted;
 
   useEffect(() => {
-    if (sessionStorage.getItem('es_cta_dismissed') === 'true') {
+    const submitted = localStorage.getItem('es_cta_submitted') === 'true';
+    setHasSubmitted(submitted);
+
+    if (!submitted && sessionStorage.getItem('es_cta_dismissed') === 'true') {
       setIsDismissed(true);
     }
   }, []);
 
   useEffect(() => {
     const updateSticky = () => {
-      if (isDismissed) {
+      if (isDismissed || hasSubmitted) {
         setIsSticky(false);
         return;
       }
@@ -43,13 +52,43 @@ export const About = () => {
       window.removeEventListener('scroll', updateSticky);
       window.removeEventListener('resize', updateSticky);
     };
-  }, [ctaHeight, isDismissed]);
+  }, [ctaHeight, hasSubmitted, isDismissed]);
+
+  useEffect(() => {
+    if (!isSticky || !shouldShowCta) {
+      setIsOverMission(false);
+      return;
+    }
+
+    const updateOverlap = () => {
+      const mission = document.getElementById('mission');
+      if (!mission) {
+        setIsOverMission(false);
+        return;
+      }
+
+      const rect = mission.getBoundingClientRect();
+      const midpoint = window.innerHeight / 2;
+      setIsOverMission(rect.top <= midpoint && rect.bottom >= midpoint);
+    };
+
+    updateOverlap();
+    window.addEventListener('scroll', updateOverlap, { passive: true });
+    window.addEventListener('resize', updateOverlap);
+
+    return () => {
+      window.removeEventListener('scroll', updateOverlap);
+      window.removeEventListener('resize', updateOverlap);
+    };
+  }, [isSticky, shouldShowCta]);
 
 
   useEffect(() => {
     const handleSubmitted = () => {
       window.setTimeout(() => {
-        setIsDismissed(true);
+        setHasSubmitted(true);
+        setIsDismissed(false);
+        setIsSticky(false);
       }, 2000);
     };
 
@@ -84,22 +123,26 @@ export const About = () => {
             just watch, but own the experience.
           </p>
 
-          <div
-            ref={ctaAnchorRef}
-            style={isSticky && ctaHeight ? { minHeight: ctaHeight } : undefined}
-          >
-            {isSticky && !isDismissed ? (
-              <div className="fixed inset-0 z-40 bg-black/20 backdrop-blur-[3px] pointer-events-none" />
-            ) : null}
-            {!isDismissed ? (
+          {shouldShowCta ? (
+            <div
+              ref={ctaAnchorRef}
+              style={isSticky && ctaHeight ? { minHeight: ctaHeight } : undefined}
+            >
+              {isSticky ? (
+                <div className="fixed inset-0 z-40 bg-black/20 backdrop-blur-[3px] pointer-events-none" />
+              ) : null}
               <div
                 className={
                   isSticky
-                    ? 'fixed left-1/2 top-1/2 z-50 w-full max-w-[720px] -translate-x-1/2 -translate-y-1/2 px-4 text-center'
-                    : 'mx-auto w-full max-w-[720px] px-4 text-center'
+                    ? 'fixed left-1/2 top-1/2 z-50 w-full max-w-[760px] -translate-x-1/2 -translate-y-1/2 px-4 text-center'
+                    : 'mx-auto w-full max-w-[760px] px-4 text-center'
                 }
               >
-                <div className="relative rounded-lg bg-black px-10 py-10 shadow-[0_0_90px_rgba(0,0,0,0.98)] border border-white/10 md:border-0">
+                <div
+                  className={`relative rounded-lg bg-black px-12 py-12 shadow-[0_0_120px_rgba(0,0,0,0.98)] border transition-colors duration-500 ${
+                    isOverMission ? 'border-white/25' : 'border-white/10'
+                  }`}
+                >
                   {isSticky ? (
                     <button
                       type="button"
@@ -110,16 +153,19 @@ export const About = () => {
                       ×
                     </button>
                   ) : null}
-                  <h4 className="mb-20 text-[21px] font-light leading-tight text-white">
-                    Unlock the thrill of ownership with early access and behind-the-scenes
-                    coverage - it is easier than you think.
+                  <h4 className="mb-6 text-[21px] font-light leading-tight text-white">
+                    {ctaCopy}
                   </h4>
 
                   <Email />
                 </div>
               </div>
-            ) : null}
-          </div>
+            </div>
+          ) : (
+            <p className="text-[18px] font-light leading-[1.85] text-white/65">
+              {ctaCopy}
+            </p>
+          )}
         </div>
       </div>
     </section>
