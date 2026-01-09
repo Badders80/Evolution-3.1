@@ -75,7 +75,7 @@ export default function MyStablePage() {
   const firstName = 'Owner';
 
   return (
-    <main className="min-h-screen bg-[#0a0a0a] text-white pt-24">
+    <main className="min-h-screen bg-background text-white pt-24">
       <div className="mx-auto max-w-7xl px-6 py-12 md:px-10 lg:px-12">
         
         {/* Header */}
@@ -243,10 +243,11 @@ export default function MyStablePage() {
             <h2 className="mt-2 text-3xl font-medium tracking-tight md:text-4xl">Information Hub</h2>
             <p className="mt-4 text-base text-white/60 max-w-2xl">
               Stay connected with the latest Evolution news, interviews, and race insights.
+              Follow community updates and media coverage through the Information Hub.
             </p>
           </header>
 
-          <div className="relative overflow-hidden rounded-3xl h-[400px]">
+          <div className="relative overflow-hidden rounded-3xl h-[400px] xl:h-[460px]">
             <Image
               src="/images/Gemini_Generated_Image_r4hnnzr4hnnzr4hn.jpg"
               alt="Latest Insights"

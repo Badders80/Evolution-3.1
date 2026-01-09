@@ -99,7 +99,7 @@ export const About = () => {
                     : 'mx-auto w-full max-w-[720px] px-4 text-center'
                 }
               >
-                <div className="relative rounded-lg bg-black px-10 py-10 shadow-[0_0_90px_rgba(0,0,0,0.98)]">
+                <div className="relative rounded-lg bg-black px-10 py-10 shadow-[0_0_90px_rgba(0,0,0,0.98)] border border-white/10 md:border-0">
                   {isSticky ? (
                     <button
                       type="button"

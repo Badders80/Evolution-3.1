@@ -50,10 +50,6 @@ export const BentoCard = ({
       <Icon className="h-7 w-7" />
     </div>
 
-    <span className="absolute right-6 top-6 text-[0.55rem] uppercase tracking-[0.32em] text-white/35">
-      Module
-    </span>
-
     <div className="relative z-10 flex h-full flex-col justify-end gap-6 p-6 pt-24">
       <div className="space-y-3">
         <h3 className="text-xl font-semibold text-white">{name}</h3>

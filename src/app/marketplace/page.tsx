@@ -9,41 +9,27 @@ import {
   LuBot,
   LuCog,
   LuBrain,
-  LuMessageSquare,
 } from 'react-icons/lu';
 
 import { BentoGrid, BentoCard } from '@/components/layout/Bento';
 import { FooterBar } from '@/components/site/Footer';
-
-type LayoutKey =
-  | 'middle-tall'
-  | 'left-tall'
-  | 'left-bottom'
-  | 'right-top'
-  | 'right-bottom';
-
-
-
-const layoutClassMap: Record<LayoutKey, string> = {
-  'left-tall': 'lg:col-start-1 lg:row-start-1 lg:row-span-1', // Ownership Dashboard - same height as Community & Media
-  'left-bottom': 'lg:col-start-1 lg:row-start-2 lg:row-span-2', // Integration & Compliance - reduced to match total column height
-  'middle-tall': 'lg:col-start-2 lg:row-start-1 lg:row-span-3', // Digital Syndication - spans full height
-  'right-top': 'lg:col-start-3 lg:row-start-1 lg:row-span-2', // Analytics & Insights
-  'right-bottom': 'lg:col-start-3 lg:row-start-3 lg:row-span-1', // Community & Media
-};
 
 const iconMap: Record<string, IconType> = {
   digitalSyndication: LuWorkflow,
   ownershipDashboard: LuBot,
   integrationCompliance: LuCog,
   analyticsInsights: LuBrain,
-  communityMedia: LuMessageSquare,
   default: LuWorkflow,
 };
 
 const defaultBackground = (
   <div className="absolute inset-0 bg-gradient-to-br from-white/[0.04] via-transparent to-black/80" />
 );
+
+const layoutClassMap = {
+  wide: 'aspect-[4/3] lg:col-span-2 lg:aspect-[2/1]',
+  standard: 'aspect-[4/3] lg:col-span-1 lg:aspect-square',
+};
 
 type ModuleCardConfig = {
   name: string;
@@ -57,13 +43,13 @@ type ModuleCardConfig = {
 
 const fallbackModules: ModuleCardConfig[] = [
   {
-    name: 'Ownership Dashboard',
+    name: 'Digital Syndication',
     description:
-      'Track your stable’s performance, prize returns, and active leases through a unified dashboard.',
-    cta: 'Open MyStable',
-    href: '/mystable',
-    Icon: iconMap.ownershipDashboard,
-    className: layoutClassMap['left-tall'],
+      'Experience tokenised racehorse ownership. Lease or trade verified stakes directly within the Evolution platform.',
+    cta: 'View Marketplace',
+    href: '#',
+    Icon: iconMap.digitalSyndication,
+    className: layoutClassMap.wide,
     background: defaultBackground,
   },
   {
@@ -73,17 +59,7 @@ const fallbackModules: ModuleCardConfig[] = [
     cta: 'Learn More',
     href: 'https://tokinvest.capital/report',
     Icon: iconMap.integrationCompliance,
-    className: layoutClassMap['left-bottom'],
-    background: defaultBackground,
-  },
-  {
-    name: 'Digital Syndication',
-    description:
-      'Experience tokenised racehorse ownership. Lease or trade verified stakes directly within the Evolution platform.',
-    cta: 'View Marketplace',
-    href: '#',
-    Icon: iconMap.digitalSyndication,
-    className: layoutClassMap['middle-tall'],
+    className: layoutClassMap.standard,
     background: defaultBackground,
   },
   {
@@ -93,17 +69,17 @@ const fallbackModules: ModuleCardConfig[] = [
     cta: 'View Insights',
     href: '#',
     Icon: iconMap.analyticsInsights,
-    className: layoutClassMap['right-top'],
+    className: layoutClassMap.standard,
     background: defaultBackground,
   },
   {
-    name: 'Community & Media',
+    name: 'Ownership Dashboard',
     description:
-      'Stay connected with Evolution’s news, interviews, and community updates via the Information Hub.',
-    cta: 'Visit Hub',
-    href: '#',
-    Icon: iconMap.communityMedia,
-    className: layoutClassMap['right-bottom'],
+      'Track your stable’s performance, prize returns, and active leases through a unified dashboard.',
+    cta: 'Open MyStable',
+    href: '/mystable',
+    Icon: iconMap.ownershipDashboard,
+    className: layoutClassMap.wide,
     background: defaultBackground,
   },
 ];
@@ -125,7 +101,7 @@ export default function MarketplacePage() {
   const modules = fallbackModules;
 
   return (
-    <main className="min-h-screen bg-[#0a0a0a] text-white pt-32 md:pt-40">
+    <main className="min-h-screen bg-background text-white pt-32 md:pt-40">
       <div className="mx-auto max-w-7xl space-y-24 px-6 pb-24 md:px-10 lg:px-12">
         {/* Section 1: Marketplace - 1/3 text, 2/3 trading window */}
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
@@ -195,7 +171,7 @@ export default function MarketplacePage() {
             </p>
           </div>
 
-          <BentoGrid className="gap-3 md:gap-4 lg:[grid-auto-rows:245px]">
+          <BentoGrid className="gap-3 md:gap-4 auto-rows-auto sm:grid-cols-1 lg:grid-cols-3">
             {modules.map(
               ({ name, description, cta, href, Icon, className, background }) => (
                 <BentoCard
