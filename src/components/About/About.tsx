@@ -116,7 +116,7 @@ export const About = () => {
           Own the Experience
         </h2>
 
-        <div className="mt-6 space-y-20">
+        <div className={`mt-6 ${shouldShowCta ? 'space-y-20' : 'space-y-8'}`}>
           <p className="text-[18px] font-light leading-[1.85] text-white/65">
             Racehorse ownership has changed. Evolution Stables removes the barriers that once made it
             complex and inaccessible — opening the door for first-timers and seasoned fans alike to not
