@@ -27,8 +27,8 @@ const defaultBackground = (
 );
 
 const layoutClassMap = {
-  wide: 'aspect-[4/3] lg:col-span-2 lg:aspect-[2/1]',
-  standard: 'aspect-[4/3] lg:col-span-1 lg:aspect-square',
+  wide: 'aspect-[8/3] lg:col-span-2 lg:aspect-[2/1]',
+  standard: 'aspect-[8/3] lg:col-span-1 lg:aspect-square',
 };
 
 type ModuleCardConfig = {
@@ -171,7 +171,7 @@ export default function MarketplacePage() {
             </p>
           </div>
 
-          <BentoGrid className="gap-3 md:gap-4 auto-rows-auto sm:grid-cols-1 lg:grid-cols-3">
+          <BentoGrid className="gap-3 md:gap-4 auto-rows-auto sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-3">
             {modules.map(
               ({ name, description, cta, href, Icon, className, background }) => (
                 <BentoCard
