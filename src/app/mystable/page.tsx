@@ -75,7 +75,7 @@ export default function MyStablePage() {
   const firstName = 'Owner';
 
   return (
-    <main className="min-h-screen bg-background text-white pt-24">
+    <main className="min-h-screen bg-background text-white pt-32 pb-24">
       <div className="mx-auto max-w-7xl px-6 py-12 md:px-10 lg:px-12">
         
         {/* Header */}

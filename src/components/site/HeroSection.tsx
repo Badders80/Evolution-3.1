@@ -40,7 +40,7 @@ export function HeroSection({
   return (
     <section
       id="hero"
-      className={`relative flex min-h-screen items-center justify-center overflow-hidden pt-24 pb-48 ${className}`}
+      className={`relative flex min-h-screen items-center justify-center overflow-hidden pt-32 pb-64 ${className}`}
     >
       {/* Fixed Background Layer */}
       <motion.div
@@ -111,4 +111,3 @@ export function HeroSection({
     </section>
   );
 }
-

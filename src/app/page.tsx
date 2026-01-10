@@ -55,10 +55,10 @@ const Home = () => {
           className="px-0 md:px-0 m-0 p-0 border-none"
           data-cta-overlay="off"
         >
-          <FixedBg src="/images/Background-hooves-back-and-white.jpg" height="h-[50vh]" />
+          <FixedBg src="/images/Background-hooves-back-and-white.jpg" height="h-[75vh]" />
         </section>
 
-        <section id="mission" className="py-24 bg-background text-foreground">
+        <section id="mission" className="py-40 bg-background text-foreground">
             <div className="max-w-6xl mx-auto px-12 md:px-16 lg:px-20 w-full">
               {/* Heading & Description */}
               <div className="space-y-12 mb-16">
@@ -151,10 +151,10 @@ const Home = () => {
           className="px-0 md:px-0 m-0 p-0 border-none"
           data-cta-overlay="off"
         >
-          <FixedBg src="/images/Landscape-digitaloverlay.jpg" height="h-[50vh]" />
+          <FixedBg src="/images/Landscape-digitaloverlay.jpg" height="h-[75vh]" />
         </section>
 
-        <section id="digital-syndication" className="py-56 bg-background text-foreground">
+        <section id="digital-syndication" className="py-72 bg-background text-foreground">
           <div className="max-w-5xl mx-auto px-6">
             {/* Section Label */}
             <p className="text-[11px] font-light tracking-[0.2em] uppercase mb-12 text-white/30">
@@ -280,10 +280,10 @@ const Home = () => {
         </section>
 
         <section className="px-0 md:px-0 m-0 p-0 border-none">
-          <FixedBg src="/images/Horse-and-foal.jpg" height="h-[50vh]" />
+          <FixedBg src="/images/Horse-and-foal.jpg" height="h-[75vh]" />
         </section>
 
-        <section id="innovation" className="py-56 bg-background text-foreground">
+        <section id="innovation" className="py-72 bg-background text-foreground">
           <div className="max-w-6xl mx-auto px-12 md:px-16 lg:px-20">
             {/* Section Label */}
             <p className="text-[11px] font-light tracking-[0.2em] uppercase mb-12 text-white/30">
@@ -409,7 +409,7 @@ const Home = () => {
         {/* Press Mentions Section */}
         <PressMentions articles={pressArticles} />
 
-        <section id="faq" className="py-56 bg-background text-foreground">
+        <section id="faq" className="py-72 bg-background text-foreground">
           <div className="max-w-6xl mx-auto px-12 md:px-16 lg:px-20">
             {/* Section Label */}
             <p className="text-[11px] font-light tracking-[0.2em] uppercase mb-12 text-white/30">
