@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { TypeFx } from '@once-ui-system/core';
+import { TypeWriter } from '@/components/ui/TypeWriter';
 
 export function Footer() {
   return (
@@ -15,8 +15,8 @@ export function Footer() {
               <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-normal text-white tracking-tight">
                 The Future of Ownership
               </h2>
-              <TypeFx
-                words="Has Arrived"
+              <TypeWriter
+                text="Has Arrived"
                 speed={100}
                 delay={500}
                 trigger="instant"

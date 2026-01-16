@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import { Button } from '@/components/ui/Button';
+import { Button } from '@/components/ui/SimpleButton';
 import { Card } from '@/components/ui/Card';
 import { z } from 'zod';
 

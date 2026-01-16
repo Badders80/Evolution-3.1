@@ -1,6 +1,4 @@
 import type { Metadata } from "next";
-import '@once-ui-system/core/css/tokens.css';
-import '@once-ui-system/core/css/styles.css';
 import "../styles/globals.css";
 import "../styles/brand.css";
 import { NavBar } from "@/components/NavBar";
