@@ -91,7 +91,7 @@ export function PressMentions({ articles, partnerLogos = [] }: PressMentionsProp
         `}</style>
 
         {partnerLogos && partnerLogos.length > 0 && (
-          <div className="mt-28 pt-20 border-t border-white/5 px-12 md:px-16 lg:px-20">
+          <div className="mt-40 pt-32 border-t border-white/5 px-12 md:px-16 lg:px-20">
             <p className="text-[11px] font-light tracking-[0.2em] uppercase mb-12 text-white/20 text-center">
               Partners & Publications
             </p>
