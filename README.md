@@ -8,7 +8,6 @@ A modern Next.js application built with TypeScript, Tailwind CSS, and Framer Mot
 - **TypeScript** for type safety
 - **Tailwind CSS** for styling
 - **Framer Motion** for animations
-- **Storybook** for component development and testing
 - **Component library** with reusable UI components
 - **Responsive design** with mobile-first approach
 
@@ -27,30 +26,10 @@ A modern Next.js application built with TypeScript, Tailwind CSS, and Framer Mot
 
 3. Visit [http://localhost:3000](http://localhost:3000). (If you want the Studio later, start it separately with `npm run dev --prefix studio`.)
 
-## Storybook Development
-
-This project includes Storybook for component development and testing:
-
-1. Start Storybook:
-   ```bash
-   npm run storybook
-   ```
-
-2. Open [http://localhost:6006](http://localhost:6006) in your browser.
-
-3. **Dev Tip**: Click the "Login (Stories)" button in the navigation bar to quickly access Storybook from the main application.
-
 ## Development Workflow
 
-1. **Terminal 1**: `npm run dev` (main application on port 3000)
-2. **Terminal 2**: `npm run storybook` (component stories on port 6006)
-3. Develop components in Storybook → Test in the main application → Instant visual feedback
-
-## Component Stories
-
-- **Button**: Primary, Outline, Secondary, Ghost variants with different sizes
-- **Evolution Stables Branded**: Custom gold/black themed components
-- **Interactive**: Test component variants before implementing in the main app
+1. Run `npm run dev` for the main application on port 3000.
+2. Iterate on components in the app and validate in the browser.
 
 ## Project Structure
 

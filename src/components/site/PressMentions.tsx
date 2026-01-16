@@ -40,9 +40,9 @@ export function PressMentions({ articles, partnerLogos = [] }: PressMentionsProp
   ].filter((row) => row.length > 0);
 
   return (
-    <section className="py-20 bg-background border-y border-white/5 overflow-hidden">
+    <section className="pt-28 pb-24 md:pt-32 md:pb-28 bg-background overflow-hidden">
       <div className="max-w-7xl mx-auto">
-        <p className="text-[11px] font-light tracking-[0.2em] uppercase mb-12 text-white/30 text-center px-12">
+        <p className="text-[11px] font-light tracking-[0.2em] uppercase mb-16 md:mb-20 text-white/30 text-center px-12">
           AS FEATURED IN
         </p>
 
@@ -91,8 +91,8 @@ export function PressMentions({ articles, partnerLogos = [] }: PressMentionsProp
         `}</style>
 
         {partnerLogos && partnerLogos.length > 0 && (
-          <div className="mt-40 pt-32 border-t border-white/5 px-12 md:px-16 lg:px-20">
-            <p className="text-[11px] font-light tracking-[0.2em] uppercase mb-12 text-white/20 text-center">
+          <div className="mt-44 md:mt-52 pt-28 md:pt-32 px-12 md:px-16 lg:px-20">
+            <p className="text-[11px] font-light tracking-[0.2em] uppercase mb-16 md:mb-20 text-white/20 text-center">
               Partners & Publications
             </p>
 
