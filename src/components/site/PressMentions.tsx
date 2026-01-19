@@ -18,6 +18,7 @@ interface PartnerLogo {
   url?: string;
   type: 'publication' | 'partner';
   tone?: 'mono' | 'accent';
+  imageClassName?: string;
 }
 
 interface PressMentionsProps {
@@ -40,7 +41,7 @@ export function PressMentions({ articles, partnerLogos = [] }: PressMentionsProp
   ].filter((row) => row.length > 0);
 
   return (
-    <section className="pt-28 pb-24 md:pt-32 md:pb-28 bg-background overflow-hidden">
+    <section className="pt-36 pb-24 md:pt-40 md:pb-28 bg-background overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <p className="text-[11px] font-light tracking-[0.2em] uppercase mb-16 md:mb-20 text-white/30 text-center px-12">
           AS FEATURED IN
@@ -96,7 +97,7 @@ export function PressMentions({ articles, partnerLogos = [] }: PressMentionsProp
               Partners & Publications
             </p>
 
-            <div className="max-w-6xl mx-auto space-y-8">
+            <div className="max-w-5xl mx-auto space-y-8">
               {logoRows.map((row, rowIndex) => {
                 const isFullRow = row.length === 3;
                 return (
@@ -233,7 +234,7 @@ function LogoItem({ logo, className }: { logo: PartnerLogo; className?: string }
           logo.tone === 'accent'
             ? 'opacity-60 group-hover:opacity-80'
             : 'filter grayscale brightness-0 invert opacity-60 group-hover:opacity-80'
-        }`}
+        } ${logo.imageClassName ?? ''}`.trim()}
         style={{ objectFit: 'contain' }}
       />
     </div>

@@ -4,6 +4,7 @@ export type PartnerLogo = {
   url?: string;
   type: 'publication' | 'partner';
   tone?: 'mono' | 'accent';
+  imageClassName?: string;
 };
 
 export const partnerLogos: PartnerLogo[] = [
@@ -52,10 +53,12 @@ export const partnerLogos: PartnerLogo[] = [
     name: 'Arabian Business',
     imagePath: '/images/partners/10_arabian-bussiness-logo.png',
     type: 'publication',
+    imageClassName: 'max-w-[115px] max-h-[60px]',
   },
   {
     name: 'NZTR Authorised Syndicator',
     imagePath: '/images/partners/11 NZTR Auth_Synd.png',
     type: 'partner',
+    imageClassName: 'max-w-[115px] max-h-[60px]',
   },
 ];
