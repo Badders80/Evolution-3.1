@@ -64,6 +64,14 @@ export const pressArticles: PressArticle[] = [
     excerpt: 'Evolution Stables partners with Tokinvest to bring tokenised racehorse ownership to the Middle East market.',
     imageUrl: '/images/press/ArabianBusiness.png',
   },
+  {
+    title: 'Dubai Racing Club and Tokinvest Announce Partnership',
+    url: 'https://tokinvest.capital/insights-and-news/tokinvest-and-dubai-racing-club',
+    publisher: 'Tokinvest',
+    date: '2026-01-20',
+    excerpt: 'Dubai Racing Club, today announces a partnership with Dubai-based Tokinvest, and plans to explore the launch of a pioneering racehorse tokenisation programme',
+    imageUrl: '/images/press/Tokinvest+DRC.png',
+  },
 ];
 
 export function getPressArticlesForStructuredData() {

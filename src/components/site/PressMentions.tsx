@@ -97,28 +97,35 @@ export function PressMentions({ articles, partnerLogos = [] }: PressMentionsProp
               Partners & Publications
             </p>
 
-            <div className="max-w-5xl mx-auto space-y-8">
-              {logoRows.map((row, rowIndex) => {
-                const isFullRow = row.length === 3;
-                return (
-                  <div
-                    key={`partner-row-${rowIndex}`}
-                    className={
-                      isFullRow
-                        ? 'grid grid-cols-2 md:grid-cols-3 gap-8 items-center justify-items-center'
-                        : 'flex flex-wrap items-center justify-center gap-8'
-                    }
-                  >
-                    {row.map((logo) => (
-                      <LogoItem
-                        key={logo.name}
-                        logo={logo}
-                        className={isFullRow ? 'w-full' : 'w-32 sm:w-36 md:w-40'}
-                      />
-                    ))}
-                  </div>
-                );
-              })}
+            <div className="max-w-5xl mx-auto">
+              <div className="grid grid-cols-2 gap-8 items-center justify-items-center lg:hidden">
+                {displayedLogos.map((logo) => (
+                  <LogoItem key={logo.name} logo={logo} className="w-full" />
+                ))}
+              </div>
+              <div className="hidden lg:block space-y-8">
+                {logoRows.map((row, rowIndex) => {
+                  const isFullRow = row.length === 3;
+                  return (
+                    <div
+                      key={`partner-row-${rowIndex}`}
+                      className={
+                        isFullRow
+                          ? 'grid grid-cols-2 md:grid-cols-3 gap-8 items-center justify-items-center'
+                          : 'flex flex-wrap items-center justify-center gap-8'
+                      }
+                    >
+                      {row.map((logo) => (
+                        <LogoItem
+                          key={logo.name}
+                          logo={logo}
+                          className={isFullRow ? 'w-full' : 'w-32 sm:w-36 md:w-40'}
+                        />
+                      ))}
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           </div>
         )}
