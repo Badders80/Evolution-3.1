@@ -28,9 +28,6 @@ export const metadata: Metadata = {
   authors: [{ name: 'Evolution Stables' }],
   creator: 'Evolution Stables',
   publisher: 'Evolution Stables',
-  alternates: {
-    canonical: '/',
-  },
   openGraph: {
     type: 'website',
     locale: 'en_NZ',
