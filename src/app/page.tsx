@@ -6,6 +6,7 @@ import { GrassBg } from '@/components/ui/GrassBg';
 import { Footer } from '@/components/site/Footer';
 import { SplitFaq } from '@/components/ui/SplitFaq';
 import { HeroSection } from '@/components/site/HeroSection';
+<<<<<<< HEAD
 import { PressShowcase } from '@/components/site/PressShowcase';
 import { FAQStructuredData } from '@/components/seo/FAQStructuredData';
 import { pressArticles } from '@/lib/press-articles';
