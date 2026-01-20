@@ -28,6 +28,9 @@ export const metadata: Metadata = {
   authors: [{ name: 'Evolution Stables' }],
   creator: 'Evolution Stables',
   publisher: 'Evolution Stables',
+  alternates: {
+    canonical: '/',
+  },
   openGraph: {
     type: 'website',
     locale: 'en_NZ',
@@ -72,8 +75,6 @@ export const metadata: Metadata = {
 export const viewport = {
   width: "device-width",
   initialScale: 1,
-  maximumScale: 1,
-  userScalable: false,
 };
 
 export default function RootLayout({

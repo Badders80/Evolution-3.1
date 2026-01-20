@@ -1,5 +1,14 @@
 import React from 'react';
+import { Metadata } from 'next';
 import { Footer } from '@/components/site/Footer';
+
+export const metadata: Metadata = {
+  title: 'Terms of Service | Evolution Stables',
+  description: 'Terms and conditions for using the Evolution Stables platform and services.',
+  alternates: {
+    canonical: '/terms',
+  },
+};
 
 export default function TermsPage() {
   return (

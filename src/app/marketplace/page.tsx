@@ -102,6 +102,7 @@ export default function MarketplacePage() {
 
   return (
     <main className="min-h-screen bg-background text-white pt-32 md:pt-40">
+      <h1 className="sr-only">Evolution Stables Marketplace - Digital Syndication Opportunities</h1>
       <div className="mx-auto max-w-7xl space-y-24 px-6 pb-24 md:px-10 lg:px-12">
         {/* Section 1: Marketplace - 1/3 text, 2/3 trading window */}
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
@@ -127,7 +128,7 @@ export default function MarketplacePage() {
             <div className="absolute inset-0 z-10">
               <Image
                 src="/images/Mockup-trading-window.png"
-                alt="Marketplace Trading Window"
+                alt="Evolution Stables Marketplace Trading Interface Mockup"
                 fill
                 className={`object-cover object-center transition-all duration-700 ease-in-out ${
                   isTransitioning ? 'blur-[1.5px]' : 'blur-0'

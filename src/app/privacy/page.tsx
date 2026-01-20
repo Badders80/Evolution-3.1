@@ -1,5 +1,14 @@
 import React from 'react';
+import { Metadata } from 'next';
 import { Footer } from '@/components/site/Footer';
+
+export const metadata: Metadata = {
+  title: 'Privacy Policy | Evolution Stables',
+  description: 'Learn how Evolution Stables collects, uses, and protects your personal information.',
+  alternates: {
+    canonical: '/privacy',
+  },
+};
 
 export default function PrivacyPage() {
   return (

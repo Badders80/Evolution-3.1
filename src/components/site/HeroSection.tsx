@@ -54,7 +54,7 @@ export function HeroSection({
       >
         <StaticImage
           src={backgroundImage}
-          alt="Evolution Stables"
+          alt="Majestic racehorses representing Evolution Stables digital ownership"
           fill
           priority
           sizes="100vw"
@@ -87,7 +87,7 @@ export function HeroSection({
         >
           <Image
             src="/images/Evolution-Stables-Logo.png"
-            alt="Evolution Stables"
+            alt="Evolution Stables - The Future of Racehorse Ownership"
             width={1200}
             height={400}
             priority

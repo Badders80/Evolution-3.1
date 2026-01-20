@@ -7,6 +7,7 @@ import { Footer } from '@/components/site/Footer';
 import { SplitFaq } from '@/components/ui/SplitFaq';
 import { HeroSection } from '@/components/site/HeroSection';
 import { PressMentions } from '@/components/site/PressMentions';
+import { FAQStructuredData } from '@/components/seo/FAQStructuredData';
 import { pressArticles } from '@/lib/press-articles';
 import { partnerLogos } from '@/lib/partner-logos';
 import { About } from '@/components/About/About';
@@ -45,7 +46,9 @@ const faqItems = [
 const Home = () => {
   return (
     <div className="min-h-screen">
+      <FAQStructuredData items={faqItems} />
       <main className="text-foreground">
+        <h1 className="sr-only">Evolution Stables - Digital Racehorse Ownership & Tokenized RWA Platform</h1>
         <div className="w-full bg-background px-0 shadow-[0_0_80px_RGBA(0,0,0,0.35)] m-0 p-0 border-none max-w-none">
           <HeroSection />
         </div>

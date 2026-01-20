@@ -250,7 +250,7 @@ export default function MyStablePage() {
           <div className="relative overflow-hidden rounded-3xl h-[400px] xl:h-[460px]">
             <Image
               src="/images/Gemini_Generated_Image_r4hnnzr4hnnzr4hn.jpg"
-              alt="Latest Insights"
+              alt="Digital racehorse tracking and insights on Evolution Stables platform"
               fill
               className="object-cover"
               priority

@@ -227,7 +227,7 @@ function LogoItem({ logo, className }: { logo: PartnerLogo; className?: string }
     <div className="relative w-full h-full flex items-center justify-center">
       <Image
         src={logo.imagePath}
-        alt={`${logo.name} logo`}
+        alt={`Evolution Stables featured in ${logo.name}`}
         width={160}
         height={80}
         className={`object-contain w-full h-full max-w-[160px] max-h-[80px] transition-all duration-300 ${
