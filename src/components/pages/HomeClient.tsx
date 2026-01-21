@@ -6,10 +6,9 @@ import { GrassBg } from '@/components/ui/GrassBg';
 import { Footer } from '@/components/site/Footer';
 import { SplitFaq } from '@/components/ui/SplitFaq';
 import { HeroSection } from '@/components/site/HeroSection';
-import { PressMentions } from '@/components/site/PressMentions';
+import { PressShowcase } from '@/components/site/PressShowcase';
 import { FAQStructuredData } from '@/components/seo/FAQStructuredData';
 import { pressArticles } from '@/lib/press-articles';
-import { partnerLogos } from '@/lib/partner-logos';
 import { About } from '@/components/About/About';
 
 const faqItems = [
@@ -410,8 +409,8 @@ export const HomeClient = () => {
           <GrassBg src="/images/Hooves-on-grass.png" />
         </section>
 
-        {/* Press Mentions Section */}
-        <PressMentions articles={pressArticles} partnerLogos={partnerLogos} />
+        {/* Press Showcase Section */}
+        <PressShowcase articles={pressArticles} />
 
         <section id="faq" className="py-56 bg-background text-foreground">
           <div className="max-w-6xl mx-auto px-12 md:px-16 lg:px-20">

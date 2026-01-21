@@ -38,6 +38,9 @@ export function Footer() {
           {/* Left: Legal Links & Copyright */}
           <div className="flex flex-col gap-2">
             <div className="flex flex-wrap items-center gap-3 [&_a]:transition-colors [&_a]:font-extralight">
+              <Link href="/press" className="leading-tight" style={{ color: 'rgba(255, 255, 255, 0.6)' }} onMouseEnter={(e) => e.currentTarget.style.color = 'rgba(255, 255, 255, 1)'} onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255, 255, 255, 0.6)'}>
+                Press
+              </Link>
               <Link href="/privacy" className="leading-tight" style={{ color: 'rgba(255, 255, 255, 0.6)' }} onMouseEnter={(e) => e.currentTarget.style.color = 'rgba(255, 255, 255, 1)'} onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255, 255, 255, 0.6)'}>
                 Privacy Policy
               </Link>
@@ -121,6 +124,15 @@ export function FooterBar() {
         <div className="flex flex-col gap-6 text-xs text-muted md:flex-row md:justify-between md:items-center">
           <div className="flex flex-col gap-2">
             <div className="flex flex-wrap items-center gap-3 [&_a]:transition-colors [&_a]:font-extralight">
+              <Link
+                href="/press"
+                className="leading-tight"
+                style={{ color: 'rgba(255, 255, 255, 0.6)' }}
+                onMouseEnter={(e) => e.currentTarget.style.color = 'rgba(255, 255, 255, 1)'}
+                onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255, 255, 255, 0.6)'}
+              >
+                Press
+              </Link>
               <Link
                 href="/privacy"
                 className="leading-tight"

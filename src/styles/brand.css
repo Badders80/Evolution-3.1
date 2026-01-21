@@ -37,4 +37,25 @@
   /* Shadows */
   --shadow-soft: 0 1px 2px rgba(0, 0, 0, 0.25), 0 2px 6px rgba(0, 0, 0, 0.18);
   --shadow-elevated: 0 8px 24px rgba(0, 0, 0, 0.35);
+
+  /* Showcase Design Tokens */
+  --snap-center: 50vh;
+  --article-spacing: 80px;
+  --transition-duration: 400ms;
+  --transition-easing: cubic-bezier(0.4, 0, 0.2, 1);
+  --accent-color: #d4af37;
+  --panel-left-bg: #0f0f0f;
+  --panel-right-bg: #0a0a0a;
+}
+
+/* Accessibility: Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .article-entry,
+  .preview-panel,
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
