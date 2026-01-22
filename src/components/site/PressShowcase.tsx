@@ -57,7 +57,7 @@ export function PressShowcase({ articles }: PressShowcaseProps) {
   const [isHovered, setIsHovered] = useState(false);
 
   const itemRef = useRef<HTMLDivElement | null>(null);
-  const rotateTimeoutRef = useRef<ReturnType<typeof window.setTimeout> | null>(null);
+  const rotateTimeoutRef = useRef<number | null>(null);
 
   const toggleArticle = (article: PressArticle) => {
     setOpenArticleUrl((current) => (current === article.url ? null : article.url));
