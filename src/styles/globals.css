@@ -83,6 +83,32 @@ body {
     animation: gold-letter-wave 8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
   }
 
+  /* Gentle text sweep that pauses between passes */
+  @keyframes text-wave-sweep {
+    0% {
+      transform: translateX(-120%);
+      opacity: 0;
+    }
+    10% {
+      opacity: 0.35;
+    }
+    30% {
+      transform: translateX(120%);
+      opacity: 0.35;
+    }
+    40% {
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(120%);
+      opacity: 0;
+    }
+  }
+
+  .animate-text-wave {
+    animation: text-wave-sweep 7s ease-in-out infinite;
+  }
+
   /* Subtle shimmer that glides around the outer border */
   @keyframes border-shimmer-move {
     0% { transform: translateX(-100%); }
@@ -180,6 +206,7 @@ body {
   @media (prefers-reduced-motion: reduce) {
     .animate-gold-wave,
     .animate-border-shimmer,
+    .animate-text-wave,
     .animate-text-pulse,
     .animate-text-shimmer,
     .animate-text-fade {

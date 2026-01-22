@@ -264,6 +264,33 @@ export default function MyStablePage() {
           </div>
         </section>
 
+        <section className="mt-16">
+          <header className="mb-8">
+            <p className="text-xs uppercase tracking-[0.28em] text-white/40">Evolution Stables</p>
+            <h2 className="mt-2 text-3xl font-medium tracking-tight md:text-4xl">Press Coverage</h2>
+            <p className="mt-4 text-base text-white/60 max-w-2xl">
+              Explore the latest media coverage and announcements from Evolution Stables.
+            </p>
+          </header>
+
+          <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.02] p-8 md:p-10">
+            <div className="relative z-10 space-y-3">
+              <h3 className="text-2xl font-medium tracking-tight text-white">View All Press Coverage</h3>
+              <p className="text-base text-white/60 max-w-2xl">
+                Read full stories, partnerships, and industry insights in the press archive.
+              </p>
+              <a
+                href="/press"
+                className="text-xs uppercase tracking-[0.3em] text-white/60 hover:text-white transition-colors inline-flex items-center gap-2"
+              >
+                View All Press Coverage
+                <span>→</span>
+              </a>
+            </div>
+            <div className="absolute inset-0 pointer-events-none bg-gradient-to-r from-white/[0.04] via-transparent to-transparent" />
+          </div>
+        </section>
+
       </div>
       <div className="mt-24">
         <FooterBar />

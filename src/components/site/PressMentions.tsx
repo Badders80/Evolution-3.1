@@ -98,7 +98,7 @@ export function PressMentions({ articles, partnerLogos = [] }: PressMentionsProp
             </p>
 
             <div className="max-w-5xl mx-auto">
-              <div className="grid grid-cols-2 gap-8 items-center justify-items-center lg:hidden">
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-8 items-center justify-items-center lg:hidden">
                 {displayedLogos.map((logo) => (
                   <LogoItem key={logo.name} logo={logo} className="w-full" />
                 ))}

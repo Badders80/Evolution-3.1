@@ -1,6 +1,7 @@
 import NextAuth from "next-auth"
 import type { NextAuthOptions } from "next-auth"
 import GoogleProvider from "next-auth/providers/google"
+import { NextRequest, NextResponse } from "next/server"
 
 const GOOGLE_SHEETS_WEB_APP_URL =
   process.env.GOOGLE_SHEETS_WEB_APP_URL ||
@@ -34,13 +35,19 @@ async function trackAuthSignIn(params: {
   }
 }
 
+const googleClientId = process.env.GOOGLE_CLIENT_ID
+const googleClientSecret = process.env.GOOGLE_CLIENT_SECRET
+const hasGoogleAuth = Boolean(googleClientId && googleClientSecret)
+
 const authOptions: NextAuthOptions = {
-  providers: [
-    GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID!,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
-    }),
-  ],
+  providers: hasGoogleAuth
+    ? [
+        GoogleProvider({
+          clientId: googleClientId!,
+          clientSecret: googleClientSecret!,
+        }),
+      ]
+    : [],
   pages: {
     signIn: '/auth',
     error: '/auth',
@@ -64,6 +71,18 @@ const authOptions: NextAuthOptions = {
   secret: process.env.NEXTAUTH_SECRET,
 }
 
-const handler = NextAuth(authOptions)
+const handler = hasGoogleAuth ? NextAuth(authOptions) : null
 
-export { handler as GET, handler as POST }
+const handleMissingAuth = (request: NextRequest) => {
+  if (request.nextUrl.pathname.endsWith("/session")) {
+    return NextResponse.json(null)
+  }
+
+  return NextResponse.json(
+    { error: "Auth provider not configured." },
+    { status: 501 }
+  )
+}
+
+export const GET = handler ?? handleMissingAuth
+export const POST = handler ?? handleMissingAuth

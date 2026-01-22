@@ -9,6 +9,14 @@ export interface PressArticle {
 
 export const pressArticles: PressArticle[] = [
   {
+    title: 'Dubai Racing Club and Tokinvest Announce Partnership',
+    url: 'https://tokinvest.capital/insights-and-news/tokinvest-and-dubai-racing-club',
+    publisher: 'TOKINVEST',
+    date: '2026-01-20',
+    excerpt: "Digital syndication is transforming racehorse ownership globally, and Evolution Stables stands at the forefront of this revolution. The partnership between Dubai Racing Club and Tokinvest validates what we've been building in New Zealand—a regulated, accessible model for fractional horse ownership. While Dubai targets elite international campaigns with premium investor tiers, Evolution Stables democratizes the experience for local racing enthusiasts. This landmark partnership proves digital syndication isn't just the future—it's happening now, and Evolution is leading the charge locally.",
+    imageUrl: '/images/press/Tokinvest+DRC.png',
+  },
+  {
     title: 'Tokinvest and Singularry Superapp Partner to Make Regulated Real-World Asset Investing Accessible to Everyone',
     url: 'https://www.investing.com/news/cryptocurrency-news/tokinvest-and-singularry-superapp-partner-to-make-regulated-realworld-asset-investing-accessible-to-everyone-4316762',
     publisher: 'Investing.com',
@@ -65,12 +73,12 @@ export const pressArticles: PressArticle[] = [
     imageUrl: '/images/press/ArabianBusiness.png',
   },
   {
-    title: 'Dubai Racing Club and Tokinvest Announce Partnership',
-    url: 'https://tokinvest.capital/insights-and-news/tokinvest-and-dubai-racing-club',
-    publisher: 'Tokinvest',
-    date: '2026-01-20',
-    excerpt: 'Dubai Racing Club, today announces a partnership with Dubai-based Tokinvest, and plans to explore the launch of a pioneering racehorse tokenisation programme',
-    imageUrl: '/images/press/Tokinvest+DRC.png',
+    title: "Tokinvest secures VARA's first multi-asset issuance licence, raises $3.2m",
+    url: 'https://gulfbusiness.com/tokinvest-gets-vara-multi-asset-issuance-licence/',
+    publisher: 'Gulf Business',
+    date: '2025-10-03',
+    excerpt: "Tokinvest's $3.2m pre-seed round was backed by VCs, family offices and high-net-worth investors, including Triliv Holdings and Exponential Science.",
+    imageUrl: '/images/press/GulfBusiness.jpg',
   },
 ];
 
