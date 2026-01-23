@@ -1,10 +1,14 @@
-# Evolution 3.1
+# Evolution 4.0 Foundation
 
-A modern Next.js application built with TypeScript, Tailwind CSS, and Framer Motion for Evolution Stables.
+The modern, high-performance foundation for Evolution Stables. Built for institutional-grade reliability, superior SEO, and scalability.
 
-## Features
+## 🏛️ Architecture
 
-- **Next.js 14** with App Router
+For a deep dive into our long-term technical strategy, including database integration, state management, and internationalization, see [ARCHITECTURE.md](./ARCHITECTURE.md).
+
+## 🚀 Features
+
+- **Next.js 15 (App Router)** - Leveraging Server Components for maximum performance.
 - **TypeScript** for type safety
 - **Tailwind CSS** for styling
 - **Framer Motion** for animations
