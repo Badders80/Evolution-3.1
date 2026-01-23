@@ -1,138 +1,63 @@
 # Evolution 4.0 Foundation
 
-The modern, high-performance foundation for Evolution Stables. Built for institutional-grade reliability, superior SEO, and scalability.
+The modern, high-performance foundation for Evolution Stables. Built for institutional-grade reliability, superior SEO, and global scalability.
 
-## 🏛️ Architecture
+---
 
-For a deep dive into our long-term technical strategy, including database integration, state management, and internationalization, see [ARCHITECTURE.md](./ARCHITECTURE.md).
+## 🏛️ Documentation Hub
 
-## 🚀 Features
+All technical and brand documentation has been organized into the `/docs` directory for easy reference:
 
-- **Next.js 15 (App Router)** - Leveraging Server Components for maximum performance.
-- **TypeScript** for type safety
-- **Tailwind CSS** for styling
-- **Framer Motion** for animations
-- **Component library** with reusable UI components
-- **Responsive design** with mobile-first approach
+### [Architecture & Decisions](./docs/decisions/)
+- [**ARCHITECTURE.md**](./docs/decisions/ARCHITECTURE.md) - Long-term technical strategy (DB, State, API, Security).
+- [**PHASE_2_PLAN.md**](./docs/decisions/PHASE_2_PLAN.md) - Marketplace roadmap and schema design.
+- [**TYPOGRAPHY_SYSTEM.md**](./docs/decisions/TYPOGRAPHY_SYSTEM.md) - Institutional-grade design tokens.
+- [**PERFORMANCE_OPTIMIZATION.md**](./docs/decisions/PERFORMANCE_OPTIMIZATION.md) - Metrics and optimization techniques.
 
-## Getting Started
+### [Development Workflows](./docs/workflows/)
+- [**ADDING_FEATURES.md**](./docs/workflows/ADDING_FEATURES.md) - Guide to adding pages and components.
+- [**WORKING_WITH_AI.md**](./docs/workflows/WORKING_WITH_AI.md) - Patterns for AI-assisted development.
+- [**DEPLOYMENT.md**](./docs/workflows/DEPLOYMENT.md) - Production deployment checklist.
 
-1. Install dependencies:
+### [SEO & Marketing](./docs/seo/)
+- [**SEO_AUDIT_REPORT.md**](./docs/seo/SEO_AUDIT_REPORT.md) - Baseline analysis and improvements.
+- [**SEO_CHECKLIST.md**](./docs/seo/SEO_CHECKLIST.md) - Ongoing SEO best practices.
+
+### [Brand & Voice](./docs/brand/)
+- [**BRAND_GUIDELINES.md**](./docs/brand/BRAND_GUIDELINES.md) - Understated Authority voice and British English mandates.
+
+---
+
+## 🚀 Key Features
+
+- **Next.js 15 (App Router)** - Optimized for Server Components.
+- **TypeScript** - Strict mode for enterprise-grade reliability.
+- **Tailwind CSS + Shadcn/UI** - Systematic, token-driven design.
+- **SEO First** - Centralized metadata, structured data, and performance audits.
+- **International Ready** - Architecture prepared for AU, UK, and UAE expansion.
+
+## 🛠️ Getting Started
+
+1. **Install Dependencies**:
    ```bash
    npm install
-   npm install --prefix studio
    ```
 
-2. Run the development server:
+2. **Run Development Server**:
    ```bash
    npm run dev
    ```
 
-3. Visit [http://localhost:3000](http://localhost:3000). (If you want the Studio later, start it separately with `npm run dev --prefix studio`.)
-
-## Development Workflow
-
-1. Run `npm run dev` for the main application on port 3000.
-2. Iterate on components in the app and validate in the browser.
-
-## Project Structure
-
-```
-src/
-|-- app/                 # Next.js app router pages
-|-- components/          # Reusable UI components
-|   |-- ui/             # Basic UI components (Button, Card, etc.)
-|   |-- layout/         # Layout components
-|   |-- site/           # Site-specific components
-|   |-- marketing/      # Marketing components
-|   |-- media/          # Media components
-|   `-- icons/          # Icon components
-|-- lib/                # Utility libraries
-|   `-- api/            # API integration layer
-`-- styles/             # Global styles and themes
-```
-
-## Components
-
-### UI Components
-- `Button` - Customizable button component
-- `Card` - Card layout component
-- `Badge` - Label/badge component
-
-### Layout Components
-- `NavBar` - Navigation bar
-- `Footer` - Site footer
-- `SectionShell` - Section wrapper
-
-### Site Components
-- `Section` - Content section with image
-- `ImageBand` - Full-width image banner
-- `MissionCombo` - Mission statement component
-
-## Development
-
-To add new images, place them in the `public/images/` directory and update the asset references in `src/lib/assets.ts`.
-
-## Build and Deploy
-
-1. Build the application:
+3. **Build for Production**:
    ```bash
    npm run build
    ```
 
-2. Start the production server:
-   ```bash
-npm start
-```
+---
 
-## Environment Variables
+## 🏁 Phase 2 Readiness
 
-Create a `.env.local` file in the root directory:
+The foundation is currently at **Version 1.0**. It is feature-complete for static pages and architecturally ready for the Phase 2 Marketplace launch (Database integration and Authentication).
 
-```env
-NEXT_PUBLIC_API_MODE=mock
-NEXT_PUBLIC_API_URL=https://your-api-url.com
-NEXT_PUBLIC_SANITY_PROJECT_ID=a4xfnv5b
-NEXT_PUBLIC_SANITY_DATASET=production
-NEXT_PUBLIC_SANITY_API_VERSION=2023-10-04
-# Optional: required only for private datasets
-SANITY_READ_TOKEN=your-sanity-read-token
-```
-
-If you create additional content models in Sanity, make sure they expose the following fields so the
-Marketplace modules can be managed from the CMS:
-
-- `title` (string)
-- `description` (text or string)
-- `ctaLabel` (string)
-- `ctaHref` (string URL)
-- `iconKey` (string matching one of `digitalSyndication`, `ownershipDashboard`, `integrationCompliance`, `analyticsInsights`, `communityMedia`)
-- `layoutKey` (string matching one of `middle-tall`, `left-tall`, `left-bottom`, `right-top`, `right-bottom`)
-
-The data is fetched at request time; if Sanity is unreachable or the query returns no documents, the UI falls back to the locally-defined defaults.
-
-## Sanity Studio
-
-A Sanity Studio has been scaffolded in the `/studio` directory.
-
-### Install & Run
-
-```bash
-cd studio
-npm install
-npm run dev
-```
-
-The Studio targets project `a4xfnv5b` and dataset `production` by default (controlled via the same `NEXT_PUBLIC_SANITY_*` env variables shown above).
-
-### Deploy
-
-- **Sanity hosting**: `npx sanity deploy`
-- **Self hosted (Vercel/Netlify)**: build and deploy this folder; the scripts `npm run build` and `npm run deploy` are provided for convenience.
-- **Schema-only deploy**: `npx sanity schema deploy` (requires `SANITY_AUTH_TOKEN` if run from CI)
-
-After deploying you will receive a Studio URL (for example `https://<project>.sanity.studio` or a Vercel URL). Add that URL to the Sanity project settings under *Add studio*.
-
-## License
-
-This project is private and proprietary.
+**Contact**: AB (Founder & CTO)
+**Last Updated**: January 2026
