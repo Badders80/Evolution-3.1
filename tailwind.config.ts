@@ -92,10 +92,12 @@ const config: Config = {
         'gradient-radial': 'radial-gradient(circle at center, var(--tw-gradient-stops))',
       },
       colors: {
-        // Typography color system aligned with Once UI tokens
-        'text-primary': 'var(--color-foreground)',
-        'text-secondary': 'var(--color-muted)',
-        'text-muted': 'var(--color-muted-foreground)',
+        // Neutral scale for typography (Audi-inspired)
+        neutral: {
+          100: 'var(--neutral-on-background-strong)',
+          400: 'var(--neutral-on-background-medium)',
+          600: 'var(--neutral-on-background-weak)',
+        },
 
         brand: {
           gold: 'var(--brand-solid-medium)',

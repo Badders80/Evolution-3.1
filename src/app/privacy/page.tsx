@@ -1,6 +1,6 @@
 import React from 'react';
 import { Metadata } from 'next';
-import { Footer } from '@/components/site/Footer';
+import { Footer } from '@/components/shared/Footer';
 
 export const metadata: Metadata = {
   title: 'Privacy Policy | Evolution Stables',

@@ -12,7 +12,7 @@ export function Footer() {
         <div className="flex flex-col items-center justify-center text-center py-16 md:py-24 animate-fade-in">
           <div className="max-w-4xl space-y-8">
             <div className="flex flex-col items-center gap-2">
-              <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-normal text-white tracking-tight">
+              <h2 className="heading-section">
                 The Future of Ownership
               </h2>
               <TypeWriter
@@ -21,10 +21,10 @@ export function Footer() {
                 delay={500}
                 trigger="instant"
                 loop={false}
-                className="font-display text-3xl md:text-4xl lg:text-5xl font-normal text-white"
+                className="heading-section"
               />
             </div>
-            <p className="text-sm md:text-base font-light text-gray-400">
+            <p className="body-lead mt-4">
               Digital-Syndication, by Evolution Stables, Powered By Tokinvest
             </p>
           </div>

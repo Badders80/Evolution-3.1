@@ -183,10 +183,7 @@ export function NavBar() {
               >
                 <Link
                   href={link.href}
-                  className="relative inline-flex items-center whitespace-nowrap px-2.5 py-4 text-[12px] font-[300] tracking-[0.15em] uppercase transition-all duration-300 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary/50 rounded-sm"
-                  style={{ color: 'rgba(255, 255, 255, 0.6)' }}
-                  onMouseEnter={(e) => e.currentTarget.style.color = 'rgba(255, 255, 255, 1)'}
-                  onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255, 255, 255, 0.6)'}
+                  className="relative inline-flex items-center whitespace-nowrap px-2.5 py-4 text-label uppercase transition-all duration-300 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary/50 rounded-sm text-neutral-600 hover:text-neutral-100"
                 >
                   <span className="relative z-10">{link.label}</span>
                 </Link>
@@ -245,7 +242,7 @@ export function NavBar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="group block rounded-xl px-4 py-3.5 text-[14px] font-light tracking-wide uppercase text-white/60 transition-all duration-300 hover:bg-white/[0.04] hover:text-white active:scale-[0.98]"
+                className="group block rounded-xl px-4 py-3.5 text-body-sm uppercase tracking-wide text-neutral-600 transition-all duration-300 hover:bg-white/[0.04] hover:text-neutral-100 active:scale-[0.98]"
                 onClick={() => setIsMenuOpen(false)}
               >
                 <span className="relative">

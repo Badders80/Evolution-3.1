@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
-import { FooterBar } from '@/components/site/Footer';
+import { FooterBar } from '@/components/shared/Footer';
 
 // Mock data for demonstration
 const mockPortfolio = {
