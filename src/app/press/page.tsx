@@ -1,15 +1,12 @@
-import { Metadata } from 'next';
+import { constructMetadata } from "@/lib/seo";
 import Image from 'next/image';
 import { pressArticles } from '@/lib/press-articles';
 
-export const metadata: Metadata = {
-  title: 'Press & Media | Evolution Stables',
-  description:
-    'The latest news, media coverage, and press releases from Evolution Stables. Discover how we are transforming thoroughbred ownership through digital innovation.',
-  alternates: {
-    canonical: '/press',
-  },
-};
+export const metadata = constructMetadata({
+  title: 'Press & Media',
+  description: 'The latest news, media coverage, and press releases from Evolution Stables.',
+  canonical: '/press',
+});
 
 export default function PressPage() {
   const sortedArticles = [...pressArticles].sort(
@@ -20,17 +17,12 @@ export default function PressPage() {
     <main className="min-h-screen pt-32 pb-20 bg-[#0a0a0a] text-white">
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12">
         <header className="mb-20 max-w-3xl">
-          <div className="flex items-center gap-4 mb-6">
-            <span className="text-[10px] uppercase tracking-[0.4em] text-[#d4af37] font-semibold">
-              Media Relations
-            </span>
-            <div className="h-px w-12 bg-[#d4af37]/30" />
-          </div>
-          <h1 className="text-5xl md:text-7xl font-light tracking-tight mb-8">
+          <p className="label-overline mb-6">Media Relations</p>
+          <h1 className="heading-hero mb-8">
             Press & <br />
             <span className="text-white/40 italic">Coverage</span>
           </h1>
-          <p className="text-xl text-white/60 font-light leading-relaxed">
+          <p className="body-lead">
             Stay updated with our latest announcements and media features as we
             bridge the gap between traditional equine excellence and modern
             digital syndication.
@@ -73,16 +65,16 @@ export default function PressPage() {
                   </span>
                 </div>
 
-                <h2 className="text-2xl font-light leading-snug tracking-tight group-hover:text-[#d4af37] transition-colors duration-300">
+                <h2 className="heading-sub group-hover:text-primary transition-colors duration-300">
                   {article.title}
                 </h2>
 
-                <p className="text-white/50 font-light leading-relaxed line-clamp-3">
+                <p className="body-standard line-clamp-3">
                   {article.excerpt}
                 </p>
 
                 <div className="pt-2">
-                  <span className="text-[10px] uppercase tracking-[0.3em] font-semibold flex items-center gap-2 text-white/30 group-hover:text-white transition-colors">
+                  <span className="text-label flex items-center gap-2 group-hover:text-neutral-100 transition-colors">
                     Read Full Article
                     <svg
                       className="w-3 h-3 transform group-hover:translate-x-1 transition-transform"

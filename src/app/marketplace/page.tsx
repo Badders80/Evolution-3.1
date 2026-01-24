@@ -12,7 +12,7 @@ import {
 } from 'react-icons/lu';
 
 import { BentoGrid, BentoCard } from '@/components/layout/Bento';
-import { FooterBar } from '@/components/site/Footer';
+import { FooterBar } from '@/components/shared/Footer';
 
 const iconMap: Record<string, IconType> = {
   digitalSyndication: LuWorkflow,

@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import "../styles/globals.css";
 import "../styles/brand.css";
-import { NavBar } from "@/components/NavBar";
+import { NavBar } from "@/components/shared/NavBar";
+import { Footer } from "@/components/shared/Footer";
 import { AppProviders } from "@/providers/app-providers";
 import { StructuredData } from "@/components/seo/StructuredData";
+import { GoogleAnalytics } from '@next/third-parties/google';
 import { getPressArticlesForStructuredData } from "@/lib/press-articles";
 
 export const metadata: Metadata = {
@@ -83,7 +85,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="h-full">
+    <html lang="en" className="h-full" suppressHydrationWarning>
       <head>
         <link
           rel="preload"
@@ -94,13 +96,17 @@ export default function RootLayout({
         />
         <StructuredData pressArticles={getPressArticlesForStructuredData()} />
       </head>
-      <body className="min-h-screen bg-black antialiased" suppressHydrationWarning>
+      <body className="min-h-screen bg-black antialiased font-sans">
         <AppProviders>
-          <NavBar />
-          <div className="min-h-screen flex flex-col">
+          <div className="flex flex-col min-h-screen">
+            <NavBar />
             <main className="flex-1">{children}</main>
+            <Footer />
           </div>
         </AppProviders>
+        {process.env.NEXT_PUBLIC_GA_ID && (
+          <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
+        )}
       </body>
     </html>
   );

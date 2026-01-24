@@ -5,7 +5,13 @@
   --brand-white: #ffffff;
   --brand-black: #000000;
 
-  /* Semantic palette mapped to Once UI tokens */
+  /* Neutral scale for typography (Audi-inspired) */
+  --neutral-on-background-strong: #ffffff;
+  --neutral-on-background-medium: #cccccc;
+  --neutral-on-background-weak: #999999;
+  --neutral-border-medium: #333333;
+
+  /* Semantic palette */
   --color-background: #000000;
   --color-surface: #0a0a0a;
   --color-surface-alt: #111111;
@@ -14,9 +20,9 @@
   --color-muted-foreground: var(--neutral-on-background-weak);
   --color-border: var(--neutral-border-medium);
   --color-primary: var(--brand-solid-medium);
-  --color-primary-foreground: var(--brand-on-solid-strong);
-  --color-accent: var(--accent-solid-medium);
-  --color-accent-foreground: var(--accent-on-solid-strong);
+  --color-primary-foreground: #000000;
+  --color-accent: var(--brand-solid-medium);
+  --color-accent-foreground: #000000;
 
   /* Radii */
   --radius-sm: 6px;

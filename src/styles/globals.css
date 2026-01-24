@@ -238,20 +238,28 @@ body {
 }
 
 @layer base {
-  h1 { @apply font-heading text-[2.75rem] md:text-[3.5rem] font-bold leading-[0.95] tracking-[-0.015em]; }
-  h2 { @apply font-heading text-[2rem] md:text-[2.25rem] font-semibold leading-[1.05] tracking-[-0.01em]; }
-  h3 { @apply font-heading text-xl md:text-[1.5rem] font-medium leading-[1.15] tracking-[-0.005em]; }
-  p  { @apply text-base leading-[1.6] tracking-[0em] text-foreground; }
-  a  { @apply text-primary hover:opacity-90 transition-opacity; }
+  h1 { @apply font-heading text-h1-mobile md:text-h1 font-light text-neutral-100; }
+  h2 { @apply font-heading text-h2-mobile md:text-h2 font-normal text-neutral-100; }
+  h3 { @apply font-heading text-h3 font-semibold text-neutral-100; }
+  h4 { @apply font-heading text-h4 font-semibold text-neutral-100; }
+  p  { @apply text-body font-normal text-neutral-400; }
+  a  { @apply text-primary hover:opacity-80 transition-all; }
 }
 
 @layer components {
-  .heading-hero { @apply font-heading text-h1-mobile md:text-h1 text-primary; }
-  .heading-xl { @apply font-heading text-h2-mobile md:text-h2 text-primary; }
-  .heading-lg { @apply font-heading text-h3 text-primary; }
-  .body-text { @apply text-body-lg text-secondary; }
-  .caption-text { @apply text-body-sm text-secondary; }
-  .eyebrow { @apply text-label uppercase text-muted; }
+  /* Semantic typography components aligned with TYPOGRAPHY_SYSTEM.md */
+  .heading-hero { @apply font-heading text-h1-mobile md:text-h1 text-neutral-100 font-light; }
+  .heading-section { @apply font-heading text-h2-mobile md:text-h2 text-neutral-100 font-normal; }
+  .heading-sub { @apply font-heading text-h3 text-neutral-100 font-semibold; }
+  .heading-feature { @apply font-heading text-h4 text-neutral-100 font-semibold uppercase tracking-label; }
+
+  .body-lead { @apply text-body-lg text-neutral-400 font-light; }
+  .body-standard { @apply text-body text-neutral-400 font-normal; }
+  .body-small { @apply text-body-sm text-neutral-600 font-normal; }
+
+  .label-overline { @apply text-label text-neutral-600 font-medium uppercase tracking-wide; }
+  .label-subhead { @apply text-subhead text-primary font-medium uppercase tracking-label; }
+
   .font-display { font-family: var(--font-display); }
   .mono-accent { font-family: var(--font-mono); }
   
