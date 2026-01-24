@@ -45,30 +45,30 @@ const Home = () => {
         {/* SECTION 2: WHY EVOLUTION (The Standard) */}
         <section id="why-evolution" className="py-56 bg-background">
           <div className="max-w-6xl mx-auto px-8 md:px-12">
-            <p className="text-[10px] font-light tracking-[0.4em] uppercase text-white/20 mb-16">The Standard</p>
-            <h2 className="text-h2 text-white font-light tracking-tight mb-24 max-w-2xl">
+            <p className="text-label uppercase tracking-wide text-muted mb-16">The Standard</p>
+            <h2 className="text-h2-mobile md:text-h2 text-primary font-light tracking-tighter mb-24 max-w-2xl">
               Engineered for the<br />Modern Owner.
             </h2>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-1px bg-white/[0.05] border border-white/[0.05]">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-[1px] bg-white/[0.05] border border-white/[0.05]">
               <div className="bg-background p-12 space-y-6 group hover:bg-white/[0.02] transition-colors duration-500">
-                <span className="text-[10px] text-primary tracking-widest uppercase">01</span>
-                <h3 className="text-xl font-light text-white">Full Transparency</h3>
-                <p className="text-sm font-light text-white/50 leading-relaxed">
+                <span className="text-label text-primary tracking-wide uppercase">01</span>
+                <h3 className="text-h3 font-semibold text-primary">Full Transparency</h3>
+                <p className="text-body-sm font-normal text-secondary leading-ui">
                   Direct access to performance data, costs, and management updates.
                 </p>
               </div>
               <div className="bg-background p-12 space-y-6 group hover:bg-white/[0.02] transition-colors duration-500">
-                <span className="text-[10px] text-primary tracking-widest uppercase">02</span>
-                <h3 className="text-xl font-light text-white">Regulated Security</h3>
-                <p className="text-sm font-light text-white/50 leading-relaxed">
+                <span className="text-label text-primary tracking-wide uppercase">02</span>
+                <h3 className="text-h3 font-semibold text-primary">Regulated Security</h3>
+                <p className="text-body-sm font-normal text-secondary leading-ui">
                   Institutional-grade compliance built into every transaction.
                 </p>
               </div>
               <div className="bg-background p-12 space-y-6 group hover:bg-white/[0.02] transition-colors duration-500">
-                <span className="text-[10px] text-primary tracking-widest uppercase">03</span>
-                <h3 className="text-xl font-light text-white">Dynamic Liquidity</h3>
-                <p className="text-sm font-light text-white/50 leading-relaxed">
+                <span className="text-label text-primary tracking-wide uppercase">03</span>
+                <h3 className="text-h3 font-semibold text-primary">Dynamic Liquidity</h3>
+                <p className="text-body-sm font-normal text-secondary leading-ui">
                   Flexibility to exit or trade stakes through our marketplace.
                 </p>
               </div>
@@ -80,11 +80,40 @@ const Home = () => {
           <FixedBg src="/images/Background-hooves-back-and-white.jpg" height="h-[60vh]" />
         </section>
 
-        {/* SECTION 3: HOW IT WORKS (The Timeline) */}
+        {/* SECTION 3: WHO IT IS FOR (Audiences) */}
+        <section id="audiences" className="py-56 bg-background">
+          <div className="max-w-6xl mx-auto px-8 md:px-12">
+            <p className="text-label uppercase tracking-wide text-muted mb-16">Target Audience</p>
+            <h2 className="text-h2-mobile md:text-h2 text-primary font-light tracking-tighter mb-24">Who We Serve</h2>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+              <div className="space-y-6">
+                <h4 className="text-h4 uppercase tracking-label text-primary">Investors & Fans</h4>
+                <p className="text-body font-normal text-secondary leading-body">
+                  Experience the thrill of ownership without the traditional complexity. Regulation-ready infrastructure for modern participants.
+                </p>
+              </div>
+              <div className="space-y-6">
+                <h4 className="text-h4 uppercase tracking-label text-primary">Breeders & Syndicators</h4>
+                <p className="text-body font-normal text-secondary leading-body">
+                  Unlock new revenue streams while retaining control. Our digital-syndication model modernises bloodstock management.
+                </p>
+              </div>
+              <div className="space-y-6">
+                <h4 className="text-h4 uppercase tracking-label text-primary">Clubs & Organisations</h4>
+                <p className="text-body font-normal text-secondary leading-body">
+                  Transform spectators into invested stakeholders. Build deeper engagement through fractionalised ownership opportunities.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* SECTION 4: HOW IT WORKS (The Timeline) */}
         <section id="how-it-works" className="py-56 bg-background">
           <div className="max-w-6xl mx-auto px-8 md:px-12">
-            <p className="text-[10px] font-light tracking-[0.4em] uppercase text-white/20 mb-16">The Process</p>
-            <h2 className="text-h2 text-white font-light tracking-tight mb-32">How It Works</h2>
+            <p className="text-label uppercase tracking-wide text-muted mb-16">The Process</p>
+            <h2 className="text-h2-mobile md:text-h2 text-primary font-light tracking-tighter mb-32">How It Works</h2>
 
             <div className="relative space-y-32">
               <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-[1px] bg-white/[0.05] -translate-x-1/2" />
@@ -92,9 +121,9 @@ const Home = () => {
               {/* Step 1 */}
               <div className="relative grid md:grid-cols-2 gap-12 items-center">
                 <div className="md:text-right md:pr-16">
-                  <h4 className="text-lg text-white mb-4">Discover</h4>
-                  <p className="text-sm font-light text-white/50 max-w-sm md:ml-auto">
-                    Browse elite bloodstock curated by industry experts.
+                  <h4 className="text-h4 text-primary mb-4">Discover</h4>
+                  <p className="text-body-sm font-normal text-secondary max-w-sm md:ml-auto">
+                    Browse elite bloodstock curated by industry experts in our marketplace.
                   </p>
                 </div>
                 <div className="absolute left-[-4px] md:left-1/2 w-2 h-2 rounded-full bg-primary -translate-x-1/2 z-10" />
@@ -106,9 +135,9 @@ const Home = () => {
               {/* Step 2 */}
               <div className="relative grid md:grid-cols-2 gap-12 items-center">
                 <div className="md:order-2 md:pl-16">
-                  <h4 className="text-lg text-white mb-4">Invest</h4>
-                  <p className="text-sm font-light text-white/50 max-w-sm">
-                    Secure fractional stakes through our regulated platform.
+                  <h4 className="text-h4 text-primary mb-4">Invest</h4>
+                  <p className="text-body-sm font-normal text-secondary max-w-sm">
+                    Secure fractional stakes through our regulation-ready digital platform.
                   </p>
                 </div>
                 <div className="absolute left-[-4px] md:left-1/2 w-2 h-2 rounded-full bg-primary -translate-x-1/2 z-10" />
@@ -120,9 +149,9 @@ const Home = () => {
               {/* Step 3 */}
               <div className="relative grid md:grid-cols-2 gap-12 items-center">
                 <div className="md:text-right md:pr-16">
-                  <h4 className="text-lg text-white mb-4">Experience</h4>
-                  <p className="text-sm font-light text-white/50 max-w-sm md:ml-auto">
-                    Track performance and enjoy the thrill of ownership.
+                  <h4 className="text-h4 text-primary mb-4">Experience</h4>
+                  <p className="text-body-sm font-normal text-secondary max-w-sm md:ml-auto">
+                    Track performance and manage your stable with real-time actionable intelligence.
                   </p>
                 </div>
                 <div className="absolute left-[-4px] md:left-1/2 w-2 h-2 rounded-full bg-primary -translate-x-1/2 z-10" />
@@ -138,60 +167,60 @@ const Home = () => {
           <FixedBg src="/images/Landscape-digitaloverlay.jpg" height="h-[60vh]" />
         </section>
 
-        {/* SECTION 4: PLATFORM MODULES (The Infrastructure) */}
+        {/* SECTION 5: PLATFORM MODULES (The Infrastructure) */}
         <section id="modules" className="py-56 bg-background">
           <div className="max-w-6xl mx-auto px-8 md:px-12">
-             <p className="text-[10px] font-light tracking-[0.4em] uppercase text-white/20 mb-16">The Infrastructure</p>
-             <h2 className="text-h2 text-white font-light tracking-tight mb-24">Platform Modules</h2>
+             <p className="text-label uppercase tracking-wide text-muted mb-16">The Infrastructure</p>
+             <h2 className="text-h2-mobile md:text-h2 text-primary font-light tracking-tighter mb-24">Platform Modules</h2>
 
              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <div className="p-8 border border-white/[0.05] hover:border-primary/30 transition-colors duration-500 space-y-6">
                    <Image src="/images/Increased Access.svg" alt="Syndication" width={32} height={32} className="opacity-40" />
-                   <h4 className="text-sm uppercase tracking-widest text-white">Digital Syndication</h4>
-                   <p className="text-[13px] font-light text-white/40 leading-relaxed">Lowering barriers for global participation.</p>
+                   <h4 className="text-subhead uppercase tracking-label text-primary">Digital Syndication</h4>
+                   <p className="text-body-sm font-normal text-muted leading-ui">Redefining barriers for global bloodstock participation.</p>
                 </div>
                 <div className="p-8 border border-white/[0.05] hover:border-primary/30 transition-colors duration-500 space-y-6">
                    <Image src="/images/greater-than-equal-icon-original.svg" alt="Marketplace" width={32} height={32} className="opacity-40" />
-                   <h4 className="text-sm uppercase tracking-widest text-white">Active Marketplace</h4>
-                   <p className="text-[13px] font-light text-white/40 leading-relaxed">Secondary trading for stake liquidity.</p>
+                   <h4 className="text-subhead uppercase tracking-label text-primary">Active Marketplace</h4>
+                   <p className="text-body-sm font-normal text-muted leading-ui">Secondary trading infrastructure for stake liquidity.</p>
                 </div>
                 <div className="p-8 border border-white/[0.05] hover:border-primary/30 transition-colors duration-500 space-y-6">
                    <Image src="/images/Untitled design (36).svg" alt="Compliance" width={32} height={32} className="opacity-40" />
-                   <h4 className="text-sm uppercase tracking-widest text-white">AML/KYC Engine</h4>
-                   <p className="text-[13px] font-light text-white/40 leading-relaxed">Integrated regulatory verification.</p>
+                   <h4 className="text-subhead uppercase tracking-label text-primary">AML/KYC Engine</h4>
+                   <p className="text-body-sm font-normal text-muted leading-ui">Integrated institutional-grade regulatory verification.</p>
                 </div>
                 <div className="p-8 border border-white/[0.05] hover:border-primary/30 transition-colors duration-500 space-y-6">
                    <div className="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center text-[8px] text-white/40">AI</div>
-                   <h4 className="text-sm uppercase tracking-widest text-white">Data Insights</h4>
-                   <p className="text-[13px] font-light text-white/40 leading-relaxed">Real-time bloodstock performance metrics.</p>
+                   <h4 className="text-subhead uppercase tracking-label text-primary">Data Insights</h4>
+                   <p className="text-body-sm font-normal text-muted leading-ui">Real-time performance metrics and actionable insights.</p>
                 </div>
              </div>
           </div>
         </section>
 
-        {/* SECTION 5: INSTITUTIONAL TRUST (The Partnership) */}
+        {/* SECTION 6: INSTITUTIONAL TRUST (The Partnership) */}
         <section id="trust" className="py-56 bg-white/[0.02] border-y border-white/[0.05]">
           <div className="max-w-6xl mx-auto px-8 md:px-12 text-center">
-            <p className="text-[10px] font-light tracking-[0.4em] uppercase text-white/20 mb-16">Institutional by Design</p>
-            <h2 className="text-[32px] md:text-[48px] font-light text-white tracking-tight mb-12">
+            <p className="text-label uppercase tracking-wide text-muted mb-16">Institutional by Design</p>
+            <h2 className="text-h2-mobile md:text-h2 font-light text-primary tracking-tighter mb-12">
               Powered by <a href="https://tokinvest.capital/" className="text-primary hover:text-primary/80 transition-colors">Tokinvest</a>
             </h2>
-            <p className="text-lg font-light text-white/50 max-w-2xl mx-auto mb-24 leading-relaxed">
-              Tokinvest delivers the financial-grade infrastructure that makes digital ownership possible, secure, and regulated.
+            <p className="text-body-lg font-light text-secondary max-w-2xl mx-auto mb-24 leading-body">
+              Tokinvest delivers the institutional-grade infrastructure that makes digital ownership possible, secure, and regulated.
             </p>
-            
+
             <div className="flex flex-wrap justify-center items-center gap-16 md:gap-32 opacity-20 grayscale">
                <div className="flex flex-col items-center gap-4">
-                  <div className="w-16 h-16 rounded-full border border-white/40 flex items-center justify-center text-xs tracking-tighter">FMA</div>
-                  <span className="text-[10px] uppercase tracking-widest">Regulated</span>
+                  <div className="w-16 h-16 rounded-full border border-white/40 flex items-center justify-center text-body-sm tracking-tighter">FMA</div>
+                  <span className="text-label uppercase tracking-wide">Regulated</span>
                </div>
                <div className="flex flex-col items-center gap-4">
-                  <div className="w-16 h-16 rounded-full border border-white/40 flex items-center justify-center text-xs tracking-tighter">AML</div>
-                  <span className="text-[10px] uppercase tracking-widest">Compliant</span>
+                  <div className="w-16 h-16 rounded-full border border-white/40 flex items-center justify-center text-body-sm tracking-tighter">AML</div>
+                  <span className="text-label uppercase tracking-wide">Compliant</span>
                </div>
                <div className="flex flex-col items-center gap-4">
-                  <div className="w-16 h-16 rounded-full border border-white/40 flex items-center justify-center text-xs tracking-tighter">SEC</div>
-                  <span className="text-[10px] uppercase tracking-widest">Standards</span>
+                  <div className="w-16 h-16 rounded-full border border-white/40 flex items-center justify-center text-body-sm tracking-tighter">SEC</div>
+                  <span className="text-label uppercase tracking-wide">Standards</span>
                </div>
             </div>
           </div>
@@ -201,15 +230,15 @@ const Home = () => {
           <GrassBg src="/images/Hooves-on-grass.png" />
         </section>
 
-        {/* SECTION 6: FAQ */}
+        {/* SECTION 7: FAQ */}
         <section id="faq" className="py-56 bg-background">
           <div className="max-w-6xl mx-auto px-8 md:px-12">
             <div className="grid md:grid-cols-[1fr,2fr] gap-24">
               <div>
-                <p className="text-[10px] font-light tracking-[0.4em] uppercase text-white/20 mb-12">Knowledge</p>
-                <h2 className="text-[32px] font-light text-white tracking-tight mb-6">FAQ</h2>
-                <p className="text-sm font-light text-white/40 leading-relaxed">
-                  A guide to the essentials of digital syndication.
+                <p className="text-label uppercase tracking-wide text-muted mb-12">Knowledge</p>
+                <h2 className="text-h2-mobile font-light text-primary tracking-tighter mb-6">FAQ</h2>
+                <p className="text-body-sm font-normal text-muted leading-ui">
+                  A considered guide to the essentials of digital-syndication.
                 </p>
               </div>
               <div>
