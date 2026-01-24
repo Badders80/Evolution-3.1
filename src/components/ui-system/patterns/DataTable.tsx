@@ -16,7 +16,7 @@ interface DataTableProps<T> {
 /**
  * DataTable Pattern
  *
- * Standardized for race results, listing data, and ownership tables.
+ * Standardised for race results, listing data, and ownership tables.
  */
 export function DataTable<T extends { id: string | number }>({
   data,

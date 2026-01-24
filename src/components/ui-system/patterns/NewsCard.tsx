@@ -16,7 +16,7 @@ interface NewsCardProps {
 /**
  * NewsCard Pattern
  *
- * Standardized for press coverage and news updates.
+ * Standardised for press coverage and news updates.
  */
 export function NewsCard({
   title,

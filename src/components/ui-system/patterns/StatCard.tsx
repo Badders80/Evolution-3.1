@@ -16,7 +16,7 @@ interface StatCardProps {
 /**
  * StatCard Pattern
  *
- * Standardized for dashboards and KPI displays.
+ * Standardised for dashboards and KPI displays.
  */
 export function StatCard({
   label,

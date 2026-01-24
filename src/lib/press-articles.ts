@@ -13,7 +13,7 @@ export const pressArticles: PressArticle[] = [
     url: 'https://tokinvest.capital/insights-and-news/tokinvest-and-dubai-racing-club',
     publisher: 'TOKINVEST',
     date: '2026-01-20',
-    excerpt: "Digital syndication is transforming racehorse ownership globally, and Evolution Stables stands at the forefront of this revolution. The partnership between Dubai Racing Club and Tokinvest validates what we've been building in New Zealand—a regulated, accessible model for fractional horse ownership. While Dubai targets elite international campaigns with premium investor tiers, Evolution Stables democratizes the experience for local racing enthusiasts. This landmark partnership proves digital syndication isn't just the future—it's happening now, and Evolution is leading the charge locally.",
+    excerpt: "Digital syndication is transforming racehorse ownership globally, and Evolution Stables stands at the forefront of this revolution. The partnership between Dubai Racing Club and Tokinvest validates what we've been building in New Zealand—a regulated, accessible model for fractional horse ownership. While Dubai targets elite international campaigns with premium investor tiers, Evolution Stables democratises the experience for local racing enthusiasts. This landmark partnership proves digital syndication isn't just the future—it's happening now, and Evolution is leading the charge locally.",
     imageUrl: '/images/press/Tokinvest+DRC.png',
   },
   {

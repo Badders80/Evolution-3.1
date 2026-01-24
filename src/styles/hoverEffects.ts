@@ -12,7 +12,7 @@
  * 
  * SAVED VARIANTS:
  * - blueGradientShimmer: Current (white-to-blue gradient) ✓
- * - goldGradientShimmer: White-to-gold (brand color)
+ * - goldGradientShimmer: White-to-gold (brand colour)
  * - pureWhiteShimmer: Pure white gradient
  * - minimalLift: No gradient, just badge animation
  */
@@ -31,13 +31,13 @@ export const cardHoverEffects = {
 
   /**
    * Gold Gradient Shimmer
-   * Premium white-to-gold gradient matching brand primary color
+   * Premium white-to-gold gradient matching brand primary colour
    */
   goldGradientShimmer: {
     gradient: 'linear-gradient(140deg, rgba(255,255,255,0.06), rgba(212,169,100,0.08) 40%, transparent 70%)',
     badgeClasses: 'text-white/50 group-hover:scale-105 group-hover:text-primary',
     transitionClasses: 'duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]',
-    description: 'White-to-gold gradient overlay (brand color #d4a964)',
+    description: 'White-to-gold gradient overlay (brand colour #D4AF37)',
   },
 
   /**
@@ -48,7 +48,7 @@ export const cardHoverEffects = {
     gradient: 'linear-gradient(140deg, rgba(255,255,255,0.06), rgba(255,255,255,0.10) 40%, transparent 70%)',
     badgeClasses: 'text-white/50 group-hover:scale-105 group-hover:text-white',
     transitionClasses: 'duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]',
-    description: 'Pure white gradient with no color accent',
+    description: 'Pure white gradient with no colour accent',
   },
 
   /**
@@ -59,7 +59,7 @@ export const cardHoverEffects = {
     gradient: 'none',
     badgeClasses: 'text-white/50 group-hover:scale-110 group-hover:text-primary',
     transitionClasses: 'duration-500 ease-out',
-    description: 'No gradient, just badge scale and color change',
+    description: 'No gradient, just badge scale and colour change',
   },
 } as const;
 

@@ -4,7 +4,7 @@
 - [x] Phase 1: Discovery - Audit of existing patterns documented in `AUDIT_REPORT.md`.
 - [x] Identified First Gear HTML update pattern in `public/updates/`.
 - [x] UI system folder structure created in `src/components/ui-system/`.
-- [x] Phase 2: Standardization - `HorseUpdateCard` component created.
+- [x] Phase 2: Standardization - `HorseUpdateCard` component created and modularised.
 - [x] Phase 2: Standardization - `NewsCard` component created.
 - [x] Phase 2: Standardization - `StatCard` component created.
 - [x] Phase 2: Standardization - `SectionHeader` component created.
@@ -14,7 +14,8 @@
 - [x] Phase 3: Documentation - `COMPONENT_PATTERNS.md` created.
 
 ## 🔄 In Progress
-- [ ] Phase 4: Integration - Migrating first test page to new system.
+- [ ] Phase 4: Integration - Marketplace refactoring.
+- [ ] Phase 4: Integration - Dashboard (My Stable) componentisation.
 
 ## 📋 Discovered Tasks
 
@@ -65,6 +66,8 @@
 - Identified that the "First Gear" updates are static HTML and need to be converted to React components with data mapping.
 - **Update**: Successfully extracted all 5 patterns into a cohesive UI System.
 - **Update**: Verified all patterns with a temporary test page and Playwright screenshot.
+- **Update**: Modularised the `HorseUpdateCard` into atomic sub-components for long-form storytelling.
+- **Update**: Enforced British English and synced Gold colour token (`#D4AF37`) across the system.
 
 ## 📊 Metrics
 - Total patterns identified: 5

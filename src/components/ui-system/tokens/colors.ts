@@ -1,6 +1,6 @@
 export const colors = {
   brand: {
-    gold: '#d4a964',
+    gold: '#D4AF37',
     black: '#000000',
     white: '#ffffff',
     gray: '#747474',

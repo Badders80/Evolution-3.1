@@ -12,7 +12,7 @@ interface SectionHeaderProps {
 /**
  * SectionHeader Pattern
  *
- * Standardized for consistent section introductions.
+ * Standardised for consistent section introductions.
  */
 export function SectionHeader({
   eyebrow,

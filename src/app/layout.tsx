@@ -10,12 +10,12 @@ import { getPressArticlesForStructuredData } from "@/lib/press-articles";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://evolutionstables.nz"),
-  title: "Evolution Stables - Digital Racehorse Ownership | Tokenized RWA Platform",
+  title: "Evolution Stables - Digital Racehorse Ownership | Tokenised RWA Platform",
   description: "Own racehorses through digital-syndication. Evolution Stables makes racehorse ownership accessible, transparent, and liquid. Regulated real-world asset (RWA) investing powered by Tokinvest and blockchain technology.",
   keywords: [
     'racehorse ownership',
     'digital syndication',
-    'tokenized assets',
+    'tokenised assets',
     'real world assets',
     'RWA',
     'blockchain racing',

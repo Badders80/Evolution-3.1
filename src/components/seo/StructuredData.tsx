@@ -47,7 +47,7 @@ export function StructuredData({ pressArticles = [] }: StructuredDataProps) {
     keywords: [
       'racehorse ownership',
       'digital syndication',
-      'tokenized assets',
+      'tokenised assets',
       'real world assets',
       'RWA',
       'blockchain',

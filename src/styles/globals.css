@@ -35,7 +35,7 @@
   --font-display: 'Geist Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-mono: 'Geist Mono', ui-monospace, SFMono-Regular, 'Roboto Mono', monospace;
   /* Single source of truth for the Evolution gold accent */
-  --evolution-gold: #d4a964;
+  --evolution-gold: #D4AF37;
   color-scheme: dark;
 }
 
@@ -179,7 +179,7 @@ body {
       color: #000000;
     }
     50% {
-      color: #d4a964;
+      color: #D4AF37;
     }
   }
 
@@ -192,7 +192,7 @@ body {
       color: rgba(255, 255, 255, 0.7);
     }
     50% {
-      color: #d4a964;
+      color: #D4AF37;
     }
   }
 

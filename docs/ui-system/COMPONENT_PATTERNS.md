@@ -7,6 +7,16 @@ This document describes the canonical UI patterns for Evolution 4.0. Always use 
 **Source**: Extracted from the "First Gear" update pages.
 **File**: `src/components/ui-system/patterns/HorseUpdateCard.tsx`
 
+### Modular Components
+For longer-form storytelling, the card is decomposed into atomic components located in `src/components/ui-system/patterns/horse-update/`:
+- `UpdateHeader`: Type, Horse Name, and Date.
+- `UpdateHeadline`: Primary headline and subheadline.
+- `UpdateBody`: Paragraphs with optional drop-cap.
+- `UpdateBullets`: High-contrast bullet point highlights.
+- `UpdateQuote`: Premium testimonial or trainer quote block.
+- `UpdateMedia`: Responsive video/media embed.
+- `UpdateFooter`: Standardised brand sign-off.
+
 ### Props
 - `horseName`: string
 - `updateDate`: string
