@@ -1,9 +1,9 @@
 'use client';
 
 import React from 'react';
-import Image from 'next/image';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import StaticImage from '@/components/ui/ParallaxImage';
+import { GlowPillButton } from '@/components/ui/GlowPillButton';
 
 interface HeroSectionProps {
   backgroundImage?: string;
@@ -77,36 +77,59 @@ export function HeroSection({
         )}
       </motion.div>
 
-      <div className="relative z-10 mx-auto flex w-full max-w-5xl flex-col items-start gap-4 px-8 pb-16 md:px-12">
-        {/* Scrolling Logo */}
+      <div className="relative z-10 mx-auto flex w-full max-w-5xl flex-col items-start gap-8 px-8 pb-16 md:px-12">
+        {/* ANIMATED STORYTELLING HERE */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 0.1 }}
+          className="w-full aspect-video md:aspect-[21/9] bg-white/[0.02] border border-white/[0.05] rounded-sm flex items-center justify-center mb-4 overflow-hidden relative"
+        >
+           <div className="absolute inset-0 bg-gradient-to-tr from-white/[0.02] to-transparent" />
+           <span className="text-[10px] uppercase tracking-[0.4em] text-white/10 relative z-10">Evolution In Motion</span>
+        </motion.div>
+
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: 'easeOut', delay: 0.85 }}
-          className="w-full max-w-[720px]"
+          transition={{ duration: 0.8, ease: 'easeOut', delay: 0.2 }}
+          className="w-full"
         >
-          <Image
-            src="/images/Evolution-Stables-Logo.png"
-            alt="Evolution Stables - The Future of Racehorse Ownership"
-            width={1200}
-            height={400}
-            priority
-            className="h-auto w-full"
-          />
+          <h1 className="text-h1-mobile md:text-h1 text-white font-light tracking-tight max-w-3xl">
+            The New Standard in Bloodstock
+          </h1>
         </motion.div>
 
-        {/* Scrolling Tagline */}
-        <motion.p
-          initial={{ opacity: 0, y: 12 }}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: 'easeOut', delay: 1.05 }}
-          className="eyebrow mt-8 max-w-[720px] font-medium leading-relaxed"
+          transition={{ duration: 0.8, ease: 'easeOut', delay: 0.4 }}
         >
-          <span className="whitespace-nowrap">Grounded in tradition.</span>{' '}
-          <span className="whitespace-nowrap">Evolved through innovation.</span>
-          <br />
-          Ownership transformed.
-        </motion.p>
+          <GlowPillButton>
+            View Opportunities
+          </GlowPillButton>
+        </motion.div>
+
+        {/* Stats Bar */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: 'easeOut', delay: 0.6 }}
+          className="flex flex-wrap items-center gap-x-12 gap-y-4 pt-8"
+        >
+          <div className="flex flex-col gap-1">
+            <span className="text-[10px] uppercase tracking-[0.2em] text-white/40">Total Value</span>
+            <span className="text-label text-white font-light">$2.4M</span>
+          </div>
+          <div className="flex flex-col gap-1">
+            <span className="text-[10px] uppercase tracking-[0.2em] text-white/40">Horses</span>
+            <span className="text-label text-white font-light">12</span>
+          </div>
+          <div className="flex flex-col gap-1">
+            <span className="text-[10px] uppercase tracking-[0.2em] text-white/40">Investors</span>
+            <span className="text-label text-white font-light">847</span>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
