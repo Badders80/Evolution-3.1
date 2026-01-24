@@ -1,6 +1,8 @@
 import { constructMetadata } from "@/lib/seo";
-import { Hero } from "@/components/features/Hero";
+import { HeroSection as Hero } from "@/components/site/HeroSection";
 import { Mission } from "@/components/features/Mission";
+import { ProcessTimeline } from "@/components/features/ProcessTimeline";
+import { TrustSection } from "@/components/site/TrustSection";
 import { Waitlist } from "@/components/features/Waitlist";
 import { FAQStructuredData } from '@/components/seo/FAQStructuredData';
 import { SplitFaq } from '@/components/ui/SplitFaq';
@@ -51,11 +53,13 @@ export default function Home() {
 
       <Hero />
 
+      <TrustSection />
+
       <section className="bg-background">
-        <div className="max-w-6xl mx-auto px-6 py-24 text-center">
+        <div className="max-w-7xl mx-auto px-8 py-32 text-center md:px-12">
           <p className="label-overline mb-8">Evolution Stables</p>
-          <h2 className="heading-section mb-12">Institutional-Grade Infrastructure</h2>
-          <p className="body-lead max-w-3xl mx-auto">
+          <h2 className="text-display mb-12">Institutional-Grade Infrastructure</h2>
+          <p className="body-lead max-w-3xl mx-auto text-xl">
             We are building the technical foundation that allows the racing industry to evolve.
             By combining heritage-informed design with modern digital systems, we enable a
             new level of participation and transparency.
@@ -64,6 +68,8 @@ export default function Home() {
       </section>
 
       <Mission />
+
+      <ProcessTimeline />
 
       <Waitlist />
 
@@ -74,8 +80,8 @@ export default function Home() {
       {/* Press Showcase Section */}
       <PressShowcase articles={pressArticles} />
 
-      <section id="faq" className="py-32 bg-background">
-        <div className="max-w-6xl mx-auto px-6">
+      <section id="faq" className="py-32 bg-background border-t border-white/5">
+        <div className="max-w-7xl mx-auto px-8 md:px-12">
           <div className="text-center mb-20">
             <p className="label-overline mb-6">FAQ</p>
             <h2 className="heading-section">Understanding Digital-Syndication</h2>

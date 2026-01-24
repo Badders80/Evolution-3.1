@@ -22,21 +22,23 @@ const missionCards = [
 
 export function Mission() {
   return (
-    <section id="mission" className="py-24 bg-background text-foreground">
-      <div className="max-w-6xl mx-auto px-6 md:px-12 lg:px-20 w-full">
-        <div className="space-y-12 mb-16">
-          <p className="label-overline">
-            OUR MISSION
-          </p>
-          <h2 className="heading-section">
-            How It<br />Works
-          </h2>
-          <p className="body-lead max-w-2xl">
-            At Evolution Stables, we understand that ownership is the lifeblood of racing — and strengthening it benefits every part of the industry.
+    <section id="mission" className="py-32 md:py-48 bg-background text-foreground border-t border-white/5">
+      <div className="max-w-7xl mx-auto px-8 md:px-12 lg:px-20 w-full">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-12 mb-24">
+          <div className="space-y-8 max-w-2xl">
+            <p className="label-overline">
+              Why Evolution Exists
+            </p>
+            <h2 className="text-4xl md:text-6xl font-light tracking-tight text-white">
+              Redefining <span className="text-brand-gold italic">Accessibility</span>
+            </h2>
+          </div>
+          <p className="body-lead max-w-md text-neutral-400">
+            Ownership is the lifeblood of racing. We've built the infrastructure to make it accessible to everyone.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           {missionCards.map((card, idx) => (
             <div
               key={idx}

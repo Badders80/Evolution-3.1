@@ -1,5 +1,6 @@
 import { constructMetadata } from "@/lib/seo";
 import { Mission } from "@/components/features/Mission";
+import { ProcessTimeline } from "@/components/features/ProcessTimeline";
 
 export const metadata = constructMetadata({
   title: "How It Works",
@@ -28,41 +29,7 @@ export default function HowItWorksPage() {
 
       <Mission />
 
-      <section className="py-24 bg-surface">
-        <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-16">
-          <div className="space-y-6">
-            <h3 className="heading-sub">1. Browse & Select</h3>
-            <p className="body-standard">
-              Explore our marketplace of vetted thoroughbreds. Each listing
-              includes full performance data, pedigree details, and clear
-              ownership terms.
-            </p>
-          </div>
-          <div className="space-y-6">
-            <h3 className="heading-sub">2. Secure Ownership</h3>
-            <p className="body-standard">
-              Purchase your stake instantly through our regulated platform.
-              Your ownership is recorded immutably, ensuring security and
-              transparency from day one.
-            </p>
-          </div>
-          <div className="space-y-6">
-            <h3 className="heading-sub">3. Follow & Engage</h3>
-            <p className="body-standard">
-              Get real-time updates on your horse's training, health, and
-              racing schedule through your personal dashboard.
-            </p>
-          </div>
-          <div className="space-y-6">
-            <h3 className="heading-sub">4. Trade with Ease</h3>
-            <p className="body-standard">
-              Unlike traditional models, you have the flexibility to list
-              your stake for sale on our secondary marketplace whenever
-              you choose.
-            </p>
-          </div>
-        </div>
-      </section>
+      <ProcessTimeline />
     </main>
   );
 }

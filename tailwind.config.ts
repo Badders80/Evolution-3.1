@@ -20,7 +20,10 @@ const config: Config = {
         mono: ["var(--font-mono)", ...defaultTheme.fontFamily.mono],
       },
       fontSize: {
-        // Systematic typography scale (Audi-inspired)
+        // Systematic typography scale (Runway/Audi-inspired)
+        'display': ['4.5rem', { lineHeight: '1.1', letterSpacing: '-0.02em', fontWeight: '300' }], // 72px
+        'hero': ['4rem', { lineHeight: '1.1', letterSpacing: '-0.02em', fontWeight: '300' }], // 64px
+        'hero-mobile': ['3rem', { lineHeight: '1.1', letterSpacing: '-0.02em', fontWeight: '300' }], // 48px
         'h1': ['3.25rem', { lineHeight: '1.1', letterSpacing: '0.02%', fontWeight: '300' }], // 52px (reduced 13%)
         'h1-mobile': ['2.625rem', { lineHeight: '1.1', letterSpacing: '0.02%', fontWeight: '300' }], // 42px (reduced 12.5%)
         'h2': ['2rem', { lineHeight: '1.3', letterSpacing: '0.01%', fontWeight: '400' }], // 32px (reduced 11%)
