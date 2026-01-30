@@ -2,38 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Font Definitions */
-@font-face {
-  font-family: 'Geist Sans';
-  src: url('/fonts/GeistSans-VF.woff2') format('woff2-variations');
-  font-weight: 100 900;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Geist Sans';
-  src: url('/fonts/GeistSans-VFItalic.woff2') format('woff2-variations');
-  font-weight: 100 900;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Geist Mono';
-  src: url('/fonts/GeistMono-VF.woff2') format('woff2-variations');
-  font-weight: 100 900;
-  font-style: normal;
-  font-display: swap;
-}
-
 /* CSS Custom Properties */
 :root {
-  --font-sans: 'Geist Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-heading: 'Geist Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-body: 'Geist Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-display: 'Geist Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-mono: 'Geist Mono', ui-monospace, SFMono-Regular, 'Roboto Mono', monospace;
+  /* Font variables are now injected by next/font in layout.tsx */
+  /* --font-heading, --font-body, --font-mono are set there */
+
   /* Single source of truth for the Evolution gold accent */
   --evolution-gold: #D4AF37;
   color-scheme: dark;
@@ -42,7 +15,7 @@
 body {
   @apply bg-background text-foreground antialiased;
   font-family: var(--font-body);
-  font-variation-settings: 'opsz' 16;
+  /* font-variation-settings: 'opsz' 16; Removed as Inter Tight handles this differently */
   margin: 0;
   padding: 0;
   overflow-x: hidden; /* prevent horizontal scroll from full-bleed elements */
@@ -238,20 +211,27 @@ body {
 }
 
 @layer base {
-  h1 { @apply font-heading text-h1-mobile md:text-h1 font-light text-neutral-100; }
-  h2 { @apply font-heading text-h2-mobile md:text-h2 font-normal text-neutral-100; }
-  h3 { @apply font-heading text-h3 font-semibold text-neutral-100; }
-  h4 { @apply font-heading text-h4 font-semibold text-neutral-100; }
+  /* Typography overrides for the new system */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading text-neutral-100;
+    font-feature-settings: "liga" 1, "kern" 1; /* Better ligatures for serif */
+  }
+
+  h1 { @apply text-h1-mobile md:text-h1 font-normal leading-tight; }
+  h2 { @apply text-h2-mobile md:text-h2 font-normal leading-snug; }
+  h3 { @apply text-h3 font-medium; }
+  h4 { @apply text-h4 font-medium tracking-wide uppercase; }
+  
   p  { @apply text-body font-normal text-neutral-400; }
-  a  { @apply text-primary hover:opacity-80 transition-all; }
+  a  { @apply text-primary hover:text-white transition-colors duration-300; }
 }
 
 @layer components {
   /* Semantic typography components aligned with TYPOGRAPHY_SYSTEM.md */
-  .heading-hero { @apply font-heading text-h1-mobile md:text-h1 text-neutral-100 font-light; }
+  .heading-hero { @apply font-heading text-h1-mobile md:text-h1 text-neutral-100 font-normal; }
   .heading-section { @apply font-heading text-h2-mobile md:text-h2 text-neutral-100 font-normal; }
-  .heading-sub { @apply font-heading text-h3 text-neutral-100 font-semibold; }
-  .heading-feature { @apply font-heading text-h4 text-neutral-100 font-semibold uppercase tracking-label; }
+  .heading-sub { @apply font-heading text-h3 text-neutral-100 font-medium; }
+  .heading-feature { @apply font-heading text-h4 text-neutral-100 font-medium uppercase tracking-label; }
 
   .body-lead { @apply text-body-lg text-neutral-400 font-light; }
   .body-standard { @apply text-body text-neutral-400 font-normal; }

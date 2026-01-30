@@ -5,30 +5,34 @@
   --brand-white: #ffffff;
   --brand-black: #000000;
 
-  /* Neutral scale for typography (Audi-inspired) */
-  --neutral-on-background-strong: #ffffff;
-  --neutral-on-background-medium: #cccccc;
-  --neutral-on-background-weak: #999999;
-  --neutral-border-medium: #333333;
+  /* Neutral scale for typography (Linear/Runway-inspired) */
+  --neutral-on-background-strong: #f3f3f3; /* Softer white for easier reading */
+  --neutral-on-background-medium: #a1a1aa; /* Neutral-400 equivalent */
+  --neutral-on-background-weak: #52525b;   /* Neutral-600 equivalent */
+  --neutral-border-medium: #27272a;        /* Neutral-800 equivalent */
 
-  /* Semantic palette */
-  --color-background: #000000;
-  --color-surface: #0a0a0a;
-  --color-surface-alt: #111111;
+  /* Semantic palette - The "Rich Charcoal" Vibe */
+  --color-background: #09090b;   /* Deep Zinc-950/Black mix */
+  --color-surface: #121214;      /* Slightly lighter surface */
+  --color-surface-alt: #18181b;  /* Zinc-900 */
+  
   --color-foreground: var(--neutral-on-background-strong);
   --color-muted: var(--neutral-on-background-medium);
   --color-muted-foreground: var(--neutral-on-background-weak);
+  
   --color-border: var(--neutral-border-medium);
+  
   --color-primary: var(--brand-solid-medium);
   --color-primary-foreground: #000000;
+  
   --color-accent: var(--brand-solid-medium);
   --color-accent-foreground: #000000;
 
   /* Radii */
-  --radius-sm: 6px;
-  --radius-md: 10px;
-  --radius-lg: 14px;
-  --radius-xl: 20px;
+  --radius-sm: 4px;   /* Sharper corners for a "Technical" feel */
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
 
   /* Spacing unit */
   --space-1: 0.25rem;
@@ -41,6 +45,7 @@
   --space-16: 4rem;
 
   /* Shadows */
-  --shadow-soft: 0 1px 2px rgba(0, 0, 0, 0.25), 0 2px 6px rgba(0, 0, 0, 0.18);
-  --shadow-elevated: 0 8px 24px rgba(0, 0, 0, 0.35);
+  --shadow-soft: 0 1px 2px rgba(0, 0, 0, 0.4), 0 2px 6px rgba(0, 0, 0, 0.2);
+  --shadow-elevated: 0 8px 32px rgba(0, 0, 0, 0.5);
+  --shadow-glow: 0 0 80px rgba(212, 175, 55, 0.05); /* Subtle gold glow */
 }

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Instrument_Serif, Inter_Tight, Geist_Mono } from "next/font/google";
 import "../styles/globals.css";
 import "../styles/brand.css";
 import { NavBar } from "@/components/shared/NavBar";
@@ -7,6 +8,26 @@ import { AppProviders } from "@/providers/app-providers";
 import { StructuredData } from "@/components/seo/StructuredData";
 import { GoogleAnalytics } from '@next/third-parties/google';
 import { getPressArticlesForStructuredData } from "@/lib/press-articles";
+
+// Font Configuration
+const headingFont = Instrument_Serif({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--font-heading",
+  display: "swap",
+});
+
+const bodyFont = Inter_Tight({
+  subsets: ["latin"],
+  variable: "--font-body",
+  display: "swap",
+});
+
+const monoFont = Geist_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://evolutionstables.nz"),
@@ -87,16 +108,9 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full" suppressHydrationWarning>
       <head>
-        <link
-          rel="preload"
-          href="/fonts/GeistSans-VFItalic.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
         <StructuredData pressArticles={getPressArticlesForStructuredData()} />
       </head>
-      <body className="min-h-screen bg-black antialiased font-sans">
+      <body className={`min-h-screen bg-background antialiased font-sans ${headingFont.variable} ${bodyFont.variable} ${monoFont.variable}`}>
         <AppProviders>
           <div className="flex flex-col min-h-screen">
             <NavBar />
