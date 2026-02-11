@@ -10,44 +10,48 @@ import { PressShowcase } from '@/components/site/PressShowcase';
 import { FAQStructuredData } from '@/components/seo/FAQStructuredData';
 import { pressArticles } from '@/lib/press-articles';
 import { About } from '@/components/About/About';
+import { Email } from '@/components/Email/Email';
+import { useState } from 'react';
 
 const faqItems = [
   {
-    question: 'Who is Evolution Stables?',
-    answer: "At its core, Evolution Stables is a marketplace built to make buying and selling racehorse ownership stakes simple, transparent, and secure. We use modern tools to make participation easier for anyone — whether you're new to racing or already involved."
+    question: 'What is Evolution Stables?',
+    answer: "Evolution Stables is an institutional-grade marketplace designed for the acquisition and trade of digital equine assets. We provide a regulated, transparent environment for digital-syndication, ensuring that high-performance ownership is accessible to a global audience."
   },
   {
-    question: 'What is Evolution Stables here to do?',
+    question: 'What is our primary objective?',
     answer:
-      "We're here to make racehorse ownership work better for everyone. That means creating an easier way to get involved, helping owners unlock value from their horses, and building a system where ownership can move more freely between people.",
+      "We aim to professionalise the racehorse ownership experience. By leveraging financial-grade infrastructure, we enable owners to unlock liquidity from their assets while providing investors with a secure, rule-based platform for participation.",
   },
   {
-    question: 'How is Evolution Stables different?',
+    question: 'How does digital-syndication differ from traditional models?',
     answer:
-      "We focus on making ownership practical. No long-term lock-ins, no complicated paperwork — just clear terms, flexible options, and the ability to buy or sell stakes when it suits you. Everything is designed around how people want to participate today.",
+      "Digital-syndication removes the friction of manual paperwork and opaque management. All ownership stakes are managed through a secure digital ledger, providing real-time transparency, immediate settlement, and enhanced flexibility for stakeholders.",
   },
   {
-    question: 'What does digital-syndication mean?',
+    question: 'Is the marketplace regulated?',
     answer:
-      "Digital-syndication is a modern take on a familiar idea. Instead of traditional syndicates managed on paper, ownership stakes are offered and managed online — making them easier to access, track, and trade.",
-  },
-  {
-    question: 'Can I trade or sell my stake?',
-    answer: "Yes. Our marketplace is designed to make ownership more flexible, so you can sell your stake to someone else if you choose. This creates liquidity — something the racing industry has traditionally lacked.",
+      "Yes. Compliance is central to our operation. All transactions and ownership structures are governed by clear regulatory frameworks and industry-standard protocols to ensure investor protection and market integrity.",
   },
   {
     question: 'What are the risks?',
     answer:
-      "Like any regulated investment, racehorse ownership carries some risk. Horses can get injured, performance can vary, and returns are not guaranteed. What matters is that everything on our platform operates under clear rules — with transparent terms, regulated processes, and compliance built in — so you always know what you're investing in and how it's managed.",
+      "As with any regulated asset class, digital equine ownership involves inherent risks, including horse health and competitive performance. Evolution Stables mitigates secondary risks through transparent disclosure, regulated processes, and institutionalised management standards.",
   },
 ];
 
 const Home = () => {
+  const [showWaitlist, setShowWaitlist] = useState(false);
+
   return (
     <div className="min-h-screen">
-      <FAQStructuredData items={faqItems} />
+          <FAQStructuredData items={faqItems} />
+          <div className="sr-only">
+            <h2>Horse Racing Digital Syndication</h2>
+            <p>Evolution Stables is the premier platform for regulated racehorse ownership through digital-syndication and tokenised assets.</p>
+          </div>
       <main className="text-foreground">
-        <h1 className="sr-only">Evolution Stables - Digital Racehorse Ownership & Tokenized RWA Platform</h1>
+        <h1 className="sr-only">Evolution Stables - Regulated Marketplace for Digital Equine Assets</h1>
         <div className="w-full bg-background px-0 shadow-[0_0_80px_RGBA(0,0,0,0.35)] m-0 p-0 border-none max-w-none">
           <HeroSection />
         </div>
@@ -61,6 +65,28 @@ const Home = () => {
           <FixedBg src="/images/Background-hooves-back-and-white.jpg" height="h-[50vh]" />
         </section>
 
+        {/* Waitlist Overlay */}
+        {showWaitlist && (
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-6 bg-black/60 backdrop-blur-xl animate-in fade-in duration-500">
+            <div className="relative w-full max-w-lg bg-zinc-900 border border-white/10 p-12 rounded-2xl shadow-2xl">
+              <button 
+                onClick={() => setShowWaitlist(false)}
+                className="absolute top-6 right-6 text-white/40 hover:text-white transition-colors"
+              >
+                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" /></svg>
+              </button>
+              <div className="space-y-8 text-center">
+                <p className="text-[11px] font-light tracking-[0.2em] uppercase text-white/30">Qualified Asset Waitlist</p>
+                <h3 className="text-3xl font-light text-white tracking-tight">Priority Access</h3>
+                <p className="text-white/60 font-light leading-relaxed">
+                  Join the institutional waitlist for our next high-performance releases. Verified stakeholders receive first-look access to digital equine assets before public listing.
+                </p>
+                <Email campaignKey="release_waitlist_2026" />
+              </div>
+            </div>
+          </div>
+        )}
+
         <section id="mission" className="py-24 bg-background text-foreground">
             <div className="max-w-6xl mx-auto px-12 md:px-16 lg:px-20 w-full">
               {/* Heading & Description */}
@@ -69,10 +95,10 @@ const Home = () => {
                   OUR MISSION
                 </p>
                 <h2 className="text-[36px] md:text-[56px] leading-[1.1] text-white font-light tracking-tight">
-                  How It<br />Works
+                  Institutionalised<br />Ownership
                 </h2>
                 <p className="text-[16px] leading-[1.7] font-light text-white/65">
-                  At Evolution Stables, we understand that ownership is the lifeblood of racing — and strengthening it benefits every part of the industry.
+                  Evolution Stables professionalises the lifecycle of racehorse ownership, ensuring that market integrity and high-performance standards benefit all industry stakeholders.
                 </p>
               </div>
 
@@ -80,6 +106,7 @@ const Home = () => {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 {/* Card 1 */}
                 <div 
+                  onClick={() => setShowWaitlist(true)}
                   className="group relative bg-white/[0.02] border border-white/[0.08] rounded-lg p-10 transition-all duration-700 ease-out hover:bg-white/[0.04] hover:border-white/[0.15] hover:shadow-[0_8px_30px_rgba(0,0,0,0.4)] cursor-pointer"
                 >
                   <div 
@@ -90,19 +117,20 @@ const Home = () => {
                   />
                   <div className="relative space-y-4">
                     <p className="text-sm font-light uppercase tracking-[0.32em] text-white/40">
-                      Investors & <br />Fans
+                      Qualified<br />Investors
                     </p>
                     <h4 className="text-[21px] font-light text-white leading-tight">
-                      Experience the thrill — without the hassle.
+                      Institutional precision for high-performance assets.
                     </h4>
                     <p className="text-[15px] leading-[1.9] font-light text-white/60">
-                      Ownership, on your terms. Simplified terms and conditions give you the full thrill of ownership in a transparent, regulated marketplace — where risk and return are clear before you buy.
+                      Access premium thoroughbred syndications within a transparent, regulated marketplace. Our platform ensures that risk, compliance, and asset performance are clear before every commitment.
                     </p>
                   </div>
                 </div>
 
                 {/* Card 2 */}
                 <div 
+                  onClick={() => setShowWaitlist(true)}
                   className="group relative bg-white/[0.02] border border-white/[0.08] rounded-lg p-10 transition-all duration-700 ease-out hover:bg-white/[0.04] hover:border-white/[0.15] hover:shadow-[0_8px_30px_rgba(0,0,0,0.4)] cursor-pointer"
                 >
                   <div 
@@ -113,19 +141,20 @@ const Home = () => {
                   />
                   <div className="relative space-y-4">
                     <p className="text-sm font-light uppercase tracking-[0.32em] text-white/40">
-                      Breeders & <br />Syndicators
+                      Strategic<br />Partners
                     </p>
                     <h4 className="text-[21px] font-light text-white leading-tight">
-                      Unlock new income — same control, zero extra effort.
+                      Enhanced liquidity and operational control.
                     </h4>
                     <p className="text-[15px] leading-[1.9] font-light text-white/60">
-                      Expand your reach and retain full control, with offers structured, managed, and delivered — all in one place.
+                      Breeders and syndicators can leverage our institutional infrastructure to manage digital equine assets, ensuring professional delivery and market-leading transparency.
                     </p>
                   </div>
                 </div>
 
                 {/* Card 3 */}
                 <div 
+                  onClick={() => setShowWaitlist(true)}
                   className="group relative bg-white/[0.02] border border-white/[0.08] rounded-lg p-10 transition-all duration-700 ease-out hover:bg-white/[0.04] hover:border-white/[0.15] hover:shadow-[0_8px_30px_rgba(0,0,0,0.4)] cursor-pointer"
                 >
                   <div 
@@ -136,13 +165,13 @@ const Home = () => {
                   />
                   <div className="relative space-y-4">
                     <p className="text-sm font-light uppercase tracking-[0.32em] text-white/40">
-                      Clubs & <br />Organisations
+                      Governing<br />Bodies
                     </p>
                     <h4 className="text-[21px] font-light text-white leading-tight">
-                      From spectators to invested stakeholders.
+                      A benchmark for racing market integrity.
                     </h4>
                     <p className="text-[15px] leading-[1.9] font-light text-white/60">
-                      Ownership is the gateway to deeper engagement — turning one-time spectators into lifelong members, building revenue, and strengthening the sport&apos;s future, all in one place.
+                      Evolution Stables sets the standard for digital racing governance, converting market participation into long-term stakeholder value and industry stability.
                     </p>
                   </div>
                 </div>
@@ -293,15 +322,15 @@ const Home = () => {
               REGULATED MARKETPLACE
             </p>
 
-            {/* Headline */}
-            <h2 className="text-[36px] md:text-[48px] leading-[1.1] text-white font-light tracking-tight mb-6">
-              Transformation Powered<br />by <a href="https://tokinvest.capital/" target="_blank" rel="noopener noreferrer" className="text-[#21B981] hover:!text-[#2dd4a4] hover:font-normal hover:tracking-[-0.02em] transition-all">Tokinvest</a>
-            </h2>
+              {/* Headline */}
+              <h2 className="text-[36px] md:text-[48px] leading-[1.1] text-white font-light tracking-tight mb-6">
+                Regulated Marketplace<br />for Digital Equine Assets
+              </h2>
 
-            {/* Description */}
-            <p className="text-[16px] leading-[1.7] font-light text-white/65 mb-16 max-w-3xl">
-              Behind our integrated marketplace, Tokinvest delivers the raw horsepower that powers digital-syndication — built on regulated, financial-grade infrastructure, tailored from institutional finance and adapted to meet the demands of modern owners.
-            </p>
+              {/* Description */}
+              <p className="text-[16px] leading-[1.7] font-light text-white/65 mb-16 max-w-3xl">
+                Behind our integrated marketplace, Tokinvest delivers the raw horsepower that powers digital-syndication — built on regulated, financial-grade infrastructure, tailored from institutional finance and adapted to meet the demands of modern equine asset management.
+              </p>
           {/* Features */}
           <div className="mt-32 w-full">
             <div className="grid grid-cols-1 md:grid-cols-3">

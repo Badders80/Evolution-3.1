@@ -42,7 +42,7 @@ export const Email = () => {
             role="status"
             aria-live="polite"
           >
-            Welcome to the Evolution
+            Access Request Logged
           </div>
         ) : (
           <div className="relative flex flex-col md:flex-row items-stretch md:items-center gap-2 md:gap-0 w-full md:rounded-full md:border md:border-white/[0.06] md:bg-zinc-900/60 md:p-1.5 md:overflow-hidden transition-all duration-500 group-focus-within:border-white/30 group-focus-within:shadow-[0_0_20px_rgba(255,255,255,0.05)]">
@@ -68,7 +68,7 @@ export const Email = () => {
               <div className="absolute inset-0 pointer-events-none">
                 <div className="absolute -inset-y-4 -inset-x-1/2 bg-gradient-to-r from-transparent via-white/30 to-transparent opacity-30 blur-xl animate-border-shimmer" />
               </div>
-              <span className="relative z-10">Join the Evolution</span>
+              <span className="relative z-10">Request Access</span>
             </button>
           </div>
         )}

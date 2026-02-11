@@ -12,7 +12,7 @@ export const About = () => {
   const [isOverMission, setIsOverMission] = useState(false);
 
   const ctaCopy =
-    'Unlock the thrill of ownership with early access and behind-the-scenes coverage - it is easier than you think.';
+    'Professionalise your racehorse ownership experience. Secure priority access and institutional insights through our regulated platform.';
   const shouldShowCta = !isDismissed && !hasSubmitted;
 
   useEffect(() => {
