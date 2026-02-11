@@ -10,46 +10,6 @@ interface PressShowcaseProps {
 }
 
 export function PressShowcase({ articles }: PressShowcaseProps) {
-  if (!articles || articles.length === 0) return null;
-
-  const leadArticle =
-    articles.find(
-      (article) =>
-        article.url ===
-        'https://tokinvest.capital/insights-and-news/tokinvest-and-dubai-racing-club'
-    ) ?? articles[0];
-
-  const remainingArticles =
-    articles.filter((article) => article !== leadArticle) || [];
-
-  const preferredOrder = [
-    'https://businessdesk.co.nz/article/technology/bringing-racing-into-the-digital-age',
-    'https://trackside.co.nz/article/thoroughbred-ownership-reimagined',
-    'https://www.investing.com/news/cryptocurrency-news/tokinvest-and-singularry-superapp-partner-to-make-regulated-realworld-asset-investing-accessible-to-everyone-4316762',
-  ];
-
-  const orderMap = new Map(
-    preferredOrder.map((url, index) => [url, index])
-  );
-
-  const rightArticles = [...remainingArticles].sort((a, b) => {
-    const aRank = orderMap.get(a.url);
-    const bRank = orderMap.get(b.url);
-
-    if (aRank !== undefined || bRank !== undefined) {
-      if (aRank === undefined) return 1;
-      if (bRank === undefined) return -1;
-      return aRank - bRank;
-    }
-
-    return new Date(b.date).getTime() - new Date(a.date).getTime();
-  });
-
-  const visibleCount = Math.min(6, rightArticles.length);
-  const shouldRotate = rightArticles.length > visibleCount;
-  const animationDuration = 800;
-  const displayDuration = 4200;
-
   const [openArticleUrl, setOpenArticleUrl] = useState<string | null>(null);
   const [startIndex, setStartIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
@@ -58,6 +18,59 @@ export function PressShowcase({ articles }: PressShowcaseProps) {
 
   const itemRef = useRef<HTMLDivElement | null>(null);
   const rotateTimeoutRef = useRef<number | null>(null);
+
+  const leadArticle = useMemo(() => {
+    if (!articles || articles.length === 0) return null;
+    return (
+      articles.find(
+        (article) =>
+          article.url ===
+          'https://tokinvest.capital/insights-and-news/tokinvest-and-dubai-racing-club'
+      ) ?? articles[0]
+    );
+  }, [articles]);
+
+  const remainingArticles = useMemo(() => {
+    if (!articles || articles.length === 0 || !leadArticle) return [];
+    return articles.filter((article) => article !== leadArticle) || [];
+  }, [articles, leadArticle]);
+
+  const preferredOrder = useMemo(() => [
+    'https://businessdesk.co.nz/article/technology/bringing-racing-into-the-digital-age',
+    'https://trackside.co.nz/article/thoroughbred-ownership-reimagined',
+    'https://www.investing.com/news/cryptocurrency-news/tokinvest-and-singularry-superapp-partner-to-make-regulated-realworld-asset-investing-accessible-to-everyone-4316762',
+  ], []);
+
+  const orderMap = useMemo(() => {
+    return new Map(preferredOrder.map((url, index) => [url, index]));
+  }, [preferredOrder]);
+
+  const rightArticles = useMemo(() => {
+    return [...remainingArticles].sort((a, b) => {
+      const aRank = orderMap.get(a.url);
+      const bRank = orderMap.get(b.url);
+
+      if (aRank !== undefined || bRank !== undefined) {
+        if (aRank === undefined) return 1;
+        if (bRank === undefined) return -1;
+        return aRank - bRank;
+      }
+
+      return new Date(b.date).getTime() - new Date(a.date).getTime();
+    });
+  }, [remainingArticles, orderMap]);
+
+  const visibleCount = useMemo(() => Math.min(6, rightArticles.length), [rightArticles.length]);
+  const shouldRotate = useMemo(() => rightArticles.length > visibleCount, [rightArticles.length, visibleCount]);
+  const animationDuration = 800;
+  const displayDuration = 4200;
+
+  const renderArticles = useMemo(() => {
+    if (!shouldRotate) return rightArticles;
+    return Array.from({ length: visibleCount + 1 }, (_, index) => {
+      return rightArticles[(startIndex + index) % rightArticles.length];
+    });
+  }, [rightArticles, shouldRotate, startIndex, visibleCount]);
 
   const toggleArticle = (article: PressArticle) => {
     setOpenArticleUrl((current) => (current === article.url ? null : article.url));
@@ -107,12 +120,7 @@ export function PressShowcase({ articles }: PressShowcaseProps) {
     };
   }, [animationDuration, displayDuration, isPaused, itemHeight, rightArticles.length, shouldRotate, startIndex]);
 
-  const renderArticles = useMemo(() => {
-    if (!shouldRotate) return rightArticles;
-    return Array.from({ length: visibleCount + 1 }, (_, index) => {
-      return rightArticles[(startIndex + index) % rightArticles.length];
-    });
-  }, [rightArticles, shouldRotate, startIndex, visibleCount]);
+  if (!articles || articles.length === 0 || !leadArticle) return null;
 
   const partners = [
     { name: 'Investing.com', src: '/images/partners/1_Investing_comLOGO.png', size: 'smaller' },
