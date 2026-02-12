@@ -7,6 +7,12 @@ export const metadata: Metadata = {
   alternates: {
     canonical: '/marketplace',
   },
+  openGraph: {
+    title: 'Marketplace | Evolution Stables',
+    description: 'Explore digital-syndication opportunities in the Evolution Stables marketplace.',
+    url: 'https://evolutionstables.nz/marketplace',
+    type: 'website',
+  }
 };
 
 export default function MarketplaceLayout({

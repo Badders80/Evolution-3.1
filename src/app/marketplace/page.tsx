@@ -164,6 +164,7 @@ export default function MarketplacePage() {
                 src="/images/Mockup-trading-window.png"
                 alt="Evolution Stables Marketplace Trading Interface Mockup"
                 fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 66vw, 800px"
                 className={`object-cover object-center transition-all duration-700 ease-in-out ${
                   isTransitioning ? 'blur-[1.5px]' : 'blur-0'
                 }`}

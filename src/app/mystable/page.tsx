@@ -286,6 +286,7 @@ export default function MyStablePage() {
               src="/images/Gemini_Generated_Image_r4hnnzr4hnnzr4hn.jpg"
               alt="Digital racehorse tracking and insights on Evolution Stables platform"
               fill
+              sizes="(max-width: 1200px) 100vw, 1200px"
               className="object-cover"
               priority
             />

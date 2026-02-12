@@ -225,6 +225,7 @@ const Home = () => {
                           alt="INCREASED ACCESS"
                           width={48}
                           height={48}
+                          sizes="48px"
                           className="w-10 h-10 transition-all duration-500 group-hover:[filter:brightness(0)_saturate(100%)_invert(100%)]"
                           style={{
                             filter: 'brightness(0) saturate(100%) invert(80%)'
@@ -255,6 +256,7 @@ const Home = () => {
                           alt="GREATER TRANSPARENCY"
                           width={48}
                           height={48}
+                          sizes="48px"
                           className="w-10 h-10 transition-all duration-500 group-hover:[filter:brightness(0)_saturate(100%)_invert(100%)]"
                           style={{
                             filter: 'brightness(0) saturate(100%) invert(80%)'
@@ -285,6 +287,7 @@ const Home = () => {
                           alt="BORDERLESS FLEXIBILITY"
                           width={48}
                           height={48}
+                          sizes="48px"
                           className="w-10 h-10 transition-all duration-500 group-hover:[filter:brightness(0)_saturate(100%)_invert(100%)]"
                           style={{
                             filter: 'brightness(0) saturate(100%) invert(80%)'
