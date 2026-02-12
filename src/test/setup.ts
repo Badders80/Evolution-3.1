@@ -19,20 +19,19 @@ vi.mock('next/image', () => ({
   }),
 }))
 
-// Mock localStorage
-const localStorageMock = {
-  getItem: vi.fn(),
-  setItem: vi.fn(),
-  removeItem: vi.fn(),
-  clear: vi.fn(),
+// Mock Storage interface
+class StorageMock implements Storage {
+  [name: string]: any;
+  length: number = 0;
+  clear = vi.fn();
+  getItem = vi.fn();
+  key = vi.fn();
+  removeItem = vi.fn();
+  setItem = vi.fn();
 }
-global.localStorage = localStorageMock
+
+// Mock localStorage
+global.localStorage = new StorageMock()
 
 // Mock sessionStorage
-const sessionStorageMock = {
-  getItem: vi.fn(),
-  setItem: vi.fn(),
-  removeItem: vi.fn(),
-  clear: vi.fn(),
-}
-global.sessionStorage = sessionStorageMock
+global.sessionStorage = new StorageMock()
