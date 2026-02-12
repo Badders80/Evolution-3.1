@@ -43,6 +43,7 @@ export function Section({
             src={imageSrc}
             alt={imageAlt}
             fill
+            sizes="(min-width: 768px) 50vw, 100vw"
             className="object-cover rounded-lg"
           />
         </div>

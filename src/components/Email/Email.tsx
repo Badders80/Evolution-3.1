@@ -3,7 +3,15 @@
 import React, { useEffect, useState } from 'react';
 import { useInterest } from '@/hooks/useInterest';
 
-export const Email = () => {
+type EmailProps = {
+  campaignKey?: string;
+  source?: string;
+};
+
+export const Email = ({
+  campaignKey = 'about_join_evolution',
+  source = 'about',
+}: EmailProps) => {
   const [email, setEmail] = useState('');
   const [hasSubmitted, setHasSubmitted] = useState(false);
   const { submit, isSubmitting } = useInterest();
@@ -21,7 +29,7 @@ export const Email = () => {
     if (!trimmed || isSubmitting) return;
 
     try {
-      await submit(trimmed, 'about_join_evolution', 'about');
+      await submit(trimmed, campaignKey, source);
       setEmail('');
       setHasSubmitted(true);
       if (typeof window !== 'undefined') {

@@ -1,37 +1,3 @@
-import { Metadata } from 'next';
-
-export const metadata: Metadata = {
-  title: 'Valuation Model | Evolution Stables - Lease Calculator',
-  description: 'Calculate lease valuations, breakeven points, and compare leasing vs. retaining your racehorse stake with our interactive valuation model.',
-  keywords: [
-    'racehorse valuation',
-    'lease calculator',
-    'breakeven analysis',
-    'racehorse investment',
-    'syndication calculator',
-    'horse ownership ROI',
-  ],
-  alternates: {
-    canonical: '/valuation',
-  },
-  openGraph: {
-    title: 'Valuation Model | Evolution Stables',
-    description: 'Calculate lease valuations and breakeven points for racehorse ownership.',
-    images: [
-      {
-        url: '/images/valuation-model-og.png',
-        width: 1200,
-        height: 630,
-        alt: 'Evolution Stables Valuation Model Calculator',
-      },
-    ],
-  },
-  twitter: {
-    title: 'Valuation Model | Evolution Stables',
-    description: 'Calculate lease valuations and breakeven points for racehorse ownership.',
-  },
-};
-
 'use client';
 
 import { useState, useMemo } from 'react';

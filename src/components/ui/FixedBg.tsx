@@ -1,7 +1,3 @@
-"use client";
-
-import React from "react";
-
 type FixedBgProps = {
   src: string;
   alt?: string; // for semantics if we decide to add an <img> fallback later
@@ -36,4 +32,3 @@ export function FixedBg({
 }
 
 export default FixedBg;
-

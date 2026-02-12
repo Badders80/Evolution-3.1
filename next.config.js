@@ -1,10 +1,37 @@
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true',
+});
+
+const isProd = process.env.NODE_ENV === 'production';
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // ⚡ Enable Turbopack options (keep it clean)
-  experimental: {
-    // serverActions: true, // Uncomment if using Server Actions
+  poweredByHeader: false,
+  reactStrictMode: true,
+  async headers() {
+    return [
+      {
+        source: '/(.*)',
+        headers: [
+          { key: 'X-Content-Type-Options', value: 'nosniff' },
+          { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
+          { key: 'X-Frame-Options', value: 'SAMEORIGIN' },
+          {
+            key: 'Permissions-Policy',
+            value: 'camera=(), microphone=(), geolocation=()',
+          },
+          ...(isProd
+            ? [
+                {
+                  key: 'Strict-Transport-Security',
+                  value: 'max-age=31536000; includeSubDomains; preload',
+                },
+              ]
+            : []),
+        ],
+      },
+    ];
   },
-  // 🚫 WEBPACK CONFIG REMOVED: Let Turbopack handle the speed.
 };
 
-module.exports = nextConfig;
+module.exports = withBundleAnalyzer(nextConfig);

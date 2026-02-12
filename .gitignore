@@ -23,6 +23,7 @@ out/
 .vercel/
 **/.next/cache/
 **/.next/cache/webpack/
+*.tsbuildinfo
 
 # Local helper scripts
 quick-fix-commands.sh

@@ -1,8 +1,6 @@
 "use client";
 
-import React from "react";
 import Image from "next/image";
-import { motion, useScroll, useTransform } from "framer-motion";
 
 interface StaticImageProps {
   src: string;

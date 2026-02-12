@@ -97,6 +97,7 @@ export default function Demo() {
                 alt="Information Hub"
                 width={800}
                 height={600}
+                sizes="(min-width: 1024px) 50vw, 100vw"
                 className="h-[400px] w-full object-cover"
               />
               <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/70 to-transparent p-6">

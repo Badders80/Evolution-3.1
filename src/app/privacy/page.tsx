@@ -4,9 +4,31 @@ import { Footer } from '@/components/site/Footer';
 
 export const metadata: Metadata = {
   title: 'Privacy Policy | Evolution Stables',
-  description: 'Learn how Evolution Stables collects, uses, and protects your personal information.',
+  description:
+    'We collect only the information necessary to provide Evolution Stables services and never sell personal data.',
   alternates: {
     canonical: '/privacy',
+  },
+  openGraph: {
+    title: 'Privacy Policy | Evolution Stables',
+    description:
+      'We collect only the information necessary to provide Evolution Stables services and never sell personal data.',
+    url: '/privacy',
+    images: [
+      {
+        url: '/images/Logo-Gold.png',
+        width: 1200,
+        height: 630,
+        alt: 'Evolution Stables',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Privacy Policy | Evolution Stables',
+    description:
+      'We collect only the information necessary to provide Evolution Stables services and never sell personal data.',
+    images: ['/images/Logo-Gold.png'],
   },
 };
 

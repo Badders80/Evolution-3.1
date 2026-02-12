@@ -1,5 +1,3 @@
-'use client';
-
 import Image from 'next/image';
 import { FixedBg } from '@/components/ui/FixedBg';
 import { GrassBg } from '@/components/ui/GrassBg';
@@ -10,8 +8,7 @@ import { PressShowcase } from '@/components/site/PressShowcase';
 import { FAQStructuredData } from '@/components/seo/FAQStructuredData';
 import { pressArticles } from '@/lib/press-articles';
 import { About } from '@/components/About/About';
-import { Email } from '@/components/Email/Email';
-import { useState } from 'react';
+import { WaitlistOverlayController } from '@/components/site/WaitlistOverlayController';
 
 const faqItems = [
   {
@@ -41,8 +38,6 @@ const faqItems = [
 ];
 
 const Home = () => {
-  const [showWaitlist, setShowWaitlist] = useState(false);
-
   return (
     <div className="min-h-screen">
           <FAQStructuredData items={faqItems} />
@@ -65,27 +60,7 @@ const Home = () => {
           <FixedBg src="/images/Background-hooves-back-and-white.jpg" height="h-[50vh]" />
         </section>
 
-        {/* Waitlist Overlay */}
-        {showWaitlist && (
-          <div className="fixed inset-0 z-[100] flex items-center justify-center p-6 bg-black/60 backdrop-blur-xl animate-in fade-in duration-500">
-            <div className="relative w-full max-w-lg bg-zinc-900 border border-white/10 p-12 rounded-2xl shadow-2xl">
-              <button 
-                onClick={() => setShowWaitlist(false)}
-                className="absolute top-6 right-6 text-white/40 hover:text-white transition-colors"
-              >
-                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" /></svg>
-              </button>
-              <div className="space-y-8 text-center">
-                <p className="text-[11px] font-light tracking-[0.2em] uppercase text-white/30">Qualified Asset Waitlist</p>
-                <h3 className="text-3xl font-light text-white tracking-tight">Priority Access</h3>
-                <p className="text-white/60 font-light leading-relaxed">
-                  Join the institutional waitlist for our next high-performance releases. Verified stakeholders receive first-look access to digital equine assets before public listing.
-                </p>
-                <Email campaignKey="release_waitlist_2026" />
-              </div>
-            </div>
-          </div>
-        )}
+        <WaitlistOverlayController />
 
         <section id="mission" className="py-24 bg-background text-foreground">
             <div className="max-w-6xl mx-auto px-12 md:px-16 lg:px-20 w-full">
@@ -106,7 +81,7 @@ const Home = () => {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 {/* Card 1 */}
                 <div 
-                  onClick={() => setShowWaitlist(true)}
+                  data-waitlist-trigger="true"
                   className="group relative bg-white/[0.02] border border-white/[0.08] rounded-lg p-10 transition-all duration-700 ease-out hover:bg-white/[0.04] hover:border-white/[0.15] hover:shadow-[0_8px_30px_rgba(0,0,0,0.4)] cursor-pointer"
                 >
                   <div 
@@ -130,7 +105,7 @@ const Home = () => {
 
                 {/* Card 2 */}
                 <div 
-                  onClick={() => setShowWaitlist(true)}
+                  data-waitlist-trigger="true"
                   className="group relative bg-white/[0.02] border border-white/[0.08] rounded-lg p-10 transition-all duration-700 ease-out hover:bg-white/[0.04] hover:border-white/[0.15] hover:shadow-[0_8px_30px_rgba(0,0,0,0.4)] cursor-pointer"
                 >
                   <div 
@@ -154,7 +129,7 @@ const Home = () => {
 
                 {/* Card 3 */}
                 <div 
-                  onClick={() => setShowWaitlist(true)}
+                  data-waitlist-trigger="true"
                   className="group relative bg-white/[0.02] border border-white/[0.08] rounded-lg p-10 transition-all duration-700 ease-out hover:bg-white/[0.04] hover:border-white/[0.15] hover:shadow-[0_8px_30px_rgba(0,0,0,0.4)] cursor-pointer"
                 >
                   <div 

@@ -1,11 +1,9 @@
-"use client";
-
-import React from "react";
+import type { ComponentProps } from 'react';
 import FixedBg from "./FixedBg";
 
 type GrassBgProps = {
   src: string;
-  height?: React.ComponentProps<typeof FixedBg>["height"];
+  height?: ComponentProps<typeof FixedBg>['height'];
   className?: string;
 };
 
@@ -25,4 +23,3 @@ export function GrassBg({
 }
 
 export default GrassBg;
-

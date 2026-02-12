@@ -7,7 +7,7 @@ describe('Email Component', () => {
     render(<Email />)
     
     const emailInput = screen.getByPlaceholderText(/email address/i)
-    const submitButton = screen.getByRole('button', { name: /join the evolution/i })
+    const submitButton = screen.getByRole('button', { name: /request access/i })
     
     expect(emailInput).toBeInTheDocument()
     expect(submitButton).toBeInTheDocument()
@@ -33,12 +33,12 @@ describe('Email Component', () => {
     render(<Email />)
     
     const emailInput = screen.getByPlaceholderText(/email address/i)
-    const submitButton = screen.getByRole('button', { name: /join the evolution/i })
+    const submitButton = screen.getByRole('button', { name: /request access/i })
     
     fireEvent.change(emailInput, { target: { value: 'test@example.com' } })
     fireEvent.click(submitButton)
     
-    const successMessage = await screen.findByText(/welcome to the evolution/i)
+    const successMessage = await screen.findByText(/access request logged/i)
     expect(successMessage).toBeInTheDocument()
   })
 })

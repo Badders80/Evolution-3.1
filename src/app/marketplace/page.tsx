@@ -1,37 +1,3 @@
-import { Metadata } from 'next';
-
-export const metadata: Metadata = {
-  title: 'Marketplace | Evolution Stables - Digital Syndication',
-  description: 'Explore digital-syndication opportunities for racehorse ownership. Lease or trade verified stakes in the Evolution Stables marketplace.',
-  keywords: [
-    'racehorse marketplace',
-    'digital syndication',
-    'horse ownership marketplace',
-    'lease racehorse',
-    'trade racehorse stakes',
-    'fractional ownership',
-  ],
-  alternates: {
-    canonical: '/marketplace',
-  },
-  openGraph: {
-    title: 'Marketplace | Evolution Stables',
-    description: 'Explore digital-syndication opportunities for racehorse ownership.',
-    images: [
-      {
-        url: '/images/Mockup-trading-window.png',
-        width: 1200,
-        height: 630,
-        alt: 'Evolution Stables Marketplace Trading Interface',
-      },
-    ],
-  },
-  twitter: {
-    title: 'Marketplace | Evolution Stables',
-    description: 'Explore digital-syndication opportunities for racehorse ownership.',
-  },
-};
-
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -167,6 +133,7 @@ export default function MarketplacePage() {
                 className={`object-cover object-center transition-all duration-700 ease-in-out ${
                   isTransitioning ? 'blur-[1.5px]' : 'blur-0'
                 }`}
+                sizes="(min-width: 1024px) 66vw, 100vw"
                 priority
               />
               <div 

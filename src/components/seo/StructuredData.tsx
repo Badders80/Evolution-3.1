@@ -1,7 +1,3 @@
-'use client';
-
-import React from 'react';
-
 interface PressArticle {
   headline: string;
   url: string;
@@ -28,7 +24,8 @@ export function StructuredData({ pressArticles = [] }: StructuredDataProps) {
     alternateName: 'Evolution Stables NZ',
     url: 'https://evolutionstables.nz',
     logo: 'https://evolutionstables.nz/images/Logo-Gold-Favicon.png',
-    description: 'Digital-syndication platform for racehorse ownership. Making racehorse ownership accessible, transparent, and liquid through modern technology and blockchain innovation.',
+    description:
+      'Evolution Stables is the premier platform for regulated racehorse ownership through digital-syndication and tokenised assets.',
     foundingDate: '2024',
     sameAs: [
       'https://x.com/EvolutionStables',
