@@ -167,7 +167,6 @@ export function PressShowcase({ articles }: PressShowcaseProps) {
                     src={partner.src}
                     alt={partner.name}
                     fill
-                    sizes="(min-width: 1024px) 320px, (min-width: 640px) 50vw, 100vw"
                     className={`object-contain filter brightness(0) invert(1) ${
                       logoAdjustments[partner.name] ?? ''
                     }`}
@@ -216,7 +215,6 @@ export function PressShowcase({ articles }: PressShowcaseProps) {
                   src={leadArticle.imageUrl}
                   alt={leadArticle.title}
                   fill
-                  sizes="(min-width: 1024px) 672px, 100vw"
                   className="object-cover"
                   priority
                 />
@@ -335,7 +333,6 @@ export function PressShowcase({ articles }: PressShowcaseProps) {
                                 src={article.imageUrl}
                                 alt={article.title}
                                 fill
-                                sizes="(min-width: 1024px) 40vw, 100vw"
                                 className="object-cover"
                               />
                             )}

@@ -181,13 +181,7 @@ function ArticleCard({ article }: { article: PressArticle }) {
     >
       {article.imageUrl ? (
         <div className="relative w-full h-[160px] bg-black/40">
-          <Image
-            src={article.imageUrl}
-            alt={article.title}
-            fill
-            sizes="280px"
-            className="object-cover object-top"
-          />
+          <Image src={article.imageUrl} alt={article.title} fill className="object-cover object-top" />
         </div>
       ) : (
         <div className="relative w-full h-[160px] bg-gradient-to-br from-white/5 to-white/[0.02] flex items-center justify-center">

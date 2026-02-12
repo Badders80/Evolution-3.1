@@ -91,7 +91,6 @@ export function HeroSection({
             width={1200}
             height={400}
             priority
-            sizes="(min-width: 768px) 720px, 100vw"
             className="h-auto w-full"
           />
         </motion.div>
@@ -112,3 +111,4 @@ export function HeroSection({
     </section>
   );
 }
+

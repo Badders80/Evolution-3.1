@@ -13,22 +13,22 @@ A modern Next.js application built with TypeScript, Tailwind CSS, and Framer Mot
 
 ## Getting Started
 
-1. Enable Corepack (recommended) and install dependencies:
+1. Install dependencies:
    ```bash
-   corepack enable
-   pnpm install
+   npm install
+   npm install --prefix studio
    ```
 
 2. Run the development server:
    ```bash
-   pnpm dev
+   npm run dev
    ```
 
-3. Visit [http://localhost:3000](http://localhost:3000).
+3. Visit [http://localhost:3000](http://localhost:3000). (If you want the Studio later, start it separately with `npm run dev --prefix studio`.)
 
 ## Development Workflow
 
-1. Run `pnpm dev` for the main application on port 3000.
+1. Run `npm run dev` for the main application on port 3000.
 2. Iterate on components in the app and validate in the browser.
 
 ## Project Structure
@@ -73,13 +73,13 @@ To add new images, place them in the `public/images/` directory and update the a
 
 1. Build the application:
    ```bash
-   pnpm build
+   npm run build
    ```
 
 2. Start the production server:
    ```bash
-   pnpm start
-   ```
+npm start
+```
 
 ## Environment Variables
 
@@ -106,6 +106,28 @@ Marketplace modules can be managed from the CMS:
 - `layoutKey` (string matching one of `middle-tall`, `left-tall`, `left-bottom`, `right-top`, `right-bottom`)
 
 The data is fetched at request time; if Sanity is unreachable or the query returns no documents, the UI falls back to the locally-defined defaults.
+
+## Sanity Studio
+
+A Sanity Studio has been scaffolded in the `/studio` directory.
+
+### Install & Run
+
+```bash
+cd studio
+npm install
+npm run dev
+```
+
+The Studio targets project `a4xfnv5b` and dataset `production` by default (controlled via the same `NEXT_PUBLIC_SANITY_*` env variables shown above).
+
+### Deploy
+
+- **Sanity hosting**: `npx sanity deploy`
+- **Self hosted (Vercel/Netlify)**: build and deploy this folder; the scripts `npm run build` and `npm run deploy` are provided for convenience.
+- **Schema-only deploy**: `npx sanity schema deploy` (requires `SANITY_AUTH_TOKEN` if run from CI)
+
+After deploying you will receive a Studio URL (for example `https://<project>.sanity.studio` or a Vercel URL). Add that URL to the Sanity project settings under *Add studio*.
 
 ## License
 

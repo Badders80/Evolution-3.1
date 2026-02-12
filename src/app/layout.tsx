@@ -9,8 +9,7 @@ import { getPressArticlesForStructuredData } from "@/lib/press-articles";
 export const metadata: Metadata = {
   metadataBase: new URL("https://evolutionstables.nz"),
   title: "Evolution Stables - Regulated Marketplace for Digital Equine Assets",
-  description:
-    "Evolution Stables is the premier platform for regulated racehorse ownership through digital-syndication and tokenised assets.",
+  description: "Experience the next generation of horse racing. Evolution Stables offers regulated, institutional-grade digital-syndication for high-performance thoroughbreds.",
   keywords: [
     'Regulated Equine Marketplace',
     'Digital Equine Assets',
@@ -28,20 +27,19 @@ export const metadata: Metadata = {
   alternates: {
     canonical: '/',
   },
-  openGraph: {
+    openGraph: {
     type: 'website',
     locale: 'en_NZ',
     url: 'https://evolutionstables.nz',
     siteName: 'Evolution Stables',
     title: 'Evolution Stables - Regulated Marketplace for Digital Equine Assets',
-    description:
-      'Evolution Stables is the premier platform for regulated racehorse ownership through digital-syndication and tokenised assets.',
+    description: 'The premier institutionalised platform for digital-syndication and high-performance racehorse ownership.',
     images: [
       {
-        url: '/images/Logo-Gold.png',
+        url: '/images/Logo-Gold-Favicon.png',
         width: 1200,
         height: 630,
-        alt: 'Evolution Stables',
+        alt: 'Evolution Stables Logo',
       },
     ],
   },
@@ -50,9 +48,7 @@ export const metadata: Metadata = {
     site: '@EvolutionStables',
     creator: '@EvolutionStables',
     title: 'Evolution Stables - Regulated Marketplace for Digital Equine Assets',
-    description:
-      'Evolution Stables is the premier platform for regulated racehorse ownership through digital-syndication and tokenised assets.',
-    images: ['/images/Logo-Gold.png'],
+    description: 'The premier institutionalised platform for digital-syndication and high-performance racehorse ownership.',
   },
   icons: {
     icon: '/images/Logo-Gold-Favicon.png',

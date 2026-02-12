@@ -3,32 +3,11 @@ import Image from 'next/image';
 import { pressArticles } from '@/lib/press-articles';
 
 export const metadata: Metadata = {
-  title: 'Press & Coverage | Evolution Stables',
+  title: 'Press & Media | Evolution Stables',
   description:
-    'Stay updated with our latest announcements and media features as we bridge the gap between traditional equine excellence and modern digital syndication.',
+    'The latest news, media coverage, and press releases from Evolution Stables. Discover how we are transforming thoroughbred ownership through digital innovation.',
   alternates: {
     canonical: '/press',
-  },
-  openGraph: {
-    title: 'Press & Coverage | Evolution Stables',
-    description:
-      'Stay updated with our latest announcements and media features as we bridge the gap between traditional equine excellence and modern digital syndication.',
-    url: '/press',
-    images: [
-      {
-        url: '/images/press/Tokinvest+DRC.png',
-        width: 1200,
-        height: 630,
-        alt: 'Press & Coverage',
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Press & Coverage | Evolution Stables',
-    description:
-      'Stay updated with our latest announcements and media features as we bridge the gap between traditional equine excellence and modern digital syndication.',
-    images: ['/images/press/Tokinvest+DRC.png'],
   },
 };
 
@@ -73,7 +52,6 @@ export default function PressPage() {
                     src={article.imageUrl}
                     alt={article.title}
                     fill
-                    sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                 ) : (

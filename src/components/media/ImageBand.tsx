@@ -25,7 +25,6 @@ export default function ImageBand({
         src={src}
         alt={alt}
         fill
-        sizes="100vw"
         className="object-cover"
         priority
       />

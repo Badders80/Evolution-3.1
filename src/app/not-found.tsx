@@ -38,7 +38,6 @@ const NotFoundPage = () => {
           alt="Evolution Stables silhouette"
           width={720}
           height={300}
-          sizes="80vw"
           className="max-w-[80%] select-none opacity-40"
           priority
         />

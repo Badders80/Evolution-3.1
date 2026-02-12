@@ -1,3 +1,37 @@
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'MyStable | Evolution Stables - Ownership Dashboard',
+  description: 'Manage your racehorse ownership portfolio, track performance, and stay connected to your stable with MyStable dashboard.',
+  keywords: [
+    'racehorse portfolio',
+    'ownership dashboard',
+    'horse performance tracking',
+    'stable management',
+    'racehorse ROI',
+    'ownership stakes',
+  ],
+  alternates: {
+    canonical: '/mystable',
+  },
+  openGraph: {
+    title: 'MyStable | Evolution Stables',
+    description: 'Manage your racehorse ownership portfolio and track performance.',
+    images: [
+      {
+        url: '/images/Gemini_Generated_Image_r4hnnzr4hnnzr4hn.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Evolution Stables MyStable Dashboard',
+      },
+    ],
+  },
+  twitter: {
+    title: 'MyStable | Evolution Stables',
+    description: 'Manage your racehorse ownership portfolio and track performance.',
+  },
+};
+
 'use client';
 
 import { useEffect, useState } from 'react';
@@ -253,7 +287,6 @@ export default function MyStablePage() {
               alt="Digital racehorse tracking and insights on Evolution Stables platform"
               fill
               className="object-cover"
-              sizes="100vw"
               priority
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end p-8">
