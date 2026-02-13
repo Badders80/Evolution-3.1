@@ -9,6 +9,6 @@ function requireEnv(name: string): string {
   return value;
 }
 
-export const NEXTAUTH_SECRET = requireEnv("NEXTAUTH_SECRET");
-export const GOOGLE_CLIENT_ID = requireEnv("GOOGLE_CLIENT_ID");
-export const GOOGLE_CLIENT_SECRET = requireEnv("GOOGLE_CLIENT_SECRET");
+export const NEXTAUTH_SECRET = requireEnv('NEXTAUTH_SECRET');
+export const GOOGLE_CLIENT_ID = requireEnv('GOOGLE_CLIENT_ID');
+export const GOOGLE_CLIENT_SECRET = requireEnv('GOOGLE_CLIENT_SECRET');

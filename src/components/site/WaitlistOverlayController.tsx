@@ -48,8 +48,8 @@ export function WaitlistOverlayController() {
           </p>
           <h3 className="text-3xl font-light text-white tracking-tight">Priority Access</h3>
           <p className="text-white/60 font-light leading-relaxed">
-            Join the institutional waitlist for our next high-performance releases. Verified stakeholders
-            receive first-look access to digital equine assets before public listing.
+            Join the institutional waitlist for our next high-performance releases. Verified
+            stakeholders receive first-look access to digital equine assets before public listing.
           </p>
           <Email campaignKey="release_waitlist_2026" />
         </div>
@@ -57,4 +57,3 @@ export function WaitlistOverlayController() {
     </div>
   );
 }
-

@@ -27,12 +27,9 @@ export const StickyScrollSection: React.FC<StickyScrollSectionProps> = ({
   hoverEffect = 'blueGradientShimmer', // Default to current blue gradient
 }) => {
   const effect = cardHoverEffects[hoverEffect];
-  
+
   return (
-    <section
-      id={id}
-      className="relative overflow-hidden bg-background text-foreground"
-    >
+    <section id={id} className="relative overflow-hidden bg-background text-foreground">
       <div className="mx-auto max-w-6xl px-6 sm:px-10 lg:px-16 lg:min-h-[220vh]">
         <div className="grid gap-16 lg:grid-cols-[minmax(0,0.46fr)_minmax(0,0.54fr)] lg:gap-24">
           {/* LEFT COLUMN — Anchor copy */}
@@ -72,7 +69,9 @@ export const StickyScrollSection: React.FC<StickyScrollSectionProps> = ({
                     )}
                     <div className="relative flex flex-col gap-8 sm:flex-row sm:items-start sm:gap-10">
                       <div className="flex items-center justify-center">
-                        <span className={`flex h-12 w-12 items-center justify-center rounded-full border border-white/[0.12] bg-white/[0.06] text-sm font-medium tracking-[0.3em] transition-transform ${effect.transitionClasses} ${effect.badgeClasses}`}>
+                        <span
+                          className={`flex h-12 w-12 items-center justify-center rounded-full border border-white/[0.12] bg-white/[0.06] text-sm font-medium tracking-[0.3em] transition-transform ${effect.transitionClasses} ${effect.badgeClasses}`}
+                        >
                           {String(index + 1).padStart(2, '0')}
                         </span>
                       </div>
@@ -92,10 +91,7 @@ export const StickyScrollSection: React.FC<StickyScrollSectionProps> = ({
 
                   {/* Spacer between cards for deliberate pauses */}
                   {index < steps.length - 1 && (
-                    <div
-                      className="hidden lg:block h-[18vh]"
-                      aria-hidden="true"
-                    />
+                    <div className="hidden lg:block h-[18vh]" aria-hidden="true" />
                   )}
                 </Fragment>
               ))}

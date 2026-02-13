@@ -3,7 +3,12 @@
 import React, { useEffect, useState } from 'react';
 import { useInterest } from '@/hooks/useInterest';
 
-export const Email = ({ campaignKey = 'about_join_evolution', source = 'about' }: { campaignKey?: string, source?: string }) => {
+type EmailProps = {
+  campaignKey?: string;
+  source?: string;
+};
+
+export const Email = ({ campaignKey = 'about_join_evolution', source = 'about' }: EmailProps) => {
   const [email, setEmail] = useState('');
   const [hasSubmitted, setHasSubmitted] = useState(false);
   const { submit, isSubmitting } = useInterest();

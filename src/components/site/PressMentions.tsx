@@ -181,13 +181,17 @@ function ArticleCard({ article }: { article: PressArticle }) {
     >
       {article.imageUrl ? (
         <div className="relative w-full h-[160px] bg-black/40">
-          <Image src={article.imageUrl} alt={article.title} fill className="object-cover object-top" />
+          <Image
+            src={article.imageUrl}
+            alt={article.title}
+            fill
+            sizes="280px"
+            className="object-cover object-top"
+          />
         </div>
       ) : (
         <div className="relative w-full h-[160px] bg-gradient-to-br from-white/5 to-white/[0.02] flex items-center justify-center">
-          <div className="text-white/20 text-6xl font-light">
-            {article.publisher.charAt(0)}
-          </div>
+          <div className="text-white/20 text-6xl font-light">{article.publisher.charAt(0)}</div>
         </div>
       )}
 
@@ -249,7 +253,13 @@ function LogoItem({ logo, className }: { logo: PartnerLogo; className?: string }
 
   if (logo.url) {
     return (
-      <a href={logo.url} target="_blank" rel="noopener noreferrer" className={wrapperClassName} title={logo.name}>
+      <a
+        href={logo.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={wrapperClassName}
+        title={logo.name}
+      >
         {image}
         <div className="absolute inset-0 rounded-lg bg-white/0 group-hover:bg-white/[0.02] transition-all duration-300" />
       </a>

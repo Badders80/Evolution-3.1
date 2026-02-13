@@ -25,7 +25,7 @@ export function PressShowcase({ articles }: PressShowcaseProps) {
       articles.find(
         (article) =>
           article.url ===
-          'https://tokinvest.capital/insights-and-news/tokinvest-and-dubai-racing-club'
+          'https://tokinvest.capital/insights-and-news/tokinvest-and-dubai-racing-club',
       ) ?? articles[0]
     );
   }, [articles]);
@@ -35,11 +35,14 @@ export function PressShowcase({ articles }: PressShowcaseProps) {
     return articles.filter((article) => article !== leadArticle) || [];
   }, [articles, leadArticle]);
 
-  const preferredOrder = useMemo(() => [
-    'https://businessdesk.co.nz/article/technology/bringing-racing-into-the-digital-age',
-    'https://trackside.co.nz/article/thoroughbred-ownership-reimagined',
-    'https://www.investing.com/news/cryptocurrency-news/tokinvest-and-singularry-superapp-partner-to-make-regulated-realworld-asset-investing-accessible-to-everyone-4316762',
-  ], []);
+  const preferredOrder = useMemo(
+    () => [
+      'https://businessdesk.co.nz/article/technology/bringing-racing-into-the-digital-age',
+      'https://trackside.co.nz/article/thoroughbred-ownership-reimagined',
+      'https://www.investing.com/news/cryptocurrency-news/tokinvest-and-singularry-superapp-partner-to-make-regulated-realworld-asset-investing-accessible-to-everyone-4316762',
+    ],
+    [],
+  );
 
   const orderMap = useMemo(() => {
     return new Map(preferredOrder.map((url, index) => [url, index]));
@@ -61,7 +64,10 @@ export function PressShowcase({ articles }: PressShowcaseProps) {
   }, [remainingArticles, orderMap]);
 
   const visibleCount = useMemo(() => Math.min(6, rightArticles.length), [rightArticles.length]);
-  const shouldRotate = useMemo(() => rightArticles.length > visibleCount, [rightArticles.length, visibleCount]);
+  const shouldRotate = useMemo(
+    () => rightArticles.length > visibleCount,
+    [rightArticles.length, visibleCount],
+  );
   const animationDuration = 800;
   const displayDuration = 4200;
 
@@ -118,7 +124,15 @@ export function PressShowcase({ articles }: PressShowcaseProps) {
         rotateTimeoutRef.current = null;
       }
     };
-  }, [animationDuration, displayDuration, isPaused, itemHeight, rightArticles.length, shouldRotate, startIndex]);
+  }, [
+    animationDuration,
+    displayDuration,
+    isPaused,
+    itemHeight,
+    rightArticles.length,
+    shouldRotate,
+    startIndex,
+  ]);
 
   if (!articles || articles.length === 0 || !leadArticle) return null;
 
@@ -133,10 +147,10 @@ export function PressShowcase({ articles }: PressShowcaseProps) {
     { name: 'Arabian Business', src: '/images/partners/10_arabian-bussiness-logo.png' },
   ];
   const logoAdjustments: Record<string, string> = {
-    'BusinessDesk': 'scale-110',
-    'Singularity': 'scale-110',
+    BusinessDesk: 'scale-110',
+    Singularity: 'scale-110',
     'Trackside NZ': 'scale-110',
-    'NZTR': 'scale-110',
+    NZTR: 'scale-110',
     'Stephen Grey Racing': 'scale-110',
     'Arabian Business': 'scale-110 brightness-125',
   };
@@ -167,6 +181,7 @@ export function PressShowcase({ articles }: PressShowcaseProps) {
                     src={partner.src}
                     alt={partner.name}
                     fill
+                    sizes="(min-width: 1024px) 320px, (min-width: 640px) 50vw, 100vw"
                     className={`object-contain filter brightness(0) invert(1) ${
                       logoAdjustments[partner.name] ?? ''
                     }`}
@@ -215,6 +230,7 @@ export function PressShowcase({ articles }: PressShowcaseProps) {
                   src={leadArticle.imageUrl}
                   alt={leadArticle.title}
                   fill
+                  sizes="(min-width: 1024px) 672px, 100vw"
                   className="object-cover"
                   priority
                 />
@@ -222,13 +238,13 @@ export function PressShowcase({ articles }: PressShowcaseProps) {
             </div>
 
             <h3 className="text-2xl md:text-3xl font-light leading-[1.15] tracking-tight text-white/90 transition-colors duration-300 group-hover:text-white">
-              Dubai Racing Club and Tokinvest Announce Partnership to Develop a Global Equine Token Marketplace
+              Dubai Racing Club and Tokinvest Announce Partnership to Develop a Global Equine Token
+              Marketplace
             </h3>
 
             <p className="text-[14px] md:text-[16px] font-light leading-[1.7] text-white/55 transition-colors duration-300 group-hover:text-white/65">
               {leadArticle.excerpt}
             </p>
-
           </div>
         </div>
 
@@ -237,11 +253,7 @@ export function PressShowcase({ articles }: PressShowcaseProps) {
             className={`relative overflow-x-hidden ${
               shouldRotate ? (openArticleUrl ? 'overflow-y-auto' : 'overflow-hidden') : ''
             }`}
-            style={
-              shouldRotate && itemHeight
-                ? { height: itemHeight * visibleCount }
-                : undefined
-            }
+            style={shouldRotate && itemHeight ? { height: itemHeight * visibleCount } : undefined}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
           >
@@ -333,6 +345,7 @@ export function PressShowcase({ articles }: PressShowcaseProps) {
                                 src={article.imageUrl}
                                 alt={article.title}
                                 fill
+                                sizes="(min-width: 1024px) 40vw, 100vw"
                                 className="object-cover"
                               />
                             )}
@@ -368,7 +381,9 @@ export function PressShowcase({ articles }: PressShowcaseProps) {
             >
               <span className="relative inline-flex items-center gap-2 overflow-hidden">
                 <span className="relative z-10">View All Press Coverage</span>
-                <span className="relative z-10 group-hover:translate-x-1 transition-transform">→</span>
+                <span className="relative z-10 group-hover:translate-x-1 transition-transform">
+                  →
+                </span>
                 <span
                   aria-hidden
                   className="pointer-events-none absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 animate-text-wave"

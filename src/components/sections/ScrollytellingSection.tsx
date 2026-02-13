@@ -36,7 +36,7 @@ export const ScrollytellingSection: React.FC<ScrollytellingSectionProps> = ({
     const leftContent = leftContentRef.current;
     const cardElements = cardsRef.current;
 
-    if (!section || !leftContent || cardElements.some(el => !el)) return;
+    if (!section || !leftContent || cardElements.some((el) => !el)) return;
 
     // Create a context for cleanup
     const ctx = gsap.context(() => {
@@ -59,14 +59,15 @@ export const ScrollytellingSection: React.FC<ScrollytellingSectionProps> = ({
         const fadeOutStart = (index + 0.7) / totalCards;
         const endProgress = (index + 1) / totalCards;
 
-        gsap.timeline({
-          scrollTrigger: {
-            trigger: section,
-            start: 'top top',
-            end: 'bottom bottom',
-            scrub: 1,
-          },
-        })
+        gsap
+          .timeline({
+            scrollTrigger: {
+              trigger: section,
+              start: 'top top',
+              end: 'bottom bottom',
+              scrub: 1,
+            },
+          })
           .fromTo(
             card,
             {
@@ -78,7 +79,7 @@ export const ScrollytellingSection: React.FC<ScrollytellingSectionProps> = ({
               y: 0,
               duration: fadeInEnd - startProgress,
             },
-            startProgress
+            startProgress,
           )
           .to(
             card,
@@ -86,7 +87,7 @@ export const ScrollytellingSection: React.FC<ScrollytellingSectionProps> = ({
               opacity: 1,
               duration: fadeOutStart - fadeInEnd,
             },
-            fadeInEnd
+            fadeInEnd,
           )
           .to(
             card,
@@ -95,7 +96,7 @@ export const ScrollytellingSection: React.FC<ScrollytellingSectionProps> = ({
               y: -50,
               duration: endProgress - fadeOutStart,
             },
-            fadeOutStart
+            fadeOutStart,
           );
       });
     }, section);

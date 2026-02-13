@@ -49,7 +49,7 @@ export const api = {
   createPost: (data: Parameters<typeof mockApi.createPost>[0]) => {
     const mode = getApiMode();
     return mode === 'real' ? realApi.createPost(data) : mockApi.createPost(data);
-  }
+  },
 };
 
 // Export types for convenience

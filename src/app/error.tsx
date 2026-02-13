@@ -20,11 +20,7 @@ export default function Error({
       <p className="text-body text-secondary mb-6 max-w-md">
         We apologize for the inconvenience. Please try again.
       </p>
-      <Button
-        onClick={() => reset()}
-        variant="outline"
-        className="text-label uppercase"
-      >
+      <Button onClick={() => reset()} variant="outline" className="text-label uppercase">
         Try Again
       </Button>
     </div>

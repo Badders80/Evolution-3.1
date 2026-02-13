@@ -63,7 +63,10 @@ export const realApi = {
     });
   },
 
-  async updatePost(id: string, data: Partial<Omit<Post, 'id' | 'createdAt' | 'updatedAt'>>): Promise<Post> {
+  async updatePost(
+    id: string,
+    data: Partial<Omit<Post, 'id' | 'createdAt' | 'updatedAt'>>,
+  ): Promise<Post> {
     return apiRequest<Post>(`/posts/${id}`, {
       method: 'PATCH',
       body: JSON.stringify(data),
@@ -74,5 +77,5 @@ export const realApi = {
     await apiRequest<void>(`/posts/${id}`, {
       method: 'DELETE',
     });
-  }
+  },
 };

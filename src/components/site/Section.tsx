@@ -19,23 +19,25 @@ export function Section({
   imageAlt = '',
   imageRatio = '16:9',
   reverse = false,
-  className
+  className,
 }: SectionProps) {
   const aspectRatioClass = {
     '16:9': 'aspect-video',
     '4:3': 'aspect-[4/3]',
-    '1:1': 'aspect-square'
+    '1:1': 'aspect-square',
   }[imageRatio];
 
   return (
-    <div className={clsx('grid gap-8 md:gap-12', reverse ? 'md:grid-cols-2' : 'md:grid-cols-2', className)}>
+    <div
+      className={clsx(
+        'grid gap-8 md:gap-12',
+        reverse ? 'md:grid-cols-2' : 'md:grid-cols-2',
+        className,
+      )}
+    >
       <div className={clsx('flex flex-col justify-center', reverse ? 'md:order-2' : '')}>
-        <h2 className="text-3xl font-medium tracking-tight text-gray-900 sm:text-4xl">
-          {title}
-        </h2>
-        <div className="mt-6 text-lg text-gray-600">
-          {body}
-        </div>
+        <h2 className="text-3xl font-medium tracking-tight text-gray-900 sm:text-4xl">{title}</h2>
+        <div className="mt-6 text-lg text-gray-600">{body}</div>
       </div>
       {imageSrc && (
         <div className={clsx('relative', aspectRatioClass, reverse ? 'md:order-1' : '')}>
@@ -43,6 +45,7 @@ export function Section({
             src={imageSrc}
             alt={imageAlt}
             fill
+            sizes="(min-width: 768px) 50vw, 100vw"
             className="object-cover rounded-lg"
           />
         </div>

@@ -82,7 +82,6 @@ export const About = () => {
     };
   }, [isSticky, shouldShowCta]);
 
-
   useEffect(() => {
     const handleSubmitted = () => {
       window.setTimeout(() => {
@@ -102,11 +101,7 @@ export const About = () => {
   };
 
   return (
-    <section
-      className="bg-background py-64 text-foreground"
-      id="about"
-      data-cta-overlay="off"
-    >
+    <section className="bg-background py-64 text-foreground" id="about" data-cta-overlay="off">
       <div className="mx-auto max-w-6xl px-12 md:px-16 lg:px-20">
         <p className="mb-16 text-[11px] font-light uppercase tracking-[0.2em] text-white/30">
           ABOUT
@@ -118,9 +113,9 @@ export const About = () => {
 
         <div className={`mt-6 ${shouldShowCta ? 'space-y-20' : 'space-y-8'}`}>
           <p className="text-[18px] font-light leading-[1.85] text-white/65">
-            Racehorse ownership has changed. Evolution Stables removes the barriers that once made it
-            complex and inaccessible — opening the door for first-timers and seasoned fans alike to not
-            just watch, but own the experience.
+            Racehorse ownership has changed. Evolution Stables removes the barriers that once made
+            it complex and inaccessible — opening the door for first-timers and seasoned fans alike
+            to not just watch, but own the experience.
           </p>
 
           {shouldShowCta ? (
@@ -162,9 +157,7 @@ export const About = () => {
               </div>
             </div>
           ) : (
-            <p className="text-[18px] font-light leading-[1.85] text-white/65">
-              {ctaCopy}
-            </p>
+            <p className="text-[18px] font-light leading-[1.85] text-white/65">{ctaCopy}</p>
           )}
         </div>
       </div>

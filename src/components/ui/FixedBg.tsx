@@ -1,7 +1,3 @@
-"use client";
-
-import React from "react";
-
 type FixedBgProps = {
   src: string;
   alt?: string; // for semantics if we decide to add an <img> fallback later
@@ -14,11 +10,11 @@ type FixedBgProps = {
  * A fixed-background section where content scrolls over a locked background image.
  * Uses CSS background-image for performance. On small screens, falls back to bg-scroll.
  */
-export function FixedBg({ 
-  src, 
-  height = 'h-[60vh]', 
+export function FixedBg({
+  src,
+  height = 'h-[60vh]',
   overlay = '', // Removed default overlay
-  className = '' 
+  className = '',
 }: FixedBgProps) {
   return (
     <div className={`relative w-full m-0 p-0 border-none ${className}`}>
@@ -28,7 +24,10 @@ export function FixedBg({
         aria-hidden
       >
         {overlay && (
-          <div className={`absolute inset-0 pointer-events-none bg-gradient-to-b ${overlay} m-0 p-0 border-none`} aria-hidden="true" />
+          <div
+            className={`absolute inset-0 pointer-events-none bg-gradient-to-b ${overlay} m-0 p-0 border-none`}
+            aria-hidden="true"
+          />
         )}
       </div>
     </div>
@@ -36,4 +35,3 @@ export function FixedBg({
 }
 
 export default FixedBg;
-

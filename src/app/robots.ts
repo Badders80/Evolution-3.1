@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next';
 
 /**
  * Robots.txt Configuration
- * 
+ *
  * Controls how search engines crawl your site.
  */
 export default function robots(): MetadataRoute.Robots {

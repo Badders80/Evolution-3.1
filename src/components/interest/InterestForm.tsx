@@ -1,49 +1,41 @@
-"use client"
+'use client';
 
-import { FormEvent, useEffect, useRef, useState } from "react"
-import { useInterest } from "@/hooks/useInterest"
+import { FormEvent, useEffect, useRef, useState } from 'react';
+import { useInterest } from '@/hooks/useInterest';
 
 export type InterestFormProps = {
-  campaignKey: string
-  source?: string
-  onSuccess: () => void
-  onCancel?: () => void
-}
+  campaignKey: string;
+  source?: string;
+  onSuccess: () => void;
+  onCancel?: () => void;
+};
 
-export function InterestForm({
-  campaignKey,
-  source,
-  onSuccess,
-  onCancel,
-}: InterestFormProps) {
-  const [email, setEmail] = useState("")
-  const inputRef = useRef<HTMLInputElement>(null)
-  const { submit, isSubmitting, error } = useInterest()
+export function InterestForm({ campaignKey, source, onSuccess, onCancel }: InterestFormProps) {
+  const [email, setEmail] = useState('');
+  const inputRef = useRef<HTMLInputElement>(null);
+  const { submit, isSubmitting, error } = useInterest();
 
   useEffect(() => {
-    inputRef.current?.focus()
-  }, [])
+    inputRef.current?.focus();
+  }, []);
 
   const handleSubmit = async (event?: FormEvent) => {
-    event?.preventDefault()
-    const nextEmail = email.trim()
-    if (!nextEmail || isSubmitting) return
+    event?.preventDefault();
+    const nextEmail = email.trim();
+    if (!nextEmail || isSubmitting) return;
 
     try {
-      await submit(nextEmail, campaignKey, source)
-      setEmail("")
-      onSuccess()
+      await submit(nextEmail, campaignKey, source);
+      setEmail('');
+      onSuccess();
     } catch {
       // error handled via hook state
     }
-  }
+  };
 
   return (
     <div className="space-y-2">
-      <form
-        onSubmit={handleSubmit}
-        className="flex flex-wrap items-center gap-2"
-      >
+      <form onSubmit={handleSubmit} className="flex flex-wrap items-center gap-2">
         <input
           ref={inputRef}
           type="email"
@@ -58,7 +50,7 @@ export function InterestForm({
           disabled={isSubmitting}
           className="rounded-md bg-neutral-100 px-4 py-2 text-sm text-neutral-900 disabled:opacity-50"
         >
-          {isSubmitting ? "Sending…" : "Send"}
+          {isSubmitting ? 'Sending…' : 'Send'}
         </button>
         {onCancel && (
           <button
@@ -70,11 +62,7 @@ export function InterestForm({
           </button>
         )}
       </form>
-      {error && (
-        <p className="text-xs text-red-400">
-          {error}
-        </p>
-      )}
+      {error && <p className="text-xs text-red-400">{error}</p>}
     </div>
-  )
+  );
 }

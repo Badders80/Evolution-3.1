@@ -1,5 +1,5 @@
 export type InterestPayload = {
-  email: string
-  campaignKey: string
-  source?: string
-}
+  email: string;
+  campaignKey: string;
+  source?: string;
+};

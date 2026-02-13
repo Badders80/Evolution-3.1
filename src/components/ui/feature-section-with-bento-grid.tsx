@@ -25,8 +25,7 @@ function Feature() {
               <div className="flex flex-col">
                 <h3 className="text-xl tracking-tight">Pay supplier invoices</h3>
                 <p className="text-muted-foreground max-w-xs text-base">
-                  Our goal is to streamline SMB trade, making it easier and faster
-                  than ever.
+                  Our goal is to streamline SMB trade, making it easier and faster than ever.
                 </p>
               </div>
             </div>
@@ -35,8 +34,7 @@ function Feature() {
               <div className="flex flex-col">
                 <h3 className="text-xl tracking-tight">Pay supplier invoices</h3>
                 <p className="text-muted-foreground max-w-xs text-base">
-                  Our goal is to streamline SMB trade, making it easier and faster
-                  than ever.
+                  Our goal is to streamline SMB trade, making it easier and faster than ever.
                 </p>
               </div>
             </div>
@@ -46,8 +44,7 @@ function Feature() {
               <div className="flex flex-col">
                 <h3 className="text-xl tracking-tight">Pay supplier invoices</h3>
                 <p className="text-muted-foreground max-w-xs text-base">
-                  Our goal is to streamline SMB trade, making it easier and faster
-                  than ever.
+                  Our goal is to streamline SMB trade, making it easier and faster than ever.
                 </p>
               </div>
             </div>
@@ -56,8 +53,7 @@ function Feature() {
               <div className="flex flex-col">
                 <h3 className="text-xl tracking-tight">Pay supplier invoices</h3>
                 <p className="text-muted-foreground max-w-xs text-base">
-                  Our goal is to streamline SMB trade, making it easier and faster
-                  than ever.
+                  Our goal is to streamline SMB trade, making it easier and faster than ever.
                 </p>
               </div>
             </div>

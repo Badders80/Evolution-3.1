@@ -12,13 +12,16 @@ interface AnimatedTextProps {
 export function AnimatedText({ text, className = '', delay = 0 }: AnimatedTextProps) {
   const [isAnimating, setIsAnimating] = useState(false);
   const words = text.split(' ');
-  
+
   // Start animation after component mounts
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsAnimating(true);
-    }, 1000 + delay * 100);
-    
+    const timer = setTimeout(
+      () => {
+        setIsAnimating(true);
+      },
+      1000 + delay * 100,
+    );
+
     return () => clearTimeout(timer);
   }, [delay]);
 
@@ -50,24 +53,30 @@ export function AnimatedText({ text, className = '', delay = 0 }: AnimatedTextPr
             <motion.span
               key={`${wordIndex}-${charIndex}`}
               className={`inline-block ${
-                (text.includes('innovation') || text.includes('passion') || text.includes('digital-syndication')) 
-                  ? 'text-primary' 
+                text.includes('innovation') ||
+                text.includes('passion') ||
+                text.includes('digital-syndication')
+                  ? 'text-primary'
                   : 'text-white'
               }`}
-              animate={isAnimating ? {
-                y: [0, -10, 0],
-                scale: [1, 1.2, 1],
-                textShadow: [
-                  '0 0 0px rgba(255,255,255,0)',
-                  '0 0 10px rgba(212, 175, 55, 0.8)',
-                  '0 0 0px rgba(255,255,255,0)'
-                ]
-              } : {}}
+              animate={
+                isAnimating
+                  ? {
+                      y: [0, -10, 0],
+                      scale: [1, 1.2, 1],
+                      textShadow: [
+                        '0 0 0px rgba(255,255,255,0)',
+                        '0 0 10px rgba(212, 175, 55, 0.8)',
+                        '0 0 0px rgba(255,255,255,0)',
+                      ],
+                    }
+                  : {}
+              }
               transition={{
                 delay: wordIndex * 0.05 + charIndex * 0.01,
                 duration: 0.5,
                 ease: 'easeInOut',
-                times: [0, 0.5, 1]
+                times: [0, 0.5, 1],
               }}
             >
               {char === ' ' ? '\u00A0' : char}
@@ -81,4 +90,3 @@ export function AnimatedText({ text, className = '', delay = 0 }: AnimatedTextPr
 }
 
 export default AnimatedText;
-

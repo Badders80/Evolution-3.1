@@ -22,7 +22,7 @@ export function FAQStructuredData({ items }: FAQStructuredDataProps) {
   const faqSchema = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: items.map(item => ({
+    mainEntity: items.map((item) => ({
       '@type': 'Question',
       name: item.question,
       acceptedAnswer: {

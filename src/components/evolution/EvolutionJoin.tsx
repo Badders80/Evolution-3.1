@@ -114,7 +114,7 @@ export function EvolutionJoin({
         autoComplete="email"
         placeholder={placeholder}
         value={email}
-        onChange={event => setEmail(event.target.value)}
+        onChange={(event) => setEmail(event.target.value)}
         className="flex-1 bg-transparent px-3 py-2 text-sm text-white placeholder:text-white/40 focus:outline-none"
         disabled={isSubmitting}
         aria-invalid={Boolean(error)}
@@ -124,7 +124,9 @@ export function EvolutionJoin({
           type="submit"
           className={clsx(
             'ml-3 flex h-8 w-8 items-center justify-center rounded-full bg-white/[0.06] transition-opacity duration-300',
-            email ? 'opacity-90 animate-evo-pulse hover:opacity-100' : 'opacity-0 pointer-events-none',
+            email
+              ? 'opacity-90 animate-evo-pulse hover:opacity-100'
+              : 'opacity-0 pointer-events-none',
             'disabled:opacity-30',
           )}
           disabled={!email.trim() || isSubmitting}

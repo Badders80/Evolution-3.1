@@ -67,12 +67,14 @@ export function HeroSection({
           className="pointer-events-none absolute inset-0 bg-black"
         />
         {overlay && (
-          <div className="fixed inset-0 bg-gradient-to-b from-transparent via-transparent to-background/95" 
-               style={{ 
-                 height: '100vh',
-                 background: 'linear-gradient(to bottom, rgba(var(--background)/0.7) 0%, rgba(var(--background)/0.7) 20%, rgba(var(--background)/0.3) 40%, transparent 50%)',
-                 pointerEvents: 'none'
-               }} 
+          <div
+            className="fixed inset-0 bg-gradient-to-b from-transparent via-transparent to-background/95"
+            style={{
+              height: '100vh',
+              background:
+                'linear-gradient(to bottom, rgba(var(--background)/0.7) 0%, rgba(var(--background)/0.7) 20%, rgba(var(--background)/0.3) 40%, transparent 50%)',
+              pointerEvents: 'none',
+            }}
           />
         )}
       </motion.div>
@@ -91,6 +93,7 @@ export function HeroSection({
             width={1200}
             height={400}
             priority
+            sizes="(min-width: 768px) 720px, 100vw"
             className="h-auto w-full"
           />
         </motion.div>
@@ -111,4 +114,3 @@ export function HeroSection({
     </section>
   );
 }
-

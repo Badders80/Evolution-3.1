@@ -9,25 +9,19 @@ interface ImageBandProps {
   children?: React.ReactNode;
 }
 
-export default function ImageBand({ 
-  src, 
-  alt, 
+export default function ImageBand({
+  src,
+  alt,
   height = 300,
   className = '',
-  children
+  children,
 }: ImageBandProps) {
   return (
-    <div 
+    <div
       className={`relative w-full overflow-hidden ${className}`}
       style={{ height: height ? `${height}px` : undefined }}
     >
-      <Image
-        src={src}
-        alt={alt}
-        fill
-        className="object-cover"
-        priority
-      />
+      <Image src={src} alt={alt} fill sizes="100vw" className="object-cover" priority />
       {children}
     </div>
   );
