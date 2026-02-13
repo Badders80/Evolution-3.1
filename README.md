@@ -1,134 +1,74 @@
-# Evolution 3.1
+# Evolution Stables v3.1
 
-A modern Next.js application built with TypeScript, Tailwind CSS, and Framer Motion for Evolution Stables.
+A production-ready Next.js 14 application built with TypeScript, Tailwind CSS, and Framer Motion for Evolution Stables. This branch (`Jules-merge`) represents the unified technical foundation, merging the best of `codex-optimised`, `kilo-optimised`, `glm-optimised`, and `jules-optimised`.
 
-## Features
+## 🚀 Quick Start
 
-- **Next.js 14** with App Router
-- **TypeScript** for type safety
-- **Tailwind CSS** for styling
-- **Framer Motion** for animations
-- **Component library** with reusable UI components
-- **Responsive design** with mobile-first approach
+1. **Prerequisites:** Node.js 22.22.0 (managed via `.nvmrc`)
+2. **Install:** `corepack enable && pnpm install`
+3. **Develop:** `pnpm dev` (runs on http://localhost:3000)
+4. **Test:** `pnpm test:watch`
+5. **Build:** `pnpm build`
 
-## Getting Started
+## 📦 Tech Stack
 
-1. Install dependencies:
-   ```bash
-   npm install
-   npm install --prefix studio
-   ```
+- **Framework:** Next.js 14.2.35 with App Router
+- **Language:** TypeScript 5.3+
+- **Styling:** Tailwind CSS 3.3+
+- **Animations:** Framer Motion 10.x, GSAP 3.x
+- **Icons:** Lucide React, Radix Icons, React Icons
+- **CMS:** Sanity.io
+- **Testing:** Vitest + Testing Library
+- **CI/CD:** GitHub Actions
+- **Package Manager:** pnpm 10.28.2
 
-2. Run the development server:
-   ```bash
-   npm run dev
-   ```
-
-3. Visit [http://localhost:3000](http://localhost:3000). (If you want the Studio later, start it separately with `npm run dev --prefix studio`.)
-
-## Development Workflow
-
-1. Run `npm run dev` for the main application on port 3000.
-2. Iterate on components in the app and validate in the browser.
-
-## Project Structure
+## 🏗️ Architecture
 
 ```
 src/
-|-- app/                 # Next.js app router pages
-|-- components/          # Reusable UI components
-|   |-- ui/             # Basic UI components (Button, Card, etc.)
-|   |-- layout/         # Layout components
-|   |-- site/           # Site-specific components
-|   |-- marketing/      # Marketing components
-|   |-- media/          # Media components
-|   `-- icons/          # Icon components
-|-- lib/                # Utility libraries
-|   `-- api/            # API integration layer
-`-- styles/             # Global styles and themes
+├── app/            # Next.js App Router pages
+│   ├── marketplace/# Digital syndication marketplace
+│   ├── mystable/   # Ownership dashboard
+│   ├── valuation/  # Asset valuation tools
+│   └── layout.tsx  # Root layout with metadata & GTM
+├── components/     # Reusable UI components
+│   ├── seo/        # SEO components (structured data)
+│   ├── ui/         # Base UI primitives (Bento, Button, etc.)
+│   ├── layout/     # Layout components
+│   └── site/       # Site-specific components
+├── lib/            # Utility libraries
+│   ├── api/        # API integration layer
+│   ├── assets.ts   # Centralized asset manifest
+│   └── press-articles.ts # Press data
+├── hooks/          # Custom React hooks (useAnalytics, etc.)
+├── providers/      # Context providers
+└── styles/         # Global styles
 ```
 
-## Components
+## 📊 SEO & Performance
 
-### UI Components
-- `Button` - Customizable button component
-- `Card` - Card layout component
-- `Badge` - Label/badge component
+- ✅ **Dynamic Metadata:** Optimized titles and descriptions per route.
+- ✅ **Structured Data:** FAQ and Organization schemas (JSON-LD).
+- ✅ **Image Optimization:** AVIF/WebP support with aggressive caching.
+- ✅ **Analytics:** Google Tag Manager integration with custom event hooks.
+- ✅ **Bundle Analysis:** Integrated analyzer for performance monitoring.
 
-### Layout Components
-- `NavBar` - Navigation bar
-- `Footer` - Site footer
-- `SectionShell` - Section wrapper
+## 🧪 Testing
 
-### Site Components
-- `Section` - Content section with image
-- `ImageBand` - Full-width image banner
-- `MissionCombo` - Mission statement component
+- **Unit Tests:** Vitest + Testing Library.
+- **Coverage:** `pnpm test:coverage`.
+- **Linting:** ESLint + Prettier.
 
-## Development
+## 🔐 Environment Variables
 
-To add new images, place them in the `public/images/` directory and update the asset references in `src/lib/assets.ts`.
+See `.env.local.example` for required configuration. Key variables include:
+- `NEXT_PUBLIC_GTM_ID`: Google Tag Manager ID.
+- `NEXT_PUBLIC_API_MODE`: `mock` or `live`.
 
-## Build and Deploy
+## 🚢 Deployment
 
-1. Build the application:
-   ```bash
-   npm run build
-   ```
+Optimized for Vercel deployment with automatic branch previews and GitHub Actions CI pipeline.
 
-2. Start the production server:
-   ```bash
-npm start
-```
+## 📄 License
 
-## Environment Variables
-
-Create a `.env.local` file in the root directory:
-
-```env
-NEXT_PUBLIC_API_MODE=mock
-NEXT_PUBLIC_API_URL=https://your-api-url.com
-NEXT_PUBLIC_SANITY_PROJECT_ID=a4xfnv5b
-NEXT_PUBLIC_SANITY_DATASET=production
-NEXT_PUBLIC_SANITY_API_VERSION=2023-10-04
-# Optional: required only for private datasets
-SANITY_READ_TOKEN=your-sanity-read-token
-```
-
-If you create additional content models in Sanity, make sure they expose the following fields so the
-Marketplace modules can be managed from the CMS:
-
-- `title` (string)
-- `description` (text or string)
-- `ctaLabel` (string)
-- `ctaHref` (string URL)
-- `iconKey` (string matching one of `digitalSyndication`, `ownershipDashboard`, `integrationCompliance`, `analyticsInsights`, `communityMedia`)
-- `layoutKey` (string matching one of `middle-tall`, `left-tall`, `left-bottom`, `right-top`, `right-bottom`)
-
-The data is fetched at request time; if Sanity is unreachable or the query returns no documents, the UI falls back to the locally-defined defaults.
-
-## Sanity Studio
-
-A Sanity Studio has been scaffolded in the `/studio` directory.
-
-### Install & Run
-
-```bash
-cd studio
-npm install
-npm run dev
-```
-
-The Studio targets project `a4xfnv5b` and dataset `production` by default (controlled via the same `NEXT_PUBLIC_SANITY_*` env variables shown above).
-
-### Deploy
-
-- **Sanity hosting**: `npx sanity deploy`
-- **Self hosted (Vercel/Netlify)**: build and deploy this folder; the scripts `npm run build` and `npm run deploy` are provided for convenience.
-- **Schema-only deploy**: `npx sanity schema deploy` (requires `SANITY_AUTH_TOKEN` if run from CI)
-
-After deploying you will receive a Studio URL (for example `https://<project>.sanity.studio` or a Vercel URL). Add that URL to the Sanity project settings under *Add studio*.
-
-## License
-
-This project is private and proprietary.
+Private and proprietary to Evolution Stables.

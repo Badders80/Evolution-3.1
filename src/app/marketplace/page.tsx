@@ -1,49 +1,10 @@
-import { Metadata } from 'next';
-
-export const metadata: Metadata = {
-  title: 'Marketplace | Evolution Stables - Digital Syndication',
-  description: 'Explore digital-syndication opportunities for racehorse ownership. Lease or trade verified stakes in the Evolution Stables marketplace.',
-  keywords: [
-    'racehorse marketplace',
-    'digital syndication',
-    'horse ownership marketplace',
-    'lease racehorse',
-    'trade racehorse stakes',
-    'fractional ownership',
-  ],
-  alternates: {
-    canonical: '/marketplace',
-  },
-  openGraph: {
-    title: 'Marketplace | Evolution Stables',
-    description: 'Explore digital-syndication opportunities for racehorse ownership.',
-    images: [
-      {
-        url: '/images/Mockup-trading-window.png',
-        width: 1200,
-        height: 630,
-        alt: 'Evolution Stables Marketplace Trading Interface',
-      },
-    ],
-  },
-  twitter: {
-    title: 'Marketplace | Evolution Stables',
-    description: 'Explore digital-syndication opportunities for racehorse ownership.',
-  },
-};
-
 'use client';
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import type { ReactNode } from 'react';
 import type { IconType } from 'react-icons';
-import {
-  LuWorkflow,
-  LuBot,
-  LuCog,
-  LuBrain,
-} from 'react-icons/lu';
+import { LuWorkflow, LuBot, LuCog, LuBrain } from 'react-icons/lu';
 
 import { BentoGrid, BentoCard } from '@/components/layout/Bento';
 import { FooterBar } from '@/components/site/Footer';
@@ -145,14 +106,11 @@ export default function MarketplacePage() {
             <p className="mb-2 text-xs uppercase tracking-[0.28em] text-white/40">
               Evolution Stables
             </p>
-            <h2 className="mb-4 text-4xl font-medium tracking-tight text-white">
-              Marketplace
-            </h2>
+            <h2 className="mb-4 text-4xl font-medium tracking-tight text-white">Marketplace</h2>
             <p className="text-base leading-relaxed text-white/60">
-              Discover and explore digital-syndication opportunities within the
-              Evolution ecosystem. Browse upcoming offerings, ownership
-              positions, and live data&mdash;all designed to make racehorse
-              ownership more accessible and connected.
+              Discover and explore digital-syndication opportunities within the Evolution ecosystem.
+              Browse upcoming offerings, ownership positions, and live data&mdash;all designed to
+              make racehorse ownership more accessible and connected.
             </p>
           </div>
 
@@ -167,9 +125,10 @@ export default function MarketplacePage() {
                 className={`object-cover object-center transition-all duration-700 ease-in-out ${
                   isTransitioning ? 'blur-[1.5px]' : 'blur-0'
                 }`}
+                sizes="(min-width: 1024px) 66vw, 100vw"
                 priority
               />
-              <div 
+              <div
                 className={`absolute inset-0 transition-colors duration-700 ${
                   isTransitioning ? 'bg-black/60' : 'bg-black/20'
                 }`}
@@ -194,33 +153,29 @@ export default function MarketplacePage() {
         {/* Section 2: Evolution Modules */}
         <section id="modules" className="space-y-12">
           <div className="space-y-4 text-left md:max-w-3xl">
-            <p className="text-xs uppercase tracking-[0.28em] text-white/40">
-              Evolution Stables
-            </p>
+            <p className="text-xs uppercase tracking-[0.28em] text-white/40">Evolution Stables</p>
             <h2 className="text-3xl font-semibold tracking-tight text-white md:text-4xl">
               Modules
             </h2>
             <p className="text-base leading-relaxed text-white/60 md:text-lg">
-              Explore the core components powering the Evolution ecosystem
-              &mdash; from ownership analytics to race insights.
+              Explore the core components powering the Evolution ecosystem &mdash; from ownership
+              analytics to race insights.
             </p>
           </div>
 
           <BentoGrid className="gap-3 md:gap-4 auto-rows-auto sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-3">
-            {modules.map(
-              ({ name, description, cta, href, Icon, className, background }) => (
-                <BentoCard
-                  key={name}
-                  name={name}
-                  description={description}
-                  cta={cta}
-                  href={href}
-                  Icon={Icon}
-                  className={className}
-                  background={background ?? defaultBackground}
-                />
-              ),
-            )}
+            {modules.map(({ name, description, cta, href, Icon, className, background }) => (
+              <BentoCard
+                key={name}
+                name={name}
+                description={description}
+                cta={cta}
+                href={href}
+                Icon={Icon}
+                className={className}
+                background={background ?? defaultBackground}
+              />
+            ))}
           </BentoGrid>
         </section>
       </div>

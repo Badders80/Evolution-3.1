@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 type AccordionItem = {
   question: string;
@@ -10,7 +10,7 @@ type AccordionProps = {
   className?: string;
 };
 
-export function Accordion({ items, className = "" }: AccordionProps) {
+export function Accordion({ items, className = '' }: AccordionProps) {
   return (
     <div className={`space-y-3 ${className}`}>
       {items.map((item) => (
@@ -22,12 +22,9 @@ export function Accordion({ items, className = "" }: AccordionProps) {
             <span>{item.question}</span>
             <span className="text-primary transition group-open:rotate-90">&rsaquo;</span>
           </summary>
-          <div className="mt-3 text-sm leading-relaxed text-muted">
-            {item.answer}
-          </div>
+          <div className="mt-3 text-sm leading-relaxed text-muted">{item.answer}</div>
         </details>
       ))}
     </div>
   );
 }
-

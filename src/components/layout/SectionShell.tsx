@@ -8,12 +8,7 @@ interface SectionShellProps {
   spaceY?: number;
 }
 
-export default function SectionShell({ 
-  children, 
-  className, 
-  id,
-  spaceY = 8 
-}: SectionShellProps) {
+export default function SectionShell({ children, className, id, spaceY = 8 }: SectionShellProps) {
   return (
     <section
       id={id}
@@ -26,7 +21,7 @@ export default function SectionShell({
           'space-y-12': spaceY === 3,
           'space-y-16': spaceY === 4,
         },
-        className
+        className,
       )}
     >
       {children}

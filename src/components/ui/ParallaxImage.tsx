@@ -1,8 +1,6 @@
-"use client";
+'use client';
 
-import React from "react";
-import Image from "next/image";
-import { motion, useScroll, useTransform } from "framer-motion";
+import Image from 'next/image';
 
 interface StaticImageProps {
   src: string;
@@ -32,7 +30,7 @@ interface StaticImageProps {
 export function StaticImage({
   src,
   alt,
-  className = "",
+  className = '',
   fill = false,
   priority,
   width,
@@ -44,10 +42,10 @@ export function StaticImage({
   return (
     <div
       className={`${fill ? '' : 'overflow-hidden'} ${className || ''}`}
-      style={{ 
-        position: fill ? "absolute" as const : undefined, 
+      style={{
+        position: fill ? ('absolute' as const) : undefined,
         inset: fill ? 0 : undefined,
-        opacity: opacity
+        opacity: opacity,
       }}
     >
       <Image
@@ -55,8 +53,8 @@ export function StaticImage({
         alt={alt}
         priority={priority}
         {...(fill ? { fill: true } : { width: width || 1920, height: height || 1080 })}
-        className={imageClassName || "object-cover"}
-        sizes={sizes || (fill ? "100vw" : undefined)}
+        className={imageClassName || 'object-cover'}
+        sizes={sizes || (fill ? '100vw' : undefined)}
       />
     </div>
   );

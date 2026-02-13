@@ -15,7 +15,7 @@ interface StructuredDataProps {
 
 /**
  * StructuredData Component
- * 
+ *
  * Generates JSON-LD structured data for SEO purposes.
  * Includes Organization schema with press mentions to help search engines
  * associate external articles with your brand.
@@ -28,7 +28,8 @@ export function StructuredData({ pressArticles = [] }: StructuredDataProps) {
     alternateName: 'Evolution Stables NZ',
     url: 'https://evolutionstables.nz',
     logo: 'https://evolutionstables.nz/images/Logo-Gold-Favicon.png',
-    description: 'Digital-syndication platform for racehorse ownership. Making racehorse ownership accessible, transparent, and liquid through modern technology and blockchain innovation.',
+    description:
+      'Digital-syndication platform for racehorse ownership. Making racehorse ownership accessible, transparent, and liquid through modern technology and blockchain innovation.',
     foundingDate: '2024',
     sameAs: [
       'https://x.com/EvolutionStables',
@@ -61,7 +62,7 @@ export function StructuredData({ pressArticles = [] }: StructuredDataProps) {
     ],
     // Add press mentions if provided
     ...(pressArticles.length > 0 && {
-      subjectOf: pressArticles.map(article => ({
+      subjectOf: pressArticles.map((article) => ({
         '@type': 'NewsArticle',
         headline: article.headline,
         url: article.url,

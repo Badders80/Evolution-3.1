@@ -55,7 +55,8 @@ body {
 
   /* The Gold Wave Animation for marquee letter treatments */
   @keyframes gold-letter-wave {
-    0%, 100% {
+    0%,
+    100% {
       color: rgba(255, 255, 255, 0.6);
       transform: scale(1);
       font-weight: 300;
@@ -111,14 +112,18 @@ body {
 
   /* Subtle shimmer that glides around the outer border */
   @keyframes border-shimmer-move {
-    0% { transform: translateX(-100%); }
-    100% { transform: translateX(100%); }
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
   }
 
   .animate-border-shimmer {
     animation: border-shimmer-move 8s linear infinite;
   }
-  
+
   /* Shimmer animation for premium effect */
   @keyframes shimmer {
     0% {
@@ -131,7 +136,7 @@ body {
       transform: translateX(100%);
     }
   }
-  
+
   .animate-shimmer {
     animation: shimmer 8s ease-in-out infinite;
     background: linear-gradient(
@@ -175,7 +180,8 @@ body {
   }
 
   @keyframes evo-text-pulse {
-    0%, 100% {
+    0%,
+    100% {
       color: #000000;
     }
     50% {
@@ -188,7 +194,8 @@ body {
   }
 
   @keyframes evo-text-pulse-gold {
-    0%, 100% {
+    0%,
+    100% {
       color: rgba(255, 255, 255, 0.7);
     }
     50% {
@@ -219,7 +226,7 @@ body {
       transition-duration: 0.01ms !important;
     }
   }
- 
+
   /* Fade in animation */
   @keyframes fade-in {
     from {
@@ -231,33 +238,60 @@ body {
       transform: translateY(0);
     }
   }
-  
+
   .animate-fade-in {
     animation: fade-in 0.8s ease-out forwards;
   }
 }
 
 @layer base {
-  h1 { @apply font-heading text-[2.75rem] md:text-[3.5rem] font-bold leading-[0.95] tracking-[-0.015em]; }
-  h2 { @apply font-heading text-[2rem] md:text-[2.25rem] font-semibold leading-[1.05] tracking-[-0.01em]; }
-  h3 { @apply font-heading text-xl md:text-[1.5rem] font-medium leading-[1.15] tracking-[-0.005em]; }
-  p  { @apply text-base leading-[1.6] tracking-[0em] text-foreground; }
-  a  { @apply text-primary hover:opacity-90 transition-opacity; }
+  h1 {
+    @apply font-heading text-[2.75rem] md:text-[3.5rem] font-bold leading-[0.95] tracking-[-0.015em];
+  }
+  h2 {
+    @apply font-heading text-[2rem] md:text-[2.25rem] font-semibold leading-[1.05] tracking-[-0.01em];
+  }
+  h3 {
+    @apply font-heading text-xl md:text-[1.5rem] font-medium leading-[1.15] tracking-[-0.005em];
+  }
+  p {
+    @apply text-base leading-[1.6] tracking-[0em] text-foreground;
+  }
+  a {
+    @apply text-primary hover:opacity-90 transition-opacity;
+  }
 }
 
 @layer components {
-  .heading-hero { @apply font-heading text-h1-mobile md:text-h1 text-primary; }
-  .heading-xl { @apply font-heading text-h2-mobile md:text-h2 text-primary; }
-  .heading-lg { @apply font-heading text-h3 text-primary; }
-  .body-text { @apply text-body-lg text-secondary; }
-  .caption-text { @apply text-body-sm text-secondary; }
-  .eyebrow { @apply text-label uppercase text-muted; }
-  .font-display { font-family: var(--font-display); }
-  .mono-accent { font-family: var(--font-mono); }
-  
+  .heading-hero {
+    @apply font-heading text-h1-mobile md:text-h1 text-primary;
+  }
+  .heading-xl {
+    @apply font-heading text-h2-mobile md:text-h2 text-primary;
+  }
+  .heading-lg {
+    @apply font-heading text-h3 text-primary;
+  }
+  .body-text {
+    @apply text-body-lg text-secondary;
+  }
+  .caption-text {
+    @apply text-body-sm text-secondary;
+  }
+  .eyebrow {
+    @apply text-label uppercase text-muted;
+  }
+  .font-display {
+    font-family: var(--font-display);
+  }
+  .mono-accent {
+    font-family: var(--font-mono);
+  }
+
   /* Icon hover effect - turns gold */
   .group:hover .icon-gold-hover {
-    filter: brightness(0) saturate(100%) invert(76%) sepia(31%) saturate(706%) hue-rotate(356deg) brightness(91%) contrast(87%) !important;
+    filter: brightness(0) saturate(100%) invert(76%) sepia(31%) saturate(706%) hue-rotate(356deg)
+      brightness(91%) contrast(87%) !important;
   }
 }
 

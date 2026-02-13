@@ -23,6 +23,7 @@ out/
 .vercel/
 **/.next/cache/
 **/.next/cache/webpack/
+*.tsbuildinfo
 
 # Local helper scripts
 quick-fix-commands.sh
@@ -57,3 +58,4 @@ out/
 quick-fix-commands.sh
 evolution-git-cleanup.sh
 check-required-env-vars.sh
+coverage

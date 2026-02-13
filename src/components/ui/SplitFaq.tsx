@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 export type FaqItem = {
   question: string;
@@ -12,7 +12,7 @@ type SplitFaqProps = {
   className?: string;
 };
 
-export function SplitFaq({ items, className = "" }: SplitFaqProps) {
+export function SplitFaq({ items, className = '' }: SplitFaqProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const toggleQuestion = (index: number) => {
@@ -33,21 +33,23 @@ export function SplitFaq({ items, className = "" }: SplitFaqProps) {
           <div
             key={item.question}
             className={`animate-[slideUp_0.8s_ease-out_forwards] ${index === 0 ? 'border-t' : ''}`}
-            style={{ 
+            style={{
               animationDelay: `${index * 0.12}s`,
-              borderTopColor: index === 0 ? 'rgba(255, 255, 255, 0.08)' : undefined
+              borderTopColor: index === 0 ? 'rgba(255, 255, 255, 0.08)' : undefined,
             }}
           >
             <div className="py-8 border-b border-white/[0.08] transition-all duration-300 ease-out hover:border-white/[0.12]">
-              <button 
+              <button
                 onClick={() => toggleQuestion(index)}
                 className="w-full text-left cursor-pointer group relative"
               >
                 <div className="flex items-center justify-between gap-6">
                   <div className="flex-1">
-                    <h3 className={`font-heading text-base font-light tracking-tight transition-all duration-300 ease-out ${
-                      isOpen ? 'text-white' : 'text-white/95'
-                    } group-hover:text-white`}>
+                    <h3
+                      className={`font-heading text-base font-light tracking-tight transition-all duration-300 ease-out ${
+                        isOpen ? 'text-white' : 'text-white/95'
+                      } group-hover:text-white`}
+                    >
                       {item.question}
                     </h3>
                   </div>
@@ -88,4 +90,3 @@ export function SplitFaq({ items, className = "" }: SplitFaqProps) {
     </div>
   );
 }
-

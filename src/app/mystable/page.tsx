@@ -1,37 +1,3 @@
-import { Metadata } from 'next';
-
-export const metadata: Metadata = {
-  title: 'MyStable | Evolution Stables - Ownership Dashboard',
-  description: 'Manage your racehorse ownership portfolio, track performance, and stay connected to your stable with MyStable dashboard.',
-  keywords: [
-    'racehorse portfolio',
-    'ownership dashboard',
-    'horse performance tracking',
-    'stable management',
-    'racehorse ROI',
-    'ownership stakes',
-  ],
-  alternates: {
-    canonical: '/mystable',
-  },
-  openGraph: {
-    title: 'MyStable | Evolution Stables',
-    description: 'Manage your racehorse ownership portfolio and track performance.',
-    images: [
-      {
-        url: '/images/Gemini_Generated_Image_r4hnnzr4hnnzr4hn.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'Evolution Stables MyStable Dashboard',
-      },
-    ],
-  },
-  twitter: {
-    title: 'MyStable | Evolution Stables',
-    description: 'Manage your racehorse ownership portfolio and track performance.',
-  },
-};
-
 'use client';
 
 import { useEffect, useState } from 'react';
@@ -111,20 +77,18 @@ export default function MyStablePage() {
   return (
     <main className="min-h-screen bg-background text-white pt-24">
       <div className="mx-auto max-w-7xl px-6 py-12 md:px-10 lg:px-12">
-        
         {/* Header */}
         <header className="mb-12">
           <div>
             <p className="text-xs uppercase tracking-[0.28em] text-white/40">Evolution Stables</p>
             <h1 className="mt-2 text-4xl font-medium tracking-tight md:text-5xl">MyStable</h1>
             <p className="mt-4 text-base text-white/60 max-w-2xl">
-              Welcome, <span className="text-white/90">{firstName}</span>. This is your personal command center 
-              for managing ownership positions, tracking performance, and staying connected to your stable.
+              Welcome, <span className="text-white/90">{firstName}</span>. This is your personal
+              command center for managing ownership positions, tracking performance, and staying
+              connected to your stable.
             </p>
           </div>
         </header>
-
-        
 
         {/* Main Grid: Left (Horses) + Right (Stats) */}
         <div
@@ -138,7 +102,6 @@ export default function MyStablePage() {
               isTransitioning ? 'blur-[1.5px]' : 'blur-0'
             }`}
           >
-          
             {/* Left: My Horses */}
             <section>
               <div className="mb-6">
@@ -157,21 +120,26 @@ export default function MyStablePage() {
                       <div>
                         <h3 className="text-lg font-medium tracking-tight">{horse.name}</h3>
                         <div className="mt-1 flex items-center gap-2">
-                          <span className={`inline-block rounded px-2 py-0.5 text-[10px] font-medium uppercase tracking-wider ${
-                            horse.status === 'racing' 
-                              ? 'bg-emerald-500/10 text-emerald-400' 
-                              : 'bg-blue-500/10 text-blue-400'
-                          }`}>
+                          <span
+                            className={`inline-block rounded px-2 py-0.5 text-[10px] font-medium uppercase tracking-wider ${
+                              horse.status === 'racing'
+                                ? 'bg-emerald-500/10 text-emerald-400'
+                                : 'bg-blue-500/10 text-blue-400'
+                            }`}
+                          >
                             {horse.status}
                           </span>
                           <span className="text-xs text-white/40">{horse.performance}</span>
                         </div>
                       </div>
                       <div className="text-right">
-                        <p className={`text-lg font-medium ${
-                          horse.returnsPercentage >= 0 ? 'text-emerald-400' : 'text-red-400'
-                        }`}>
-                          {horse.returnsPercentage >= 0 ? '+' : ''}{horse.returnsPercentage}%
+                        <p
+                          className={`text-lg font-medium ${
+                            horse.returnsPercentage >= 0 ? 'text-emerald-400' : 'text-red-400'
+                          }`}
+                        >
+                          {horse.returnsPercentage >= 0 ? '+' : ''}
+                          {horse.returnsPercentage}%
                         </p>
                         <p className="text-xs text-white/40">returns</p>
                       </div>
@@ -180,19 +148,31 @@ export default function MyStablePage() {
                     {/* Stats Grid */}
                     <div className="grid grid-cols-4 gap-4 border-t border-white/5 pt-4">
                       <div>
-                        <p className="mb-1 text-[10px] uppercase tracking-wider text-white/40">Stake</p>
+                        <p className="mb-1 text-[10px] uppercase tracking-wider text-white/40">
+                          Stake
+                        </p>
                         <p className="text-sm font-medium">{horse.stake}%</p>
                       </div>
                       <div>
-                        <p className="mb-1 text-[10px] uppercase tracking-wider text-white/40">Investment</p>
-                        <p className="text-sm font-medium">${(horse.investment / 1000).toFixed(0)}k</p>
+                        <p className="mb-1 text-[10px] uppercase tracking-wider text-white/40">
+                          Investment
+                        </p>
+                        <p className="text-sm font-medium">
+                          ${(horse.investment / 1000).toFixed(0)}k
+                        </p>
                       </div>
                       <div>
-                        <p className="mb-1 text-[10px] uppercase tracking-wider text-white/40">Value</p>
-                        <p className="text-sm font-medium">${(horse.currentValue / 1000).toFixed(1)}k</p>
+                        <p className="mb-1 text-[10px] uppercase tracking-wider text-white/40">
+                          Value
+                        </p>
+                        <p className="text-sm font-medium">
+                          ${(horse.currentValue / 1000).toFixed(1)}k
+                        </p>
                       </div>
                       <div>
-                        <p className="mb-1 text-[10px] uppercase tracking-wider text-white/40">Next Race</p>
+                        <p className="mb-1 text-[10px] uppercase tracking-wider text-white/40">
+                          Next Race
+                        </p>
                         <p className="text-xs text-white/60">{horse.nextRace.split(',')[0]}</p>
                       </div>
                     </div>
@@ -203,24 +183,37 @@ export default function MyStablePage() {
 
             {/* Right: Stats Sidebar */}
             <aside className="flex flex-col gap-4">
-              
               {/* Total Value */}
               <div className="flex-1 rounded-xl border border-white/5 bg-[#111111] p-6 flex flex-col justify-center">
-                <p className="text-[10px] uppercase tracking-wider text-white/40 mb-2">Total Value</p>
-                <p className="text-3xl font-medium tracking-tight">${(mockPortfolio.totalValue / 1000).toFixed(1)}k</p>
-                <p className="mt-1 text-sm text-emerald-400">+{mockPortfolio.monthlyChange}% this month</p>
+                <p className="text-[10px] uppercase tracking-wider text-white/40 mb-2">
+                  Total Value
+                </p>
+                <p className="text-3xl font-medium tracking-tight">
+                  ${(mockPortfolio.totalValue / 1000).toFixed(1)}k
+                </p>
+                <p className="mt-1 text-sm text-emerald-400">
+                  +{mockPortfolio.monthlyChange}% this month
+                </p>
               </div>
 
               {/* Total Returns */}
               <div className="flex-1 rounded-xl border border-white/5 bg-[#111111] p-6 flex flex-col justify-center">
-                <p className="text-[10px] uppercase tracking-wider text-white/40 mb-2">Total Returns</p>
-                <p className="text-3xl font-medium tracking-tight">${(mockPortfolio.totalReturns / 1000).toFixed(1)}k</p>
-                <p className="mt-1 text-sm text-white/50">+{mockPortfolio.returnsPercentage}% ROI</p>
+                <p className="text-[10px] uppercase tracking-wider text-white/40 mb-2">
+                  Total Returns
+                </p>
+                <p className="text-3xl font-medium tracking-tight">
+                  ${(mockPortfolio.totalReturns / 1000).toFixed(1)}k
+                </p>
+                <p className="mt-1 text-sm text-white/50">
+                  +{mockPortfolio.returnsPercentage}% ROI
+                </p>
               </div>
 
               {/* Active Stakes */}
               <div className="flex-1 rounded-xl border border-white/5 bg-[#111111] p-6 flex flex-col justify-center">
-                <p className="text-[10px] uppercase tracking-wider text-white/40 mb-2">Active Stakes</p>
+                <p className="text-[10px] uppercase tracking-wider text-white/40 mb-2">
+                  Active Stakes
+                </p>
                 <p className="text-3xl font-medium tracking-tight">{mockPortfolio.activeStakes}</p>
                 <p className="mt-1 text-sm text-white/50">across portfolio</p>
               </div>
@@ -240,12 +233,11 @@ export default function MyStablePage() {
                   </a>
                 </div>
               </div>
-
             </aside>
           </div>
 
           {/* Dark overlay that transitions in */}
-          <div 
+          <div
             className={`absolute inset-0 z-[15] transition-colors duration-700 ${
               isTransitioning ? 'bg-black/75' : 'bg-black/20'
             }`}
@@ -264,7 +256,8 @@ export default function MyStablePage() {
             <div className="text-center px-6">
               <p className="text-3xl font-medium tracking-tight text-white/80">Coming Soon</p>
               <p className="mx-auto mt-3 max-w-xl text-sm text-white/50">
-                The full MyStable ownership dashboard for portfolio analytics, horse performance, and race insights will unlock shortly.
+                The full MyStable ownership dashboard for portfolio analytics, horse performance,
+                and race insights will unlock shortly.
               </p>
             </div>
           </div>
@@ -274,10 +267,12 @@ export default function MyStablePage() {
         <section className="mt-24">
           <header className="mb-8">
             <p className="text-xs uppercase tracking-[0.28em] text-white/40">Evolution Stables</p>
-            <h2 className="mt-2 text-3xl font-medium tracking-tight md:text-4xl">Information Hub</h2>
+            <h2 className="mt-2 text-3xl font-medium tracking-tight md:text-4xl">
+              Information Hub
+            </h2>
             <p className="mt-4 text-base text-white/60 max-w-2xl">
-              Stay connected with the latest Evolution news, interviews, and race insights.
-              Follow community updates and media coverage through the Information Hub.
+              Stay connected with the latest Evolution news, interviews, and race insights. Follow
+              community updates and media coverage through the Information Hub.
             </p>
           </header>
 
@@ -287,12 +282,17 @@ export default function MyStablePage() {
               alt="Digital racehorse tracking and insights on Evolution Stables platform"
               fill
               className="object-cover"
+              sizes="100vw"
               priority
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end p-8">
               <div>
-                <h3 className="text-2xl font-medium tracking-tight text-white mb-2">Latest Insights</h3>
-                <p className="text-base text-white/70">Curated coverage of races, partnerships, and trends.</p>
+                <h3 className="text-2xl font-medium tracking-tight text-white mb-2">
+                  Latest Insights
+                </h3>
+                <p className="text-base text-white/70">
+                  Curated coverage of races, partnerships, and trends.
+                </p>
               </div>
             </div>
           </div>
@@ -309,7 +309,9 @@ export default function MyStablePage() {
 
           <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.02] p-8 md:p-10">
             <div className="relative z-10 space-y-3">
-              <h3 className="text-2xl font-medium tracking-tight text-white">View All Press Coverage</h3>
+              <h3 className="text-2xl font-medium tracking-tight text-white">
+                View All Press Coverage
+              </h3>
               <p className="text-base text-white/60 max-w-2xl">
                 Read full stories, partnerships, and industry insights in the press archive.
               </p>
@@ -324,7 +326,6 @@ export default function MyStablePage() {
             <div className="absolute inset-0 pointer-events-none bg-gradient-to-r from-white/[0.04] via-transparent to-transparent" />
           </div>
         </section>
-
       </div>
       <div className="mt-24">
         <FooterBar />

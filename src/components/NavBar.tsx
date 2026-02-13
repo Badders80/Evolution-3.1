@@ -22,7 +22,7 @@ const navLinks = [
 
 /**
  * NavBar Component
- * 
+ *
  * A polished, x.ai-inspired navigation bar with:
  * - Glassmorphic design with smooth backdrop blur
  * - Scroll-based state changes (transparent → solid)
@@ -48,8 +48,7 @@ export function NavBar() {
    * Navigate to authentication page
    */
   const handleGetStarted = () => {
-    const basePath =
-      !pathname || pathname.startsWith('/auth') ? '/mystable' : pathname;
+    const basePath = !pathname || pathname.startsWith('/auth') ? '/mystable' : pathname;
     const redirectTarget =
       typeof window !== 'undefined' && window.location.search
         ? `${basePath}${window.location.search}`
@@ -85,7 +84,7 @@ export function NavBar() {
           root: null,
           rootMargin: '-64px 0px 0px 0px',
           threshold: 0,
-        }
+        },
       );
 
       observer.observe(hero);
@@ -142,15 +141,13 @@ export function NavBar() {
   return (
     <nav
       className={`fixed inset-x-0 top-0 z-[9999] w-full transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] ${
-        isSolid 
-          ? 'bg-black/80 text-white' 
-          : 'bg-black/40 text-white'
+        isSolid ? 'bg-black/80 text-white' : 'bg-black/40 text-white'
       } ${visible ? 'opacity-100 translate-y-0' : '-translate-y-4 opacity-0'}`}
-      style={{ 
-        backdropFilter: 'blur(24px) saturate(120%)', 
+      style={{
+        backdropFilter: 'blur(24px) saturate(120%)',
         WebkitBackdropFilter: 'blur(24px) saturate(120%)',
         maskImage: 'linear-gradient(to bottom, black 80%, transparent 100%)',
-        WebkitMaskImage: 'linear-gradient(to bottom, black 80%, transparent 100%)'
+        WebkitMaskImage: 'linear-gradient(to bottom, black 80%, transparent 100%)',
       }}
     >
       <div className="mx-auto flex h-20 w-full max-w-[1440px] items-center px-6 sm:px-10 lg:px-12">
@@ -177,16 +174,13 @@ export function NavBar() {
         <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-center">
           <div className="flex items-center gap-0">
             {navLinks.map((link) => (
-              <div
-                key={link.href}
-                className="group relative flex items-center"
-              >
+              <div key={link.href} className="group relative flex items-center">
                 <Link
                   href={link.href}
                   className="relative inline-flex items-center whitespace-nowrap px-2.5 py-4 text-[12px] font-[300] tracking-[0.15em] uppercase transition-all duration-300 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary/50 rounded-sm"
                   style={{ color: 'rgba(255, 255, 255, 0.6)' }}
-                  onMouseEnter={(e) => e.currentTarget.style.color = 'rgba(255, 255, 255, 1)'}
-                  onMouseLeave={(e) => e.currentTarget.style.color = 'rgba(255, 255, 255, 0.6)'}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = 'rgba(255, 255, 255, 1)')}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(255, 255, 255, 0.6)')}
                 >
                   <span className="relative z-10">{link.label}</span>
                 </Link>
@@ -225,11 +219,23 @@ export function NavBar() {
             aria-label={isMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
           >
             {isMenuOpen ? (
-              <svg className="h-5 w-5 transition-transform duration-300 rotate-0 hover:rotate-90" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+              <svg
+                className="h-5 w-5 transition-transform duration-300 rotate-0 hover:rotate-90"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={1.5}
+              >
                 <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
               </svg>
             ) : (
-              <svg className="h-5 w-5 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+              <svg
+                className="h-5 w-5 transition-all duration-300"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={1.5}
+              >
                 <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
               </svg>
             )}
@@ -239,7 +245,10 @@ export function NavBar() {
 
       {/* Mobile Menu Dropdown */}
       {isMenuOpen && (
-        <div className="md:hidden bg-background/80 backdrop-blur-2xl border-t border-white/[0.03]" style={{ backdropFilter: 'blur(40px) saturate(150%)' }}>
+        <div
+          className="md:hidden bg-background/80 backdrop-blur-2xl border-t border-white/[0.03]"
+          style={{ backdropFilter: 'blur(40px) saturate(150%)' }}
+        >
           <div className="space-y-1 px-6 py-6">
             {navLinks.map((link) => (
               <Link

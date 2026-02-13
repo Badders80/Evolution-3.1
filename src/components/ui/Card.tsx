@@ -18,7 +18,7 @@ export function Card({ children, className, padding = 'md' }: CardProps) {
           'p-6': padding === 'md',
           'p-8': padding === 'lg',
         },
-        className
+        className,
       )}
     >
       {children}
@@ -32,11 +32,7 @@ interface CardHeaderProps {
 }
 
 export function CardHeader({ children, className }: CardHeaderProps) {
-  return (
-    <div className={clsx('flex flex-col space-y-1.5 p-6', className)}>
-      {children}
-    </div>
-  );
+  return <div className={clsx('flex flex-col space-y-1.5 p-6', className)}>{children}</div>;
 }
 
 interface CardTitleProps {
@@ -58,9 +54,5 @@ interface CardContentProps {
 }
 
 export function CardContent({ children, className }: CardContentProps) {
-  return (
-    <div className={clsx('p-6 pt-0', className)}>
-      {children}
-    </div>
-  );
+  return <div className={clsx('p-6 pt-0', className)}>{children}</div>;
 }

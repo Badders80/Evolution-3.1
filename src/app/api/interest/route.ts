@@ -16,10 +16,7 @@ export async function POST(req: Request) {
   const { email, campaignKey, source } = body ?? {};
 
   if (!email || !campaignKey) {
-    return NextResponse.json(
-      { error: 'Missing email or campaignKey' },
-      { status: 400 }
-    );
+    return NextResponse.json({ error: 'Missing email or campaignKey' }, { status: 400 });
   }
 
   const upstreamResponse = await fetch(GOOGLE_SHEETS_WEB_APP_URL, {
@@ -36,8 +33,7 @@ export async function POST(req: Request) {
   }
 
   if (!upstreamResponse.ok || upstreamData?.error) {
-    const message =
-      upstreamData?.error || 'Failed to submit interest to Google Sheets';
+    const message = upstreamData?.error || 'Failed to submit interest to Google Sheets';
     return NextResponse.json({ error: message }, { status: 502 });
   }
 

@@ -10,7 +10,7 @@ import { usePathname } from 'next/navigation';
  */
 export function EnvironmentToggle() {
   const pathname = usePathname();
-  
+
   const isEngineMode = pathname?.startsWith('/engine');
   const isAdminMode = pathname?.startsWith('/admin');
 
@@ -26,7 +26,7 @@ export function EnvironmentToggle() {
       >
         Engine
       </Link>
-      
+
       <Link
         href="/admin"
         className={`text-sm font-medium px-4 py-2 rounded-md transition-all ${

@@ -18,7 +18,8 @@ const NotFoundPage = () => {
               This page could not be found
             </h1>
             <p className="text-base font-light leading-relaxed text-white/60">
-              It looks like the route you&apos;re looking for doesn&apos;t exist. Let&apos;s guide you back to the stable.
+              It looks like the route you&apos;re looking for doesn&apos;t exist. Let&apos;s guide
+              you back to the stable.
             </p>
           </div>
         </div>
@@ -38,6 +39,7 @@ const NotFoundPage = () => {
           alt="Evolution Stables silhouette"
           width={720}
           height={300}
+          sizes="80vw"
           className="max-w-[80%] select-none opacity-40"
           priority
         />

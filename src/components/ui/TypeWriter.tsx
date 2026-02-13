@@ -10,13 +10,13 @@ interface TypeWriterProps {
   className?: string;
 }
 
-export function TypeWriter({ 
-  text, 
-  speed = 100, 
+export function TypeWriter({
+  text,
+  speed = 100,
   delay = 500,
   trigger = 'instant',
   loop = false,
-  className = ''
+  className = '',
 }: TypeWriterProps) {
   const [displayedText, setDisplayedText] = useState('');
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -34,18 +34,21 @@ export function TypeWriter({
     }
 
     // Start typing after initial delay
-    const startTimer = setTimeout(() => {
-      if (currentIndex < text.length) {
-        const timer = setTimeout(() => {
-          setDisplayedText(prev => prev + text[currentIndex]);
-          setCurrentIndex(prev => prev + 1);
-        }, speed);
-        return () => clearTimeout(timer);
-      } else if (currentIndex === text.length && !isComplete) {
-        setIsComplete(true);
-      }
-    }, currentIndex === 0 ? delay : 0);
-    
+    const startTimer = setTimeout(
+      () => {
+        if (currentIndex < text.length) {
+          const timer = setTimeout(() => {
+            setDisplayedText((prev) => prev + text[currentIndex]);
+            setCurrentIndex((prev) => prev + 1);
+          }, speed);
+          return () => clearTimeout(timer);
+        } else if (currentIndex === text.length && !isComplete) {
+          setIsComplete(true);
+        }
+      },
+      currentIndex === 0 ? delay : 0,
+    );
+
     return () => clearTimeout(startTimer);
   }, [currentIndex, text, speed, delay, loop, isComplete]);
 

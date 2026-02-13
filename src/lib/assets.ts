@@ -19,21 +19,22 @@ export const LOGOS = {
   main: '/images/Evolution-Stables-Logo.svg',
   black: '/images/Evolution-Stables-Logo-Black.svg',
   white: '/images/Evolution-Stables-Logo-White.svg',
-  
+
   // Monochrome variants
   mono: {
     black: '/images/EvolutionStables-Mono-Black.svg',
     white: '/images/EvolutionStables-Mono-White.svg',
     gold: '/images/EvolutionStables-Mono-Gold.svg',
   },
-  
+
   // Simple/icon versions
   simple: {
     black: '/images/Logo-Black.png',
     gold: '/images/Logo-Gold.png',
     grey: '/images/Logo-Grey.png',
+    goldFavicon: '/images/Logo-Gold-Favicon.png',
   },
-  
+
   // Name logos (new)
   name: {
     black: '/images/Evolution-Stables-Name-Logo-Black.svg',
@@ -41,6 +42,17 @@ export const LOGOS = {
     gold: '/images/Evolution-Stables-Name-Logo-Gold.svg',
     grey: '/images/Evolution-Stables-Name-Logo-Grey.svg',
   },
+};
+
+export const ICONS = {
+  increasedAccess: '/images/Increased Access.svg',
+  greaterTransparency: '/images/greater-than-equal-icon-original.svg',
+  borderlessFlexibility: '/images/Untitled design (36).svg',
+};
+
+export const MOCKUPS = {
+  tradingWindow: '/images/Mockup-trading-window.png',
+  orderWindow: '/images/Order-Window-MockUp.png',
 };
 
 export const ILLUSTRATIONS = {

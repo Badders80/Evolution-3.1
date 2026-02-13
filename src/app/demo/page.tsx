@@ -40,12 +40,14 @@ export default function Demo() {
           <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
             {/* Left: Content */}
             <div>
-              <p className="mb-2 text-xs uppercase tracking-[0.28em] text-white/40">Evolution Stables</p>
+              <p className="mb-2 text-xs uppercase tracking-[0.28em] text-white/40">
+                Evolution Stables
+              </p>
               <h2 className="mb-4 text-4xl font-medium tracking-tight text-white">Marketplace</h2>
               <p className="text-base leading-relaxed text-white/60">
-                Discover and explore digital-syndication opportunities within the Evolution ecosystem.
-                Browse upcoming offerings, ownership positions, and live data — all designed to make racehorse ownership
-                more accessible and connected.
+                Discover and explore digital-syndication opportunities within the Evolution
+                ecosystem. Browse upcoming offerings, ownership positions, and live data — all
+                designed to make racehorse ownership more accessible and connected.
               </p>
             </div>
 
@@ -83,8 +85,12 @@ export default function Demo() {
           <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
             {/* Left: Content */}
             <div>
-              <p className="mb-2 text-xs uppercase tracking-[0.28em] text-white/40">Evolution Stables</p>
-              <h2 className="mb-4 text-4xl font-medium tracking-tight text-white">Information Hub</h2>
+              <p className="mb-2 text-xs uppercase tracking-[0.28em] text-white/40">
+                Evolution Stables
+              </p>
+              <h2 className="mb-4 text-4xl font-medium tracking-tight text-white">
+                Information Hub
+              </h2>
               <p className="text-base leading-relaxed text-white/60">
                 Stay connected with the latest Evolution news, interviews, and race insights.
               </p>
@@ -97,11 +103,16 @@ export default function Demo() {
                 alt="Information Hub"
                 width={800}
                 height={600}
+                sizes="(min-width: 1024px) 50vw, 100vw"
                 className="h-[400px] w-full object-cover"
               />
               <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/70 to-transparent p-6">
-                <h3 className="mb-1 text-lg font-medium tracking-tight text-white">Latest Insights</h3>
-                <p className="text-sm text-white/60">Curated coverage of races, partnerships, and trends.</p>
+                <h3 className="mb-1 text-lg font-medium tracking-tight text-white">
+                  Latest Insights
+                </h3>
+                <p className="text-sm text-white/60">
+                  Curated coverage of races, partnerships, and trends.
+                </p>
               </div>
             </div>
           </div>

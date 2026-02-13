@@ -120,7 +120,7 @@ export function AuthClient() {
                 strokeLinejoin="round"
               />
             </svg>
-            {isSubmitting ? 'Submitting...' : statusMessage ?? 'Join with email'}
+            {isSubmitting ? 'Submitting...' : (statusMessage ?? 'Join with email')}
           </button>
         </form>
 

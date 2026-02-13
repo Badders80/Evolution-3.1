@@ -1,29 +1,27 @@
-import type { Metadata } from "next";
-import "../styles/globals.css";
-import "../styles/brand.css";
-import { NavBar } from "@/components/NavBar";
-import { AppProviders } from "@/providers/app-providers";
-import { StructuredData } from "@/components/seo/StructuredData";
-import { getPressArticlesForStructuredData } from "@/lib/press-articles";
+import type { Metadata } from 'next';
+import Script from 'next/script';
+import '../styles/globals.css';
+import '../styles/brand.css';
+import { NavBar } from '@/components/NavBar';
+import { AppProviders } from '@/providers/app-providers';
+import { StructuredData } from '@/components/seo/StructuredData';
+import { getPressArticlesForStructuredData } from '@/lib/press-articles';
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://evolutionstables.nz"),
-  title: "Evolution Stables - Digital Racehorse Ownership | Tokenized RWA Platform",
-  description: "Own racehorses through digital-syndication. Evolution Stables makes racehorse ownership accessible, transparent, and liquid. Regulated real-world asset (RWA) investing powered by Tokinvest and blockchain technology.",
+  metadataBase: new URL('https://evolutionstables.nz'),
+  title: 'Evolution Stables - Regulated Marketplace for Digital Equine Assets',
+  description:
+    'Experience the next generation of horse racing. Evolution Stables offers regulated, institutional-grade digital-syndication for high-performance thoroughbreds.',
   keywords: [
-    'racehorse ownership',
-    'digital syndication',
-    'tokenized assets',
-    'real world assets',
-    'RWA',
-    'blockchain racing',
-    'fractional ownership',
-    'New Zealand racing',
-    'NZTR',
-    'Tokinvest',
-    'Singularry',
-    'regulated investment',
-    'horse racing investment',
+    'Regulated Equine Marketplace',
+    'Digital Equine Assets',
+    'Institutionalised Horse Racing',
+    'Digital Syndication',
+    'Tokenised Racehorse Ownership',
+    'RWA Racing Platform',
+    'High Performance Thoroughbreds',
+    'Evolution Stables',
+    'New Zealand Racing Governance',
   ],
   authors: [{ name: 'Evolution Stables' }],
   creator: 'Evolution Stables',
@@ -36,14 +34,15 @@ export const metadata: Metadata = {
     locale: 'en_NZ',
     url: 'https://evolutionstables.nz',
     siteName: 'Evolution Stables',
-    title: 'Evolution Stables - Digital Racehorse Ownership',
-    description: 'Own racehorses through digital-syndication. Making racehorse ownership accessible, transparent, and liquid.',
+    title: 'Evolution Stables - Regulated Marketplace for Digital Equine Assets',
+    description:
+      'The premier institutionalised platform for digital-syndication and high-performance racehorse ownership.',
     images: [
       {
-        url: '/images/Logo-Gold-Favicon.png',
+        url: '/images/Logo-Gold.png',
         width: 1200,
         height: 630,
-        alt: 'Evolution Stables Logo',
+        alt: 'Evolution Stables',
       },
     ],
   },
@@ -51,8 +50,10 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     site: '@EvolutionStables',
     creator: '@EvolutionStables',
-    title: 'Evolution Stables - Digital Racehorse Ownership',
-    description: 'Own racehorses through digital-syndication. Making racehorse ownership accessible, transparent, and liquid.',
+    title: 'Evolution Stables - Regulated Marketplace for Digital Equine Assets',
+    description:
+      'The premier institutionalised platform for digital-syndication and high-performance racehorse ownership.',
+    images: ['/images/Logo-Gold.png'],
   },
   icons: {
     icon: '/images/Logo-Gold-Favicon.png',
@@ -73,7 +74,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport = {
-  width: "device-width",
+  width: 'device-width',
   initialScale: 1,
 };
 
@@ -92,9 +93,34 @@ export default function RootLayout({
           type="font/woff2"
           crossOrigin="anonymous"
         />
+        {process.env.NEXT_PUBLIC_GTM_ID && (
+          <Script
+            id="gtm-script"
+            strategy="afterInteractive"
+            dangerouslySetInnerHTML={{
+              __html: `
+                (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+                j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+                'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+                })(window,document,'script','dataLayer','${process.env.NEXT_PUBLIC_GTM_ID}');
+              `,
+            }}
+          />
+        )}
         <StructuredData pressArticles={getPressArticlesForStructuredData()} />
       </head>
       <body className="min-h-screen bg-black antialiased" suppressHydrationWarning>
+        {process.env.NEXT_PUBLIC_GTM_ID && (
+          <noscript>
+            <iframe
+              src={`https://www.googletagmanager.com/ns.html?id=${process.env.NEXT_PUBLIC_GTM_ID}`}
+              height="0"
+              width="0"
+              style={{ display: 'none', visibility: 'hidden' }}
+            />
+          </noscript>
+        )}
         <AppProviders>
           <NavBar />
           <div className="min-h-screen flex flex-col">

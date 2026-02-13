@@ -10,7 +10,8 @@ interface SectionCardProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 't
   children?: React.ReactNode;
 }
 
-export const SectionCard: React.FC<SectionCardProps> = ({ className = '',
+export const SectionCard: React.FC<SectionCardProps> = ({
+  className = '',
   title,
   description,
   imageSrc,
@@ -20,49 +21,57 @@ export const SectionCard: React.FC<SectionCardProps> = ({ className = '',
 }) => {
   const resolvedAlt = imageAlt || '';
   const hasHoverImage = hoverImageSrc && hoverImageSrc !== imageSrc;
-  
+
   return (
-    <div 
+    <div
       className={`flex flex-col h-full relative ${className}`}
       style={{ willChange: 'transform, opacity' }}
     >
       {/* Vertical line with hover effects */}
-      <div 
+      <div
         className="absolute -left-6 -top-24 -bottom-24 w-px bg-gradient-to-b from-transparent via-muted/60 to-transparent transition-all duration-300 origin-center overflow-visible group-hover:via-primary group-hover:shadow-[0_0_25px_rgba(212,169,100,0.65)] group-hover:scale-x-[1.6]"
         style={{ willChange: 'transform, box-shadow' }}
       >
         {/* Horizontal pulse line */}
-        <div className="absolute inset-0 bg-gradient-to-b from-primary/0 via-primary/100 to-primary/0 opacity-0 
-                    group-hover:opacity-100 transition-opacity duration-300">
-          <div 
+        <div
+          className="absolute inset-0 bg-gradient-to-b from-primary/0 via-primary/100 to-primary/0 opacity-0
+                    group-hover:opacity-100 transition-opacity duration-300"
+        >
+          <div
             className="absolute inset-y-1/2 w-full h-1 bg-gradient-to-r from-transparent via-white to-transparent animate-pulse"
             style={{
               boxShadow: '0 0 15px 2px rgba(255,255,255,0.8)',
-              maskImage: 'linear-gradient(90deg, transparent 0%, white 15%, white 85%, transparent 100%)',
-              WebkitMaskImage: 'linear-gradient(90deg, transparent 0%, white 15%, white 85%, transparent 100%)',
-              willChange: 'opacity, transform'
+              maskImage:
+                'linear-gradient(90deg, transparent 0%, white 15%, white 85%, transparent 100%)',
+              WebkitMaskImage:
+                'linear-gradient(90deg, transparent 0%, white 15%, white 85%, transparent 100%)',
+              willChange: 'opacity, transform',
             }}
           />
         </div>
-        
+
         {/* Vertical bolt with tapered ends */}
-        <div 
+        <div
           className="absolute inset-0 bg-gradient-to-b from-primary/0 via-primary/100 to-primary/0 
                    opacity-0 group-hover:opacity-100 transition-opacity duration-300"
           style={{
-            maskImage: 'linear-gradient(to bottom, transparent 0%, white 15%, white 85%, transparent 100%)',
-            WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, white 15%, white 85%, transparent 100%)'
+            maskImage:
+              'linear-gradient(to bottom, transparent 0%, white 15%, white 85%, transparent 100%)',
+            WebkitMaskImage:
+              'linear-gradient(to bottom, transparent 0%, white 15%, white 85%, transparent 100%)',
           }}
         >
-          <div 
+          <div
             className="absolute inset-y-1/2 left-1/2 w-1 h-0 bg-gradient-to-b from-transparent via-white to-transparent 
                       group-hover:h-full group-hover:inset-y-0 transition-all duration-700 ease-out"
             style={{
               transform: 'translateX(-50%)',
               boxShadow: '0 0 20px 2px rgba(255,255,255,0.9)',
-              maskImage: 'linear-gradient(to bottom, transparent 0%, white 10%, white 90%, transparent 100%)',
-              WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, white 10%, white 90%, transparent 100%)',
-              willChange: 'height, transform, opacity'
+              maskImage:
+                'linear-gradient(to bottom, transparent 0%, white 10%, white 90%, transparent 100%)',
+              WebkitMaskImage:
+                'linear-gradient(to bottom, transparent 0%, white 10%, white 90%, transparent 100%)',
+              willChange: 'height, transform, opacity',
             }}
           />
         </div>
@@ -83,11 +92,11 @@ export const SectionCard: React.FC<SectionCardProps> = ({ className = '',
             {description}
           </div>
         </div>
-        
+
         {/* Image Container */}
         <div className="mt-auto">
           {imageSrc && (
-            <div 
+            <div
               className="mt-6 w-[60%] mx-auto transform group-hover:scale-[1.2] transition-transform duration-300"
               style={{ willChange: 'transform' }}
             >
@@ -123,4 +132,3 @@ export const SectionCard: React.FC<SectionCardProps> = ({ className = '',
     </div>
   );
 };
-

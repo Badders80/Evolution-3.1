@@ -34,14 +34,12 @@ export function ProcessSection({
         <h2 className="heading-xl mb-6">{title}</h2>
 
         {/* Description */}
-        {description && (
-          <p className="body-text max-w-3xl mb-12">{description}</p>
-        )}
+        {description && <p className="body-text max-w-3xl mb-12">{description}</p>}
 
         {/* Steps */}
         <div className="grid md:grid-cols-3 gap-8 mt-12">
           {steps.map((step, index) => (
-            <div 
+            <div
               key={index}
               className="group p-6 rounded-lg hover:bg-foreground/5 transition-colors duration-300"
             >

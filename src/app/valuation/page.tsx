@@ -1,37 +1,3 @@
-import { Metadata } from 'next';
-
-export const metadata: Metadata = {
-  title: 'Valuation Model | Evolution Stables - Lease Calculator',
-  description: 'Calculate lease valuations, breakeven points, and compare leasing vs. retaining your racehorse stake with our interactive valuation model.',
-  keywords: [
-    'racehorse valuation',
-    'lease calculator',
-    'breakeven analysis',
-    'racehorse investment',
-    'syndication calculator',
-    'horse ownership ROI',
-  ],
-  alternates: {
-    canonical: '/valuation',
-  },
-  openGraph: {
-    title: 'Valuation Model | Evolution Stables',
-    description: 'Calculate lease valuations and breakeven points for racehorse ownership.',
-    images: [
-      {
-        url: '/images/valuation-model-og.png',
-        width: 1200,
-        height: 630,
-        alt: 'Evolution Stables Valuation Model Calculator',
-      },
-    ],
-  },
-  twitter: {
-    title: 'Valuation Model | Evolution Stables',
-    description: 'Calculate lease valuations and breakeven points for racehorse ownership.',
-  },
-};
-
 'use client';
 
 import { useState, useMemo } from 'react';
@@ -67,26 +33,26 @@ interface ValuationResults {
 // Calculation functions
 function calculateValuation(inputs: ValuationInputs): ValuationResults {
   const { ppp, sss, ddd, rrr } = inputs;
-  
+
   // Upfront income: PPP × DDD/12 × SSS
   const upfrontIncome = ppp * (ddd / 12) * sss;
-  
+
   // Breakeven TTT* = [100 × PPP × (DDD/12)] / (1 - RRR/100)
   const breakevenTTT = (100 * ppp * (ddd / 12)) / (1 - rrr / 100);
-  
+
   // Breakeven WWW* = (SSS/100) × TTT*
   const breakevenWWW = (sss / 100) * breakevenTTT;
-  
+
   // Calculate owner returns at breakeven point
   // Owner return (lease): (PPP × DDD/12 × SSS) + (RRR × WWW*)
   const ownerReturnLease = upfrontIncome + (rrr / 100) * breakevenWWW;
-  
+
   // Owner return (no lease): WWW*
   const ownerReturnNoLease = breakevenWWW;
-  
+
   // X-axis max = 2 × TTT*
   const xAxisMax = 2 * breakevenTTT;
-  
+
   // Generate chart data points
   const numPoints = 50;
   const chartData: Array<{
@@ -95,19 +61,19 @@ function calculateValuation(inputs: ValuationInputs): ValuationResults {
     leaseRevenue: number;
     noLeaseRevenue: number;
   }> = [];
-  
+
   for (let i = 0; i <= numPoints; i++) {
     const tttValue = (i / numPoints) * xAxisMax;
     const wwwValue = (sss / 100) * tttValue;
-    
+
     // No-lease line: starts at (0,0) with slope SSS/100
     // This represents owner's share of total winnings
     const noLeaseRevenue = (sss / 100) * tttValue;
-    
+
     // Lease line: starts at upfront value with slope (RRR × SSS/100)
     // Owner gets upfront income + RRR% of the WWW (which is SSS% of TTT)
     const leaseRevenue = upfrontIncome + (rrr / 100) * wwwValue;
-    
+
     chartData.push({
       ttt: tttValue,
       www: wwwValue,
@@ -115,7 +81,7 @@ function calculateValuation(inputs: ValuationInputs): ValuationResults {
       noLeaseRevenue,
     });
   }
-  
+
   return {
     upfrontIncome,
     ownerReturnLease,
@@ -128,11 +94,11 @@ function calculateValuation(inputs: ValuationInputs): ValuationResults {
 }
 
 // Simple SVG-based chart component (no external dependencies)
-function BreakevenChart({ 
-  chartData, 
-  breakevenTTT, 
-  upfrontIncome 
-}: { 
+function BreakevenChart({
+  chartData,
+  breakevenTTT,
+  upfrontIncome,
+}: {
   chartData: ValuationResults['chartData'];
   breakevenTTT: number;
   upfrontIncome: number;
@@ -143,35 +109,43 @@ function BreakevenChart({
   const padding = { top: 50, right: 50, bottom: 70, left: 90 };
   const chartWidth = width - padding.left - padding.right;
   const chartHeight = height - padding.top - padding.bottom;
-  
-  const maxTTT = Math.max(...chartData.map(d => d.ttt));
-  const maxRevenue = Math.max(
-    ...chartData.map(d => Math.max(d.leaseRevenue, d.noLeaseRevenue))
-  );
-  
+
+  const maxTTT = Math.max(...chartData.map((d) => d.ttt));
+  const maxRevenue = Math.max(...chartData.map((d) => Math.max(d.leaseRevenue, d.noLeaseRevenue)));
+
   const scaleX = (ttt: number) => (ttt / maxTTT) * chartWidth;
   const scaleY = (revenue: number) => chartHeight - (revenue / maxRevenue) * chartHeight;
-  
+
   const formatCurrency = (value: number) => {
     if (value >= 1000000) return `$${(value / 1000000).toFixed(1)}M`;
     if (value >= 1000) return `$${(value / 1000).toFixed(0)}k`;
     return `$${value.toFixed(0)}`;
   };
-  
+
   // Generate path strings
   const leasePath = chartData
-    .map((d, i) => `${i === 0 ? 'M' : 'L'} ${scaleX(d.ttt) + padding.left} ${scaleY(d.leaseRevenue) + padding.top}`)
+    .map(
+      (d, i) =>
+        `${i === 0 ? 'M' : 'L'} ${scaleX(d.ttt) + padding.left} ${scaleY(d.leaseRevenue) + padding.top}`,
+    )
     .join(' ');
-  
+
   const noLeasePath = chartData
-    .map((d, i) => `${i === 0 ? 'M' : 'L'} ${scaleX(d.ttt) + padding.left} ${scaleY(d.noLeaseRevenue) + padding.top}`)
+    .map(
+      (d, i) =>
+        `${i === 0 ? 'M' : 'L'} ${scaleX(d.ttt) + padding.left} ${scaleY(d.noLeaseRevenue) + padding.top}`,
+    )
     .join(' ');
-  
+
   const breakevenX = scaleX(breakevenTTT) + padding.left;
   // Find the breakeven point where both lines intersect
-  const breakevenDataPoint = chartData.find(d => Math.abs(d.ttt - breakevenTTT) < maxTTT / 50) || chartData[Math.round((breakevenTTT / maxTTT) * chartData.length)];
-  const breakevenY = breakevenDataPoint ? scaleY(breakevenDataPoint.leaseRevenue) + padding.top : padding.top + chartHeight / 2;
-  
+  const breakevenDataPoint =
+    chartData.find((d) => Math.abs(d.ttt - breakevenTTT) < maxTTT / 50) ||
+    chartData[Math.round((breakevenTTT / maxTTT) * chartData.length)];
+  const breakevenY = breakevenDataPoint
+    ? scaleY(breakevenDataPoint.leaseRevenue) + padding.top
+    : padding.top + chartHeight / 2;
+
   return (
     <div className="w-full overflow-x-auto -mx-2 px-2">
       <svg
@@ -196,7 +170,7 @@ function BreakevenChart({
             />
           );
         })}
-        
+
         {[0, 0.25, 0.5, 0.75, 1].map((ratio) => {
           const x = padding.left + ratio * chartWidth;
           return (
@@ -211,7 +185,7 @@ function BreakevenChart({
             />
           );
         })}
-        
+
         {/* Axes */}
         <line
           x1={padding.left}
@@ -229,23 +203,13 @@ function BreakevenChart({
           stroke="rgba(255, 255, 255, 0.2)"
           strokeWidth={2}
         />
-        
+
         {/* No-lease line */}
-        <path
-          d={noLeasePath}
-          fill="none"
-          stroke="#f87171"
-          strokeWidth={2}
-        />
-        
+        <path d={noLeasePath} fill="none" stroke="#f87171" strokeWidth={2} />
+
         {/* Lease line */}
-        <path
-          d={leasePath}
-          fill="none"
-          stroke="#d4a964"
-          strokeWidth={2}
-        />
-        
+        <path d={leasePath} fill="none" stroke="#d4a964" strokeWidth={2} />
+
         {/* Breakeven vertical line */}
         <line
           x1={breakevenX}
@@ -257,7 +221,7 @@ function BreakevenChart({
           strokeDasharray="5 5"
           opacity={0.7}
         />
-        
+
         {/* Breakeven label */}
         <text
           x={breakevenX}
@@ -269,7 +233,7 @@ function BreakevenChart({
         >
           Breakeven
         </text>
-        
+
         {/* X-axis labels */}
         {[0, 0.25, 0.5, 0.75, 1].map((ratio) => {
           const x = padding.left + ratio * chartWidth;
@@ -296,7 +260,7 @@ function BreakevenChart({
             </g>
           );
         })}
-        
+
         {/* Y-axis labels */}
         {[0, 0.25, 0.5, 0.75, 1].map((ratio) => {
           const y = padding.top + (1 - ratio) * chartHeight;
@@ -323,7 +287,7 @@ function BreakevenChart({
             </g>
           );
         })}
-        
+
         {/* Axis titles */}
         <text
           x={width / 2}
@@ -345,7 +309,7 @@ function BreakevenChart({
           Owner Return
         </text>
       </svg>
-      
+
       {/* Legend */}
       <div className="flex gap-6 mt-4 justify-center">
         <div className="flex items-center gap-2">
@@ -368,9 +332,9 @@ export default function ValuationPage() {
     ddd: 12,
     rrr: 20,
   });
-  
+
   const [errors, setErrors] = useState<Partial<Record<keyof ValuationInputs, string>>>({});
-  
+
   // Calculate results based on breakeven point for display
   const results = useMemo(() => {
     try {
@@ -380,13 +344,13 @@ export default function ValuationPage() {
       return null;
     }
   }, [inputs]);
-  
+
   const handleInputChange = (field: keyof ValuationInputs, value: string) => {
     const numValue = parseFloat(value) || 0;
     setInputs((prev) => ({ ...prev, [field]: numValue }));
     setErrors((prev) => ({ ...prev, [field]: undefined }));
   };
-  
+
   const handleCalculate = () => {
     try {
       valuationInputSchema.parse(inputs);
@@ -395,7 +359,7 @@ export default function ValuationPage() {
       // Ignore detailed field errors for now; just keep existing state.
     }
   };
-  
+
   const formatCurrency = (value: number) => {
     return new Intl.NumberFormat('en-NZ', {
       style: 'currency',
@@ -404,7 +368,7 @@ export default function ValuationPage() {
       maximumFractionDigits: 0,
     }).format(value);
   };
-  
+
   return (
     <div className="min-h-screen w-full bg-black text-white pt-32 md:pt-40">
       <div className="max-w-7xl mx-auto px-6 py-12 md:py-16">
@@ -417,10 +381,11 @@ export default function ValuationPage() {
             Valuation Model
           </h1>
           <p className="text-base leading-relaxed text-white/65 max-w-3xl">
-            Calculate lease valuations, breakeven points, and compare leasing vs. retaining your stake.
+            Calculate lease valuations, breakeven points, and compare leasing vs. retaining your
+            stake.
           </p>
         </section>
-        
+
         {/* Main Layout - Graph and Sidebar */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-12">
           {/* Main Area - Graph */}
@@ -440,12 +405,12 @@ export default function ValuationPage() {
               )}
             </Card>
           </div>
-          
+
           {/* Sidebar - Input Parameters */}
           <div className="lg:col-span-1">
             <Card className="bg-white/[0.02] border-white/[0.08] p-6 md:p-8 sticky top-32">
               <h2 className="text-xl font-light mb-6 text-white">Input Parameters</h2>
-              
+
               <div className="space-y-6">
                 {/* PPP: Price per 1% per year */}
                 <div>
@@ -461,11 +426,9 @@ export default function ValuationPage() {
                     min="0"
                     step="100"
                   />
-                  {errors.ppp && (
-                    <p className="mt-1 text-xs text-red-400">{errors.ppp}</p>
-                  )}
+                  {errors.ppp && <p className="mt-1 text-xs text-red-400">{errors.ppp}</p>}
                 </div>
-                
+
                 {/* SSS: Stake sold (%) */}
                 <div>
                   <label className="block text-sm font-light mb-2 text-white/70">
@@ -481,11 +444,9 @@ export default function ValuationPage() {
                     max="100"
                     step="1"
                   />
-                  {errors.sss && (
-                    <p className="mt-1 text-xs text-red-400">{errors.sss}</p>
-                  )}
+                  {errors.sss && <p className="mt-1 text-xs text-red-400">{errors.sss}</p>}
                 </div>
-                
+
                 {/* DDD: Duration (months) */}
                 <div>
                   <label className="block text-sm font-light mb-2 text-white/70">
@@ -500,11 +461,9 @@ export default function ValuationPage() {
                     min="1"
                     step="1"
                   />
-                  {errors.ddd && (
-                    <p className="mt-1 text-xs text-red-400">{errors.ddd}</p>
-                  )}
+                  {errors.ddd && <p className="mt-1 text-xs text-red-400">{errors.ddd}</p>}
                 </div>
-                
+
                 {/* RRR: Owner share of stakes (%) */}
                 <div>
                   <label className="block text-sm font-light mb-2 text-white/70">
@@ -520,17 +479,11 @@ export default function ValuationPage() {
                     max="100"
                     step="1"
                   />
-                  {errors.rrr && (
-                    <p className="mt-1 text-xs text-red-400">{errors.rrr}</p>
-                  )}
+                  {errors.rrr && <p className="mt-1 text-xs text-red-400">{errors.rrr}</p>}
                 </div>
-                
+
                 <div className="pt-2">
-                  <Button
-                    onClick={handleCalculate}
-                    variant="primary"
-                    className="w-full"
-                  >
+                  <Button onClick={handleCalculate} variant="primary" className="w-full">
                     Calculate
                   </Button>
                 </div>
@@ -538,13 +491,13 @@ export default function ValuationPage() {
             </Card>
           </div>
         </div>
-        
+
         {/* Results Section - Bottom */}
         {results && (
           <section>
             <Card className="bg-white/[0.02] border-white/[0.08] p-6 md:p-8">
               <h2 className="text-xl font-light mb-6 text-white">Results</h2>
-              
+
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <div className="space-y-2">
                   <p className="text-sm text-white/50">Upfront Income</p>
@@ -552,35 +505,35 @@ export default function ValuationPage() {
                     {formatCurrency(results.upfrontIncome)}
                   </p>
                 </div>
-                
+
                 <div className="space-y-2">
                   <p className="text-sm text-white/50">Owner Return (Lease)</p>
                   <p className="text-2xl font-light text-[#d4a964]">
                     {formatCurrency(results.ownerReturnLease)}
                   </p>
                 </div>
-                
+
                 <div className="space-y-2">
                   <p className="text-sm text-white/50">Owner Return (No Lease)</p>
                   <p className="text-2xl font-light text-[#f87171]">
                     {formatCurrency(results.ownerReturnNoLease)}
                   </p>
                 </div>
-                
+
                 <div className="space-y-2">
                   <p className="text-sm text-white/50">Breakeven (TTT*)</p>
                   <p className="text-2xl font-light text-white">
                     {formatCurrency(results.breakevenTTT)}
                   </p>
                 </div>
-                
+
                 <div className="space-y-2">
                   <p className="text-sm text-white/50">Breakeven (WWW*)</p>
                   <p className="text-2xl font-light text-white">
                     {formatCurrency(results.breakevenWWW)}
                   </p>
                 </div>
-                
+
                 <div className="space-y-2">
                   <p className="text-sm text-white/50">X-axis Range (Max)</p>
                   <p className="text-2xl font-light text-white">
