@@ -1,0 +1,50 @@
+# Evolution Reel Concat List
+# Edit this file with your actual asset paths
+# Format: file 'path/to/file.mp4'
+
+# OPENING (0:00-0:05)
+file 'veo3/opening.mp4'
+duration 5
+
+# RACE 1 - ENRICO (0:05-0:18)
+file 'comfyui/title_matamata.png'
+duration 2
+file 'stills/enrico.jpg'
+duration 3
+file 'veo3/finish_line.mp4'
+duration 4
+file 'veo3/transition.mp4'
+duration 2
+
+# RACE 2 - SMOOTH OPERATOR (0:18-0:28)
+file 'comfyui/title_invercargill.png'
+duration 2
+file 'stills/smooth_operator.jpg'
+duration 3
+file 'veo3/transition.mp4'
+duration 2
+
+# RACE 3 & 4 - ELLERSLIE DOUBLE (0:28-0:55)
+file 'comfyui/title_ellerslie.png'
+duration 2
+file 'stills/blue_sky.jpg'
+duration 4
+file 'veo3/finish_line.mp4'
+duration 4
+file 'stills/el_vencedor.jpg'
+duration 4
+file 'veo3/finish_line.mp4'
+duration 4
+file 'veo3/transition.mp4'
+duration 2
+
+# CLOSE (0:55-1:15)
+file 'veo3/trophy.mp4'
+duration 3
+file 'comfyui/title_auckland_cup.png'
+duration 2
+file 'veo3/transition.mp4'
+duration 2
+
+# AUDIO
+file 'audio/voiceover.mp3'

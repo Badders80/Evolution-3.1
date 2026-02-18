@@ -1,0 +1,8 @@
+{
+  "reel_dir": "/home/evo/projects/Evolution-3.1/content/reels/2026-02-17",
+  "veo3_script": "/home/evo/projects/Evolution-3.1/content/reels/2026-02-17/veo3/submit_to_flow.sh",
+  "comfyui_workflow": "/home/evo/projects/Evolution-3.1/content/reels/2026-02-17/comfyui/batch_workflow.json",
+  "ffmpeg_script": "/home/evo/projects/Evolution-3.1/content/reels/2026-02-17/assemble_with_ffmpeg.sh",
+  "concat_template": "/home/evo/projects/Evolution-3.1/content/reels/2026-02-17/concat_list.txt",
+  "readme": "/home/evo/projects/Evolution-3.1/content/reels/2026-02-17/README.md"
+}

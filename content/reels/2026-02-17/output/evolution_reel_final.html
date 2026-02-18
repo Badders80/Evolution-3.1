@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Evolution Weekend Recap</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background: #1a1a1a;
+            color: white;
+            overflow: hidden;
+        }
+        .slide {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 60px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 0.8s ease;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+        }
+        .slide.active { opacity: 1; }
+        .gold { color: #D4AF37; }
+        .location {
+            font-size: 100px;
+            font-weight: 700;
+            letter-spacing: 12px;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+        }
+        .horse {
+            font-size: 64px;
+            font-weight: 300;
+            margin-bottom: 24px;
+            letter-spacing: 4px;
+        }
+        .detail {
+            font-size: 40px;
+            font-weight: 300;
+            opacity: 0.85;
+            letter-spacing: 2px;
+        }
+        .subtitle {
+            font-size: 32px;
+            font-weight: 300;
+            margin-top: 50px;
+            opacity: 0.7;
+            font-style: italic;
+        }
+        .date {
+            font-size: 80px;
+            font-weight: 700;
+            letter-spacing: 8px;
+        }
+        .year {
+            font-size: 48px;
+            font-weight: 300;
+            opacity: 0.6;
+            margin-top: 20px;
+        }
+        .logo {
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            font-size: 24px;
+            font-weight: 600;
+            letter-spacing: 4px;
+            opacity: 0.5;
+        }
+        #progress {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            height: 4px;
+            background: #D4AF37;
+            transition: width 0.5s ease;
+        }
+        .hint {
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 18px;
+            opacity: 0.4;
+            letter-spacing: 2px;
+        }
+        .arrow {
+            font-size: 120px;
+            margin-top: 30px;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <!-- Slide 1: The Hook (7s) -->
+    <div class="slide active" data-duration="7000">
+        <div class="subtitle" style="font-size: 28px; margin-bottom: 60px;">THE FIRST RULE OF OWNERSHIP</div>
+        <div class="location gold" style="font-size: 72px; letter-spacing: 6px;">IS YOU DON'T TALK</div>
+        <div class="location gold" style="font-size: 72px; letter-spacing: 6px;">ABOUT OWNERSHIP</div>
+        <div class="subtitle" style="margin-top: 60px;">Not because it's secret.</div>
+        <div class="subtitle">Because most people are looking at the wrong numbers.</div>
+    </div>
+    
+    <!-- Slide 2: Opening (5s) -->
+    <div class="slide" data-duration="5000">
+        <div class="location gold">WEEKEND RECAP</div>
+        <div class="date">21-22 FEB</div>
+        <div class="year">2025</div>
+    </div>
+    
+    <!-- Slide 3: Matamata (10s) -->
+    <div class="slide" data-duration="10000">
+        <div class="location gold">MATAMATA</div>
+        <div class="horse">Enrico</div>
+        <div class="detail">23-1 | $350,000 Wairere Falls</div>
+        <div class="subtitle gold">The market got it wrong.</div>
+    </div>
+    
+    <!-- Slide 4: Invercargill (8s) -->
+    <div class="slide" data-duration="8000">
+        <div class="location gold">INVERCARGILL</div>
+        <div class="horse">Smooth Operator</div>
+        <div class="detail">6.25 lengths | Gold Cup</div>
+        <div class="subtitle gold">Dominant.</div>
+        <div class="subtitle">$50,000 bonus still on the table.</div>
+    </div>
+    
+    <!-- Slide 5: Blue Sky (10s) -->
+    <div class="slide" data-duration="10000">
+        <div class="location gold">ELLERSLIE</div>
+        <div class="horse">Blue Sky At Night</div>
+        <div class="detail">Back-to-back 2400m Cups</div>
+        <div class="subtitle gold">Third favourite for the Auckland Cup.</div>
+    </div>
+    
+    <!-- Slide 6: El Vencedor (10s) -->
+    <div class="slide" data-duration="10000">
+        <div class="location gold">ELLERSLIE</div>
+        <div class="horse">El Vencedor</div>
+        <div class="detail">G1 | $1.529M earnings</div>
+        <div class="arrow gold">&rarr;</div>
+        <div class="subtitle gold">Hong Kong</div>
+    </div>
+    
+    <!-- Slide 7: Close (8s) -->
+    <div class="slide" data-duration="8000">
+        <div class="location gold">AUCKLAND CUP</div>
+        <div class="date">MARCH 8</div>
+        <div class="subtitle" style="margin-top: 60px;">The story continues.</div>
+    </div>
+    
+    <div id="progress"></div>
+    <div class="logo">EVOLUTION STABLES</div>
+    <div class="hint">SPACE to play &bull; ARROWS to navigate</div>
+    
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        let autoPlay = false;
+        let timer = null;
+        
+        function showSlide(n) {
+            slides.forEach(s => s.classList.remove('active'));
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+            updateProgress();
+        }
+        
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+        
+        function prevSlide() {
+            showSlide(currentSlide - 1);
+        }
+        
+        function updateProgress() {
+            const progress = ((currentSlide + 1) / totalSlides) * 100;
+            document.getElementById('progress').style.width = progress + '%';
+        }
+        
+        function toggleAuto() {
+            autoPlay = !autoPlay;
+            if (autoPlay) {
+                autoAdvance();
+            } else {
+                clearTimeout(timer);
+            }
+        }
+        
+        function autoAdvance() {
+            if (!autoPlay) return;
+            const duration = parseInt(slides[currentSlide].dataset.duration);
+            timer = setTimeout(() => {
+                nextSlide();
+                autoAdvance();
+            }, duration);
+        }
+        
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') nextSlide();
+            if (e.key === 'ArrowLeft') prevSlide();
+            if (e.key === ' ') {
+                e.preventDefault();
+                toggleAuto();
+            }
+        });
+        
+        updateProgress();
+    </script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+{
+  "prompts": [
+    {
+      "name": "title_matamata",
+      "prompt": "Professional broadcast graphic, dark charcoal background (#36454F), bold gold text 'MATAMATA', Helvetica font, institutional finance aesthetic, 4K, clean typography",
+      "output": "/home/evo/projects/Evolution-3.1/content/reels/2026-02-17/comfyui/title_matamata.png"
+    },
+    {
+      "name": "title_invercargill",
+      "prompt": "Professional broadcast graphic, dark charcoal background (#36454F), bold gold text 'INVERCARGILL', Helvetica font, institutional finance aesthetic, 4K, clean typography",
+      "output": "/home/evo/projects/Evolution-3.1/content/reels/2026-02-17/comfyui/title_invercargill.png"
+    },
+    {
+      "name": "title_ellerslie",
+      "prompt": "Professional broadcast graphic, dark charcoal background (#36454F), bold gold text 'ELLERSLIE', Helvetica font, institutional finance aesthetic, 4K, clean typography",
+      "output": "/home/evo/projects/Evolution-3.1/content/reels/2026-02-17/comfyui/title_ellerslie.png"
+    },
+    {
+      "name": "title_auckland_cup",
+      "prompt": "Professional broadcast graphic, dark charcoal background (#36454F), bold gold text 'AUCKLAND CUP', Helvetica font, institutional finance aesthetic, 4K, clean typography",
+      "output": "/home/evo/projects/Evolution-3.1/content/reels/2026-02-17/comfyui/title_auckland_cup.png"
+    }
+  ],
+  "model": "flux",
+  "batch_size": 4,
+  "output_dir": "/home/evo/projects/Evolution-3.1/content/reels/2026-02-17/comfyui"
+}

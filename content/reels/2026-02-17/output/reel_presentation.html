@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Evolution Weekend Recap</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background: #36454F;
+            color: white;
+            overflow: hidden;
+        }
+        
+        .slide {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 60px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        .slide.active {
+            opacity: 1;
+        }
+        
+        .gold {
+            color: #D4AF37;
+        }
+        
+        .location {
+            font-size: 120px;
+            font-weight: 700;
+            letter-spacing: 8px;
+            margin-bottom: 30px;
+        }
+        
+        .horse {
+            font-size: 72px;
+            font-weight: 400;
+            margin-bottom: 20px;
+        }
+        
+        .detail {
+            font-size: 48px;
+            font-weight: 300;
+            opacity: 0.9;
+        }
+        
+        .subtitle {
+            font-size: 36px;
+            font-weight: 300;
+            margin-top: 40px;
+            opacity: 0.8;
+        }
+        
+        .date {
+            font-size: 96px;
+            font-weight: 700;
+        }
+        
+        #controls {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+        }
+        
+        button {
+            background: #D4AF37;
+            color: #36454F;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            margin: 0 10px;
+            border-radius: 4px;
+        }
+        
+        button:hover {
+            background: #c4a030;
+        }
+        
+        #progress {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            height: 6px;
+            background: #D4AF37;
+            transition: width 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <!-- Slide 1: Opening -->
+    <div class="slide active" data-duration="5000">
+        <div class="location gold">WEEKEND RECAP</div>
+        <div class="date">21-22 FEB</div>
+        <div class="subtitle">2025</div>
+    </div>
+    
+    <!-- Slide 2: Matamata -->
+    <div class="slide" data-duration="10000">
+        <div class="location gold">MATAMATA</div>
+        <div class="horse">Enrico</div>
+        <div class="detail">23-1 | $350,000 Wairere Falls</div>
+    </div>
+    
+    <!-- Slide 3: Invercargill -->
+    <div class="slide" data-duration="8000">
+        <div class="location gold">INVERCARGILL</div>
+        <div class="horse">Smooth Operator</div>
+        <div class="detail">6.25 lengths | Gold Cup</div>
+    </div>
+    
+    <!-- Slide 4: Blue Sky -->
+    <div class="slide" data-duration="10000">
+        <div class="location gold">ELLERSLIE</div>
+        <div class="horse">Blue Sky At Night</div>
+        <div class="detail">Back-to-back 2400m Cups</div>
+        <div class="subtitle gold">Auckland Cup bound</div>
+    </div>
+    
+    <!-- Slide 5: El Vencedor -->
+    <div class="slide" data-duration="10000">
+        <div class="location gold">ELLERSLIE</div>
+        <div class="horse">El Vencedor</div>
+        <div class="detail">G1 | $1.529M earnings</div>
+        <div class="subtitle gold">Hong Kong &rarr;</div>
+    </div>
+    
+    <!-- Slide 6: Close -->
+    <div class="slide" data-duration="8000">
+        <div class="location gold">AUCKLAND CUP</div>
+        <div class="date">MARCH 8</div>
+        <div class="subtitle">The story continues</div>
+    </div>
+    
+    <div id="progress"></div>
+    
+    <div id="controls">
+        <button onclick="prevSlide()">&larr; Prev</button>
+        <button onclick="toggleAuto()">Play/Pause</button>
+        <button onclick="nextSlide()">Next &rarr;</button>
+    </div>
+    
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        let autoPlay = false;
+        let timer = null;
+        
+        function showSlide(n) {
+            slides.forEach(s => s.classList.remove('active'));
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+            updateProgress();
+        }
+        
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+        
+        function prevSlide() {
+            showSlide(currentSlide - 1);
+        }
+        
+        function updateProgress() {
+            const progress = ((currentSlide + 1) / totalSlides) * 100;
+            document.getElementById('progress').style.width = progress + '%';
+        }
+        
+        function toggleAuto() {
+            autoPlay = !autoPlay;
+            if (autoPlay) {
+                autoAdvance();
+            } else {
+                clearTimeout(timer);
+            }
+        }
+        
+        function autoAdvance() {
+            if (!autoPlay) return;
+            const duration = parseInt(slides[currentSlide].dataset.duration);
+            timer = setTimeout(() => {
+                nextSlide();
+                autoAdvance();
+            }, duration);
+        }
+        
+        // Keyboard controls
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') nextSlide();
+            if (e.key === 'ArrowLeft') prevSlide();
+            if (e.key === ' ') toggleAuto();
+        });
+        
+        updateProgress();
+    </script>
+</body>
+</html>
