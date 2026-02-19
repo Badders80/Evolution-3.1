@@ -83,16 +83,30 @@ To add new images, place them in the `public/images/` directory and update the a
 
 ## Environment Variables
 
-Create a `.env.local` file in the root directory:
+Copy the example file and then fill in real values:
+
+```bash
+cp .env.example .env.local
+```
+
+Required runtime variables:
 
 ```env
 NEXT_PUBLIC_API_MODE=mock
 NEXT_PUBLIC_API_URL=https://your-api-url.com
-NEXT_PUBLIC_SANITY_PROJECT_ID=a4xfnv5b
+NEXT_PUBLIC_SANITY_PROJECT_ID=your-sanity-project-id
 NEXT_PUBLIC_SANITY_DATASET=production
 NEXT_PUBLIC_SANITY_API_VERSION=2023-10-04
-# Optional: required only for private datasets
+NEXTAUTH_URL=http://localhost:3000
+NEXTAUTH_SECRET=replace-with-a-strong-random-secret
+GOOGLE_CLIENT_ID=your-google-client-id
+GOOGLE_CLIENT_SECRET=your-google-client-secret
+# Optional: required only for private Sanity datasets
 SANITY_READ_TOKEN=your-sanity-read-token
+# Optional: if not set, app uses built-in fallback endpoint
+GOOGLE_SHEETS_WEB_APP_URL=https://script.google.com/macros/s/your-script-id/exec
+# Optional: enables bundle analyzer when running `pnpm analyze`
+ANALYZE=false
 ```
 
 If you create additional content models in Sanity, make sure they expose the following fields so the
