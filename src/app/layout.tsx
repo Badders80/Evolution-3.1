@@ -6,8 +6,13 @@ import { AppProviders } from "@/providers/app-providers";
 import { StructuredData } from "@/components/seo/StructuredData";
 import { getPressArticlesForStructuredData } from "@/lib/press-articles";
 
+const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || "https://evolutionstables.nz").replace(/\/$/, "");
+const isProductionEnv = process.env.VERCEL_ENV
+  ? process.env.VERCEL_ENV === "production"
+  : process.env.NODE_ENV === "production";
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://evolutionstables.nz"),
+  metadataBase: new URL(siteUrl),
   title: "Evolution Stables - Digital Racehorse Ownership | Tokenized RWA Platform",
   description: "Own racehorses through digital-syndication. Evolution Stables makes racehorse ownership accessible, transparent, and liquid. Regulated real-world asset (RWA) investing powered by Tokinvest and blockchain technology.",
   keywords: [
@@ -34,7 +39,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_NZ',
-    url: 'https://evolutionstables.nz',
+    url: siteUrl,
     siteName: 'Evolution Stables',
     title: 'Evolution Stables - Digital Racehorse Ownership',
     description: 'Own racehorses through digital-syndication. Making racehorse ownership accessible, transparent, and liquid.',
@@ -60,11 +65,11 @@ export const metadata: Metadata = {
     apple: '/images/Logo-Gold-Favicon.png',
   },
   robots: {
-    index: true,
-    follow: true,
+    index: isProductionEnv,
+    follow: isProductionEnv,
     googleBot: {
-      index: true,
-      follow: true,
+      index: isProductionEnv,
+      follow: isProductionEnv,
       'max-video-preview': -1,
       'max-image-preview': 'large',
       'max-snippet': -1,

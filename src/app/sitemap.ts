@@ -7,7 +7,7 @@ import { MetadataRoute } from 'next';
  * This helps with SEO by ensuring all important pages are indexed.
  */
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://evolutionstables.nz';
+  const baseUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'https://evolutionstables.nz').replace(/\/$/, '');
   
   return [
     {
