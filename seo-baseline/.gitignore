@@ -1,0 +1,59 @@
+# Dependencies
+node_modules/
+.pnp/
+
+# Production
+build/
+dist/
+out/
+.next/
+
+# Environment
+.env
+.env.local
+
+# Logs
+*.log
+
+# IDE
+.vscode/
+
+# Cache
+.turbo/
+.vercel/
+**/.next/cache/
+**/.next/cache/webpack/
+
+# Local helper scripts
+quick-fix-commands.sh
+evolution-git-cleanup.sh
+
+# Build output
+.next/
+out/
+
+# Cache directories
+.turbo/
+.vercel/
+**/.next/cache/
+
+# Large webpack caches
+*.pack
+.next
+
+# Build output
+.next/
+out/
+
+# Cache directories
+.turbo/
+.vercel/
+**/.next/cache/
+
+# Large webpack caches
+*.pack
+
+# Operational/maintenance scripts
+quick-fix-commands.sh
+evolution-git-cleanup.sh
+check-required-env-vars.sh

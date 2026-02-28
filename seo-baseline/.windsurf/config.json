@@ -1,0 +1,36 @@
+{
+  "projectRules": {
+    "allowedWritePaths": [
+      "src/app/engine/**",
+      "src/lib/owners/**",
+      "src/services/owners/**",
+      "src/types/owners/**",
+      "ENGINE_DEV_BRIEF.md",
+      "src/app/engine/README.md"
+    ],
+    "ignoredPaths": [
+      "src/app/page.tsx",
+      "src/app/layout.tsx",
+      "public/**",
+      "src/app/(marketing)/**",
+      "src/styles/**"
+    ],
+    "aiBehaviour": {
+      "respectDeveloperBrief": true,
+      "disableFieldCreation": true,
+      "disallowSchemaMutation": true,
+      "preferSchemaImports": true,
+      "enforceModularStructure": true
+    },
+    "namingConventions": {
+      "schemas": "camelCase",
+      "services": "camelCase",
+      "folders": "kebab-case"
+    },
+    "warnings": {
+      "onCrossModuleReference": true,
+      "onFileWriteOutsideAllowedPaths": "error",
+      "onNewSchemaField": "error"
+    }
+  }
+}

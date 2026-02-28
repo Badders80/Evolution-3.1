@@ -1,0 +1,266 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Font Definitions */
+@font-face {
+  font-family: 'Geist Sans';
+  src: url('/fonts/GeistSans-VF.woff2') format('woff2-variations');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Geist Sans';
+  src: url('/fonts/GeistSans-VFItalic.woff2') format('woff2-variations');
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Geist Mono';
+  src: url('/fonts/GeistMono-VF.woff2') format('woff2-variations');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* CSS Custom Properties */
+:root {
+  --font-sans: 'Geist Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-heading: 'Geist Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-body: 'Geist Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Geist Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'Geist Mono', ui-monospace, SFMono-Regular, 'Roboto Mono', monospace;
+  /* Single source of truth for the Evolution gold accent */
+  --evolution-gold: #d4a964;
+  color-scheme: dark;
+}
+
+body {
+  @apply bg-background text-foreground antialiased;
+  font-family: var(--font-body);
+  font-variation-settings: 'opsz' 16;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* prevent horizontal scroll from full-bleed elements */
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* The Gold Wave Animation for marquee letter treatments */
+  @keyframes gold-letter-wave {
+    0%, 100% {
+      color: rgba(255, 255, 255, 0.6);
+      transform: scale(1);
+      font-weight: 300;
+    }
+    20% {
+      color: var(--evolution-gold);
+      transform: scale(1.08);
+      font-weight: 400;
+      text-shadow: 0 0 10px color-mix(in srgb, var(--evolution-gold) 30%, transparent);
+    }
+    50% {
+      color: var(--evolution-gold);
+      transform: scale(1.08);
+      text-shadow: 0 0 10px color-mix(in srgb, var(--evolution-gold) 20%, transparent);
+    }
+    80% {
+      color: rgba(255, 255, 255, 0.8);
+      transform: scale(1);
+      font-weight: 300;
+      text-shadow: none;
+    }
+  }
+
+  .animate-gold-wave {
+    animation: gold-letter-wave 8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  }
+
+  /* Gentle text sweep that pauses between passes */
+  @keyframes text-wave-sweep {
+    0% {
+      transform: translateX(-120%);
+      opacity: 0;
+    }
+    10% {
+      opacity: 0.35;
+    }
+    30% {
+      transform: translateX(120%);
+      opacity: 0.35;
+    }
+    40% {
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(120%);
+      opacity: 0;
+    }
+  }
+
+  .animate-text-wave {
+    animation: text-wave-sweep 7s ease-in-out infinite;
+  }
+
+  /* Subtle shimmer that glides around the outer border */
+  @keyframes border-shimmer-move {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+
+  .animate-border-shimmer {
+    animation: border-shimmer-move 8s linear infinite;
+  }
+  
+  /* Shimmer animation for premium effect */
+  @keyframes shimmer {
+    0% {
+      transform: translateX(-100%);
+    }
+    50% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+  
+  .animate-shimmer {
+    animation: shimmer 8s ease-in-out infinite;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      transparent 20%,
+      rgba(255, 255, 255, 0.3) 30%,
+      rgba(255, 255, 255, 0.2) 35%,
+      rgba(255, 255, 255, 0.25) 42%,
+      rgba(255, 255, 255, 0.15) 48%,
+      rgba(255, 255, 255, 0.18) 55%,
+      rgba(255, 255, 255, 0.1) 62%,
+      rgba(255, 255, 255, 0.08) 68%,
+      rgba(255, 255, 255, 0.12) 72%,
+      rgba(255, 255, 255, 0.05) 76%,
+      rgba(255, 255, 255, 0.08) 80%,
+      rgba(255, 255, 255, 0.03) 84%,
+      rgba(255, 255, 255, 0.06) 88%,
+      rgba(255, 255, 255, 0.02) 92%,
+      transparent 96%
+    );
+    background-size: 200% 100%;
+  }
+
+  @keyframes evo-pulse {
+    0% {
+      opacity: 0.4;
+    }
+    50% {
+      opacity: 0.85;
+    }
+    100% {
+      opacity: 0.4;
+    }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .animate-evo-pulse {
+      animation: evo-pulse 1.8s ease-in-out infinite;
+    }
+  }
+
+  @keyframes evo-text-pulse {
+    0%, 100% {
+      color: #000000;
+    }
+    50% {
+      color: #d4a964;
+    }
+  }
+
+  .animate-evo-text-pulse {
+    animation: evo-text-pulse 4.5s ease-in-out infinite;
+  }
+
+  @keyframes evo-text-pulse-gold {
+    0%, 100% {
+      color: rgba(255, 255, 255, 0.7);
+    }
+    50% {
+      color: #d4a964;
+    }
+  }
+
+  .animate-evo-text-pulse-gold {
+    animation: evo-text-pulse-gold 6s ease-in-out infinite;
+  }
+
+  /* --------------------------------------------------
+     Motion Preferences — Mature Accessibility Layer
+     -------------------------------------------------- */
+  @media (prefers-reduced-motion: reduce) {
+    .animate-gold-wave,
+    .animate-border-shimmer,
+    .animate-text-wave,
+    .animate-text-pulse,
+    .animate-text-shimmer,
+    .animate-text-fade {
+      animation: none !important;
+    }
+
+    .transition-all,
+    .transition-opacity,
+    .transition-transform {
+      transition-duration: 0.01ms !important;
+    }
+  }
+ 
+  /* Fade in animation */
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .animate-fade-in {
+    animation: fade-in 0.8s ease-out forwards;
+  }
+}
+
+@layer base {
+  h1 { @apply font-heading text-[2.75rem] md:text-[3.5rem] font-bold leading-[0.95] tracking-[-0.015em]; }
+  h2 { @apply font-heading text-[2rem] md:text-[2.25rem] font-semibold leading-[1.05] tracking-[-0.01em]; }
+  h3 { @apply font-heading text-xl md:text-[1.5rem] font-medium leading-[1.15] tracking-[-0.005em]; }
+  p  { @apply text-base leading-[1.6] tracking-[0em] text-foreground; }
+  a  { @apply text-primary hover:opacity-90 transition-opacity; }
+}
+
+@layer components {
+  .heading-hero { @apply font-heading text-h1-mobile md:text-h1 text-primary; }
+  .heading-xl { @apply font-heading text-h2-mobile md:text-h2 text-primary; }
+  .heading-lg { @apply font-heading text-h3 text-primary; }
+  .body-text { @apply text-body-lg text-secondary; }
+  .caption-text { @apply text-body-sm text-secondary; }
+  .eyebrow { @apply text-label uppercase text-muted; }
+  .font-display { font-family: var(--font-display); }
+  .mono-accent { font-family: var(--font-mono); }
+  
+  /* Icon hover effect - turns gold */
+  .group:hover .icon-gold-hover {
+    filter: brightness(0) saturate(100%) invert(76%) sepia(31%) saturate(706%) hue-rotate(356deg) brightness(91%) contrast(87%) !important;
+  }
+}
+
+::selection {
+  background: color-mix(in srgb, var(--color-primary) 25%, transparent);
+}

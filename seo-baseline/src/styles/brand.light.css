@@ -1,0 +1,22 @@
+/* Brand light theme variant */
+@media (prefers-color-scheme: light) {
+  :root {
+    --brand-primary: #3b82f6;
+    --brand-secondary: #6b7280;
+    --brand-accent: #f59e0b;
+    --brand-background: #ffffff;
+    --brand-surface: #f9fafb;
+    --brand-text: #111827;
+    --brand-text-secondary: #6b7280;
+  }
+}
+
+.light-theme {
+  --brand-primary: #3b82f6;
+  --brand-secondary: #6b7280;
+  --brand-accent: #f59e0b;
+  --brand-background: #ffffff;
+  --brand-surface: #f9fafb;
+  --brand-text: #111827;
+  --brand-text-secondary: #6b7280;
+}
