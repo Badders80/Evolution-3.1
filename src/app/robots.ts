@@ -10,8 +10,8 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: '*',
       allow: '/',
-      disallow: ['/api/', '/auth/'],
+      disallow: ['/api/', '/auth/', '/demo/', '/mystable/'],
     },
-    sitemap: 'https://evolutionstables.nz/sitemap.xml',
+    sitemap: 'https://www.evolutionstables.nz/sitemap.xml',
   };
 }

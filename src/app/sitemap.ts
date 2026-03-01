@@ -7,7 +7,7 @@ import { MetadataRoute } from 'next';
  * This helps with SEO by ensuring all important pages are indexed.
  */
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://evolutionstables.nz';
+  const baseUrl = 'https://www.evolutionstables.nz';
   
   return [
     {
@@ -21,12 +21,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: 'daily',
       priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/mystable`,
-      lastModified: new Date(),
-      changeFrequency: 'daily',
-      priority: 0.8,
     },
     {
       url: `${baseUrl}/valuation`,

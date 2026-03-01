@@ -2,14 +2,14 @@ import { Metadata } from 'next';
 import { ReactNode } from 'react';
 
 export const metadata: Metadata = {
-  title: 'Valuation Model | Evolution Stables',
+  title: 'Valuation Calculator | Evolution Stables',
   description:
     'Calculate lease valuations, breakeven points, and compare leasing vs. retaining your stake.',
   alternates: {
     canonical: '/valuation',
   },
   openGraph: {
-    title: 'Valuation Model | Evolution Stables',
+    title: 'Valuation Calculator | Evolution Stables',
     description:
       'Calculate lease valuations, breakeven points, and compare leasing vs. retaining your stake.',
     url: '/valuation',
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Valuation Model | Evolution Stables',
+    title: 'Valuation Calculator | Evolution Stables',
     description:
       'Calculate lease valuations, breakeven points, and compare leasing vs. retaining your stake.',
     images: ['/images/Order-Window-MockUp.png'],

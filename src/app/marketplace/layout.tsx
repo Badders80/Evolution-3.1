@@ -2,16 +2,16 @@ import { Metadata } from 'next';
 import { ReactNode } from 'react';
 
 export const metadata: Metadata = {
-  title: 'Evolution Stables Marketplace - Digital Syndication Opportunities',
+  title: 'Marketplace | Evolution Stables',
   description:
-    'Discover and explore digital-syndication opportunities within the Evolution ecosystem. Browse upcoming offerings, ownership positions, and live data—all designed to make racehorse ownership more accessible and connected.',
+    'Explore racehorse offerings, ownership interests, and live marketplace data in Evolution Stables.',
   alternates: {
     canonical: '/marketplace',
   },
   openGraph: {
-    title: 'Evolution Stables Marketplace - Digital Syndication Opportunities',
+    title: 'Marketplace | Evolution Stables',
     description:
-      'Discover and explore digital-syndication opportunities within the Evolution ecosystem. Browse upcoming offerings, ownership positions, and live data—all designed to make racehorse ownership more accessible and connected.',
+      'Explore racehorse offerings, ownership interests, and live marketplace data in Evolution Stables.',
     url: '/marketplace',
     images: [
       {
@@ -24,9 +24,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Evolution Stables Marketplace - Digital Syndication Opportunities',
+    title: 'Marketplace | Evolution Stables',
     description:
-      'Discover and explore digital-syndication opportunities within the Evolution ecosystem. Browse upcoming offerings, ownership positions, and live data—all designed to make racehorse ownership more accessible and connected.',
+      'Explore racehorse offerings, ownership interests, and live marketplace data in Evolution Stables.',
     images: ['/images/Mockup-trading-window.png'],
   },
 };

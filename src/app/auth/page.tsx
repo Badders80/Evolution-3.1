@@ -7,6 +7,10 @@ export const revalidate = 0;
 export const metadata: Metadata = {
   title: 'Welcome Back | Evolution Stables',
   description: 'Sign in to manage your stable, positions, and updates.',
+  robots: {
+    index: false,
+    follow: false,
+  },
   alternates: {
     canonical: '/auth',
   },

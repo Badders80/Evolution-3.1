@@ -5,6 +5,10 @@ export const metadata: Metadata = {
   title: 'MyStable | Evolution Stables',
   description:
     'This is your personal command center for managing ownership positions, tracking performance, and staying connected to your stable.',
+  robots: {
+    index: false,
+    follow: false,
+  },
   alternates: {
     canonical: '/mystable',
   },

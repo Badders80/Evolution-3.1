@@ -17,13 +17,16 @@ interface StructuredDataProps {
  * associate external articles with your brand.
  */
 export function StructuredData({ pressArticles = [] }: StructuredDataProps) {
+  const canonicalBaseUrl = 'https://www.evolutionstables.nz';
+
   const organizationSchema = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
+    '@id': `${canonicalBaseUrl}/#organization`,
     name: 'Evolution Stables',
     alternateName: 'Evolution Stables NZ',
-    url: 'https://evolutionstables.nz',
-    logo: 'https://evolutionstables.nz/images/Logo-Gold-Favicon.png',
+    url: canonicalBaseUrl,
+    logo: `${canonicalBaseUrl}/images/Logo-Gold-Favicon.png`,
     description:
       'Evolution Stables is the premier platform for regulated racehorse ownership through digital-syndication and tokenised assets.',
     foundingDate: '2024',
@@ -74,11 +77,16 @@ export function StructuredData({ pressArticles = [] }: StructuredDataProps) {
   const websiteSchema = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
+    '@id': `${canonicalBaseUrl}/#website`,
     name: 'Evolution Stables',
-    url: 'https://evolutionstables.nz',
+    url: canonicalBaseUrl,
+    inLanguage: 'en-NZ',
+    publisher: {
+      '@id': `${canonicalBaseUrl}/#organization`,
+    },
     potentialAction: {
       '@type': 'SearchAction',
-      target: 'https://evolutionstables.nz/marketplace?search={search_term_string}',
+      target: `${canonicalBaseUrl}/marketplace?search={search_term_string}`,
       'query-input': 'required name=search_term_string',
     },
   };

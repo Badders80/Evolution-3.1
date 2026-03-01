@@ -7,10 +7,10 @@ import { StructuredData } from "@/components/seo/StructuredData";
 import { getPressArticlesForStructuredData } from "@/lib/press-articles";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://evolutionstables.nz"),
-  title: "Evolution Stables - Regulated Marketplace for Digital Equine Assets",
+  metadataBase: new URL("https://www.evolutionstables.nz"),
+  title: "Evolution Stables | Digital Racehorse Ownership Marketplace",
   description:
-    "Evolution Stables is the premier platform for regulated racehorse ownership through digital-syndication and tokenised assets.",
+    "Invest in racehorse ownership through a regulated digital marketplace with transparent offerings, live updates, and structured participation.",
   keywords: [
     'Regulated Equine Marketplace',
     'Digital Equine Assets',
@@ -31,11 +31,11 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_NZ',
-    url: 'https://evolutionstables.nz',
+    url: 'https://www.evolutionstables.nz',
     siteName: 'Evolution Stables',
-    title: 'Evolution Stables - Regulated Marketplace for Digital Equine Assets',
+    title: 'Evolution Stables | Digital Racehorse Ownership Marketplace',
     description:
-      'Evolution Stables is the premier platform for regulated racehorse ownership through digital-syndication and tokenised assets.',
+      'Invest in racehorse ownership through a regulated digital marketplace with transparent offerings, live updates, and structured participation.',
     images: [
       {
         url: '/images/Logo-Gold.png',
@@ -49,9 +49,9 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     site: '@EvolutionStables',
     creator: '@EvolutionStables',
-    title: 'Evolution Stables - Regulated Marketplace for Digital Equine Assets',
+    title: 'Evolution Stables | Digital Racehorse Ownership Marketplace',
     description:
-      'Evolution Stables is the premier platform for regulated racehorse ownership through digital-syndication and tokenised assets.',
+      'Invest in racehorse ownership through a regulated digital marketplace with transparent offerings, live updates, and structured participation.',
     images: ['/images/Logo-Gold.png'],
   },
   icons: {
@@ -85,6 +85,23 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full">
       <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (() => {
+                try {
+                  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+                  const nav = performance.getEntriesByType?.('navigation')?.[0];
+                  const isBackForward = nav && nav.type === 'back_forward';
+                  if (isBackForward) return;
+                  if (location.pathname === '/' && !location.hash) {
+                    requestAnimationFrame(() => window.scrollTo(0, 0));
+                  }
+                } catch (_) {}
+              })();
+            `,
+          }}
+        />
         <link
           rel="preload"
           href="/fonts/GeistSans-VFItalic.woff2"

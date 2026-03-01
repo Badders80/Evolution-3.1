@@ -8,6 +8,16 @@ const isProd = process.env.NODE_ENV === 'production';
 const nextConfig = {
   poweredByHeader: false,
   reactStrictMode: true,
+  async redirects() {
+    return [
+      {
+        source: '/:path*',
+        has: [{ type: 'host', value: 'evolutionstables.nz' }],
+        destination: 'https://www.evolutionstables.nz/:path*',
+        permanent: true,
+      },
+    ];
+  },
   async headers() {
     return [
       {
