@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Evolution Stables Desktop Preview</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;0,600;1,400&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 100%; }
+body {
+  background: #ffffff;
+  color: #1a1a1a;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 16px;
+}
+.desktop-page {
+  max-width: 900px;
+  min-height: 1122px;
+  margin: 0 auto;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+}
+.desktop-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 26px 20px 20px;
+  border-bottom: 1px solid #262626;
+}
+.desktop-header-left {
+  min-width: 220px;
+}
+.desktop-brand-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.desktop-brand-row svg {
+  width: 28px;
+  height: 24px;
+  fill: #111111;
+  flex-shrink: 0;
+}
+.desktop-brand-text {
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 0.85;
+  letter-spacing: 0.35px;
+  color: #111111;
+}
+.desktop-template-type {
+  margin-top: 7px;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  color: #5f646a;
+}
+.desktop-headline {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 52px;
+  line-height: 1;
+  font-weight: 400;
+  color: #121212;
+  text-align: right;
+  letter-spacing: -0.4px;
+}
+.desktop-main {
+  flex: 1;
+  padding: 20px 20px 24px;
+}
+.desktop-columns {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: 30px;
+  margin-bottom: 18px;
+}
+.desktop-text-column {
+  width: 50%;
+}
+.desktop-summary-column {
+  width: 33.3333%;
+  display: flex;
+  align-items: center;
+}
+.desktop-summary-stack {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  transform: translateY(-16px);
+}
+.desktop-summary-box {
+  background: #f1f1f1;
+  border-radius: 8px;
+  padding: 20px 16px;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #1a1a1a;
+}
+.desktop-summary-box p {
+  margin: 0 0 10px 0;
+}
+.desktop-summary-box p:last-child {
+  margin-bottom: 0;
+}
+.desktop-summary-item {
+  margin: 0 0 14px 0;
+}
+.desktop-summary-item:last-child {
+  margin-bottom: 0;
+}
+.desktop-summary-box .desktop-summary-label {
+  margin: 0 0 4px 0;
+  font-size: 15px;
+  line-height: 1.4;
+  color: #1a1a1a;
+}
+.desktop-summary-box .desktop-summary-value {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.4;
+  color: #1a1a1a;
+}
+.desktop-full-width {
+  width: 100%;
+  margin-bottom: 16px;
+}
+.desktop-content {
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #1a1a1a;
+  margin-bottom: 14px;
+  text-align: justify;
+}
+.desktop-content:last-child {
+  margin-bottom: 0;
+}
+.desktop-content p {
+  margin: 0;
+}
+.desktop-section {
+  margin: 16px 0 8px;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-size: 15px;
+  line-height: 1.35;
+  font-weight: 700;
+  color: #111111;
+}
+.desktop-divider {
+  border: 0;
+  border-top: 1px solid #cccccc;
+  margin: 16px 0;
+}
+.desktop-signature-wrap {
+  margin-top: 12px;
+  margin-bottom: 8px;
+}
+.desktop-signature-image {
+  width: 200px;
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+.desktop-note {
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  color: #666666;
+}
+footer {
+  width: 100%;
+  background: #000000;
+  color: #ffffff;
+  padding: 56px 24px 60px;
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+  text-align: center;
+}
+.footer-hero h2 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 26px;
+  font-weight: 400;
+  color: #ffffff;
+  margin: 0 0 14px 0;
+}
+.highlight-ownership { color: #d4a964; }
+.footer-hero p {
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-size: 10px;
+  color: #888888;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0;
+}
+.footer-minor {
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  color: #bdbdbd;
+  line-height: 1.5;
+}
+    </style>
+  </head>
+  <body>
+    <div class="desktop-page">
+      <header class="desktop-header">
+        <div class="desktop-header-left">
+          <div class="desktop-brand-row">
+            <svg viewBox="0 0 107.78 94.41" aria-hidden="true"><path d="M85.38,15.12c-1.96-2.03-4.1-3.89-6.38-5.55h0c-.87-.64-1.83-1.28-2.91-1.96h0C68.13,2.63,58.94,0,49.51,0,22.21,0,0,21.82,0,48.64c0,19.79,12.04,37.46,30.68,44.99,0,0,1.47,.59,2.37,.78l14.15-24.51,19.8,17.29L107.78,15.12h-22.4Zm-7.62,29.2l-13.67,24.16-11.69-9.3,5.72-10.28,2.43,1.12c-2.25-3.1-4.71-9.52-4.73-13.31l-25.3,43.82c-11.55-6.55-18.77-18.59-18.77-31.9-.01-20.33,16.93-36.89,37.76-36.89,7.23,0,14.26,2.01,20.34,5.82,.85,.53,1.58,1.02,2.23,1.5h0c2.31,1.68,4.42,3.63,6.28,5.78l1.76,2.03h14.26l-12.13,9.55-4.48,7.92v-.02Z"/></svg>
+            <div class="desktop-brand-text">EVOLUTION<br />STABLES</div>
+          </div>
+          <div class="desktop-template-type">Investor Update</div>
+        </div>
+        <h1 class="desktop-headline">First Gear</h1>
+      </header>
+      <main class="desktop-main">
+        <section class="desktop-full-width"><div class="desktop-content"><p>Hi team,<br /><br />With First Gear now being retired, this triggers the relevant clause in the syndicate agreement regarding the early conclusion of the lease. Most of you will likely already be aware of this, but I just wanted to outline the next steps.</p></div></section><section class="desktop-columns">
+      <div class="desktop-text-column"><h2 class="desktop-section">Lease Balance Return</h2><div class="desktop-content"><p>In terms of the remaining balance of the 12-month lease, it is currently estimated that approximately five months will be returned to investors. This is an estimate because there is typically a 4–6 week lag in trainer billing, and as First Gear’s campaign is now being wound up, the final statement has not yet been received. Once it is, the exact amount will be confirmed</p></div><h2 class="desktop-section">Distribution via Tokinvest</h2><div class="desktop-content"><p>Once the final balance is confirmed and passed to Tokinvest, the remaining funds will be deposited into the wallet attached to your Tokinvest account. From there, you will be able to withdraw the funds or reinvest into other offerings on the platform. I will provide further guidance on the withdrawal process closer to the time.</p></div></div>
+      <aside class="desktop-summary-column"><div class="desktop-summary-stack"><div class="desktop-summary-box"><div class="desktop-summary-item"><p class="desktop-summary-label"><strong>Status:</strong></p><p class="desktop-summary-value">Horse retired</p></div><div class="desktop-summary-item"><p class="desktop-summary-label"><strong>Return:</strong></p><p class="desktop-summary-value">~5 months</p></div><div class="desktop-summary-item"><p class="desktop-summary-label"><strong>Distribution:</strong></p><p class="desktop-summary-value">via Tokinvest wallet</p></div><div class="desktop-summary-item"><p class="desktop-summary-label"><strong>Next update:</strong></p><p class="desktop-summary-value">Once official conformation from trainer received</p></div></div></div></aside>
+    </section><section class="desktop-full-width"><div class="desktop-content"><p>I will keep everyone updated as soon as the final trainer statement is received and the exact balance can be confirmed.<br /><br />Thanks again for your support throughout First Gear’s campaign. It was an emotional rollercoaster, and sadly potential doesn’t guarantee performance.</p></div></section><section class="desktop-full-width"><div class="desktop-signature-wrap"><img class="desktop-signature-image" src="/updates/Signiture.png" alt="Signature" /></div></section>
+      </main>
+      <footer>
+  <div class="footer-hero">
+    <h2>The Future of <span class="highlight-ownership">Ownership</span><br />Has Arrived</h2>
+    <p>Digital-Syndication, by Evolution Stables, Powered By Tokinvest</p>
+  </div>
+  <p class="footer-minor">Investor communications for syndicate members.</p>
+</footer>
+    </div>
+  </body>
+</html>
