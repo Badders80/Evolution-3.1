@@ -40,5 +40,17 @@ export default function MyStableLayout({
 }: {
   children: ReactNode;
 }) {
-  return children;
+  return (
+    <>
+      <style>{`
+        body nav {
+          display: none !important;
+        }
+        body {
+          background: #eef1f4 !important;
+        }
+      `}</style>
+      {children}
+    </>
+  );
 }

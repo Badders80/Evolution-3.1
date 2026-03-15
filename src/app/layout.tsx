@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import "../styles/globals.css";
 import "../styles/brand.css";
-import { NavBar } from "@/components/NavBar";
 import { AppProviders } from "@/providers/app-providers";
 import { StructuredData } from "@/components/seo/StructuredData";
 import { getPressArticlesForStructuredData } from "@/lib/press-articles";
+import { AppChrome } from "@/components/layout/AppChrome";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.evolutionstables.nz"),
@@ -113,10 +113,9 @@ export default function RootLayout({
       </head>
       <body className="min-h-screen bg-black antialiased" suppressHydrationWarning>
         <AppProviders>
-          <NavBar />
-          <div className="min-h-screen flex flex-col">
+          <AppChrome>
             <main className="flex-1">{children}</main>
-          </div>
+          </AppChrome>
         </AppProviders>
       </body>
     </html>
