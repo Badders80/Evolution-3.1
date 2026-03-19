@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 420" role="img" aria-labelledby="title">
+  <title>Arabian Business / العربية</title>
+  <g fill="#ffffff">
+    <text
+      x="36"
+      y="170"
+      font-family="Arial, Helvetica, sans-serif"
+      font-size="210"
+      font-weight="700"
+      letter-spacing="-3"
+    >
+      Arabian
+    </text>
+    <text
+      x="36"
+      y="355"
+      font-family="Arial, Helvetica, sans-serif"
+      font-size="210"
+      font-weight="700"
+      letter-spacing="-3"
+    >
+      Business
+    </text>
+    <text
+      x="980"
+      y="300"
+      font-family="Arial, Helvetica, sans-serif"
+      font-size="280"
+      font-weight="700"
+    >
+      /
+    </text>
+    <text
+      x="1110"
+      y="300"
+      font-family="Tahoma,'Noto Naskh Arabic','Noto Sans Arabic','Arial Unicode MS',Arial,sans-serif"
+      font-size="180"
+      font-weight="700"
+    >
+      العربية
+    </text>
+  </g>
+</svg>

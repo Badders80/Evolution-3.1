@@ -123,23 +123,47 @@ export function PressShowcase({ articles }: PressShowcaseProps) {
   if (!articles || articles.length === 0 || !leadArticle) return null;
 
   const partners = [
-    { name: 'Investing.com', src: '/images/partners/1_Investing_comLOGO.png', size: 'smaller' },
-    { name: 'BusinessDesk', src: '/images/partners/2_businessdesk-Logo.jpg' },
-    { name: 'Singularity', src: '/images/partners/3_SingularryLOGO.png' },
-    { name: 'Tokinvest', src: '/images/partners/4_New Logo - White & Green.png', size: 'smaller' },
-    { name: 'Trackside NZ', src: '/images/partners/6_tracksideNZ-logo.png' },
-    { name: 'NZTR', src: '/images/partners/8_NZTR_LOGO_WHITE.png' },
-    { name: 'Stephen Grey Racing', src: '/images/partners/9_StephenGreyRacingLogo.png' },
-    { name: 'Arabian Business', src: '/images/partners/10_arabian-bussiness-logo.png' },
+    {
+      name: 'Investing.com',
+      src: '/images/partners/1_Investing_comLOGO.png',
+      imageClassName: 'max-h-[44px] max-w-[240px]',
+    },
+    {
+      name: 'BusinessDesk',
+      src: '/images/partners/2_businessdesk-Logo.jpg',
+      imageClassName: 'max-h-[52px] max-w-[280px]',
+    },
+    {
+      name: 'Singularry',
+      src: '/images/partners/3_SingularryLOGO.png',
+      imageClassName: 'max-h-[52px] max-w-[275px]',
+    },
+    {
+      name: 'Tokinvest',
+      src: '/images/partners/tokinvest-logo.png',
+      imageClassName: 'max-h-[46px] max-w-[230px]',
+    },
+    {
+      name: 'Trackside NZ',
+      src: '/images/partners/6_tracksideNZ-logo.png',
+      imageClassName: 'max-h-[58px] max-w-[280px]',
+    },
+    {
+      name: 'NZTR',
+      src: '/images/partners/8_NZTR_LOGO_WHITE.png',
+      imageClassName: 'max-h-[60px] max-w-[280px]',
+    },
+    {
+      name: 'Stephen Grey Racing',
+      src: '/images/partners/9_StephenGreyRacingLogo.png',
+      imageClassName: 'max-h-[56px] max-w-[290px]',
+    },
+    {
+      name: 'Arabian Business',
+      src: '/images/partners/arabian-business-white.svg',
+      imageClassName: 'max-h-[67px] max-w-[300px]',
+    },
   ];
-  const logoAdjustments: Record<string, string> = {
-    'BusinessDesk': 'scale-110',
-    'Singularity': 'scale-110',
-    'Trackside NZ': 'scale-110',
-    'NZTR': 'scale-110',
-    'Stephen Grey Racing': 'scale-110',
-    'Arabian Business': 'scale-110 brightness-125',
-  };
 
   const formatDate = (value: string) => {
     const parts = value.split('-');
@@ -159,18 +183,20 @@ export function PressShowcase({ articles }: PressShowcaseProps) {
               {partners.map((partner) => (
                 <div
                   key={partner.name}
-                  className={`partner-logo-wrapper relative h-8 w-full sm:h-10 sm:w-1/2 lg:h-12 lg:w-1/3 max-w-[320px] opacity-90 hover:opacity-100 transition-opacity duration-500 ${
-                    partner.size === 'smaller' ? 'sm:h-8 lg:h-10 max-w-[260px]' : ''
-                  }`}
+                  className="partner-logo-wrapper relative flex h-[72px] w-full max-w-[320px] items-center justify-center opacity-90 transition-opacity duration-500 hover:opacity-100 sm:w-[46%] lg:w-[30%]"
                 >
                   <Image
                     src={partner.src}
                     alt={partner.name}
                     fill
+<<<<<<< Updated upstream
                     sizes="(min-width: 1024px) 320px, (min-width: 640px) 50vw, 100vw"
                     className={`object-contain filter brightness(0) invert(1) ${
                       logoAdjustments[partner.name] ?? ''
                     }`}
+=======
+                    className={`object-contain ${partner.imageClassName}`}
+>>>>>>> Stashed changes
                   />
                 </div>
               ))}
