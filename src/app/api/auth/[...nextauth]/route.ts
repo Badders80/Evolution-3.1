@@ -44,7 +44,8 @@ async function trackAuthSignIn(params: {
 
 const googleClientId = process.env.GOOGLE_CLIENT_ID
 const googleClientSecret = process.env.GOOGLE_CLIENT_SECRET
-const hasGoogleAuth = Boolean(googleClientId && googleClientSecret)
+const isGoogleAuthEnabled = process.env.ENABLE_GOOGLE_AUTH === "true"
+const hasGoogleAuth = isGoogleAuthEnabled && Boolean(googleClientId && googleClientSecret)
 
 const authOptions: NextAuthOptions = {
   providers: hasGoogleAuth
@@ -85,8 +86,12 @@ const handleMissingAuth = (request: NextRequest) => {
     return NextResponse.json(null)
   }
 
+  if (request.nextUrl.pathname.endsWith("/providers")) {
+    return NextResponse.json({})
+  }
+
   return NextResponse.json(
-    { error: "Auth provider not configured." },
+    { error: "Google sign-in is currently disabled." },
     { status: 501 }
   )
 }
