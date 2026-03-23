@@ -7,6 +7,10 @@ export const metadata: Metadata = {
   alternates: {
     canonical: '/mystable',
   },
+  robots: {
+    index: false,
+    follow: false,
+  },
 };
 
 export default function MyStableLayout({

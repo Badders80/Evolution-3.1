@@ -3,9 +3,11 @@ import type { NextAuthOptions } from "next-auth"
 import GoogleProvider from "next-auth/providers/google"
 import { NextRequest, NextResponse } from "next/server"
 
-const GOOGLE_SHEETS_WEB_APP_URL =
-  process.env.GOOGLE_SHEETS_WEB_APP_URL ||
-  "https://script.google.com/macros/s/AKfycbxjA6QWVzkqCqLrDN2QJ_vniL-UJy7RJtgn2ydLXJMw-_UGwJG2Sc9ys41UQYeW5J4/exec"
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+
+function getGoogleSheetsWebAppUrl() {
+  return process.env.GOOGLE_SHEETS_WEB_APP_URL?.trim() || null
+}
 
 async function trackAuthSignIn(params: {
   email?: string | null
@@ -14,14 +16,19 @@ async function trackAuthSignIn(params: {
   provider?: string | null
   providerAccountId?: string | null
 }) {
-  if (!params.email) return
+  const googleSheetsWebAppUrl = getGoogleSheetsWebAppUrl()
+  const normalizedEmail = params.email?.trim().toLowerCase()
+
+  if (!googleSheetsWebAppUrl || !normalizedEmail || !EMAIL_PATTERN.test(normalizedEmail)) {
+    return
+  }
 
   try {
-    await fetch(GOOGLE_SHEETS_WEB_APP_URL, {
+    await fetch(googleSheetsWebAppUrl, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        email: params.email,
+        email: normalizedEmail,
         campaignKey: `auth_${params.provider || "google"}`,
         source: "auth",
         name: params.name,
@@ -30,7 +37,7 @@ async function trackAuthSignIn(params: {
         providerAccountId: params.providerAccountId,
       }),
     })
-  } catch (err) {
+  } catch {
     // Avoid blocking sign-in if tracking fails.
   }
 }
