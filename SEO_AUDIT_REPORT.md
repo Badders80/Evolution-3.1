@@ -27,8 +27,8 @@ An audit of the Evolution Stables codebase was conducted in January 2025. Below 
 The following changes have been made to address the audit findings and boost the site's search visibility:
 
 ### 1. Enhanced Metadata & Canonicals
-*   **Canonical Tags:** Added explicit canonical URL support to all major routes (`/`, `/marketplace`, `/mystable`, `/valuation`, `/privacy`, `/terms`).
-*   **Unique Page Titles & Descriptions:** Created dedicated metadata for the Marketplace, MyStable, and Valuation pages to improve their relevance and click-through rates in search results.
+*   **Canonical Tags:** Added explicit canonical URL support to the primary public routes (`/`, `/marketplace`, `/mystable`, `/privacy`, `/terms`).
+*   **Unique Page Titles & Descriptions:** Created dedicated metadata for the Marketplace and MyStable pages to improve their relevance and click-through rates in search results.
 
 ### 2. Improved Heading Hierarchy
 *   **Homepage:** Added a visually hidden `<h1>` ("Evolution Stables - Digital Racehorse Ownership & Tokenized RWA Platform") to provide clear context for search engines while preserving the visual design.
