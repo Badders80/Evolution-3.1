@@ -1,133 +1,74 @@
 # Evolution 3.1
 
-A modern Next.js application built with TypeScript, Tailwind CSS, and Framer Motion for Evolution Stables.
+Evolution Stables' marketing site and auth/lead-capture app, built with Next.js 16, TypeScript, Tailwind CSS, and Framer Motion.
 
-## Features
+## Stack
 
-- **Next.js 14** with App Router
-- **TypeScript** for type safety
-- **Tailwind CSS** for styling
-- **Framer Motion** for animations
-- **Component library** with reusable UI components
-- **Responsive design** with mobile-first approach
+- Next.js 16 App Router
+- React 19
+- TypeScript
+- Tailwind CSS
+- Framer Motion
+- NextAuth for Google sign-in
 
-## Getting Started
+## Getting started
 
 1. Install dependencies:
-   ```bash
-   npm install
-   npm install --prefix studio
-   ```
-
-2. Run the development server:
-   ```bash
-   npm run dev
-   ```
-
-3. Visit [http://localhost:3000](http://localhost:3000). (If you want the Studio later, start it separately with `npm run dev --prefix studio`.)
-
-## Development Workflow
-
-1. Run `npm run dev` for the main application on port 3000.
-2. Iterate on components in the app and validate in the browser.
-
-## Project Structure
-
-```
-src/
-|-- app/                 # Next.js app router pages
-|-- components/          # Reusable UI components
-|   |-- ui/             # Basic UI components (Button, Card, etc.)
-|   |-- layout/         # Layout components
-|   |-- site/           # Site-specific components
-|   |-- marketing/      # Marketing components
-|   |-- media/          # Media components
-|   `-- icons/          # Icon components
-|-- lib/                # Utility libraries
-|   `-- api/            # API integration layer
-`-- styles/             # Global styles and themes
-```
-
-## Components
-
-### UI Components
-- `Button` - Customizable button component
-- `Card` - Card layout component
-- `Badge` - Label/badge component
-
-### Layout Components
-- `NavBar` - Navigation bar
-- `Footer` - Site footer
-- `SectionShell` - Section wrapper
-
-### Site Components
-- `Section` - Content section with image
-- `ImageBand` - Full-width image banner
-- `MissionCombo` - Mission statement component
-
-## Development
-
-To add new images, place them in the `public/images/` directory and update the asset references in `src/lib/assets.ts`.
-
-## Build and Deploy
-
-1. Build the application:
-   ```bash
-   npm run build
-   ```
-
-2. Start the production server:
-   ```bash
-npm start
-```
-
-## Environment Variables
-
-Create a `.env.local` file in the root directory:
-
-```env
-NEXT_PUBLIC_API_MODE=mock
-NEXT_PUBLIC_API_URL=https://your-api-url.com
-NEXT_PUBLIC_SANITY_PROJECT_ID=a4xfnv5b
-NEXT_PUBLIC_SANITY_DATASET=production
-NEXT_PUBLIC_SANITY_API_VERSION=2023-10-04
-# Optional: required only for private datasets
-SANITY_READ_TOKEN=your-sanity-read-token
-```
-
-If you create additional content models in Sanity, make sure they expose the following fields so the
-Marketplace modules can be managed from the CMS:
-
-- `title` (string)
-- `description` (text or string)
-- `ctaLabel` (string)
-- `ctaHref` (string URL)
-- `iconKey` (string matching one of `digitalSyndication`, `ownershipDashboard`, `integrationCompliance`, `analyticsInsights`, `communityMedia`)
-- `layoutKey` (string matching one of `middle-tall`, `left-tall`, `left-bottom`, `right-top`, `right-bottom`)
-
-The data is fetched at request time; if Sanity is unreachable or the query returns no documents, the UI falls back to the locally-defined defaults.
-
-## Sanity Studio
-
-A Sanity Studio has been scaffolded in the `/studio` directory.
-
-### Install & Run
 
 ```bash
-cd studio
 npm install
+```
+
+2. Create your local environment file:
+
+```bash
+cp .env.example .env.local
+```
+
+3. Start the development server:
+
+```bash
 npm run dev
 ```
 
-The Studio targets project `a4xfnv5b` and dataset `production` by default (controlled via the same `NEXT_PUBLIC_SANITY_*` env variables shown above).
+4. Open [http://localhost:3000](http://localhost:3000).
 
-### Deploy
+## Scripts
 
-- **Sanity hosting**: `npx sanity deploy`
-- **Self hosted (Vercel/Netlify)**: build and deploy this folder; the scripts `npm run build` and `npm run deploy` are provided for convenience.
-- **Schema-only deploy**: `npx sanity schema deploy` (requires `SANITY_AUTH_TOKEN` if run from CI)
+- `npm run dev` - start the local development server
+- `npm run build` - create a production build
+- `npm run start` - run the production build locally
+- `npm run test` - run the Vitest suite
+- `npm run test:e2e` - run Playwright tests
 
-After deploying you will receive a Studio URL (for example `https://<project>.sanity.studio` or a Vercel URL). Add that URL to the Sanity project settings under *Add studio*.
+## Environment variables
+
+Use `.env.example` as the template for `.env.local`.
+
+- `NEXTAUTH_URL` - base URL for auth callbacks
+- `NEXTAUTH_SECRET` - secret used by NextAuth
+- `GOOGLE_CLIENT_ID` - Google OAuth client ID
+- `GOOGLE_CLIENT_SECRET` - Google OAuth client secret
+- `GOOGLE_SHEETS_WEB_APP_URL` - Apps Script endpoint used for lead capture and sign-in tracking
+- `NEXT_PUBLIC_API_MODE` - `mock` or `real` for the demo data layer
+- `NEXT_PUBLIC_API_URL` - API base URL used when `NEXT_PUBLIC_API_MODE=real`
+
+## Project structure
+
+```text
+src/
+|-- app/                 # App Router routes, layouts, and API handlers
+|-- components/          # Reusable UI and site components
+|-- lib/                 # Shared utilities, assets, and API helpers
+|-- services/            # Client/server service helpers
+`-- types/               # Shared TypeScript types
+```
+
+## Notes
+
+- This repo does not include a `studio/` app or Sanity Studio package.
+- Production deployments are expected to build from GitHub rather than local build artifacts.
+- Lead capture fails closed when `GOOGLE_SHEETS_WEB_APP_URL` is missing, instead of falling back to a hardcoded production endpoint.
 
 ## License
 

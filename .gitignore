@@ -2,58 +2,36 @@
 node_modules/
 .pnp/
 
-# Production
+# Build output
+.next/
+out/
 build/
 dist/
-out/
-.next/
 
 # Environment
 .env
 .env.local
+.env.*.backup
 
-# Logs
+# Logs and caches
 *.log
-
-# IDE
-.vscode/
-
-# Cache
+*.pack
 .turbo/
 .vercel/
 **/.next/cache/
 **/.next/cache/webpack/
 
+# Editor / workspace files
+.vscode/
+.windsurf/
+*.code-workspace
+
+# Local-only root artifacts
+/brand_voice
+/next
+/evolution-3.1@3.1.0
+
 # Local helper scripts
-quick-fix-commands.sh
-evolution-git-cleanup.sh
-
-# Build output
-.next/
-out/
-
-# Cache directories
-.turbo/
-.vercel/
-**/.next/cache/
-
-# Large webpack caches
-*.pack
-.next
-
-# Build output
-.next/
-out/
-
-# Cache directories
-.turbo/
-.vercel/
-**/.next/cache/
-
-# Large webpack caches
-*.pack
-
-# Operational/maintenance scripts
 quick-fix-commands.sh
 evolution-git-cleanup.sh
 check-required-env-vars.sh
