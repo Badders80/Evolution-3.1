@@ -70,6 +70,21 @@ src/
 - Production deployments are expected to build from GitHub rather than local build artifacts.
 - Lead capture fails closed when `GOOGLE_SHEETS_WEB_APP_URL` is missing, instead of falling back to a hardcoded production endpoint.
 
+## Visual Redesign (Runway-inspired)
+
+The landing page has been redesigned to achieve **Runway-level visual polish**, following an institutional-grade aesthetic.
+
+### Key Changes
+- **Whitespace Strategy:** Implemented generous vertical padding (up to `py-56`) between sections to provide breathing room and institutional authority.
+- **Scannable Information Bites:** Refactored content modules to ensure a "one idea per section" rhythm, with copy strictly limited to under 25 words per module.
+- **Institutional Trust:** Added prominent regulatory badges (FMA, AML) and dedicated partnership sections (e.g., Tokinvest) to reinforce security and credibility.
+- **Grid Architecture:** Adopted a clean 2-3 column desktop grid that stacks elegantly on mobile (375px/428px), optimizing for vertical thumb-scrolling.
+- **Mobile-First Execution:** Visual hierarchy and rhythm were prioritized for mobile devices and then enhanced for desktop displays.
+
+### Verification Tools
+- `scripts/scannability_auditor.py`: A custom tool used to audit and enforce word-count constraints across all information modules.
+- Playwright Visual Audit: Automated screenshots were generated during development to ensure responsive layout integrity across 375px, 428px, and 1280px.
+
 ## License
 
 This project is private and proprietary.
