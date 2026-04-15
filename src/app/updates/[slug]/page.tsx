@@ -1,5 +1,7 @@
 import { notFound } from 'next/navigation';
 import { Metadata } from 'next';
+import fs from 'fs';
+import path from 'path';
 
 // List of available updates
 const updates = [
@@ -7,25 +9,25 @@ const updates = [
     slug: 'prudentia-terapa-17apr2026',
     title: 'Prudentia at Te Rapa - 17 April 2026',
     date: '2026-04-17',
-    path: '/updates/Prudentia-TeRapa-17Apr2026.html',
+    file: 'Prudentia-TeRapa-17Apr2026.html',
   },
   {
     slug: 'prudentia-pukekohe-01apr2026',
     title: 'Prudentia at Pukekohe - 1 April 2026',
     date: '2026-04-01',
-    path: '/updates/Prudentia-Pukekohe-01Apr2026.html',
+    file: 'Prudentia-Pukekohe-01Apr2026.html',
   },
   {
     slug: 'prudentia-terapa-12apr2026',
     title: 'Prudentia at Te Rapa - 12 April 2026',
     date: '2026-04-12',
-    path: '/updates/Prudentia-TeRapa-12Apr2026.html',
+    file: 'Prudentia-TeRapa-12Apr2026.html',
   },
   {
     slug: 'first-gear-19dec2025',
     title: 'First Gear Update - 19 December 2025',
     date: '2025-12-19',
-    path: '/updates/First-Gear-Update-19Dec2025.html',
+    file: 'First-Gear-Update-19Dec2025.html',
   },
 ];
 
@@ -59,14 +61,21 @@ export default function UpdatePage({ params }: { params: { slug: string } }) {
     notFound();
   }
   
+  // Read the HTML file
+  const htmlPath = path.join(process.cwd(), 'public', 'updates', update.file);
+  let htmlContent = '';
+  try {
+    htmlContent = fs.readFileSync(htmlPath, 'utf8');
+  } catch (error) {
+    console.error(`Failed to read HTML file for update ${update.slug}:`, error);
+    notFound();
+  }
+  
   return (
     <main className="min-h-screen bg-[#0a0a0a] text-white">
-      <iframe
-        src={update.path}
-        className="w-full min-h-screen border-none"
-        title={update.title}
-        sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-presentation"
-      />
+      <div className="w-full min-h-screen">
+        <div dangerouslySetInnerHTML={{ __html: htmlContent }} />
+      </div>
     </main>
   );
 }
