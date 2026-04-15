@@ -1,17 +1,20 @@
 import { Metadata } from 'next';
 import { ReactNode } from 'react';
 
-export const metadata: Metadata = {
-  title: 'MyStable | Evolution Stables - Your Ownership Dashboard',
-  description: 'Manage your racehorse ownership positions, track performance, and stay connected to your stable through the MyStable dashboard.',
-  alternates: {
-    canonical: '/mystable',
-  },
-  robots: {
-    index: false,
-    follow: false,
-  },
-};
+export function generateMetadata(): Metadata {
+  return {
+    title: 'MyStable | Evolution Stables',
+    description:
+      'MyStable is the Evolution Stables ownership dashboard experience.',
+    alternates: {
+      canonical: '/mystable',
+    },
+    robots: {
+      index: false,
+      follow: false,
+    },
+  };
+}
 
 export default function MyStableLayout({
   children,

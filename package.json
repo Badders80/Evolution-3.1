@@ -10,11 +10,14 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:e2e": "playwright test",
-    "postinstall": "next telemetry disable"
+    "postinstall": "next telemetry disable",
+    "generate:simple": "node generate-simple.js",
+    "generate:simple:example": "node generate-simple.js test-update.json public/updates/investor-$(date +%Y-%m-%d).html"
   },
   "dependencies": {
     "@radix-ui/react-icons": "^1.3.2",
     "@radix-ui/react-slot": "^1.2.3",
+    "@stripe/stripe-js": "^9.2.0",
     "@tailwindcss/typography": "^0.5.19",
     "autoprefixer": "^10.4.21",
     "cheerio": "^1.1.2",
@@ -29,7 +32,9 @@
     "react": "^19.2.1",
     "react-dom": "^19.2.1",
     "react-icons": "^5.5.0",
+    "resend": "^6.11.0",
     "sass": "^1.96.0",
+    "stripe": "^22.0.1",
     "tailwind-merge": "^3.4.0",
     "zod": "^4.1.12"
   },

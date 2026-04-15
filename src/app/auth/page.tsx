@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { AuthClient } from './AuthClient';
 
 export const metadata: Metadata = {
-  title: 'Join By Email | Evolution Stables',
+  title: 'Access | Evolution Stables',
   robots: {
     index: false,
     follow: false,

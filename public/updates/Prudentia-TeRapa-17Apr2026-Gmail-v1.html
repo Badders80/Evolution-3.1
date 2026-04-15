@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;0,600;1,400&family=Inter:wght@300;400;500;600;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { overflow-x: hidden; width: 100%; }
+        body {
+            background: #ffffff; color: #000000;
+            font-family: 'Inter', sans-serif;
+            margin: 0; padding: 0;
+            min-height: 100vh;
+        }
+        img, iframe, video { max-width: 100%; }
+        .page-container {
+            width: 100%; padding: 24px 24px 24px;
+            display: flex; flex-direction: column; min-height: 100%;
+        }
+        .email-wrapper {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* HEADER */
+        header {
+            width: 100%; max-width: 600px;
+            background: #ffffff;
+            padding: 8px 0 12px 0;
+            border-bottom: 1px solid #000000;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin: 0 auto;
+        }
+        .header-content { display: flex; flex-direction: column; align-items: flex-start; text-align: left; gap: 8px; }
+        .header-logo {
+            display: flex;
+            align-items: flex-end;
+            padding-bottom: 2px;
+        }
+        .header-logo img {
+            height: 90px;
+            width: auto;
+            display: block;
+        }
+        .brand-mark {
+            display: block;
+            line-height: 0;
+            margin-bottom: 2px;
+        }
+        .brand-mark svg {
+            height: 90px;
+            width: auto;
+            display: block;
+        }
+        .brand-mark svg path {
+            fill: #000000;
+        }
+        .template-type {
+            font-family: 'Inter', sans-serif; font-size: 10px; font-weight: 600;
+            letter-spacing: 3px; text-transform: uppercase; color: #000000; margin-top: 0;
+        }
+        
+        /* MAIN */
+        main { flex: 1; display: flex; flex-direction: column; margin-top: 26px; }
+        
+        .content-layout {
+            max-width: 600px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        
+        .headline {
+            font-family: 'Playfair Display', serif; 
+            font-size: 44px; 
+            font-weight: 400;
+            line-height: 1.1; 
+            margin-bottom: 20px; 
+            color: #000; 
+            letter-spacing: -0.5px;
+        }
+        .subheadline {
+            font-family: 'Inter', sans-serif;
+            font-size: 20px;
+            font-weight: 500;
+            line-height: 1.5; 
+            color: #222; 
+            margin-bottom: 24px;
+            text-align: justify;
+            hyphens: auto;
+        }
+        
+        .content { 
+            font-family: 'Inter', sans-serif; 
+            font-size: 15px; 
+            line-height: 1.75; 
+            color: #1a1a1a; 
+            margin-bottom: 16px;
+            text-align: justify;
+            hyphens: auto;
+        }
+        .content p { margin-bottom: 2em; }
+        .content:first-of-type p:first-of-type::first-letter {
+            font-family: 'Playfair Display', serif; font-size: 3.8em; font-weight: 300;
+            float: left; line-height: 0.8; margin-right: 8px; margin-top: 4px;
+        }
+        
+        .detail-card {
+            background: #111111;
+            border-left: 4px solid #d4a964;
+            padding: 24px 24px 20px 24px;
+            margin: 24px 0;
+        }
+        .detail-label {
+            font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 700;
+            letter-spacing: 1.4px; text-transform: uppercase; color: #d4a964;
+            display: block; margin-bottom: 6px;
+        }
+        .detail-value {
+            font-family: 'Inter', sans-serif; font-size: 20px; font-weight: 500;
+            color: #ffffff; margin-bottom: 12px;
+        }
+        
+        .insight-box {
+            background: #faf7f2;
+            border: 1px solid #ece4d6;
+            padding: 24px;
+            margin: 24px 0;
+        }
+        .insight-item {
+            font-family: 'Inter', sans-serif; font-size: 15px; line-height: 1.7;
+            color: #1f1f1f; margin-bottom: 12px;
+        }
+        .insight-bullet {
+            font-family: 'Inter', sans-serif; color: #d4a964; font-weight: 700;
+        }
+        
+        .quote-sidebar {
+            background: #fafafa; 
+            padding: 32px 24px;
+            border-left: 3px solid #d4a964;
+            display: flex; flex-direction: column; gap: 24px;
+            margin: 24px 0;
+        }
+        .quote-sidebar blockquote {
+            font-family: 'Playfair Display', serif; font-size: 22px; font-style: italic;
+            line-height: 1.6; color: #000; margin: 0; font-weight: 500; text-align: left;
+        }
+        .quote-sidebar cite {
+            font-family: 'Inter', sans-serif; font-size: 11px; font-style: normal;
+            color: #666; font-weight: 600; text-transform: uppercase;
+            text-align: left; display: block; letter-spacing: 1px;
+        }
+        .quote-sidebar .quote-mark {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            line-height: 0.8;
+            vertical-align: top;
+            margin-right: 4px;
+        }
+        
+        .media-container-landscape {
+            position: relative; width: 100%; margin: 0 auto; border-radius: 8px;
+            overflow: hidden; aspect-ratio: 16/9;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        .media-container-portrait {
+            position: relative; width: 100%; margin: 0 auto; border-radius: 8px;
+            overflow: hidden; aspect-ratio: 9/16;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        iframe, .sidebar-media-image {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; object-fit: cover;
+        }
+        
+        .link-block {
+            font-family: 'Inter', sans-serif; font-size: 15px; line-height: 1.75;
+            color: #1a1a1a; margin: 24px 0;
+        }
+        .link-block a {
+            color: #d4a964; text-decoration: underline;
+        }
+        
+        .hero-image-wrapper {
+            background: #e8e8e8;
+            padding: 24px;
+            border-left: 3px solid #d4a964;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            margin: 24px 0;
+        }
+        .hero-image-wrapper img {
+            width: 100%;
+            margin: 0;
+            display: block;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        .hero-caption {
+            font-family: 'Inter', sans-serif;
+            font-size: 11px;
+            font-style: normal;
+            color: #666;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-align: left;
+        }
+        
+        footer {
+            position: relative; width: 100%; background: #000000; color: #ffffff;
+            padding: 56px 24px 60px; margin-top: 72px; display: flex; flex-direction: column;
+            gap: 32px; text-align: center;
+        }
+        .footer-hero h2 {
+            font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 400;
+            color: #fff; margin: 0 0 14px 0;
+        }
+        .footer-hero .highlight-ownership {
+            color: #d4a964;
+        }
+        .footer-hero p {
+            font-family: 'Inter', sans-serif; font-size: 10px; color: #888;
+            text-transform: uppercase; letter-spacing: 1px;
+            margin: 0 0 6px 0;
+        }
+        .footer-bar {
+            display: flex; justify-content: space-between; align-items: center;
+            padding-top: 26px;
+        }
+        .footer-logo {
+            display: flex;
+            align-items: center;
+        }
+        .footer-logo svg {
+            width: 16px;
+            height: 16px;
+            fill: #d4a964;
+            display: block;
+        }
+        .footer-social { display: flex; gap: 12px; }
+        .footer-social svg { width: 16px; height: 16px; fill: #d4a964; }
+        
+        /* RESPONSIVE */
+        @media (max-width: 600px) {
+            .page-container { padding: 16px 16px 16px; }
+            .headline { font-size: 32px; line-height: 1.2; }
+            .subheadline { font-size: 18px; }
+            .content { font-size: 14px; }
+            .detail-card { padding: 16px; }
+            .detail-value { font-size: 16px; }
+            .insight-box { padding: 16px; }
+            .quote-sidebar { padding: 24px 16px; }
+            .quote-sidebar blockquote { font-size: 18px; }
+            .footer-hero { padding: 40px 16px; }
+            .footer-hero h2 { font-size: 22px; }
+            .footer-hero p { font-size: 9px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-container">
+        <div class="email-wrapper">
+            <header>
+            <div class="header-content">
+                <div class="brand-mark"><img src="Evolution-Stables-Logo-Black.png" alt="Evolution Stables"></div>
+                <div class="template-type">STABLE UPDATE</div>
+            </div>
+        </header>
+        
+        <main>
+            <div class="content-layout">
+                <h1 class="headline">One of Our Own: Prudentia lines up this Friday at Te Rapa</h1>
+                <div class="subheadline">
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        <li style="margin-bottom: 8px;">&#8226; Prudentia heads to the starting gates at Te Rapa this Friday.</li>
+                        <li>&#8226; An exciting Contributer filly is set to join her on the path ahead.</li>
+                    </ul>
+                </div>
+                
+                <div class="hero-image-wrapper">
+                    <img src="Prudentia-OldPic.png" alt="Prudentia at Te Rapa" loading="lazy">
+                    <div class="hero-caption">Prudentia (on the right) coming home strong for her maiden win on a heavy Tauranga track in May</div>
+                </div>
+                
+                <div class="content">
+                    <p>Prudentia lines up at Te Rapa this Friday, 17 April 2026, in Race 7, the Sal's Pizza Hamilton 1300 (BM65). Barrier 8 and 56kg give her a workable setup in a competitive field, and she strips fitter for her Tauranga resumption last month.</p>
+                </div>
+                
+                <div class="content">
+                    <p>Andrew Scott noted this week that the track has had some genuine moisture: "So we had a good bit of rain on the weekend, and then a bit of juice in the track as well. So it's all going well." That reads well for Prudentia. She won her maiden at Tauranga on a Heavy 10, making up ground from a checked start to win by two and a quarter lengths in 1:34.75. A track with some cut in it plays to her strengths.</p>
+                </div>
+                
+                <div class="detail-card">
+                    <span class="detail-label">Race</span>
+                    <span class="detail-value">Sal's Pizza Hamilton 1300 (BM65)</span>
+                    <span class="detail-label">Venue</span>
+                    <span class="detail-value">Te Rapa</span>
+                    <span class="detail-label">Date</span>
+                    <span class="detail-value">Friday, 17 April 2026</span>
+                    <span class="detail-label">Draw</span>
+                    <span class="detail-value">Barrier 8</span>
+                    <span class="detail-label">Weight</span>
+                    <span class="detail-value">56kg</span>
+                    <span class="detail-label">Jockey</span>
+                    <span class="detail-value">Masa Hashizume</span>
+                    <span class="detail-label">Rating</span>
+                    <span class="detail-value">Flat 28</span>
+                    <span class="detail-label">Stable</span>
+                    <span class="detail-value">O'Sullivan &amp; Scott</span>
+                </div>
+                
+                <div class="content">
+                    <p>Beyond Friday's race, the stable picture is starting to broaden. A number of rising three-year-olds are coming through their pre-training and are set to take the track in the near future. The most immediate addition is Hottathanafantasy, a Contributer filly from the American mare Whiffle, who has recently been listed on the platform.</p>
+                </div>
+                
+                <div class="quote-sidebar">
+
+                    <blockquote><span class="quote-mark">“</span>There's a lot of racing coming from now on too, so plenty of options.<span class="quote-mark">”</span></blockquote>
+                    <cite>— Andrew Scott, Wexford Stables</cite>
+                </div>
+                
+                <div class="content">
+                    <p>She is a two-year-old filly by Contributer (IRE) out of Whiffle (USA), currently in her early education at Wexford Stables under Lance O'Sullivan and Andrew Scott. No race starts yet, but she shows all the physical traits of a high-performance athlete ready to make her mark on the New Zealand turf. She is available now on the Tokinvest platform from 670.88 AED.</p>
+                </div>
+                
+                <div class="insight-box">
+                    <div class="insight-item"><span class="insight-bullet">01.</span> Prudentia's proven form on rain-affected ground gives her a genuine edge if the track stays in the Soft to Heavy range.</div>
+                    <div class="insight-item"><span class="insight-bullet">02.</span> Barrier 8 and 56kg keep her well placed in a BM65 where the top-rated runners carry more weight.</div>
+                    <div class="insight-item"><span class="insight-bullet">03.</span> Hottathanafantasy's listing opens a new entry point for investors alongside Prudentia's racing campaign.</div>
+                </div>
+                
+                <div class="content">
+                    <p>We will keep a close eye on the final track rating and any late changes ahead of Friday. For anyone wanting more context, the current field, where to watch, and Hottathanafantasy's listing are below.</p>
+                </div>
+                
+                <div class="link-block">
+                    <p>Current field: <a href="https://www.tab.co.nz/racing/te-rapa/95a285fe-ee9d-47e0-9e63-43f38817e5c0">TAB Te Rapa Race 7</a></p>
+                    <p>Where to watch: <a href="https://www.tab.co.nz/racing/Invercargill/cdbf29d4-9e1c-4fb7-8357-51782dc15a1a">TAB Invercargill</a></p>
+                    <p>Hottathanafantasy listing: <a href="https://portal.tokinvest.capital/asset/11/details">Tokinvest</a></p>
+                </div>
+            </div>
+        </main>
+        
+        <footer>
+            <div class="footer-hero">
+                <h2>The Future of <span class="highlight-ownership">Ownership</span><br>Has Arrived</h2>
+                <p>Digital-Syndication, by Evolution Stables, Powered By Tokinvest</p>
+            </div>
+            <div class="footer-bar">
+                <div class="footer-logo"><svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 107.78 94.41"><path d="M85.38,15.12c-1.96-2.03-4.1-3.89-6.38-5.55h0c-.87-.64-1.83-1.28-2.91-1.96h0C68.13,2.63,58.94,0,49.51,0,22.21,0,0,21.82,0,48.64c0,19.79,12.04,37.46,30.68,44.99,0,0,1.47,.59,2.37,.78l14.15-24.51,19.8,17.29L107.78,15.12h-22.4Zm-7.62,29.2l-13.67,24.16-11.69-9.3,5.72-10.28,2.43,1.12c-2.25-3.1-4.71-9.52-4.73-13.31l-25.3,43.82c-11.55-6.55-18.77-18.59-18.77-31.9-.01-20.33,16.93-36.89,37.76-36.89,7.23,0,14.26,2.01,20.34,5.82,.85,.53,1.58,1.02,2.23,1.5h0c2.31,1.68,4.42,3.63,6.28,5.78l1.76,2.03h14.26l-12.13,9.55-4.48,7.92v-.02Z"/></svg></div>
+                <div class="footer-social">
+                    <a href="https://www.linkedin.com/in/alex-baddeley/" target="_blank" aria-label="LinkedIn">
+                        <svg viewBox="0 0 24 24"><path d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 8h5v16H0V8zm8.5 0h4.8v2.2h.07c.67-1.27 2.3-2.6 4.73-2.6 5.06 0 6 3.33 6 7.66V24h-5v-7.3c0-1.74-.03-3.98-2.43-3.98-2.43 0-2.8 1.9-2.8 3.86V24h-5V8z"/></svg>
+                    </a>
+                    <a href="https://x.com/evostables" target="_blank" aria-label="X">
+                        <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                    </a>
+                    <a href="https://instagram.com/evostables" target="_blank" aria-label="Instagram">
+                        <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                    </a>
+                </div>
+            </div>
+        </footer>
+        </div>
+    </div>
+</body>
+</html>

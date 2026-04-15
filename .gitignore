@@ -18,6 +18,7 @@ dist/
 *.pack
 .turbo/
 .vercel/
+/data/generated/
 **/.next/cache/
 **/.next/cache/webpack/
 

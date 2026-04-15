@@ -1,0 +1,8 @@
+{
+  "updateType": "investor",
+  "heading": "Evolution Platform: Milestone Alpha",
+  "subheading": "Agentic Infrastructure is Operational",
+  "content": "We have successfully moved to a 100% local automated pipeline. No API keys, no cloud, just pure architecture.\n\nKey achievements:\n- Automated HTML generation from raw content\n- Brand-consistent styling across all updates\n- Responsive email and mobile formats\n- Zero external dependencies for core functionality",
+  "quote": "The best way to predict the future is to build it.",
+  "quoteAttribution": "Evolution Architect"
+}

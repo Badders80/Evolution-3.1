@@ -30,7 +30,7 @@ export function InterestForm({
     if (!nextEmail || isSubmitting) return
 
     try {
-      await submit(nextEmail, campaignKey, source)
+      await submit({ email: nextEmail, campaignKey, source })
       setEmail("")
       onSuccess()
     } catch {

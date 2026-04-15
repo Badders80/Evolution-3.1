@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-label="Horse placeholder">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#e2e8f0"/>
+      <stop offset="100%" stop-color="#cbd5e1"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#bg)"/>
+  <path fill="#64748b" d="M241 503c24-31 42-60 59-84 15-21 34-31 57-41l38-16 49-77c14-22 35-33 61-37 34-6 65-8 98-4 39 4 72 19 98 50 26 30 44 64 58 101l77 27c32 11 58 30 79 57 16 20 23 43 25 68l4 70-73 7-17-89-57-15-18 89-75 9-3-89-84-19-55 116-82 8 52-119-63-8-41 104-83 8 29-100-63-28-48 63-64 6z"/>
+  <circle cx="706" cy="299" r="13" fill="#1e293b"/>
+  <text x="600" y="735" fill="#334155" font-family="Arial, sans-serif" font-size="46" text-anchor="middle">No Horse Image Available</text>
+</svg>

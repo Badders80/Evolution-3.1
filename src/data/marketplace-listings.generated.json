@@ -1,0 +1,228 @@
+{
+  "generatedAt": "2026-04-14T00:00:00.000Z",
+  "sourceSeedPath": "ssot/marketplace/seed.json",
+  "publishStatuses": ["draft", "ready_to_publish", "live", "closed"],
+  "applicationStatuses": ["submitted", "under_review", "reserved_manual", "closed"],
+  "listings": [
+    {
+      "id": "listing-first-gear",
+      "slug": "first-gear",
+      "title": "First Gear",
+      "publishStatus": "live",
+      "heroImageSrc": "/images/marketplace/first-gear.png",
+      "images": [
+        "/images/marketplace/first-gear.png",
+        "/images/marketplace/first-gear-2.png",
+        "/images/marketplace/first-gear-3.png",
+        "/images/marketplace/first-gear-4.png"
+      ],
+      "summary": "Own a stake in First Gear — a promising Bay Gelding by Derryn, trained by Stephen Gray Racing at Copper Belt Lodge.",
+      "overview": "First Gear is a three-year-old Bay Gelding by Derryn (AUS) out of A'Guin Ace (NZ), currently in active training with Stephen Gray Racing. This offering represents a 10% lease of the horse, split into 20 stake units at $240 per unit, giving investors an 80% share of race-day returns. With a verified NZTR profile and a 12-month lease window, this is an accessible entry point into racehorse ownership.",
+      "horse": {
+        "id": "horse-first-gear",
+        "name": "First Gear",
+        "countryCode": "NZ",
+        "foalingDate": "2021-10-02",
+        "sex": "Gelding",
+        "colour": "Bay",
+        "sire": "Derryn (AUS)",
+        "dam": "A'Guin Ace (NZ)",
+        "status": "In training",
+        "identityStatus": "Verified",
+        "breedingUrl": "https://loveracing.nz/Breeding/428364/First-Gear-NZ-2021.aspx",
+        "performanceProfileUrl": "https://loveracing.nz/Common/SystemTemplates/Modal/EntryDetail.aspx?DisplayContext=Modal&HorseID=428364",
+        "nztrLifeNumber": "NZ00428364",
+        "microchipNumber": "985125000126713"
+      },
+      "trainer": {
+        "id": "trainer-stephen-gray",
+        "name": "Stephen Gray Racing",
+        "stableName": "Copper Belt Lodge",
+        "location": "Otaki, New Zealand",
+        "website": "https://www.stephengrayracing.com"
+      },
+      "owner": {
+        "id": "owner-stephen-gray",
+        "name": "Stephen Gray Racing",
+        "entityType": "Company"
+      },
+      "offering": {
+        "leaseId": "lease-first-gear",
+        "leaseStatus": "open",
+        "startDate": "2025-07-01",
+        "endDate": "2026-06-30",
+        "durationMonths": 12,
+        "percentLeased": 10,
+        "tokenCount": 20,
+        "stakeUnitPercent": 0.5,
+        "tokenPriceNzd": 240,
+        "totalRaiseNzd": 4800,
+        "investorSharePercent": 80,
+        "ownerSharePercent": 20,
+        "pricePerOnePercentNzd": 480
+      },
+      "application": {
+        "campaignKey": "marketplace-first-gear",
+        "sourcePath": "/marketplace/first-gear",
+        "minimumStakePercent": 0.5,
+        "maximumStakePercent": 10,
+        "defaultRequestedStakePercent": 0.5,
+        "defaultRequestedUnits": 1,
+        "defaultReservationAmountNzd": 240,
+        "defaultStatus": "submitted"
+      },
+      "disclaimers": [
+        "All listings are subject to final review before any commitment is accepted.",
+        "Investment in racehorse syndicates involves risk. Past performance is not indicative of future results."
+      ],
+      "officialDocuments": [
+        {
+          "id": "doc-first-gear-hlt-term-sheet",
+          "listingId": "listing-first-gear",
+          "documentType": "hlt_term_sheet",
+          "title": "HLT Term Sheet — First Gear Syndicate",
+          "description": "Horse Lease and Training term sheet outlining key commercial terms for the First Gear syndicate offering.",
+          "fileName": "first-gear-hlt-term-sheet.pdf",
+          "filePath": "/docs/first-gear/first-gear-hlt-term-sheet.pdf",
+          "fileSizeBytes": 156000,
+          "version": "1.0",
+          "publishedAt": "2025-09-01T00:00:00.000Z"
+        },
+        {
+          "id": "doc-first-gear-pds",
+          "listingId": "listing-first-gear",
+          "documentType": "pds",
+          "title": "Product Disclosure Statement — First Gear",
+          "description": "Product Disclosure Statement for the First Gear lease offering, as required under NZ financial markets legislation.",
+          "fileName": "first-gear-pds.pdf",
+          "filePath": "/docs/first-gear/first-gear-pds.pdf",
+          "fileSizeBytes": 298000,
+          "version": "1.0",
+          "publishedAt": "2025-09-04T00:00:00.000Z"
+        },
+        {
+          "id": "doc-first-gear-syndicate-agreement",
+          "listingId": "listing-first-gear",
+          "documentType": "syndicate_agreement",
+          "title": "Syndicate Agreement — First Gear",
+          "description": "The syndicate agreement governing co-ownership terms, rights, and obligations for First Gear investors.",
+          "fileName": "first-gear-syndicate-agreement.pdf",
+          "filePath": "/docs/first-gear/first-gear-syndicate-agreement.pdf",
+          "fileSizeBytes": 210000,
+          "version": "1.0",
+          "publishedAt": "2025-09-01T00:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "listing-prudentia",
+      "slug": "prudentia",
+      "title": "Prudentia",
+      "publishStatus": "live",
+      "heroImageSrc": "/images/marketplace/prudentia.png",
+      "images": [
+        "/images/marketplace/prudentia.png",
+        "/images/marketplace/prudentia-2.png",
+        "/images/marketplace/prudentia-3.png",
+        "/images/marketplace/prudentia-4.png"
+      ],
+      "summary": "Own a stake in Prudentia — a Bay Mare by Proisir, trained by Wexford Stables. An 18-month lease with 5% offered at just $292.50 per unit.",
+      "overview": "Prudentia is a three-year-old Bay Mare by Proisir (AUS) out of Little Bit Irish (NZ), trained by Wexford Stables. This offering represents a 5% lease of the horse, split into 20 stake units at $292.50 per unit, giving investors a 75% share of race-day returns. With a verified NZTR profile and an 18-month lease window through June 2027, this is a compelling opportunity for those looking to enter racehorse ownership at an accessible price point.",
+      "horse": {
+        "id": "horse-prudentia",
+        "name": "Prudentia",
+        "countryCode": "NZ",
+        "foalingDate": "2021-11-13",
+        "sex": "Mare",
+        "colour": "Bay",
+        "sire": "Proisir (AUS)",
+        "dam": "Little Bit Irish (NZ)",
+        "status": "In training",
+        "identityStatus": "Verified",
+        "breedingUrl": "https://loveracing.nz/Breeding/427416/Prudentia-NZ-2021.aspx",
+        "performanceProfileUrl": "https://loveracing.nz/Common/SystemTemplates/Modal/EntryDetail.aspx?DisplayContext=Modal&HorseID=427416",
+        "nztrLifeNumber": "NZ00427416",
+        "microchipNumber": "985125000126462"
+      },
+      "trainer": {
+        "id": "trainer-wexford",
+        "name": "Wexford Stables",
+        "stableName": "Wexford Stables",
+        "location": "Cambridge, New Zealand",
+        "website": "https://www.wexfordstables.co.nz"
+      },
+      "owner": {
+        "id": "owner-bax-bloodstock",
+        "name": "B.A.X Bloodstock Achieving Xcellence Limited",
+        "entityType": "Company"
+      },
+      "offering": {
+        "leaseId": "lease-prudentia",
+        "leaseStatus": "open",
+        "startDate": "2026-01-01",
+        "endDate": "2027-06-30",
+        "durationMonths": 18,
+        "percentLeased": 5,
+        "tokenCount": 20,
+        "stakeUnitPercent": 0.25,
+        "tokenPriceNzd": 292.5,
+        "totalRaiseNzd": 5850,
+        "investorSharePercent": 75,
+        "ownerSharePercent": 25,
+        "pricePerOnePercentNzd": 1170
+      },
+      "application": {
+        "campaignKey": "marketplace-prudentia",
+        "sourcePath": "/marketplace/prudentia",
+        "minimumStakePercent": 0.25,
+        "maximumStakePercent": 5,
+        "defaultRequestedStakePercent": 0.25,
+        "defaultRequestedUnits": 1,
+        "defaultReservationAmountNzd": 292.5,
+        "defaultStatus": "submitted"
+      },
+      "disclaimers": [
+        "All listings are subject to final review before any commitment is accepted.",
+        "Investment in racehorse syndicates involves risk. Past performance is not indicative of future results."
+      ],
+      "officialDocuments": [
+        {
+          "id": "doc-prudentia-hlt-term-sheet",
+          "listingId": "listing-prudentia",
+          "documentType": "hlt_term_sheet",
+          "title": "HLT Term Sheet — Prudentia Syndicate",
+          "description": "Horse Lease and Training term sheet outlining key commercial terms for the Prudentia syndicate offering.",
+          "fileName": "prudentia-hlt-term-sheet.pdf",
+          "filePath": "/docs/prudentia/prudentia-hlt-term-sheet.pdf",
+          "fileSizeBytes": 168000,
+          "version": "1.0",
+          "publishedAt": "2026-02-21T00:00:00.000Z"
+        },
+        {
+          "id": "doc-prudentia-pds",
+          "listingId": "listing-prudentia",
+          "documentType": "pds",
+          "title": "Product Disclosure Statement — Prudentia",
+          "description": "Product Disclosure Statement for the Prudentia lease offering, as required under NZ financial markets legislation.",
+          "fileName": "prudentia-pds.pdf",
+          "filePath": "/docs/prudentia/prudentia-pds.pdf",
+          "fileSizeBytes": 312000,
+          "version": "1.0",
+          "publishedAt": "2026-02-22T00:00:00.000Z"
+        },
+        {
+          "id": "doc-prudentia-syndicate-agreement",
+          "listingId": "listing-prudentia",
+          "documentType": "syndicate_agreement",
+          "title": "Syndicate Agreement — Prudentia",
+          "description": "The syndicate agreement governing co-ownership terms, rights, and obligations for Prudentia investors.",
+          "fileName": "prudentia-syndicate-agreement.pdf",
+          "filePath": "/docs/prudentia/prudentia-syndicate-agreement.pdf",
+          "fileSizeBytes": 225000,
+          "version": "1.0",
+          "publishedAt": "2026-02-22T00:00:00.000Z"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,680 @@
+<!doctype html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Evolution Stables: Prudentia at Te Rapa - 17 April 2026</title>
+    <style media="all" type="text/css">
+    /* -------------------------------------
+    GLOBAL RESETS
+------------------------------------- */
+    
+    body {
+      font-family: Helvetica, Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      font-size: 16px;
+      line-height: 1.3;
+      -ms-text-size-adjust: 100%;
+      -webkit-text-size-adjust: 100%;
+    }
+    
+    table {
+      border-collapse: separate;
+      mso-table-lspace: 0pt;
+      mso-table-rspace: 0pt;
+      width: 100%;
+    }
+    
+    table td {
+      font-family: Helvetica, Arial, sans-serif;
+      font-size: 16px;
+      vertical-align: top;
+    }
+    
+    /* -------------------------------------
+    BODY & CONTAINER
+------------------------------------- */
+    
+    body {
+      background-color: #ffffff;
+      margin: 0;
+      padding: 0;
+    }
+    
+    .body {
+      background-color: #ffffff;
+      width: 100%;
+    }
+    
+    .container {
+      margin: 0 auto !important;
+      max-width: 600px;
+      padding: 0;
+      padding-top: 24px;
+      width: 600px;
+    }
+    
+    .content {
+      box-sizing: border-box;
+      display: block;
+      margin: 0 auto;
+      max-width: 600px;
+      padding: 0;
+    }
+    
+    /* -------------------------------------
+    HEADER, FOOTER, MAIN
+------------------------------------- */
+    
+    .main {
+      background: #ffffff;
+      border: 1px solid #eaebed;
+      border-radius: 16px;
+      width: 100%;
+    }
+    
+    .wrapper {
+      box-sizing: border-box;
+      padding: 24px;
+    }
+    
+    .footer {
+      clear: both;
+      padding-top: 24px;
+      text-align: center;
+      width: 100%;
+      background-color: #000000;
+    }
+    
+    .footer td,
+    .footer p,
+    .footer span,
+    .footer a {
+      color: #9a9ea6;
+      font-size: 14px;
+      text-align: center;
+    }
+    
+    /* -------------------------------------
+    TYPOGRAPHY
+------------------------------------- */
+    
+    p {
+      font-family: Helvetica, Arial, sans-serif;
+      font-size: 16px;
+      font-weight: normal;
+      margin: 0;
+      margin-bottom: 24px;
+      color: #1f1f1f;
+    }
+    
+    a {
+      color: #d4a964;
+      text-decoration: underline;
+    }
+    
+    h1 {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 38px;
+      font-weight: 600;
+      line-height: 1.2;
+      margin: 32px 0 24px 0;
+      color: #000000;
+    }
+    
+    h2 {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 24px;
+      font-weight: 600;
+      line-height: 1.3;
+      margin: 0 0 20px 0;
+      color: #000000;
+    }
+    
+    /* -------------------------------------
+    CUSTOM STYLES
+------------------------------------- */
+    
+    .header-logo {
+      text-align: left;
+      padding: 32px 0 24px 0;
+      border-bottom: 1px solid #000000;
+    }
+    
+    .header-logo img {
+      height: 96px;
+      width: auto;
+      display: block;
+      margin: 0;
+    }
+    
+    .template-type {
+      font-family: Helvetica, Arial, sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #666666;
+      text-align: left;
+      margin: 16px 0 0 0;
+    }
+    
+    .detail-card {
+      background: #f9f9f9;
+      border-left: 4px solid #d4a964;
+      padding: 24px;
+      margin: 32px 0;
+    }
+    
+    .detail-label {
+      font-family: Helvetica, Arial, sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #d4a964;
+      display: block;
+      margin-bottom: 4px;
+    }
+    
+    .detail-value {
+      font-family: Helvetica, Arial, sans-serif;
+      font-size: 18px;
+      font-weight: 500;
+      color: #000000;
+      margin-bottom: 16px;
+      display: block;
+    }
+    
+    .insight-box {
+      background: #faf7f2;
+      border: 1px solid #ece4d6;
+      padding: 24px;
+      margin: 32px 0;
+    }
+    
+    .insight-item {
+      font-family: Helvetica, Arial, sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      color: #1f1f1f;
+      margin-bottom: 16px;
+    }
+    
+    .insight-bullet {
+      font-family: Helvetica, Arial, sans-serif;
+      color: #d4a964;
+      font-weight: 700;
+    }
+    
+    .quote-sidebar {
+      background: #fafafa;
+      padding: 24px;
+      border-left: 3px solid #d4a964;
+      margin: 32px 0;
+    }
+    
+    .quote-sidebar blockquote {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 20px;
+      font-style: italic;
+      line-height: 1.5;
+      color: #000000;
+      margin: 0 0 16px 0;
+    }
+    
+    .quote-sidebar cite {
+      font-family: Helvetica, Arial, sans-serif;
+      font-size: 11px;
+      font-style: normal;
+      color: #666666;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    
+    .hero-image {
+      width: 100%;
+      margin: 32px 0;
+      text-align: center;
+    }
+    
+    .hero-image img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+    
+    .hero-caption {
+      font-family: Helvetica, Arial, sans-serif;
+      font-size: 11px;
+      color: #666666;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin: 8px 0 0 0;
+      text-align: center;
+    }
+    
+    .link-block {
+      margin: 32px 0;
+    }
+    
+    .link-block p {
+      margin-bottom: 8px;
+    }
+    
+    /* -------------------------------------
+    BUTTONS
+------------------------------------- */
+    
+    .btn {
+      box-sizing: border-box;
+      min-width: 100% !important;
+      width: 100%;
+    }
+    
+    .btn > tbody > tr > td {
+      padding-bottom: 24px;
+    }
+    
+    .btn table {
+      width: auto;
+    }
+    
+    .btn table td {
+      background-color: #ffffff;
+      border-radius: 4px;
+      text-align: center;
+    }
+    
+    .btn a {
+      background-color: #d4a964;
+      border: solid 2px #d4a964;
+      border-radius: 4px;
+      box-sizing: border-box;
+      color: #ffffff;
+      cursor: pointer;
+      display: inline-block;
+      font-size: 16px;
+      font-weight: bold;
+      margin: 0;
+      padding: 12px 24px;
+      text-decoration: none;
+      text-transform: capitalize;
+    }
+    
+    .btn-primary table td {
+      background-color: #d4a964;
+    }
+    
+    .btn-primary a {
+      background-color: #d4a964;
+      border-color: #d4a964;
+      color: #ffffff;
+    }
+    
+    @media all {
+      .btn-primary table td:hover {
+        background-color: #b8944a !important;
+      }
+      .btn-primary a:hover {
+        background-color: #b8944a !important;
+        border-color: #b8944a !important;
+      }
+    }
+    
+    /* -------------------------------------
+    OTHER STYLES THAT MIGHT BE USEFUL
+------------------------------------- */
+    
+    .last {
+      margin-bottom: 0;
+    }
+    
+    .first {
+      margin-top: 0;
+    }
+    
+    .align-center {
+      text-align: center;
+    }
+    
+    .align-right {
+      text-align: right;
+    }
+    
+    .align-left {
+      text-align: left;
+    }
+    
+    .text-link {
+      color: #d4a964 !important;
+      text-decoration: underline !important;
+    }
+    
+    .clear {
+      clear: both;
+    }
+    
+    .mt0 {
+      margin-top: 0;
+    }
+    
+    .mb0 {
+      margin-bottom: 0;
+    }
+    
+    .preheader {
+      color: transparent;
+      display: none;
+      height: 0;
+      max-height: 0;
+      max-width: 0;
+      opacity: 0;
+      overflow: hidden;
+      mso-hide: all;
+      visibility: hidden;
+      width: 0;
+    }
+    
+    .powered-by a {
+      text-decoration: none;
+    }
+    
+    /* -------------------------------------
+    RESPONSIVE AND MOBILE FRIENDLY STYLES
+------------------------------------- */
+    
+    @media only screen and (max-width: 640px) {
+      .main p,
+      .main td,
+      .main span {
+        font-size: 16px !important;
+      }
+      .wrapper {
+        padding: 16px !important;
+      }
+      .content {
+        padding: 0 !important;
+      }
+      .container {
+        padding: 0 !important;
+        padding-top: 8px !important;
+        width: 100% !important;
+      }
+      .main {
+        border-left-width: 0 !important;
+        border-radius: 0 !important;
+        border-right-width: 0 !important;
+      }
+      .btn table {
+        max-width: 100% !important;
+        width: 100% !important;
+      }
+      .btn a {
+        font-size: 16px !important;
+        max-width: 100% !important;
+        width: 100% !important;
+      }
+      h1 {
+        font-size: 32px !important;
+        margin: 20px 0 16px 0 !important;
+      }
+      h2 {
+        font-size: 22px !important;
+      }
+      .detail-card {
+        padding: 16px !important;
+      }
+      .detail-value {
+        font-size: 16px !important;
+      }
+      .insight-box {
+        padding: 16px !important;
+      }
+      .quote-sidebar {
+        padding: 20px !important;
+      }
+      .quote-sidebar blockquote {
+        font-size: 18px !important;
+      }
+    }
+    
+    /* -------------------------------------
+    PRESERVE THESE STYLES IN THE HEAD
+------------------------------------- */
+    
+    @media all {
+      .ExternalClass {
+        width: 100%;
+      }
+      .ExternalClass,
+      .ExternalClass p,
+      .ExternalClass span,
+      .ExternalClass font,
+      .ExternalClass td,
+      .ExternalClass div {
+        line-height: 100%;
+      }
+      .apple-link a {
+        color: inherit !important;
+        font-family: inherit !important;
+        font-size: inherit !important;
+        font-weight: inherit !important;
+        line-height: inherit !important;
+        text-decoration: none !important;
+      }
+      #MessageViewBody a {
+        color: inherit;
+        text-decoration: none;
+        font-size: inherit;
+        font-family: inherit;
+        font-weight: inherit;
+        line-height: inherit;
+      }
+    }
+    </style>
+  </head>
+  <body>
+    <table role="presentation" border="0" cellpadding="0" cellspacing="0" class="body">
+      <tr>
+        <td>&nbsp;</td>
+        <td class="container">
+          <div class="content">
+
+            <!-- START CENTERED WHITE CONTAINER -->
+            <span class="preheader">Prudentia races at Te Rapa this Friday. Track conditions favorable. New filly Hottathanafantasy now available.</span>
+            <table role="presentation" border="0" cellpadding="0" cellspacing="0" class="main">
+
+              <!-- START MAIN CONTENT AREA -->
+              <tr>
+                <td class="wrapper">
+                  
+                  <!-- HEADER -->
+                  <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+                    <tr>
+                      <td class="header-logo">
+                        <img src="Evolution-Stables-Logo-Black.png" alt="Evolution Stables" width="288" height="96" style="display: block; margin: 0;">
+                        <div class="template-type">STABLE UPDATE</div>
+                      </td>
+                    </tr>
+                  </table>
+
+                  <h1>One of Our Own: Prudentia lines up this Friday at Te Rapa</h1>
+                  
+                  <p><strong>Key Updates:</strong></p>
+                  <ul style="margin: 0 0 24px 0; padding: 0 0 0 20px;">
+                    <li style="margin-bottom: 12px;">Prudentia heads to the starting gates at Te Rapa this Friday</li>
+                    <li>An exciting Contributer filly is set to join her on the path ahead</li>
+                  </ul>
+
+                  <!-- HERO IMAGE -->
+                  <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+                    <tr>
+                      <td class="hero-image">
+                        <img src="Prudentia-OldPic.png" alt="Prudentia at Te Rapa" width="560" height="315" style="display: block; margin: 0 auto; max-width: 100%; height: auto;">
+                        <div class="hero-caption">Prudentia (on the right) coming home strong for her maiden win on a heavy Tauranga track in May</div>
+                      </td>
+                    </tr>
+                  </table>
+
+                  <p>Prudentia lines up at Te Rapa this Friday, 17 April 2026, in Race 7, the Sal's Pizza Hamilton 1300 (BM65). Barrier 8 and 56kg give her a workable setup in a competitive field, and she strips fitter for her Tauranga resumption last month.</p>
+
+                  <p>Andrew Scott noted this week that the track has had some genuine moisture: "So we had a good bit of rain on the weekend, and then a bit of juice in the track as well. So it's all going well." That reads well for Prudentia. She won her maiden at Tauranga on a Heavy 10, making up ground from a checked start to win by two and a quarter lengths in 1:34.75. A track with some cut in it plays to her strengths.</p>
+
+                  <!-- RACE DETAILS CARD -->
+                  <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+                    <tr>
+                      <td class="detail-card">
+                        <span class="detail-label">Race</span>
+                        <span class="detail-value">Sal's Pizza Hamilton 1300 (BM65)</span>
+                        
+                        <span class="detail-label">Venue</span>
+                        <span class="detail-value">Te Rapa</span>
+                        
+                        <span class="detail-label">Date</span>
+                        <span class="detail-value">Friday, 17 April 2026</span>
+                        
+                        <span class="detail-label">Draw</span>
+                        <span class="detail-value">Barrier 8</span>
+                        
+                        <span class="detail-label">Weight</span>
+                        <span class="detail-value">56kg</span>
+                        
+                        <span class="detail-label">Jockey</span>
+                        <span class="detail-value">Masa Hashizume</span>
+                        
+                        <span class="detail-label">Rating</span>
+                        <span class="detail-value">Flat 28</span>
+                        
+                        <span class="detail-label">Stable</span>
+                        <span class="detail-value">O'Sullivan & Scott</span>
+                      </td>
+                    </tr>
+                  </table>
+
+                  <p>Beyond Friday's race, the stable picture is starting to broaden. A number of rising three-year-olds are coming through their pre-training and are set to take the track in the near future. The most immediate addition is Hottathanafantasy, a Contributer filly from the American mare Whiffle, who has recently been listed on the platform.</p>
+
+                  <!-- QUOTE SIDEBAR -->
+                  <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+                    <tr>
+                      <td class="quote-sidebar">
+                        <blockquote>"There's a lot of racing coming from now on too, so plenty of options."</blockquote>
+                        <cite>— Andrew Scott, Wexford Stables</cite>
+                      </td>
+                    </tr>
+                  </table>
+
+                  <p>She is a two-year-old filly by Contributer (IRE) out of Whiffle (USA), currently in her early education at Wexford Stables under Lance O'Sullivan and Andrew Scott. No race starts yet, but she shows all the physical traits of a high-performance athlete ready to make her mark on the New Zealand turf. She is available now on the Tokinvest platform from 670.88 AED.</p>
+
+                  <!-- INSIGHTS BOX -->
+                  <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+                    <tr>
+                      <td class="insight-box">
+                        <div class="insight-item"><span class="insight-bullet">01.</span> Prudentia's proven form on rain-affected ground gives her a genuine edge if the track stays in the Soft to Heavy range.</div>
+                        <div class="insight-item"><span class="insight-bullet">02.</span> Barrier 8 and 56kg keep her well placed in a BM65 where the top-rated runners carry more weight.</div>
+                        <div class="insight-item"><span class="insight-bullet">03.</span> Hottathanafantasy's listing opens a new entry point for investors alongside Prudentia's racing campaign.</div>
+                      </td>
+                    </tr>
+                  </table>
+
+                  <p>We will keep a close eye on the final track rating and any late changes ahead of Friday. For anyone wanting more context, the current field, where to watch, and Hottathanafantasy's listing are below.</p>
+
+                  <!-- LINKS BLOCK -->
+                  <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+                    <tr>
+                      <td class="link-block">
+                        <p><strong>Current field:</strong> <a href="https://www.tab.co.nz/racing/te-rapa/95a285fe-ee9d-47e0-9e63-43f38817e5c0" target="_blank">TAB Te Rapa Race 7</a></p>
+                        <p><strong>Where to watch:</strong> <a href="https://www.tab.co.nz/racing/Invercargill/cdbf29d4-9e1c-4fb7-8357-51782dc15a1a" target="_blank">TAB Invercargill</a></p>
+                        <p><strong>Hottathanafantasy listing:</strong> <a href="https://portal.tokinvest.capital/asset/11/details" target="_blank">Tokinvest</a></p>
+                      </td>
+                    </tr>
+                  </table>
+
+                  <!-- CALL TO ACTION BUTTON -->
+                  <table role="presentation" border="0" cellpadding="0" cellspacing="0" class="btn btn-primary">
+                    <tbody>
+                      <tr>
+                        <td align="center">
+                          <table role="presentation" border="0" cellpadding="0" cellspacing="0">
+                            <tbody>
+                              <tr>
+                                <td> <a href="https://portal.tokinvest.capital/asset/11/details" target="_blank">View Hottathanafantasy Listing</a> </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                  <!-- SIGN-OFF -->
+                  <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-top: 40px;">
+                    <tr>
+                      <td style="padding-top: 24px; border-top: 1px solid #e0e0e0;">
+                        <img src="Signiture.png" alt="Alex Baddeley" width="160" style="display: block; margin: 0 0 8px 0; max-width: 160px; height: auto;">
+                        <p style="font-family: Helvetica, Arial, sans-serif; font-size: 15px; font-weight: 600; color: #000000; margin: 0 0 2px 0;">Alex Baddeley</p>
+                        <p style="font-family: Helvetica, Arial, sans-serif; font-size: 13px; font-weight: 400; color: #666666; margin: 0;">Evolution Stables</p>
+                      </td>
+                    </tr>
+                  </table>
+
+                </td>
+              </tr>
+
+              <!-- END MAIN CONTENT AREA -->
+              </table>
+
+            <!-- START FOOTER -->
+            <div class="footer">
+              <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
+                <tr style="text-align: center;">
+                  <td class="content-block">
+                    <<divdiv class="footer-hero" style="margin-bottom: 48px; padding-top: 32px;">
+                      <<hh2 style="font-family: Georgia, 'Times New Roman', serif; font-size: 26px; font-weight: 600; color: #ffffff; margin: 0 0 14px 0; line-height: 1.2;">The Future of <<spanspan class="highlight-ownership" style="color: #d4a964;">Ownership</span><<brbr>Has Arrived</h2>
+                      <<pp style="font-family: Helvetica, Arial, sans-serif; font-size: 12px; color: #9a9ea6; text-transform: uppercase; letter-spacing: 1px; margin: 0;">Digital-Syndication, by Evolution Stables, Powered By Tokinvest</p>
+                    </div>
+                    
+                    <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-top: 32px;">
+                      <tr>
+                        <td align="left" style="width: 50%;">
+                          <div class="footer-logo">
+                            <svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 107.78 94.41" width="40" height="35">
+                              <path fill="#d4a964" d="M85.38,15.12c-1.96-2.03-4.1-3.89-6.38-5.55h0c-.87-.64-1.83-1.28-2.91-1.96h0C68.13,2.63,58.94,0,49.51,0,22.21,0,0,21.82,0,48.64c0,19.79,12.04,37.46,30.68,44.99,0,0,1.47,.59,2.37,.78l14.15-24.51,19.8,17.29L107.78,15.12h-22.4Zm-7.62,29.2l-13.67,24.16-11.69-9.3,5.72-10.28,2.43,1.12c-2.25-3.1-4.71-9.52-4.73-13.31l-25.3,43.82c-11.55-6.55-18.77-18.59-18.77-31.9-.01-20.33,16.93-36.89,37.76-36.89,7.23,0,14.26,2.01,20.34,5.82,.85,.53,1.58,1.02,2.23,1.5h0c2.31,1.68,4.42,3.63,6.28,5.78l1.76,2.03h14.26l-12.13,9.55-4.48,7.92v-.02Z"/>
+                            </svg>
+                          </div>
+                        </td>
+                        <td align="right" style="width: 50%;">
+                          <div class="footer-social" style="display: inline-block; text-align: right;">
+                            <a href="https://www.linkedin.com/in/alex-baddeley/" target="_blank" style="text-decoration: none; margin-left: 12px;">
+                              <svg width="16" height="16" viewBox="0 0 24 24" fill="#d4a964"><path d="M4.98 3.5C4.98 4.88 3.88 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 8h5v16H0V8zm8.5 0h4.8v2.2h.07c.67-1.27 2.3-26 4.73-2.6 5.06 0 6 3.33 6 7.66V24h-5v-7.3c0-1.74-.03-3.98-2.43-3.98-2.43 0-2.8 1.9-2.8 3.86V24h-5V8z"/></svg>
+                            </a>
+                            <a href="https://x.com/evostables" target="_blank" style="text-decoration: none; margin-left: 12px;">
+                              <svg width="16" height="16" viewBox="0 0 24 24" fill="#d4a964"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                            </a>
+                            <a href="https://instagram.com/evostables" target="_blank" style="text-decoration: none; margin-left: 12px;">
+                              <svg width="16" height="16" viewBox="0 0 24 24" fill="#d4a964"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                            </a>
+                          </div>
+                        </td>
+                      </tr>
+                    </table>
+                    <div style="text-align: center; margin-top: 32px; font-family: Helvetica, Arial, sans-serif; font-size: 12px; color: #9a9ea6;">
+                      <a href="https://evolutionstables.com" target="_blank" style="color: #9a9ea6; text-decoration: underline;">Visit Evolution Stables</a> | 
+                      <a href="https://portal.tokinvest.capital" target="_blank" style="color: #9a9ea6; text-decoration: underline;">Tokinvest Platform</a>
+                    </div>
+                  </td>
+                </tr>
+              </table>
+            </div>
+
+            <!-- END FOOTER -->
+            
+<!-- END CENTERED WHITE CONTAINER --></div>
+        </td>
+        <td>&nbsp;</td>
+      </tr>
+    </table>
+  </body>
+</html>

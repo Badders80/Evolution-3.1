@@ -1,75 +1,40 @@
-# Evolution 3.1
+# Evolution Platform - Marketplace
 
-Evolution Stables' marketing site and auth/lead-capture app, built with Next.js 16, TypeScript, Tailwind CSS, and Framer Motion.
+This README provides an overview of the Evolution Marketplace project, which is built on top of the Evolution Platform.
 
-## Stack
+## Overview
 
-- Next.js 16 App Router
-- React 19
-- TypeScript
-- Tailwind CSS
-- Framer Motion
-- NextAuth for Google sign-in
+The Evolution Marketplace is a comprehensive horse marketplace platform. Its architecture is distributed across different projects within this workspace, primarily:
 
-## Getting started
+- **`SSOT_Build`**: The "Single Source of Truth" for all canonical data related to horses, leases, and offerings.
+- **`Evolution_Platform`**: This project, which provides the user-facing experience, including the marketplace UI, investor flows, and eventually, transaction handling.
 
-1. Install dependencies:
+The relationship and data flow between these projects is defined in the [Evolution Stables Marketplace Orchestration Blueprint](/home/evo/workspace/_docs/agent-stack/EVOLUTION_STABLES_MARKETPLACE_ORCHESTRATION_2026-04-10.md).
 
-```bash
-npm install
-```
+## Architecture
 
-2. Create your local environment file:
+The project follows a layered architecture:
 
-```bash
-cp .env.example .env.local
-```
+- **Knowledge Layer**: `/home/evo/workspace/projects/SSOT_Build`
+  - This layer owns all the core data. New horse records are authored here.
+- **Publish Layer**: `/home/evo/workspace/projects/SSOT_Build/scripts/publish-marketplace-v0.mjs`
+  - A script that prepares and "publishes" the marketplace data from the `SSOT_Build` project for consumption by the `Evolution_Platform`.
+- **Experience Layer**: `/home/evo/workspace/projects/Evolution_Platform`
+  - This project consumes the data from the Publish Layer to render the marketplace to the user. It does not author its own horse or lease data.
+- **Asset Layer**: Local files and Google Drive.
+  - Assets are referenced by metadata rather than being embedded in records.
+- **Transaction Layer**: Manual for now.
+  - This will be built out in the `Evolution_Platform` in the future.
 
-3. Start the development server:
+## Data Flow
 
-```bash
-npm run dev
-```
+The basic data flow is as follows:
 
-4. Open [http://localhost:3000](http://localhost:3000).
+1.  Canonical horse and lease data is created and maintained in the `SSOT_Build` project.
+2.  A publishing script in `SSOT_Build` generates a marketplace payload (e.g., a JSON file).
+3.  The `Evolution_Platform` (this project) reads the published payload to display the marketplace listings.
+4.  The `Evolution_Platform` does **not** directly modify the canonical data in `SSOT_Build`.
 
-## Scripts
+This separation of concerns ensures data integrity and a clean architecture.
 
-- `npm run dev` - start the local development server
-- `npm run build` - create a production build
-- `npm run start` - run the production build locally
-- `npm run test` - run the Vitest suite
-- `npm run test:e2e` - run Playwright tests
-
-## Environment variables
-
-Use `.env.example` as the template for `.env.local`.
-
-- `NEXTAUTH_URL` - base URL for auth callbacks
-- `NEXTAUTH_SECRET` - secret used by NextAuth
-- `GOOGLE_CLIENT_ID` - Google OAuth client ID
-- `GOOGLE_CLIENT_SECRET` - Google OAuth client secret
-- `GOOGLE_SHEETS_WEB_APP_URL` - Apps Script endpoint used for lead capture and sign-in tracking
-- `NEXT_PUBLIC_API_MODE` - `mock` or `real` for the demo data layer
-- `NEXT_PUBLIC_API_URL` - API base URL used when `NEXT_PUBLIC_API_MODE=real`
-
-## Project structure
-
-```text
-src/
-|-- app/                 # App Router routes, layouts, and API handlers
-|-- components/          # Reusable UI and site components
-|-- lib/                 # Shared utilities, assets, and API helpers
-|-- services/            # Client/server service helpers
-`-- types/               # Shared TypeScript types
-```
-
-## Notes
-
-- This repo does not include a `studio/` app or Sanity Studio package.
-- Production deployments are expected to build from GitHub rather than local build artifacts.
-- Lead capture fails closed when `GOOGLE_SHEETS_WEB_APP_URL` is missing, instead of falling back to a hardcoded production endpoint.
-
-## License
-
-This project is private and proprietary.
+For more detailed information on the architecture, development stages, agent roles, and more, please refer to the [Evolution Stables Marketplace Orchestration Blueprint](/home/evo/workspace/_docs/agent-stack/EVOLUTION_STABLES_MARKETPLACE_ORCHESTRATION_2026-04-10.md).

@@ -1,0 +1,8 @@
+profile = "local-qwen"
+review_model = "granite4:7b-a1b-h"
+
+[profiles.local-qwen]
+model_reasoning_effort = "low"
+
+[profiles.local-audit]
+review_model = "granite4:7b-a1b-h"

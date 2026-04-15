@@ -1,16 +1,43 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { getProviders, signIn } from 'next-auth/react';
 import { LOGOS } from '@/lib/assets';
 import { submitInterest } from '@/services/interest/submitInterest';
 
 export function AuthClient() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [email, setEmail] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [statusMessage, setStatusMessage] = useState<string | null>(null);
+  const [isGoogleSigningIn, setIsGoogleSigningIn] = useState(false);
+  const [googleAuthEnabled, setGoogleAuthEnabled] = useState(false);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    const loadProviders = async () => {
+      try {
+        const providers = await getProviders();
+        if (!cancelled) {
+          setGoogleAuthEnabled(Boolean(providers?.google));
+        }
+      } catch {
+        if (!cancelled) {
+          setGoogleAuthEnabled(false);
+        }
+      }
+    };
+
+    void loadProviders();
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   const handleEmailSignup = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -34,6 +61,17 @@ export function AuthClient() {
     }
   };
 
+  const handleGoogleSignIn = async () => {
+    setIsGoogleSigningIn(true);
+    try {
+      await signIn('google', {
+        callbackUrl: searchParams.get('redirectedFrom') || '/marketplace',
+      });
+    } finally {
+      setIsGoogleSigningIn(false);
+    }
+  };
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-black">
       <div className="w-full max-w-md p-8">
@@ -45,11 +83,22 @@ export function AuthClient() {
             height={64}
             className="mx-auto mb-6"
           />
-          <h1 className="text-3xl font-light text-white mb-2">Join By Email</h1>
+          <h1 className="text-3xl font-light text-white mb-2">Access & Updates</h1>
           <p className="text-white/60">
-            Get launch updates, platform news, and early access announcements.
+            Sign in with Google for gated access, or join by email for launch updates.
           </p>
         </div>
+
+        {googleAuthEnabled ? (
+          <button
+            type="button"
+            onClick={handleGoogleSignIn}
+            disabled={isGoogleSigningIn}
+            className="w-full flex items-center justify-center gap-3 rounded-lg bg-white text-gray-900 font-medium py-3 px-4 transition-all duration-200 shadow-lg hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-60"
+          >
+            {isGoogleSigningIn ? 'Opening Google sign-in...' : 'Continue with Google'}
+          </button>
+        ) : null}
 
         <form onSubmit={handleEmailSignup} className="mt-6 space-y-3">
           <label className="sr-only" htmlFor="auth-email">

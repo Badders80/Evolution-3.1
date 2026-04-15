@@ -21,7 +21,7 @@ export const Email = () => {
     if (!trimmed || isSubmitting) return;
 
     try {
-      await submit(trimmed, 'about_join_evolution', 'about');
+      await submit({ email: trimmed, campaignKey: 'about_join_evolution', source: 'about' });
       setEmail('');
       setHasSubmitted(true);
       if (typeof window !== 'undefined') {
