@@ -5,7 +5,7 @@ import { Metadata } from 'next';
 const updates: Record<string, { title: string; file: string }> = {
   'prudentia-terapa-17apr2026': {
     title: 'Prudentia at Te Rapa - 17 April 2026',
-    file: 'Prudentia-TeRapa-17Apr2026.html',
+    file: 'Prudentia-TeRapa-17Apr2026-v2.html',
   },
   'prudentia-pukekohe-01apr2026': {
     title: 'Prudentia at Pukekohe - 1 April 2026',
