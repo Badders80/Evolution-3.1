@@ -39,15 +39,11 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
 }
 
 export default function UpdatePage({ params }: { params: { slug: string } }) {
-  console.log('UpdatePage called with params:', params);
-  console.log('Slug value:', params.slug);
-  console.log('Available updates:', Object.keys(updates));
-  
   const update = updates[params.slug];
-  
+
+  // If update not found, redirect to home
   if (!update) {
-    console.log('Update not found for slug:', params.slug);
-    notFound();
+    redirect('/');
   }
 
   // Redirect to the HTML file
