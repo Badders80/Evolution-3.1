@@ -47,13 +47,30 @@ export default function UpdatePage({ params }: { params: { slug: string } }) {
     notFound();
   }
   
-  // Read the HTML file
-  const htmlPath = path.join(process.cwd(), 'public', 'updates', update.file);
+  // Read the HTML file - try multiple paths for different environments
+  const possiblePaths = [
+    path.join(process.cwd(), 'public', 'updates', update.file),
+    path.join('/vercel/path0/public', 'updates', update.file),
+    path.join(__dirname, '..', '..', '..', '..', 'public', 'updates', update.file),
+  ];
+  
   let htmlContent = '';
-  try {
-    htmlContent = fs.readFileSync(htmlPath, 'utf8');
-  } catch (error) {
-    console.error(`Failed to read HTML file for update ${params.slug}:`, error);
+  let lastError: Error | null = null;
+  
+  for (const htmlPath of possiblePaths) {
+    try {
+      if (fs.existsSync(htmlPath)) {
+        htmlContent = fs.readFileSync(htmlPath, 'utf8');
+        break;
+      }
+    } catch (error) {
+      lastError = error as Error;
+    }
+  }
+  
+  if (!htmlContent) {
+    console.error(`Failed to read HTML file for update ${params.slug}. Tried paths:`, possiblePaths);
+    if (lastError) console.error('Last error:', lastError);
     notFound();
   }
   
