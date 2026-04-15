@@ -1,7 +1,5 @@
-import { notFound } from 'next/navigation';
+import { notFound, redirect } from 'next/navigation';
 import { Metadata } from 'next';
-import fs from 'fs';
-import path from 'path';
 
 // List of available updates
 const updates: Record<string, { title: string; file: string }> = {
@@ -30,7 +28,7 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
       title: 'Update Not Found',
     };
   }
-  
+
   return {
     title: `${update.title} | Evolution Stables`,
     description: `Investor update for ${update.title}`,
@@ -42,43 +40,11 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
 
 export default function UpdatePage({ params }: { params: { slug: string } }) {
   const update = updates[params.slug];
-  
+
   if (!update) {
     notFound();
   }
-  
-  // Read the HTML file - try multiple paths for different environments
-  const possiblePaths = [
-    path.join(process.cwd(), 'public', 'updates', update.file),
-    path.join('/vercel/path0/public', 'updates', update.file),
-    path.join(__dirname, '..', '..', '..', '..', 'public', 'updates', update.file),
-  ];
-  
-  let htmlContent = '';
-  let lastError: Error | null = null;
-  
-  for (const htmlPath of possiblePaths) {
-    try {
-      if (fs.existsSync(htmlPath)) {
-        htmlContent = fs.readFileSync(htmlPath, 'utf8');
-        break;
-      }
-    } catch (error) {
-      lastError = error as Error;
-    }
-  }
-  
-  if (!htmlContent) {
-    console.error(`Failed to read HTML file for update ${params.slug}. Tried paths:`, possiblePaths);
-    if (lastError) console.error('Last error:', lastError);
-    notFound();
-  }
-  
-  return (
-    <main className="min-h-screen bg-[#0a0a0a] text-white">
-      <div className="w-full min-h-screen">
-        <div dangerouslySetInnerHTML={{ __html: htmlContent }} />
-      </div>
-    </main>
-  );
+
+  // Redirect to the HTML file
+  redirect(`/updates/${update.file}`);
 }
