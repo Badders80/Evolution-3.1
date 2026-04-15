@@ -38,8 +38,11 @@ export async function generateStaticParams() {
 }
 
 export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
+  console.log('generateMetadata called with slug:', params.slug);
+  console.log('Available slugs:', updates.map(u => u.slug));
   const update = updates.find((u) => u.slug === params.slug);
   if (!update) {
+    console.log('Update not found for slug:', params.slug);
     return {
       title: 'Update Not Found',
     };
@@ -55,9 +58,11 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
 }
 
 export default function UpdatePage({ params }: { params: { slug: string } }) {
+  console.log('UpdatePage called with slug:', params.slug);
   const update = updates.find((u) => u.slug === params.slug);
   
   if (!update) {
+    console.log('Update not found in UpdatePage for slug:', params.slug);
     notFound();
   }
   
