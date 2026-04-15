@@ -1,7 +1,7 @@
 import { notFound, redirect } from 'next/navigation';
 import { Metadata } from 'next';
 
-// List of available updates
+// List of available updates with their HTML file names
 const updates: Record<string, { title: string; file: string }> = {
   'prudentia-terapa-17apr2026': {
     title: 'Prudentia at Te Rapa - 17 April 2026',
@@ -41,9 +41,9 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
 export default function UpdatePage({ params }: { params: { slug: string } }) {
   const update = updates[params.slug];
 
-  // If update not found, redirect to home
+  // If update not found, show 404
   if (!update) {
-    redirect('/');
+    notFound();
   }
 
   // Redirect to the HTML file
