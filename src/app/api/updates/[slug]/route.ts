@@ -24,9 +24,10 @@ const updates: Record<string, { title: string; file: string }> = {
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { slug: string } }
+  { params }: { params: Promise<{ slug: string }> }
 ) {
-  const update = updates[params.slug];
+  const { slug } = await params;
+  const update = updates[slug];
 
   if (!update) {
     return NextResponse.json({ error: 'Update not found' }, { status: 404 });
@@ -43,7 +44,7 @@ export async function GET(
       },
     });
   } catch (error) {
-    console.error(`Failed to read HTML file for update ${params.slug}:`, error);
+    console.error(`Failed to read HTML file for update ${slug}:`, error);
     return NextResponse.json({ error: 'Failed to read HTML file' }, { status: 500 });
   }
 }
