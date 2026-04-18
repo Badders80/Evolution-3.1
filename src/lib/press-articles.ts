@@ -9,6 +9,14 @@ export interface PressArticle {
 
 export const pressArticles: PressArticle[] = [
   {
+    title: 'Prudentia Wins at Te Rapa in Gutsy Heavy Track Performance',
+    url: 'https://x.com/EvolutionStable/status/2045096014466760782',
+    publisher: 'Evolution Stables',
+    date: '2026-04-17',
+    excerpt: "Great news for Evolution Stables investors — Prudentia has scored a tough, gutsy victory in Race 7 (BM65, 1300m) at Te Rapa this afternoon on a Heavy 10 track. She showed her class, coming from deep in the field at the halfway mark, running the perfect race to take the lead where it counted and fighting hard all the way to the line under Masa Hashizume. Prudentia won by 0.33L from Fleeting Star (0.33L back), with Amusement 0.73L third. To put that into context, that's approximately 0.8 metres!",
+    imageUrl: '/updates/Prudentia Te Rapa Winner Cover.png',
+  },
+  {
     title: 'Dubai Racing Club and Tokinvest Announce Partnership',
     url: 'https://tokinvest.capital/insights-and-news/tokinvest-and-dubai-racing-club',
     publisher: 'TOKINVEST',

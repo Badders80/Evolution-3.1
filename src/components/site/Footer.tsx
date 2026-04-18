@@ -13,7 +13,7 @@ export function Footer() {
           <div className="max-w-4xl space-y-8">
             <div className="flex flex-col items-center gap-2">
               <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-normal text-white tracking-tight">
-                The Future of <<spanspan className="text-[var(--evolution-gold)]">Ownership</span>
+                The Future of <span className="text-[var(--evolution-gold)]">Ownership</span>
               </h2>
               <TypeWriter
                 text="Has Arrived"

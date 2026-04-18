@@ -16,7 +16,7 @@ export function PressShowcase({ articles }: PressShowcaseProps) {
     articles.find(
       (article) =>
         article.url ===
-        'https://tokinvest.capital/insights-and-news/tokinvest-and-dubai-racing-club'
+        'https://x.com/EvolutionStable/status/2045096014466760782'
     ) ?? articles[0];
 
   const remainingArticles =
@@ -171,7 +171,12 @@ export function PressShowcase({ articles }: PressShowcaseProps) {
       </div>
 
       <div className="max-w-[1600px] mx-auto grid grid-cols-1 lg:grid-cols-[6fr,4fr]">
-        <div className="group relative p-12 md:p-20 flex flex-col justify-center bg-black">
+        <a
+          href={leadArticle.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group relative p-12 md:p-20 flex flex-col justify-center bg-black hover:bg-black/95 transition-colors duration-300 cursor-pointer"
+        >
           <div className="space-y-8 max-w-2xl">
             <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
               <div className="flex items-center gap-4">
@@ -183,12 +188,7 @@ export function PressShowcase({ articles }: PressShowcaseProps) {
                   {leadArticle.publisher}
                 </span>
               </div>
-              <a
-                href={leadArticle.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-xs uppercase tracking-[0.3em] text-white/40 transition-colors group-hover:text-white"
-              >
+              <div className="text-xs uppercase tracking-[0.3em] text-white/40 transition-colors group-hover:text-white">
                 <span className="relative inline-flex items-center gap-2 overflow-hidden">
                   <span className="relative z-10">Read the full story here</span>
                   <span className="relative z-10">→</span>
@@ -198,10 +198,10 @@ export function PressShowcase({ articles }: PressShowcaseProps) {
                     style={{ animationDelay: '1.2s' }}
                   />
                 </span>
-              </a>
+              </div>
             </div>
 
-            <div className="relative aspect-[16/10.8] w-full overflow-hidden rounded-sm shadow-2xl opacity-90 transition-opacity duration-500 group-hover:opacity-100">
+            <div className="relative w-full h-80 overflow-hidden rounded-sm shadow-2xl opacity-90 transition-opacity duration-500 group-hover:opacity-100">
               {leadArticle.imageUrl && (
                 <Image
                   src={leadArticle.imageUrl}
@@ -214,7 +214,7 @@ export function PressShowcase({ articles }: PressShowcaseProps) {
             </div>
 
             <h3 className="text-2xl md:text-3xl font-light leading-[1.15] tracking-tight text-white/90 transition-colors duration-300 group-hover:text-white">
-              Dubai Racing Club and Tokinvest Announce Partnership to Develop a Global Equine Token Marketplace
+              {leadArticle.title}
             </h3>
 
             <p className="text-[14px] md:text-[16px] font-light leading-[1.7] text-white/55 transition-colors duration-300 group-hover:text-white/65">
@@ -222,7 +222,7 @@ export function PressShowcase({ articles }: PressShowcaseProps) {
             </p>
 
           </div>
-        </div>
+        </a>
 
         <div className="relative bg-black flex flex-col p-12 md:p-20">
           <div
