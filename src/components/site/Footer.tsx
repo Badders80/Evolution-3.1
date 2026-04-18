@@ -13,7 +13,7 @@ export function Footer() {
           <div className="max-w-4xl space-y-8">
             <div className="flex flex-col items-center gap-2">
               <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-normal text-white tracking-tight">
-                The Future of Ownership
+                The Future of <<spanspan className="text-[var(--evolution-gold)]">Ownership</span>
               </h2>
               <TypeWriter
                 text="Has Arrived"
@@ -46,7 +46,7 @@ export function Footer() {
               </Link>
             </div>
             <p className="text-xs leading-tight font-extralight" style={{ color: 'rgba(255, 255, 255, 0.6)' }}>
-              &copy; 2025 Evolution Stables.
+              &copy; 2026 Evolution Stables.
             </p>
           </div>
 
