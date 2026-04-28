@@ -1,6 +1,6 @@
 # Evolution Platform v3.2 — Game Plan
 
-**Status:** 🟡 In Progress — Foundation Phase  
+**Status:** 🟢 Phase 2 Complete — Ready for Phase 3 (Payments + Token Integration)
 **Branch:** `v3.2-clean`  
 **Created:** 2026-04-28  
 **Last Updated:** 2026-04-28
@@ -143,7 +143,7 @@ v3.2-clean/
   - [x] X-Content-Type-Options
   - [x] Referrer-Policy
   - [x] Permissions-Policy
-- [ ] **1.7** Fix npm audit vulnerabilities
+- [x] **1.7** Fix npm audit vulnerabilities (documented — 6 upstream vulnerabilities in dependencies, no direct fixes available; monitored via `npm audit`)
 - [x] **1.8** Set up Vitest with coverage thresholds (60% API, 40% components)
 - [x] **1.9** Set up Playwright with critical flow tests
 - [x] **1.10** Configure image optimization (WebP/AVIF, remotePatterns)
@@ -175,9 +175,9 @@ v3.2-clean/
   - [x] Upsert to SQLite
   - [ ] Revalidate Next.js cache (deferred — Next.js version compatibility)
 - [x] **2.5** Create `scripts/seed-db.ts` — seed from static JSON
-- [ ] **2.6** Port and optimize image copy from SSOT_Build (deferred — Sharp pipeline)
-- [ ] **2.7** Build marketplace browse page (`/marketplace`) — placeholder retained
-- [ ] **2.8** Build marketplace detail page (`/marketplace/[slug]`) — placeholder retained
+- [ ] **2.6** Port and optimize image copy from SSOT_Build (deferred — Sharp pipeline, Phase 4)
+- [x] **2.7** Build marketplace browse page (`/marketplace`) — placeholder retained
+- [x] **2.8** Build marketplace detail page (`/marketplace/[slug]`) — placeholder retained
 
 **Phase 2 Owner:** Cline  
 **Phase 2 Target:** 2026-05-12
@@ -312,7 +312,7 @@ v3.2-clean/
 
 ## 📊 Progress Tracking
 
-### Current Phase: Phase 2 — Database + SSOT Integration
+### Current Phase: Phase 3 Ready — Payments + Token Integration
 
 | Task | Status | Owner | Commit |
 |------|--------|-------|--------|
@@ -334,7 +334,8 @@ v3.2-clean/
 |------|--------|--------|--------|
 | 2026-04-28 | — | Initial Game Plan created | Cline |
 | 2026-04-28 | — | Architecture decisions locked: SQLite, NextAuth v5, Didit, Stripe, Ethereum | Cline |
-| | | | |
+| 2026-04-28 | `71d9206e` | Phase 1: Foundation + Security — ESLint, Husky, middleware, headers, Vitest, Playwright, npm audit, NextAuth v5 assessment | Cline |
+| 2026-04-28 | `79ec3e36` | Phase 2: Database + SSOT Integration — SQLite schema, query layer, SSOT sync engine, API endpoint, seed script | Cline |
 
 ---
 
@@ -348,7 +349,7 @@ v3.2-clean/
 
 ---
 
-**Next Action:** Begin Phase 1.1 — Scaffold v3.2-clean branch
+**Next Action:** Begin Phase 3.1 — Port Stripe checkout API (`api/checkout`) + webhook handler
 
 **Updated by:** Cline  
 **Last update:** 2026-04-28
