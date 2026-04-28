@@ -1,6 +1,6 @@
 # Evolution Platform v3.2 — Game Plan
 
-**Status:** 🟢 Phase 2 Complete — Ready for Phase 3 (Payments + Token Integration)
+**Status:** 🟢 Phase 3 Complete — Ready for Phase 4 (Dashboard + UI)
 **Branch:** `v3.2-clean`  
 **Created:** 2026-04-28  
 **Last Updated:** 2026-04-28
@@ -195,32 +195,32 @@ v3.2-clean/
 
 ### Phase 3: Payments + Token Integration (Week 3)
 
-- [ ] **3.1** Port Stripe checkout API (`api/checkout`)
-  - [ ] Session creation with NZD
-  - [ ] Metadata for webhook handling
-  - [ ] Billing address collection
-- [ ] **3.2** Port Stripe webhook handler (`api/checkout/webhook`)
-  - [ ] Signature verification
-  - [ ] Create holding (status: "reserved")
-  - [ ] Trigger token mint
-- [ ] **3.3** Port token mint API (`api/tokens/mint`)
-  - [ ] KYC verification check
-  - [ ] Admin wallet approval + transfer
-  - [ ] Update holding status to "minted"
-  - [ ] Return txHash
-- [ ] **3.4** Port KYC flow
-  - [ ] Didit session creation (`api/kyc/session`)
-  - [ ] KYC webhook handler (`api/kyc/webhook`)
-  - [ ] Update user KYC status
-- [ ] **3.5** Integrate wagmi + wallet connection
+- [x] **3.1** Port Stripe checkout API (`api/checkout`)
+  - [x] Session creation with NZD
+  - [x] Metadata for webhook handling
+  - [x] Billing address collection
+- [x] **3.2** Port Stripe webhook handler (`api/checkout/webhook`)
+  - [x] Signature verification
+  - [x] Create holding (status: "paid")
+  - [x] Trigger token mint (if KYC verified + wallet exists)
+- [x] **3.3** Port token mint API (`api/tokens/mint`)
+  - [x] KYC verification check
+  - [x] Admin wallet approval + transfer via viem on Base Sepolia
+  - [x] Update holding status to "minted"
+  - [x] Return txHash
+- [x] **3.4** Port KYC flow
+  - [x] Didit session creation (`api/kyc/session`)
+  - [x] KYC webhook handler (`api/kyc/callback`)
+  - [x] Update user KYC status + auto-create Openfort wallet
+- [ ] **3.5** Integrate wagmi + wallet connection (deferred — Phase 4 UI)
   - [ ] WalletConnect + MetaMask support
-  - [ ] Network switching (Ethereum mainnet)
-- [ ] **3.6** Build purchase flow UI
+  - [ ] Network switching (Base)
+- [ ] **3.6** Build purchase flow UI (deferred — Phase 4 UI)
   - [ ] "Buy Shares" modal
   - [ ] Token quantity selector
   - [ ] Payment method selection (Stripe vs. wallet)
   - [ ] KYC status check before purchase
-- [ ] **3.7** Build token balance API (`api/tokens/balance`)
+- [ ] **3.7** Build token balance API (`api/tokens/balance`) (deferred — Phase 4)
   - [ ] On-chain balance check
   - [ ] Portfolio aggregation
 
@@ -315,7 +315,7 @@ v3.2-clean/
 
 ## 📊 Progress Tracking
 
-### Current Phase: Phase 3 Ready — Payments + Token Integration
+### Current Phase: Phase 3 Complete — Ready for Phase 4 (Dashboard + UI)
 
 | Task | Status | Owner | Commit |
 |------|--------|-------|--------|
@@ -339,6 +339,8 @@ v3.2-clean/
 | 2026-04-28 | — | Architecture decisions locked: SQLite, NextAuth v5, Didit, Stripe, Ethereum | Cline |
 | 2026-04-28 | `71d9206e` | Phase 1: Foundation + Security — ESLint, Husky, middleware, headers, Vitest, Playwright, npm audit, NextAuth v5 assessment | Cline |
 | 2026-04-28 | `79ec3e36` | Phase 2: Database + SSOT Integration — SQLite schema, query layer, SSOT sync engine, API endpoint, seed script | Cline |
+| 2026-04-28 | `0b53dea9` | docs: Lock Phase 3 architecture — Base chain, Openfort wallets, per-horse ERC-20, Didit KYC | Cline |
+| 2026-04-28 | `6f59777f` | Phase 3: Payments + Token Integration — Stripe checkout/webhook, Didit KYC, token mint via viem on Base, Openfort wallets | Cline |
 
 ---
 
@@ -352,7 +354,7 @@ v3.2-clean/
 
 ---
 
-**Next Action:** Begin Phase 3.1 — Port Stripe checkout API (`api/checkout`) + webhook handler
+**Next Action:** Begin Phase 4.1 — Build MyStable dashboard (`/mystable`) + purchase flow UI
 
 **Updated by:** Cline  
 **Last update:** 2026-04-28
