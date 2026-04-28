@@ -45,9 +45,12 @@ Update this file via the same commit that introduces the change. Use the checkli
 | Framework | **Next.js 16** + App Router | Server Components for SEO, latest stable | 2026-04-28 |
 | Auth | **NextAuth v5** + RBAC | Industry standard, JWT sessions, role-based middleware | 2026-04-28 |
 | Styling | **Tailwind CSS** + shadcn/ui | Rapid development, Radix accessibility | 2026-04-28 |
-| Blockchain | **Ethereum mainnet** (via viem/wagmi) | Token contract already deployed, production ready | 2026-04-28 |
-| KYC | **Didit** (ported from Evolution_Token) | Already integrated, working webhook flow | 2026-04-28 |
+| Blockchain | **Base** (via viem/wagmi) | Low gas (~$0.01-0.05/tx), Coinbase on-ramps, retail-friendly | 2026-04-28 |
+| Wallet | **Openfort** (embedded ERC-4337) | Users stay in Web2 mindset, no seed phrases | 2026-04-28 |
+| KYC | **Didit** (fully automated) | Already integrated, working webhook flow, no manual review queue | 2026-04-28 |
 | Payments | **Stripe** (NZD) + on-chain tokens | Dual flow: fiat via Stripe, tokens via contract | 2026-04-28 |
+| Token Contracts | **Per-horse ERC-20** | Unique terms per syndicate, deployed via /admin | 2026-04-28 |
+| Evolution_Token | **Deprecated after port** | Staging repo — workflows consolidated into Platform | 2026-04-28 |
 | Testing | **Vitest** (unit) + **Playwright** (E2E) | Coverage thresholds enforced in CI | 2026-04-28 |
 | Hosting | **Current infrastructure** (not Vercel) | Self-managed, NZ-based | 2026-04-28 |
 | SSOT Sync | **File system watcher** + manual trigger | SSOT_Build is local FS, not remote API | 2026-04-28 |
