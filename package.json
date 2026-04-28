@@ -12,7 +12,8 @@
     "test:e2e": "playwright test",
     "postinstall": "next telemetry disable",
     "generate:simple": "node generate-simple.js",
-    "generate:simple:example": "node generate-simple.js test-update.json public/updates/investor-$(date +%Y-%m-%d).html"
+    "generate:simple:example": "node generate-simple.js test-update.json public/updates/investor-$(date +%Y-%m-%d).html",
+    "prepare": "husky"
   },
   "dependencies": {
     "@radix-ui/react-icons": "^1.3.2",
@@ -39,6 +40,9 @@
     "zod": "^4.1.12"
   },
   "devDependencies": {
+    "@eslint/eslintrc": "^3.3.5",
+    "@eslint/js": "^9.39.4",
+    "@next/eslint-plugin-next": "^16.2.4",
     "@types/babel__generator": "^7.27.0",
     "@types/babel__template": "^7.4.4",
     "@types/d3-color": "^3.1.3",
@@ -55,11 +59,25 @@
     "concurrently": "^9.0.1",
     "eslint": "^9.0.0",
     "eslint-config-next": "^16.0.8",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "eslint-plugin-security": "^4.0.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.4.0",
     "playwright": "^1.55.0",
     "postcss": "^8",
+    "prettier": "^3.8.3",
     "tailwindcss": "^3.4.1",
     "typescript": "^5.9.2",
+    "typescript-eslint": "^8.59.1",
     "vitest": "^3.2.4"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.json": "prettier --write"
   },
   "engines": {
     "node": "20.x"

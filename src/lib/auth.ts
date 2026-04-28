@@ -108,3 +108,17 @@ export async function getOperatorSession() {
   if (!hasMarketplaceOperatorAccess(session.user.email)) return null;
   return session;
 }
+
+export function isAdminRequest(request: Request): boolean {
+  const token = request.headers.get('x-admin-token') ||
+                request.headers.get('authorization')?.replace('Bearer ', '') ||
+                new URL(request.url).searchParams.get('admin_token');
+  
+  return token === process.env.ADMIN_SECRET_KEY;
+}
+
+export function requireAdmin(request: Request): void {
+  if (!isAdminRequest(request)) {
+    throw new Error('Unauthorized');
+  }
+}

@@ -10,8 +10,6 @@ interface PressShowcaseProps {
 }
 
 export function PressShowcase({ articles }: PressShowcaseProps) {
-  if (!articles || articles.length === 0) return null;
-
   const leadArticle =
     articles.find(
       (article) =>
@@ -138,6 +136,10 @@ export function PressShowcase({ articles }: PressShowcaseProps) {
     if (parts.length !== 3) return value;
     return `${parts[2]}-${parts[1]}-${parts[0]}`;
   };
+
+  if (!articles || articles.length === 0) {
+    return null;
+  }
 
   return (
     <section className="relative bg-black text-white overflow-hidden bloomberg-showcase">
