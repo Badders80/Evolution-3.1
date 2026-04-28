@@ -5,14 +5,14 @@ export function getAllListings(status?: string): MarketplaceListing[] {
   const db = getDb();
   const stmt = status
     ? db.prepare(
-        "SELECT * FROM listings WHERE publish_status = ? ORDER BY updated_at DESC"
+        "SELECT * FROM listings WHERE publish_status = ? ORDER BY updated_at DESC",
       )
     : db.prepare("SELECT * FROM listings ORDER BY updated_at DESC");
 
   const rows = status ? stmt.all(status) : stmt.all();
 
   return (rows as Array<Record<string, string | null>>).map((row) =>
-    rowToListing(row)
+    rowToListing(row),
   );
 }
 
@@ -20,6 +20,15 @@ export function getListingBySlug(slug: string): MarketplaceListing | null {
   const db = getDb();
   const stmt = db.prepare("SELECT * FROM listings WHERE slug = ?");
   const row = stmt.get(slug) as Record<string, string | null> | undefined;
+
+  if (!row) return null;
+  return rowToListing(row);
+}
+
+export function getListingById(id: string): MarketplaceListing | null {
+  const db = getDb();
+  const stmt = db.prepare("SELECT * FROM listings WHERE id = ?");
+  const row = stmt.get(id) as Record<string, string | null> | undefined;
 
   if (!row) return null;
   return rowToListing(row);
@@ -73,7 +82,7 @@ export function upsertListing(listing: MarketplaceListing): void {
     JSON.stringify(listing.disclaimers),
     JSON.stringify(listing.officialDocuments),
     listing.slug,
-    new Date().toISOString()
+    new Date().toISOString(),
   );
 }
 
@@ -88,7 +97,8 @@ function rowToListing(row: Record<string, string | null>): MarketplaceListing {
     id: row.id ?? "",
     slug: row.slug ?? "",
     title: row.title ?? "",
-    publishStatus: (row.publish_status as MarketplaceListing["publishStatus"]) ?? "draft",
+    publishStatus:
+      (row.publish_status as MarketplaceListing["publishStatus"]) ?? "draft",
     heroImageSrc: row.hero_image_src ?? "",
     images: safeParse<string[]>(row.images_json, []),
     summary: row.summary ?? "",
@@ -136,16 +146,19 @@ function rowToListing(row: Record<string, string | null>): MarketplaceListing {
       ownerSharePercent: 0,
       pricePerOnePercentNzd: 0,
     }),
-    application: safeParse<MarketplaceListing["application"]>(row.application_json, {
-      campaignKey: "",
-      sourcePath: "",
-      minimumStakePercent: 0,
-      maximumStakePercent: 0,
-      defaultRequestedStakePercent: 0,
-      defaultRequestedUnits: 0,
-      defaultReservationAmountNzd: 0,
-      defaultStatus: "submitted",
-    }),
+    application: safeParse<MarketplaceListing["application"]>(
+      row.application_json,
+      {
+        campaignKey: "",
+        sourcePath: "",
+        minimumStakePercent: 0,
+        maximumStakePercent: 0,
+        defaultRequestedStakePercent: 0,
+        defaultRequestedUnits: 0,
+        defaultReservationAmountNzd: 0,
+        defaultStatus: "submitted",
+      },
+    ),
     disclaimers: safeParse<string[]>(row.disclaimers_json, []),
     officialDocuments: safeParse(row.documents_json, []),
   };
