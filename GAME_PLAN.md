@@ -155,44 +155,38 @@ v3.2-clean/
 
 ### Phase 2: Database + SSOT Integration (Week 2)
 
-- [ ] **2.1** Port SQLite schema from Evolution_Token
-  - [ ] `users` table
-  - [ ] `listings` table (JSON blob for flexibility)
-  - [ ] `holdings` table
-  - [ ] `kyc_sessions` table
-- [ ] **2.2** Create type-safe DB query layer
-  - [ ] `lib/db/queries/users.ts`
-  - [ ] `lib/db/queries/listings.ts`
-  - [ ] `lib/db/queries/holdings.ts`
-  - [ ] `lib/db/queries/kyc.ts`
-- [ ] **2.3** Build SSOT sync engine (`lib/ssot/`)
-  - [ ] `client.ts` — File system watcher
-  - [ ] `sync.ts` — Sync orchestrator
-  - [ ] `transformer.ts` — SSOT → Listing mapping
-  - [ ] `types.ts` — SSOT type definitions
-- [ ] **2.4** Build SSOT webhook endpoint (`api/marketplace/sync`)
-  - [ ] Verify SSOT origin (if needed)
-  - [ ] Transform and validate data
-  - [ ] Upsert to SQLite
-  - [ ] Revalidate Next.js cache
-- [ ] **2.5** Create `scripts/sync-ssot.ts` manual trigger
-- [ ] **2.6** Port and optimize image copy from SSOT_Build
-  - [ ] Copy 4 images per horse
-  - [ ] Convert to WebP/AVIF
-  - [ ] Generate responsive sizes
-  - [ ] Store in `public/images/horses/`
-- [ ] **2.7** Build marketplace browse page (`/marketplace`)
-  - [ ] Server Component for SEO
-  - [ ] Grid layout with ListingCards
-  - [ ] Filter by status (open, closing, closed)
-- [ ] **2.8** Build marketplace detail page (`/marketplace/[slug]`)
-  - [ ] Server Component for SEO
-  - [ ] Horse gallery (SSOT images)
-  - [ ] Syndicate details
-  - [ ] Purchase CTA (gated by auth + KYC)
+- [x] **2.1** Port SQLite schema from Evolution_Token
+  - [x] `users` table
+  - [x] `listings` table (JSON blob for flexibility)
+  - [x] `holdings` table
+  - [x] `kyc_sessions` table
+- [x] **2.2** Create type-safe DB query layer
+  - [ ] `lib/db/queries/users.ts` (placeholder — Phase 4)
+  - [x] `lib/db/queries/listings.ts`
+  - [x] `lib/db/queries/holdings.ts`
+  - [ ] `lib/db/queries/kyc.ts` (placeholder — Phase 3)
+- [x] **2.3** Build SSOT sync engine (`lib/ssot/`)
+  - [x] `types.ts` — SSOT type definitions
+  - [x] `transformer.ts` — SSOT → Listing mapping
+  - [x] `sync.ts` — Sync orchestrator with fs.watch + manual trigger
+- [x] **2.4** Build SSOT webhook endpoint (`api/marketplace/sync`)
+  - [x] POST endpoint accepts optional sourcePath
+  - [x] Transform and validate data
+  - [x] Upsert to SQLite
+  - [ ] Revalidate Next.js cache (deferred — Next.js version compatibility)
+- [x] **2.5** Create `scripts/seed-db.ts` — seed from static JSON
+- [ ] **2.6** Port and optimize image copy from SSOT_Build (deferred — Sharp pipeline)
+- [ ] **2.7** Build marketplace browse page (`/marketplace`) — placeholder retained
+- [ ] **2.8** Build marketplace detail page (`/marketplace/[slug]`) — placeholder retained
 
-**Phase 2 Owner:** TBD  
+**Phase 2 Owner:** Cline  
 **Phase 2 Target:** 2026-05-12
+
+---
+
+**Placeholder Decision:** `/marketplace` and `/mystable` UI pages remain as Coming Soon placeholders. The underlying data layer (SQLite + SSOT sync) is production-ready. Pages will be wired to the DB layer in Phase 4 when UI components are built.
+
+**HLT Term Sheet:** Deferred per user request — not blocking KYC/token infrastructure.
 
 ---
 
@@ -318,20 +312,19 @@ v3.2-clean/
 
 ## 📊 Progress Tracking
 
-### Current Phase: Phase 1 — Foundation + Security
+### Current Phase: Phase 2 — Database + SSOT Integration
 
 | Task | Status | Owner | Commit |
 |------|--------|-------|--------|
-| Create v3.2-clean branch | ✅ Done | — | — |
-| Configure TS strict | 🔄 In Progress | — | — |
-| Configure ESLint | ✅ Done | Cline | — |
-| Configure Husky | ✅ Done | Cline | — |
-| Implement middleware.ts | ✅ Done | Cline | — |
-| Configure security headers | ✅ Done | Cline | — |
-| Fix npm audit | 🔄 In Progress | Cline | — |
-| Set up Vitest | ✅ Done | Cline | — |
-| Set up Playwright | ✅ Done | Cline | — |
-| Configure images | ✅ Done | Cline | — |
+| SQLite schema (users, listings, holdings, kyc) | ✅ Done | Cline | — |
+| DB connection + WAL mode | ✅ Done | Cline | — |
+| Query layer (listings, holdings) | ✅ Done | Cline | — |
+| SSOT types + transformer | ✅ Done | Cline | — |
+| SSOT sync engine (watch + manual) | ✅ Done | Cline | — |
+| API endpoint `/api/marketplace/sync` | ✅ Done | Cline | — |
+| Seed script from static JSON | ✅ Done | Cline | — |
+| `/marketplace` placeholder retained | ✅ Done | Cline | — |
+| `/mystable` placeholder retained | ✅ Done | Cline | — |
 
 ---
 
