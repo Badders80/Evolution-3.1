@@ -179,8 +179,8 @@ v3.2-clean/
   - [ ] Revalidate Next.js cache (deferred — Next.js version compatibility)
 - [x] **2.5** Create `scripts/seed-db.ts` — seed from static JSON
 - [ ] **2.6** Port and optimize image copy from SSOT_Build (deferred — Sharp pipeline, Phase 4)
-- [x] **2.7** Build marketplace browse page (`/marketplace`) — placeholder retained
-- [x] **2.8** Build marketplace detail page (`/marketplace/[slug]`) — placeholder retained
+- [x] **2.7** Build marketplace browse page (`/marketplace`) — ✅ live grid with real listings
+- [x] **2.8** Build marketplace detail page (`/marketplace/[slug]`) — ✅ live detail with offering data
 
 **Phase 2 Owner:** Cline  
 **Phase 2 Target:** 2026-05-12
@@ -341,6 +341,7 @@ v3.2-clean/
 | 2026-04-28 | `79ec3e36` | Phase 2: Database + SSOT Integration — SQLite schema, query layer, SSOT sync engine, API endpoint, seed script | Cline |
 | 2026-04-28 | `0b53dea9` | docs: Lock Phase 3 architecture — Base chain, Openfort wallets, per-horse ERC-20, Didit KYC | Cline |
 | 2026-04-28 | `6f59777f` | Phase 3: Payments + Token Integration — Stripe checkout/webhook, Didit KYC, token mint via viem on Base, Openfort wallets | Cline |
+| 2026-04-28 | `366ae301` | Phase 4 start: Replace marketplace placeholders with live listing grid + detail pages | Cline |
 
 ---
 
@@ -354,7 +355,7 @@ v3.2-clean/
 
 ---
 
-**Next Action:** Begin Phase 4.1 — Build MyStable dashboard (`/mystable`) + purchase flow UI
+**Next Action:** Continue Phase 4 — Build MyStable dashboard (`/mystable`) + purchase flow UI
 
 **Updated by:** Cline  
 **Last update:** 2026-04-28
