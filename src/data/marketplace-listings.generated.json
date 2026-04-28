@@ -2,7 +2,12 @@
   "generatedAt": "2026-04-14T00:00:00.000Z",
   "sourceSeedPath": "ssot/marketplace/seed.json",
   "publishStatuses": ["draft", "ready_to_publish", "live", "closed"],
-  "applicationStatuses": ["submitted", "under_review", "reserved_manual", "closed"],
+  "applicationStatuses": [
+    "submitted",
+    "under_review",
+    "reserved_manual",
+    "closed"
+  ],
   "listings": [
     {
       "id": "listing-first-gear",
@@ -221,6 +226,116 @@
           "fileSizeBytes": 225000,
           "version": "1.0",
           "publishedAt": "2026-02-22T00:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "listing-hottathanafantasy",
+      "slug": "hottathanafantasy",
+      "title": "Hottathanafantasy",
+      "publishStatus": "ready_to_publish",
+      "heroImageSrc": "/images/marketplace/hottathanafantasy.svg",
+      "images": [
+        "/images/marketplace/hottathanafantasy.svg",
+        "/images/marketplace/hottathanafantasy-2.svg",
+        "/images/marketplace/hottathanafantasy-3.svg",
+        "/images/marketplace/hottathanafantasy-4.svg"
+      ],
+      "summary": "Own a stake in Hottathanafantasy — a promising Bay Filly by Contributer (IRE), trained by Wexford Stables. A 16-month lease offering 5% at $280 per unit with 75% investor returns.",
+      "overview": "Hottathanafantasy is a two-year-old Bay Filly by Contributer (IRE) out of Whiffle (USA), currently in active training with Wexford Stables. This offering represents a 5% lease of the horse, split into 20 stake units at $280 per unit (0.25% each), giving investors a 75% share of race-day returns. With a verified NZTR profile, a 16-month lease window from March 2026 through July 2027, and an accessible price point, this is a compelling entry into racehorse ownership.",
+      "horse": {
+        "id": "horse-hottathanafantasy",
+        "name": "Hottathanafantasy",
+        "countryCode": "NZ",
+        "foalingDate": "2023-10-24",
+        "sex": "Filly",
+        "colour": "Bay",
+        "sire": "Contributer (IRE)",
+        "dam": "Whiffle (USA)",
+        "status": "In training",
+        "identityStatus": "Verified",
+        "breedingUrl": "https://loveracing.nz/Breeding/452052/Hottathanafantasy-NZ-2023.aspx",
+        "performanceProfileUrl": "https://loveracing.nz/Common/SystemTemplates/Modal/EntryDetail.aspx?DisplayContext=Modal&HorseID=452052",
+        "nztrLifeNumber": "NZ00452052",
+        "microchipNumber": "985125000139165"
+      },
+      "trainer": {
+        "id": "trainer-wexford",
+        "name": "Wexford Stables",
+        "stableName": "Wexford Stables",
+        "location": "Matamata, New Zealand",
+        "website": "https://www.wexfordstables.co.nz"
+      },
+      "owner": {
+        "id": "owner-bax-bloodstock",
+        "name": "B.A.X Bloodstock Achieving Xcellence Limited",
+        "entityType": "Company"
+      },
+      "offering": {
+        "leaseId": "lease-hottathanafantasy-nz02",
+        "leaseStatus": "open",
+        "startDate": "2026-03-01",
+        "endDate": "2027-07-01",
+        "durationMonths": 16,
+        "percentLeased": 5,
+        "tokenCount": 20,
+        "stakeUnitPercent": 0.25,
+        "tokenPriceNzd": 280,
+        "totalRaiseNzd": 5600,
+        "investorSharePercent": 75,
+        "ownerSharePercent": 25,
+        "pricePerOnePercentNzd": 1120
+      },
+      "application": {
+        "campaignKey": "marketplace-hottathanafantasy",
+        "sourcePath": "/marketplace/hottathanafantasy",
+        "minimumStakePercent": 0.25,
+        "maximumStakePercent": 5,
+        "defaultRequestedStakePercent": 0.25,
+        "defaultRequestedUnits": 1,
+        "defaultReservationAmountNzd": 280,
+        "defaultStatus": "submitted"
+      },
+      "disclaimers": [
+        "All listings are subject to final review before any commitment is accepted.",
+        "Investment in racehorse syndicates involves risk. Past performance is not indicative of future results."
+      ],
+      "officialDocuments": [
+        {
+          "id": "doc-hottathanafantasy-hlt-term-sheet",
+          "listingId": "listing-hottathanafantasy",
+          "documentType": "hlt_term_sheet",
+          "title": "HLT Term Sheet — Hottathanafantasy NZ02",
+          "description": "Horse Lease and Training term sheet outlining key commercial terms for the Hottathanafantasy NZ02 syndicate offering.",
+          "fileName": "hottathanafantasy-hlt-term-sheet.pdf",
+          "filePath": "/docs/hottathanafantasy/hottathanafantasy-hlt-term-sheet.pdf",
+          "fileSizeBytes": 0,
+          "version": "3.0",
+          "publishedAt": "2026-03-03T00:00:00.000Z"
+        },
+        {
+          "id": "doc-hottathanafantasy-pds",
+          "listingId": "listing-hottathanafantasy",
+          "documentType": "pds",
+          "title": "Product Disclosure Statement — Hottathanafantasy",
+          "description": "Product Disclosure Statement for the Hottathanafantasy lease offering, as required under NZ financial markets legislation.",
+          "fileName": "hottathanafantasy-pds.pdf",
+          "filePath": "/docs/hottathanafantasy/hottathanafantasy-pds.pdf",
+          "fileSizeBytes": 0,
+          "version": "1.0",
+          "publishedAt": "2026-03-27T00:00:00.000Z"
+        },
+        {
+          "id": "doc-hottathanafantasy-syndicate-agreement",
+          "listingId": "listing-hottathanafantasy",
+          "documentType": "syndicate_agreement",
+          "title": "Syndicate Agreement — Hottathanafantasy",
+          "description": "The syndicate agreement governing co-ownership terms, rights, and obligations for Hottathanafantasy investors.",
+          "fileName": "hottathanafantasy-syndicate-agreement.pdf",
+          "filePath": "/docs/hottathanafantasy/hottathanafantasy-syndicate-agreement.pdf",
+          "fileSizeBytes": 0,
+          "version": "1.0",
+          "publishedAt": "2026-03-26T00:00:00.000Z"
         }
       ]
     }

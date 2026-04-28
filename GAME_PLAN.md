@@ -1,4 +1,3 @@
-# Evolution Platform v3.2 — Game Plan
 
 **Status:** 🟢 Phase 3 Complete — Ready for Phase 4 (Dashboard + UI)
 **Branch:** `v3.2-clean`  
@@ -189,7 +188,7 @@ v3.2-clean/
 
 **Placeholder Decision:** `/marketplace` and `/mystable` UI pages remain as Coming Soon placeholders. The underlying data layer (SQLite + SSOT sync) is production-ready. Pages will be wired to the DB layer in Phase 4 when UI components are built.
 
-**HLT Term Sheet:** Deferred per user request — not blocking KYC/token infrastructure.
+**HLT Term Sheet / Horse Listing:** ✅ Hottathanafantasy NZ02 listing created as the single-horse test slug for full tokenisation validation. Status: `ready_to_publish` pending human approval. Document placeholders created for HLT Term Sheet, PDS, and Syndicate Agreement.
 
 ---
 
@@ -272,6 +271,21 @@ v3.2-clean/
   - [ ] Browse marketplace → view listing → purchase
   - [ ] KYC verification → wallet connection → portfolio view
   - [ ] Admin: review KYC → approve → user can purchase
+- [ ] **4.11** Document acknowledgement checkboxes in purchase flow
+  - [ ] "I have read and agree to the Product Disclosure Statement (PDS)"
+  - [ ] "I have read and agree to the Syndicate Agreement"
+  - [ ] "I have read and agree to the HLT Term Sheet"
+  - [ ] All 3 must be ticked before "Proceed to Payment" is enabled
+  - [ ] Acknowledgements recorded on holding record (`documentAcknowledgements` JSON)
+- [ ] **4.12** Hottathanafantasy end-to-end tokenisation test (single-horse slug)
+  - [ ] Listing appears on `/marketplace` (status: `ready_to_publish`)
+  - [ ] Listing detail page renders at `/marketplace/hottathanafantasy`
+  - [ ] "Buy Shares" flow initiates Stripe checkout
+  - [ ] Webhook creates holding with `status: "paid"`
+  - [ ] KYC check gates token mint
+  - [ ] Token mint API returns `status: "minted"` + txHash
+  - [ ] Holding appears in `/mystable` portfolio
+  - [ ] Edge cases: insufficient KYC, max stake exceeded, sold out
 
 **Phase 4 Owner:** TBD  
 **Phase 4 Target:** 2026-05-26
@@ -328,6 +342,8 @@ v3.2-clean/
 | Seed script from static JSON | ✅ Done | Cline | — |
 | `/marketplace` placeholder retained | ✅ Done | Cline | — |
 | `/mystable` placeholder retained | ✅ Done | Cline | — |
+| Hottathanafantasy listing data + images + docs | ✅ Done | Cline | — |
+| Hottathanafantasy seeded to SQLite | ✅ Done | Cline | — |
 
 ---
 
@@ -342,6 +358,7 @@ v3.2-clean/
 | 2026-04-28 | `0b53dea9` | docs: Lock Phase 3 architecture — Base chain, Openfort wallets, per-horse ERC-20, Didit KYC | Cline |
 | 2026-04-28 | `6f59777f` | Phase 3: Payments + Token Integration — Stripe checkout/webhook, Didit KYC, token mint via viem on Base, Openfort wallets | Cline |
 | 2026-04-28 | `366ae301` | Phase 4 start: Replace marketplace placeholders with live listing grid + detail pages | Cline |
+| 2026-04-28 | — | Add Hottathanafantasy NZ02 listing — single-horse test slug for tokenisation validation; placeholder images + document structure | Cline |
 
 ---
 
@@ -355,7 +372,6 @@ v3.2-clean/
 
 ---
 
-**Next Action:** Continue Phase 4 — Build MyStable dashboard (`/mystable`) + purchase flow UI
-
+**Next Action:** Continue Phase 4 — Build MyStable dashboard (`/mystable`) + purchase flow UI (or proceed with Hottathanafantasy tokenisation test: human approval → status `live` → end-to-end purchase + mint validation)
 **Updated by:** Cline  
 **Last update:** 2026-04-28
