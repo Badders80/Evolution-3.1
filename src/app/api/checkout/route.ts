@@ -1,10 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
+import { getServerSession } from "next-auth";
 import Stripe from "stripe";
+import { authOptions } from "@/lib/auth";
+import { getUserByEmail } from "@/lib/db/queries/users";
 import { getListingBySlug } from "@/lib/db/queries/listings";
 
 export const dynamic = "force-dynamic";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "", {
+  apiVersion: "2026-02-25.clover",
   typescript: true,
 });
 
@@ -12,17 +16,44 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "", {
  * POST /api/checkout
  *
  * Creates a Stripe Checkout session for purchasing horse shares.
+ * Requires authenticated user with verified KYC.
  * Uses NZD currency, collects billing address for compliance.
  */
 export async function POST(request: NextRequest) {
   try {
-    const { listingSlug, tokenCount, userEmail } = await request.json();
+    // 1. Require authentication
+    const session = await getServerSession(authOptions);
+    if (!session?.user?.email) {
+      return NextResponse.json(
+        { error: "Unauthorized. Please sign in." },
+        { status: 401 },
+      );
+    }
 
-    if (!listingSlug || !tokenCount || !userEmail) {
+    // 2. Look up user in DB to check KYC
+    const user = getUserByEmail(session.user.email);
+    if (!user) {
+      return NextResponse.json({ error: "User not found." }, { status: 404 });
+    }
+
+    // 3. KYC gate — must be verified to purchase
+    if (user.kyc_status !== "verified") {
       return NextResponse.json(
         {
-          error: "Missing required fields: listingSlug, tokenCount, userEmail",
+          error: "KYC verification required.",
+          code: "KYC_REQUIRED",
+          redirectUrl: "/mystable/verify",
         },
+        { status: 403 },
+      );
+    }
+
+    const { listingSlug, tokenCount, documentAcknowledgements } =
+      await request.json();
+
+    if (!listingSlug || !tokenCount) {
+      return NextResponse.json(
+        { error: "Missing required fields: listingSlug, tokenCount" },
         { status: 400 },
       );
     }
@@ -42,7 +73,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const session = await stripe.checkout.sessions.create({
+    const checkoutSession = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
       line_items: [
         {
@@ -61,13 +92,17 @@ export async function POST(request: NextRequest) {
       mode: "payment",
       success_url: `${process.env.NEXT_PUBLIC_URL || ""}/mystable?success=true&session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${process.env.NEXT_PUBLIC_URL || ""}/marketplace/${listingSlug}?canceled=true`,
-      customer_email: userEmail,
+      customer_email: user.email,
       metadata: {
         listingSlug,
         listingId: listing.id,
         tokenCount: String(tokenCount),
         tokenPrice: String(tokenPrice),
         horseName: listing.horse.name,
+        userId: user.id,
+        documentAcknowledgements: documentAcknowledgements
+          ? JSON.stringify(documentAcknowledgements)
+          : JSON.stringify([]),
       },
       // NZ-specific: collect billing address for compliance
       billing_address_collection: "required",
@@ -77,7 +112,10 @@ export async function POST(request: NextRequest) {
       },
     });
 
-    return NextResponse.json({ sessionId: session.id, url: session.url });
+    return NextResponse.json({
+      sessionId: checkoutSession.id,
+      url: checkoutSession.url,
+    });
   } catch (error) {
     console.error("Checkout error:", error);
     return NextResponse.json(

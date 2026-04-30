@@ -1,8 +1,9 @@
-
-**Status:** 🟢 Phase 3 Complete — Ready for Phase 4 (Dashboard + UI)
+**Status:** 🟡 Phase 4 In Progress — SEO Foundation Complete, Auth + KYC + Purchase Flow Complete  
+**Next Priority:** v0 Database-First Launch (ship `v3.2-clean` to main)  
+**Branch Strategy:** `v3.2-clean` (database-only) → `v3.2-tokenized` (Base on-chain) when ready  
 **Branch:** `v3.2-clean`  
-**Created:** 2026-04-28  
-**Last Updated:** 2026-04-28
+**Created:** 2026-04-28
+**Last Updated:** 2026-04-30
 
 ---
 
@@ -36,20 +37,76 @@ Update this file via the same commit that introduces the change. Use the checkli
 
 ---
 
+## 🚀 Go-to-Market Strategy
+
+### Branch Strategy
+
+We maintain **two parallel branches**. They are identical except for the tokenization layer.
+
+| Branch | Purpose | When to Use |
+|--------|---------|-------------|
+| `v3.2-clean` | Database-only holdings. No blockchain. | Ship v0 immediately. |
+| `v3.2-tokenized` | Everything in `v3.2-clean` + on-chain tokens on Base. | When tokenization is ready. |
+
+**Rule:** `v3.2-tokenized` is always rebased on `v3.2-clean`. Any bug fix, UI improvement, auth change, or SEO update goes to `v3.2-clean` first, then merged into `v3.2-tokenized`.
+
+**Why two branches?**
+- v0 ships now. No blockchain dependency. No gas. No wallet friction.
+- v1 adds tokens behind the scenes. Same UX, but holdings are on-chain.
+- If tokenization hits a blocker, v0 keeps shipping.
+- If tokenization is ready early, we cut over to `v3.2-tokenized` instantly.
+
+### v0: Database-First Launch (Ship Now)
+
+**Goal:** Investors can browse, KYC, pay via Stripe, and see holdings in `/mystable`.
+No blockchain. No wallets. No gas.
+
+**What the investor sees:**
+- Browse horses → click "Buy Shares" → Stripe checkout → done
+- `/mystable` shows: "You own 2 shares of Hottathanafantasy (0.5%)"
+- No MetaMask. No gas. No wallet. Just a login and a dashboard.
+
+**v0 Exit Criteria:**
+- [ ] Document acknowledgement checkboxes block purchase (4.11)
+- [ ] SSOT_Build → Platform sync fixed (seed.json leases, marketplace.json export)
+- [ ] `v3.2-clean` merged to `main` branch
+- [ ] Hottathanafantasy status → `live`
+- [ ] Admin can toggle listing status (draft → ready → live → closed)
+
+### v1: Base Tokenization (Immediate Follow-Up)
+
+**Goal:** Same UX, but holdings become on-chain tokens on Base.
+
+**What changes for the investor:** Nothing. Same `/mystable`, same purchase flow.
+**What changes behind the scenes:** Holdings are now ERC-20 tokens on Base. `tx_hash` links to Base explorer.
+
+**v1 Exit Criteria:**
+- [ ] `HorseLeaseToken.sol` deployed per horse on Base Sepolia → mainnet
+- [ ] `token_contract_address` stored per listing in DB
+- [ ] Existing holders backfilled from `holdings` table (`status: 'paid'` → on-chain transfer)
+- [ ] Openfort wallet created on KYC approval (embedded, user manages nothing)
+- [ ] Stripe webhook → on-chain mint → update holdings (`status: 'minted'`)
+- [ ] Admin contract deployment UI (`/admin/contracts`)
+- [ ] `v3.2-tokenized` rebased on latest `v3.2-clean`, then merged to `main`
+
+---
+
 ## 🏗️ Architecture Decisions (Locked)
 
 | Decision | Choice | Rationale | Date |
 |----------|--------|-----------|------|
 | Database | **SQLite** (Better SQLite3) | File-based, simple NZ deployment, proven in Evolution_Token | 2026-04-28 |
 | Framework | **Next.js 16** + App Router | Server Components for SEO, latest stable | 2026-04-28 |
-| Auth | **NextAuth v5** + RBAC | Industry standard, JWT sessions, role-based middleware | 2026-04-28 |
+| Auth | **NextAuth v4** + RBAC | Google OAuth active; Email (Resend) built, deferred pending DNS | 2026-04-29 |
 | Styling | **Tailwind CSS** + shadcn/ui | Rapid development, Radix accessibility | 2026-04-28 |
 | Blockchain | **Base** (via viem/wagmi) | Low gas (~$0.01-0.05/tx), Coinbase on-ramps, retail-friendly | 2026-04-28 |
 | Wallet | **Openfort** (embedded ERC-4337) | Users stay in Web2 mindset, no seed phrases | 2026-04-28 |
 | KYC | **Didit** (fully automated) | Already integrated, working webhook flow, no manual review queue | 2026-04-28 |
 | Payments | **Stripe** (NZD) + on-chain tokens | Dual flow: fiat via Stripe, tokens via contract | 2026-04-28 |
-| Token Contracts | **Per-horse ERC-20** | Unique terms per syndicate, deployed via /admin | 2026-04-28 |
-| Evolution_Token | **Deprecated after port** | Staging repo — workflows consolidated into Platform | 2026-04-28 |
+| Token Contracts | **Per-horse ERC-20** | Unique terms per syndicate, deployed via `/admin` | 2026-04-28 |
+| Contract Repo | **Consolidated into Platform** | `HorseLeaseToken.sol`, Hardhat, deploy scripts — all in this repo. Evolution_Token archived after port. | 2026-04-29 |
+| Branch Strategy | **`v3.2-clean` + `v3.2-tokenized`** | `v3.2-clean` = database-only (ship now). `v3.2-tokenized` = identical + Base tokens (when ready). Rebase tokenized on clean. | 2026-04-29 |
+| Evolution_Token | **Archived after port** | Staging repo — all workflows (contracts, deploy, mint) consolidated into Platform | 2026-04-28 |
 | Testing | **Vitest** (unit) + **Playwright** (E2E) | Coverage thresholds enforced in CI | 2026-04-28 |
 | Hosting | **Current infrastructure** (not Vercel) | Self-managed, NZ-based | 2026-04-28 |
 | SSOT Sync | **File system watcher** + manual trigger | SSOT_Build is local FS, not remote API | 2026-04-28 |
@@ -61,6 +118,14 @@ Update this file via the same commit that introduces the change. Use the checkli
 
 ```
 v3.2-clean/
+├── contracts/
+│   ├── HorseLeaseToken.sol      # ERC-20 per-horse syndicate token
+│   └── lib/                     # OpenZeppelin imports (npm)
+├── scripts/
+│   ├── deploy-contract.ts       # Hardhat deploy script (per listing)
+│   ├── sync-ssot.ts
+│   └── seed-db.ts
+├── hardhat.config.ts            # Networks: hardhat, baseSepolia, base
 ├── src/
 │   ├── app/
 │   │   ├── (marketing)/
@@ -108,15 +173,13 @@ v3.2-clean/
 │   │   ├── auth/
 │   │   ├── db/                    # Better SQLite3
 │   │   ├── ssot/                  # SSOT_Build integration
-│   │   ├── tokens/                # On-chain interactions
+│   │   ├── tokens/                # On-chain interactions (viem)
 │   │   ├── stripe/
 │   │   ├── kyc/
 │   │   └── validation/
 │   ├── hooks/
 │   ├── types/
 │   └── styles/
-├── scripts/
-│   └── sync-ssot.ts
 ├── tests/
 │   ├── unit/
 │   ├── integration/
@@ -230,11 +293,11 @@ v3.2-clean/
 
 ### Phase 4: Dashboard + SEO + Testing (Week 4)
 
-- [ ] **4.1** Build MyStable dashboard (`/mystable`)
-  - [ ] Portfolio summary
-  - [ ] Active stakes list
-  - [ ] Performance metrics
-  - [ ] Quick actions
+- [x] **4.1** Build MyStable dashboard (`/mystable`)
+  - [x] Portfolio summary (real holdings from DB)
+  - [x] Active stakes list
+  - [ ] Performance metrics (deferred — requires on-chain data)
+  - [x] Quick actions (marketplace link, KYC CTA)
 - [ ] **4.2** Build horse detail view (`/mystable/horse/[id]`)
   - [ ] Horse profile (from SSOT)
   - [ ] Token ownership details
@@ -243,25 +306,31 @@ v3.2-clean/
   - [ ] Profile management
   - [ ] KYC status display
   - [ ] Wallet connection management
-- [ ] **4.4** Build admin panel (`/admin`)
+- [x] **4.4** Build admin panel (`/admin`)
   - [ ] Listing management (CRUD)
-  - [ ] User management
-  - [ ] KYC review queue
+  - [x] User management (read-only table)
+  - [x] KYC review queue (real data from DB)
   - [ ] Sales analytics
-- [ ] **4.5** Dynamic OG images
-  - [ ] `/marketplace/[slug]/opengraph-image.tsx`
-  - [ ] Horse photo + syndicate info
-  - [ ] Edge runtime
-- [ ] **4.6** Complete sitemap
-  - [ ] All static routes
-  - [ ] All dynamic listing routes
-  - [ ] `lastModified` from SSOT update time
-- [ ] **4.7** Web app manifest (`manifest.ts`)
-- [ ] **4.8** Structured data enhancements
-  - [ ] Product schema per listing
-  - [ ] Horse schema
-  - [ ] Organization schema
-  - [ ] BreadcrumbList
+- [x] **4.5** Dynamic OG images
+  - [x] `/marketplace/[slug]/opengraph-image.tsx`
+  - [x] Horse name + price + branding
+  - [x] Edge runtime
+- [x] **4.6** Complete sitemap
+  - [x] All static routes
+  - [x] All dynamic listing routes (live + ready_to_publish)
+  - [x] `lastModified` from DB `updated_at`
+- [x] **4.7** Web app manifest (`manifest.ts`)
+- [x] **4.8** Structured data enhancements
+  - [x] Product schema per listing (price, availability, properties)
+  - [x] Horse schema (NZTR life number, pedigree)
+  - [x] Organization + WebSite schema (global)
+  - [x] BreadcrumbList (marketplace, press, listing pages)
+  - [x] FAQ schema (homepage)
+- [x] **4.13** SEO foundation — page-level metadata
+  - [x] `generateMetadata` per `/marketplace/[slug]` (unique title, description, OG, Twitter)
+  - [x] `loading.tsx` + `error.tsx` for marketplace routes
+  - [x] Privacy-aware Google Analytics (DNT-respecting, IP anonymized)
+  - [x] `noindex` on `/auth`, `/mystable`, `/admin`
 - [ ] **4.9** Integration tests
   - [ ] Checkout flow
   - [ ] Token mint flow
@@ -278,13 +347,13 @@ v3.2-clean/
   - [ ] All 3 must be ticked before "Proceed to Payment" is enabled
   - [ ] Acknowledgements recorded on holding record (`documentAcknowledgements` JSON)
 - [ ] **4.12** Hottathanafantasy end-to-end tokenisation test (single-horse slug)
-  - [ ] Listing appears on `/marketplace` (status: `ready_to_publish`)
-  - [ ] Listing detail page renders at `/marketplace/hottathanafantasy`
-  - [ ] "Buy Shares" flow initiates Stripe checkout
-  - [ ] Webhook creates holding with `status: "paid"`
-  - [ ] KYC check gates token mint
-  - [ ] Token mint API returns `status: "minted"` + txHash
-  - [ ] Holding appears in `/mystable` portfolio
+  - [x] Listing appears on `/marketplace` (status: `ready_to_publish`)
+  - [x] Listing detail page renders at `/marketplace/hottathanafantasy`
+  - [x] "Buy Shares" flow initiates Stripe checkout (KYC-gated)
+  - [x] Webhook creates holding with `status: "paid"`
+  - [x] KYC check gates token mint
+  - [x] Token mint API returns `status: "minted"` + txHash
+  - [x] Holding appears in `/mystable` portfolio
   - [ ] Edge cases: insufficient KYC, max stake exceeded, sold out
 
 **Phase 4 Owner:** TBD  
@@ -292,26 +361,85 @@ v3.2-clean/
 
 ---
 
-## 🔄 Migration & Cutover
+### Phase 5: Tokenization Layer (v1 — `v3.2-tokenized` branch)
 
-### Phase 5: Staging + Testing (Week 5)
+**Goal:** Port all smart contract infrastructure from Evolution_Token. Add on-chain tokens behind the existing v0 UX. This phase ONLY exists in the `v3.2-tokenized` branch.
 
-- [ ] **5.1** Deploy v3.2-clean to staging environment
-- [ ] **5.2** Run full E2E test suite
-- [ ] **5.3** Performance audit (Lighthouse 90+ target)
-- [ ] **5.4** Security audit (re-run npm audit, CSP testing)
-- [ ] **5.5** Migrate production SQLite database to new schema
-- [ ] **5.6** Verify SSOT sync in staging
-- [ ] **5.7** Load testing (simulate 100 concurrent users)
+**Branch rule:** Start from `v3.2-clean`, create `v3.2-tokenized`, then apply these changes. Never merge tokenized → clean.
 
-### Phase 6: Production Cutover (Week 6)
+- [ ] **5.1** Port `HorseLeaseToken.sol` into `contracts/` directory
+  - [ ] Copy contract source + OpenZeppelin dependencies
+  - [ ] Add `hardhat.config.ts` with networks: hardhat, baseSepolia, base
+  - [ ] Add `@nomicfoundation/hardhat-toolbox-viem` to devDependencies
+- [ ] **5.2** Add `token_contract_address` field to `listings` table schema
+  - [ ] Migration: `ALTER TABLE listings ADD COLUMN token_contract_address TEXT`
+  - [ ] Update `MarketplaceListing` type + `rowToListing` mapper
+  - [ ] Update `upsertListing` to persist contract address
+- [ ] **5.3** Port deploy scripts from Evolution_Token
+  - [ ] `scripts/deploy-contract.ts` — deploy per-horse contract with listing params
+  - [ ] Save deployment artifact to `data/deployments/{slug}-{network}-{timestamp}.json`
+  - [ ] Update listing DB record with deployed contract address
+- [ ] **5.4** Build admin contract deployment UI (`/admin/contracts`)
+  - [ ] "Deploy Contract" button per listing (status: `ready_to_publish` or `live`)
+  - [ ] Form: confirm network (baseSepolia / base), confirm splits total 100%
+  - [ ] Display deployed address + Etherscan link + tx hash
+  - [ ] Prevent re-deploy if contract already exists (idempotent)
+- [ ] **5.5** Update token mint API (`api/tokens/mint`) to use per-listing contract
+  - [ ] Read `token_contract_address` from listing record (not env var)
+  - [ ] Fallback to `CONTRACT_ADDRESS` env var for legacy listings
+  - [ ] Remove mock mint path once all listings have contract addresses
+- [ ] **5.6** Build token balance API (`api/tokens/balance`)
+  - [ ] On-chain balance check via viem `balanceOf`
+  - [ ] Portfolio aggregation across multiple holdings
+- [ ] **5.7** Backfill existing holders
+  - [ ] Read `holdings` table where `status = 'paid'`
+  - [ ] Call `transfer(admin, investorWallet, amount)` for each
+  - [ ] Update holdings row with `tx_hash`, `minted_at`
+- [ ] **5.8** Enable Openfort wallets
+  - [ ] KYC callback creates embedded wallet if not exists
+  - [ ] Store `wallet_address` in `users` table
+  - [ ] Investor has a wallet — they just don't need to manage it
+- [ ] **5.9** Archive Evolution_Token repo
+  - [ ] Final commit: `ARCHIVED — all workflows migrated to Evolution_Platform`
+  - [ ] Update README with migration notice + link to new repo
 
-- [ ] **6.1** Feature-flag: 10% traffic to v3.2-clean
-- [ ] **6.2** Monitor: error rates, conversion, token mints, page speed
-- [ ] **6.3** Ramp: 25% → 50% → 100% over 3 days
-- [ ] **6.4** Rollback plan: instant DNS switch to v3.1
-- [ ] **6.5** Archive v3.1 branch
-- [ ] **6.6** Update SSOT_Build to point to new platform
+**Phase 5 Owner:** TBD  
+**Phase 5 Target:** 2026-06-02
+
+---
+
+### Phase 6: Staging + Testing (Week 6)
+
+- [ ] **6.1** Deploy `v3.2-clean` to staging environment (v0 smoke test)
+- [ ] **6.2** Deploy `v3.2-tokenized` to staging environment (v1 smoke test)
+- [ ] **6.3** Run full E2E test suite on `v3.2-clean`
+- [ ] **6.4** Run tokenization test suite on `v3.2-tokenized`
+- [ ] **6.5** Performance audit (Lighthouse 90+ target)
+- [ ] **6.6** Security audit (re-run npm audit, CSP testing)
+- [ ] **6.7** Migrate production SQLite database to new schema
+- [ ] **6.8** Verify SSOT sync in staging
+- [ ] **6.9** Load testing (simulate 100 concurrent users)
+- [ ] **6.10** Contract deployment test on Base Sepolia
+- [ ] **6.11** End-to-end tokenisation test: deploy → purchase → mint → portfolio
+
+**Phase 6 Owner:** TBD  
+**Phase 6 Target:** 2026-06-09
+
+---
+
+### Phase 7: Production Cutover (Week 7)
+
+- [ ] **7.1** Decision point: ship `v3.2-clean` (v0) or `v3.2-tokenized` (v1)?
+- [ ] **7.2** If v0: Feature-flag 10% traffic to `v3.2-clean`
+- [ ] **7.3** If v1: Rebase `v3.2-tokenized` on latest `v3.2-clean`, then feature-flag 10%
+- [ ] **7.4** Monitor: error rates, conversion, token mints, page speed
+- [ ] **7.5** Ramp: 25% → 50% → 100% over 3 days
+- [ ] **7.6** Rollback plan: instant DNS switch to v3.1
+- [ ] **7.7** Archive v3.1 branch
+- [ ] **7.8** Update SSOT_Build to point to new platform
+
+**Phase 7 Owner:** TBD  
+**Phase 7 Target:** 2026-06-16
 
 ---
 
@@ -320,16 +448,19 @@ v3.2-clean/
 | Risk | Impact | Mitigation | Status |
 |------|--------|-----------|--------|
 | SSOT_Build schema changes | High | Versioned transformer, validation with Zod | 🟡 Monitoring |
-| Token contract mainnet deployment | High | Verify contract address, test on Sepolia first | 🟡 Pending |
+| Token contract mainnet deployment | High | Port contract + Hardhat into Platform; admin deploy from dashboard; test on Sepolia first | 🟡 In Progress (Phase 5, `v3.2-tokenized` branch) |
+| Evolution_Token dual-repo dependency | High | Consolidate all workflows into Platform; archive Evolution_Token | 🟡 In Progress (Phase 5, `v3.2-tokenized` branch) |
+| v0 launch delay | High | Ship `v3.2-clean` now. Tokenization is a layer, not a blocker. | 🟢 Mitigated (branch strategy) |
 | KYC provider (Didit) rate limits | Medium | Implement request caching, fallback queue | 🟡 Pending |
 | Image optimization pipeline | Medium | Sharp-based script, run at build time | 🟡 Pending |
 | Concurrent DB writes (SQLite) | Low | WAL mode, file locks, queue writes | 🟢 Mitigated |
+| Email auth DNS verification | Low | MiStables to add 3 Route 53 records; Google OAuth active as fallback | 🟡 Pending |
 
 ---
 
 ## 📊 Progress Tracking
 
-### Current Phase: Phase 3 Complete — Ready for Phase 4 (Dashboard + UI)
+### Current Phase: Phase 4 In Progress — Auth + KYC + Purchase Flow Complete
 
 | Task | Status | Owner | Commit |
 |------|--------|-------|--------|
@@ -340,10 +471,25 @@ v3.2-clean/
 | SSOT sync engine (watch + manual) | ✅ Done | Cline | — |
 | API endpoint `/api/marketplace/sync` | ✅ Done | Cline | — |
 | Seed script from static JSON | ✅ Done | Cline | — |
-| `/marketplace` placeholder retained | ✅ Done | Cline | — |
-| `/mystable` placeholder retained | ✅ Done | Cline | — |
+| `/marketplace` live grid + detail pages | ✅ Done | Cline | — |
 | Hottathanafantasy listing data + images + docs | ✅ Done | Cline | — |
 | Hottathanafantasy seeded to SQLite | ✅ Done | Cline | — |
+| **Email auth (Resend magic links)** | ✅ Built | Cline | — |
+| **Google OAuth auth** | ✅ Active | Cline | — |
+| **Role + KYC status in JWT/session** | ✅ Done | Cline | — |
+| **KYC gate in checkout API** | ✅ Done | Cline | — |
+| **Tier-gated purchase UI** | ✅ Done | Cline | — |
+| **MyStable real holdings + KYC banner** | ✅ Done | Cline | — |
+| **Admin panel with NextAuth RBAC** | ✅ Done | Cline | — |
+| **Didit KYC verification UI** | ✅ Done | Cline | — |
+| **PWA manifest (`manifest.ts`)** | ✅ Done | Cline | — |
+| **Dynamic sitemap with listing routes** | ✅ Done | Cline | — |
+| **Dynamic OG images (`opengraph-image.tsx`)** | ✅ Done | Cline | — |
+| **Structured data (Product, Horse, Breadcrumb, FAQ)** | ✅ Done | Cline | — |
+| **Listing page `generateMetadata`** | ✅ Done | Cline | — |
+| **Loading + error boundaries** | ✅ Done | Cline | — |
+| **Privacy-aware Google Analytics** | ✅ Done | Cline | — |
+| **`noindex` on private pages** | ✅ Done | Cline | — |
 
 ---
 
@@ -359,6 +505,10 @@ v3.2-clean/
 | 2026-04-28 | `6f59777f` | Phase 3: Payments + Token Integration — Stripe checkout/webhook, Didit KYC, token mint via viem on Base, Openfort wallets | Cline |
 | 2026-04-28 | `366ae301` | Phase 4 start: Replace marketplace placeholders with live listing grid + detail pages | Cline |
 | 2026-04-28 | — | Add Hottathanafantasy NZ02 listing — single-horse test slug for tokenisation validation; placeholder images + document structure | Cline |
+| 2026-04-29 | — | Phase 4 sprint: Email auth (Resend) built + deferred; Google OAuth active; KYC-gated checkout; tier-gated purchase UI; real MyStable holdings; Admin RBAC + real data; Didit KYC verification UI | Cline |
+| 2026-04-29 | — | **Decision: Option B — Consolidate Evolution_Token into Platform.** New Phase 5 added: port `HorseLeaseToken.sol`, Hardhat config, deploy scripts, per-listing contract addresses, admin deployment UI. Evolution_Token to be archived. | Cline |
+| 2026-04-29 | — | **Decision: Dual-branch GTM strategy.** `v3.2-clean` = database-only (ship v0 now). `v3.2-tokenized` = identical + Base tokens (v1 when ready). Rebase rule: tokenized always rebased on clean. | Cline |
+| 2026-04-30 | — | **Sprint planning session:** All real credentials gathered and locked in `.env`. Stripe test keys (publishable + secret), Didit API key + KYC+AML workflow ID (`8e9761bf-c63e-45a7-81b8-e7b66a17bbde`), Openfort keys (public, secret, shield pub, shield secret). Webhook secrets (Stripe + Didit) documented for user generation on dashboards. Base Sepolia RPC configured; deployer private key stubbed with auto-generation plan for testing. | Cline |
 
 ---
 
@@ -372,6 +522,38 @@ v3.2-clean/
 
 ---
 
-**Next Action:** Continue Phase 4 — Build MyStable dashboard (`/mystable`) + purchase flow UI (or proceed with Hottathanafantasy tokenisation test: human approval → status `live` → end-to-end purchase + mint validation)
+**Next Action:** Ship v0. Priority order for `v3.2-clean`: (1) Wire document acknowledgement checkboxes to block purchase (4.11), (2) Fix SSOT_Build → Platform sync, (3) Admin listing status toggle, (4) Merge `v3.2-clean` to `main`. Parallel: prepare `v3.2-tokenized` branch from `v3.2-clean` + Phase 5 tokenization layer.
+
+### Credential Vault (Locked in `.env` — 2026-04-30)
+
+| Service | Key | Webhook Secret | Status |
+|---------|-----|----------------|--------|
+| **Stripe** | `sk_test_6aa2b3e6-776a-51aa-a2c7-64881893c6bc` | ⚠️ Generate in Dashboard: Developers → Webhooks → Add destination | Ready |
+| **Didit** | `disqRn333A2aZf-C_0oqJfeWfBdOQQtxiMVHNBR3dFM` | ⚠️ Generate in Dashboard: Developers → Webhooks → Add destination | Ready |
+| **Didit Workflow** | `8e9761bf-c63e-45a7-81b8-e7b66a17bbde` (KYC + AML) | — | Ready |
+| **Openfort** | `sk_test_6aa2b3e6-776a-51aa-a2c7-64881893c6bc` | — | Ready |
+| **Base** | `BASE_RPC_URL=https://sepolia.base.org` | — | Sepolia configured; deployer key stubbed |
+
+### Webhook Secret Generation Guide
+
+**Stripe:**
+1. Stripe Dashboard → Developers → Webhooks → "+ Add destination"
+2. Enter endpoint URL: `https://yourdomain.com/api/checkout/webhook`
+3. Select events: `checkout.session.completed`, `invoice.payment_succeeded`
+4. Copy `whsec_...` → `.env` as `STRIPE_WEBHOOK_SECRET`
+
+**Didit:**
+1. Didit Dashboard → Developers → Webhooks → "Add destination"
+2. Enter endpoint URL: `https://yourdomain.com/api/kyc/webhook`
+3. Copy secret → `.env` as `DIDIT_WEBHOOK_SECRET`
+
+### Base Testing Approach
+
+| Network | Method | Deployer Key |
+|---------|--------|--------------|
+| Hardhat local | Built-in test accounts | `0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266` (account 0) |
+| Base Sepolia | Auto-generated wallet via viem | Generated at first deploy, saved to `data/deployments/` |
+| Base mainnet | User-provided production wallet | Documented gap — swap in `ADMIN_PRIVATE_KEY` |
+
 **Updated by:** Cline  
-**Last update:** 2026-04-28
+**Last update:** 2026-04-30

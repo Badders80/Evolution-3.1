@@ -1,7 +1,18 @@
-export type MarketplacePublishStatus = 'draft' | 'ready_to_publish' | 'live' | 'closed';
-export type MarketplaceApplicationStatus = 'submitted' | 'under_review' | 'reserved_manual' | 'closed';
+export type MarketplacePublishStatus =
+  | "draft"
+  | "ready_to_publish"
+  | "live"
+  | "closed";
+export type MarketplaceApplicationStatus =
+  | "submitted"
+  | "under_review"
+  | "reserved_manual"
+  | "closed";
 
-export type OfficialDocumentType = 'hlt_term_sheet' | 'pds' | 'syndicate_agreement';
+export type OfficialDocumentType =
+  | "hlt_term_sheet"
+  | "pds"
+  | "syndicate_agreement";
 
 export type OfficialDocument = {
   id: string;
@@ -80,6 +91,7 @@ export type MarketplaceListing = {
   };
   disclaimers: string[];
   officialDocuments: OfficialDocument[];
+  tokenContractAddress?: string; // Forward-compatible: Base ERC-20 address (v1)
 };
 
 export type MarketplacePayload = {

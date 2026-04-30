@@ -1,20 +1,20 @@
-'use client';
+"use client";
 
-import { useRouter, useSearchParams } from 'next/navigation';
-import Image from 'next/image';
-import { useEffect, useState } from 'react';
-import { getProviders, signIn } from 'next-auth/react';
-import { LOGOS } from '@/lib/assets';
-import { submitInterest } from '@/services/interest/submitInterest';
+import { useRouter, useSearchParams } from "next/navigation";
+import Image from "next/image";
+import { useEffect, useState } from "react";
+import { getProviders, signIn } from "next-auth/react";
+import { LOGOS } from "@/lib/assets";
 
 export function AuthClient() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [statusMessage, setStatusMessage] = useState<string | null>(null);
   const [isGoogleSigningIn, setIsGoogleSigningIn] = useState(false);
   const [googleAuthEnabled, setGoogleAuthEnabled] = useState(false);
+  const [emailAuthEnabled, setEmailAuthEnabled] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
@@ -24,10 +24,12 @@ export function AuthClient() {
         const providers = await getProviders();
         if (!cancelled) {
           setGoogleAuthEnabled(Boolean(providers?.google));
+          setEmailAuthEnabled(Boolean(providers?.email));
         }
       } catch {
         if (!cancelled) {
           setGoogleAuthEnabled(false);
+          setEmailAuthEnabled(false);
         }
       }
     };
@@ -39,23 +41,20 @@ export function AuthClient() {
     };
   }, []);
 
-  const handleEmailSignup = async (event: React.FormEvent<HTMLFormElement>) => {
+  const handleEmailSignIn = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!email) return;
 
     setIsSubmitting(true);
     setStatusMessage(null);
     try {
-      await submitInterest({
+      await signIn("email", {
         email,
-        campaignKey: 'auth_email_signup',
-        source: 'auth',
+        callbackUrl: searchParams.get("redirectedFrom") || "/marketplace",
+        redirect: true,
       });
-      setStatusMessage('Thanks! You are on the list.');
-      setEmail('');
-      window.setTimeout(() => {
-        router.push('/');
-      }, 1200);
+    } catch {
+      setStatusMessage("Something went wrong. Please try again.");
     } finally {
       setIsSubmitting(false);
     }
@@ -64,8 +63,8 @@ export function AuthClient() {
   const handleGoogleSignIn = async () => {
     setIsGoogleSigningIn(true);
     try {
-      await signIn('google', {
-        callbackUrl: searchParams.get('redirectedFrom') || '/marketplace',
+      await signIn("google", {
+        callbackUrl: searchParams.get("redirectedFrom") || "/marketplace",
       });
     } finally {
       setIsGoogleSigningIn(false);
@@ -83,9 +82,12 @@ export function AuthClient() {
             height={64}
             className="mx-auto mb-6"
           />
-          <h1 className="text-3xl font-light text-white mb-2">Access & Updates</h1>
+          <h1 className="text-3xl font-light text-white mb-2">
+            Access & Updates
+          </h1>
           <p className="text-white/60">
-            Sign in with Google for gated access, or join by email for launch updates.
+            Sign in to access gated features, manage your stable, and purchase
+            shares.
           </p>
         </div>
 
@@ -96,49 +98,59 @@ export function AuthClient() {
             disabled={isGoogleSigningIn}
             className="w-full flex items-center justify-center gap-3 rounded-lg bg-white text-gray-900 font-medium py-3 px-4 transition-all duration-200 shadow-lg hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-60"
           >
-            {isGoogleSigningIn ? 'Opening Google sign-in...' : 'Continue with Google'}
+            {isGoogleSigningIn
+              ? "Opening Google sign-in..."
+              : "Continue with Google"}
           </button>
         ) : null}
 
-        <form onSubmit={handleEmailSignup} className="mt-6 space-y-3">
-          <label className="sr-only" htmlFor="auth-email">
-            Email address
-          </label>
-          <input
-            id="auth-email"
-            type="email"
-            autoComplete="email"
-            placeholder="Email address"
-            value={email}
-            onChange={(event) => setEmail(event.target.value)}
-            className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-center text-sm text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-primary/40"
-            required
-          />
-          <button
-            type="submit"
-            disabled={isSubmitting}
-            className="w-full flex items-center justify-center gap-3 rounded-lg bg-white/90 hover:bg-white text-gray-900 font-medium py-3 px-4 transition-all duration-200 shadow-lg hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-60"
-          >
-            <svg className="h-5 w-5 text-gray-900" viewBox="0 0 24 24" fill="none">
-              <path
-                d="M4 6.75C4 5.78 4.78 5 5.75 5h12.5C19.22 5 20 5.78 20 6.75v10.5c0 .97-.78 1.75-1.75 1.75H5.75A1.75 1.75 0 0 1 4 17.25V6.75Z"
-                stroke="currentColor"
-                strokeWidth="1.5"
-              />
-              <path
-                d="M5 7l7 5 7-5"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-            {isSubmitting ? 'Submitting...' : statusMessage ?? 'Join with email'}
-          </button>
-        </form>
+        {emailAuthEnabled ? (
+          <form onSubmit={handleEmailSignIn} className="mt-6 space-y-3">
+            <label className="sr-only" htmlFor="auth-email">
+              Email address
+            </label>
+            <input
+              id="auth-email"
+              type="email"
+              autoComplete="email"
+              placeholder="Email address"
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
+              className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-center text-sm text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-primary/40"
+              required
+            />
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className="w-full flex items-center justify-center gap-3 rounded-lg bg-white/90 hover:bg-white text-gray-900 font-medium py-3 px-4 transition-all duration-200 shadow-lg hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-60"
+            >
+              <svg
+                className="h-5 w-5 text-gray-900"
+                viewBox="0 0 24 24"
+                fill="none"
+              >
+                <path
+                  d="M4 6.75C4 5.78 4.78 5 5.75 5h12.5C19.22 5 20 5.78 20 6.75v10.5c0 .97-.78 1.75-1.75 1.75H5.75A1.75 1.75 0 0 1 4 17.25V6.75Z"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                />
+                <path
+                  d="M5 7l7 5 7-5"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+              {isSubmitting
+                ? "Sending link..."
+                : (statusMessage ?? "Sign in with email")}
+            </button>
+          </form>
+        ) : null}
 
         <p className="text-center text-white/40 text-sm mt-6">
-          By joining with email, you agree to our Terms of Service and Privacy Policy.
+          By signing in, you agree to our Terms of Service and Privacy Policy.
         </p>
       </div>
     </div>

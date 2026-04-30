@@ -1,6 +1,7 @@
 # Evolution_Platform — Memory
 
 > Tool-agnostic project memory. Any agent or human can read/write.
+> Strategic context lives in GAME_PLAN.md.
 
 ## Current State
 
@@ -66,6 +67,21 @@
 
 Before recommending local models, builds, or Docker workloads, read:
 - `DNA/ops/HARDWARE.md` — machine specs (GPU: RTX 3060 12GB, RAM: 12GB WSL)
+
+## Workspace Tools Available
+
+When building in this project, leverage the shared workspace infrastructure:
+
+| Tool | Location | Use For |
+|------|----------|---------|
+| Vision MCP | `tools/vision-mcp/` | Screenshots, OCR, UI review |
+| Codex Peers | `tools/codex-peers-mcp/` | Cross-session messaging |
+| OpenFang + Ollama | `tools/agent-stack/` | Bounded agent tasks |
+| UI/UX Pro Max | `DNA/skills/UI_UX_PRO_MAX.md` | Design intelligence |
+| shadcn/ui | Workspace registry | Component source (`npx shadcn`) |
+| Playwright | Workspace registry | Browser automation |
+
+Full active registry: `DNA/ops/STACK.md`
 
 ## DNA References
 - `DNA/ops/HARDWARE.md` — machine specs (read before recommending local models)

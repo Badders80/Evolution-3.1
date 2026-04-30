@@ -2,7 +2,16 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { getToken } from "next-auth/jwt";
 
-const PUBLIC_PATHS = ["/", "/auth", "/marketplace", "/press", "/terms", "/privacy", "/updates"];
+const PUBLIC_PATHS = [
+  "/",
+  "/auth",
+  "/auth/verify-request",
+  "/marketplace",
+  "/press",
+  "/terms",
+  "/privacy",
+  "/updates",
+];
 const AUTH_PATHS = ["/mystable", "/mystable/verify"];
 const ADMIN_PATHS = ["/admin"];
 const API_PATHS = ["/api"];
@@ -35,20 +44,26 @@ function isRateLimited(identifier: string): boolean {
 
 function isPublicPath(pathname: string): boolean {
   return PUBLIC_PATHS.some(
-    (path) => pathname === path || pathname.startsWith(`${path}/`)
+    (path) => pathname === path || pathname.startsWith(`${path}/`),
   );
 }
 
 function isAuthRequiredPath(pathname: string): boolean {
-  return AUTH_PATHS.some((path) => pathname === path || pathname.startsWith(`${path}/`));
+  return AUTH_PATHS.some(
+    (path) => pathname === path || pathname.startsWith(`${path}/`),
+  );
 }
 
 function isAdminPath(pathname: string): boolean {
-  return ADMIN_PATHS.some((path) => pathname === path || pathname.startsWith(`${path}/`));
+  return ADMIN_PATHS.some(
+    (path) => pathname === path || pathname.startsWith(`${path}/`),
+  );
 }
 
 function isApiPath(pathname: string): boolean {
-  return API_PATHS.some((path) => pathname === path || pathname.startsWith(`${path}/`));
+  return API_PATHS.some(
+    (path) => pathname === path || pathname.startsWith(`${path}/`),
+  );
 }
 
 export async function middleware(request: NextRequest) {
@@ -63,7 +78,7 @@ export async function middleware(request: NextRequest) {
     if (isRateLimited(clientId)) {
       return NextResponse.json(
         { error: "Rate limit exceeded. Please try again later." },
-        { status: 429 }
+        { status: 429 },
       );
     }
   }

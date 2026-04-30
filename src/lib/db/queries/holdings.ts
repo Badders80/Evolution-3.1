@@ -13,6 +13,7 @@ export interface HoldingRow {
   stripe_payment_intent_id: string | null;
   tx_hash: string | null;
   minted_at: string | null;
+  document_acknowledgements: string | null; // JSON array of acknowledged doc IDs
   created_at: string;
   updated_at: string;
 }
@@ -34,15 +35,17 @@ export function getHoldingById(id: string): HoldingRow | null {
   return row ?? null;
 }
 
-export function createHolding(data: Omit<HoldingRow, "created_at" | "updated_at">): void {
+export function createHolding(
+  data: Omit<HoldingRow, "created_at" | "updated_at">,
+): void {
   const db = getDb();
   const stmt = db.prepare(`
     INSERT INTO holdings (
       id, user_id, listing_id, listing_slug, horse_name,
       tokens_owned, percent_owned, status,
       stripe_session_id, stripe_payment_intent_id,
-      tx_hash, minted_at, created_at, updated_at
-    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, datetime('now'), datetime('now'))
+      tx_hash, minted_at, document_acknowledgements, created_at, updated_at
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, datetime('now'), datetime('now'))
   `);
   stmt.run(
     data.id,
@@ -56,14 +59,17 @@ export function createHolding(data: Omit<HoldingRow, "created_at" | "updated_at"
     data.stripe_session_id,
     data.stripe_payment_intent_id,
     data.tx_hash,
-    data.minted_at
+    data.minted_at,
+    data.document_acknowledgements,
   );
 }
 
 export function updateHoldingStatus(
   id: string,
   status: HoldingRow["status"],
-  updates?: Partial<Pick<HoldingRow, "tx_hash" | "minted_at">>
+  updates?: Partial<
+    Pick<HoldingRow, "tx_hash" | "minted_at" | "document_acknowledgements">
+  >,
 ): void {
   const db = getDb();
   const fields = ["status = ?"];
@@ -76,6 +82,10 @@ export function updateHoldingStatus(
   if (updates?.minted_at !== undefined) {
     fields.push("minted_at = ?");
     values.push(updates.minted_at);
+  }
+  if (updates?.document_acknowledgements !== undefined) {
+    fields.push("document_acknowledgements = ?");
+    values.push(updates.document_acknowledgements);
   }
 
   values.push(id);

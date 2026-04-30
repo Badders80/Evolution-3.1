@@ -1,13 +1,18 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { requireAdmin } from '@/lib/auth';
+import { NextRequest, NextResponse } from "next/server";
+import { getServerSession } from "next-auth";
+import { revalidatePath } from "next/cache";
+import { authOptions } from "@/lib/auth";
+import { getUsers } from "@/lib/db/queries/users";
+import { getHoldingsByUser } from "@/lib/db/queries/holdings";
+import { getAllListings, updateListingStatus } from "@/lib/db/queries/listings";
+import type { MarketplacePublishStatus } from "@/types/marketplace";
 
-// Mock data - replace with actual database queries
 export interface InvestorRecord {
   id: string;
   email: string;
   name: string;
-  walletAddress: string;
-  kycStatus: 'verified' | 'pending' | 'rejected';
+  walletAddress: string | null;
+  kycStatus: string;
   createdAt: string;
 }
 
@@ -18,7 +23,7 @@ export interface HoldingRecord {
   stakePercent: number;
   units: number;
   totalValue: number;
-  txHash: string;
+  txHash: string | null;
   purchaseDate: string;
 }
 
@@ -29,73 +34,167 @@ export interface AdminStats {
   verifiedInvestors: number;
 }
 
-const mockInvestors: InvestorRecord[] = [
-  {
-    id: '1',
-    email: 'investor1@example.com',
-    name: 'John Doe',
-    walletAddress: '0x742d35Cc6634C0532925a3b844Bc454e4438f44e',
-    kycStatus: 'verified',
-    createdAt: '2024-01-15T10:30:00Z'
-  },
-  {
-    id: '2',
-    email: 'investor2@example.com',
-    name: 'Jane Smith',
-    walletAddress: '0x742d35Cc6634C0532925a3b844Bc454e4438f44f',
-    kycStatus: 'pending',
-    createdAt: '2024-01-16T14:20:00Z'
-  }
-];
+export interface ListingRecord {
+  id: string;
+  slug: string;
+  title: string;
+  publishStatus: string;
+  horseName: string;
+  tokenPriceNzd: number;
+  tokenCount: number;
+}
 
-const mockHoldings: HoldingRecord[] = [
-  {
-    id: '1',
-    investorId: '1',
-    horseName: 'First Gear',
-    stakePercent: 5,
-    units: 10,
-    totalValue: 2400,
-    txHash: '0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef',
-    purchaseDate: '2024-01-20T09:15:00Z'
+async function requireAdmin() {
+  const session = await getServerSession(authOptions);
+  if (!session?.user?.email || session.user.role !== "admin") {
+    return null;
   }
-];
+  return session;
+}
 
 export async function GET(request: NextRequest) {
   try {
-    // Check admin authentication
-    requireAdmin(request);
+    const session = await requireAdmin();
+    if (!session) {
+      return NextResponse.json(
+        { error: "Unauthorized - Admin access required" },
+        { status: 401 },
+      );
+    }
 
-    // Calculate stats
+    // Fetch real data from DB
+    const users = getUsers();
+    const allHoldings: HoldingRecord[] = [];
+    let totalValue = 0;
+
+    for (const user of users) {
+      const userHoldings = getHoldingsByUser(user.id);
+      for (const h of userHoldings) {
+        const value = h.tokens_owned * 1000; // placeholder price
+        totalValue += value;
+        allHoldings.push({
+          id: h.id,
+          investorId: user.id,
+          horseName: h.horse_name || "Unknown",
+          stakePercent: h.percent_owned,
+          units: h.tokens_owned,
+          totalValue: value,
+          txHash: h.tx_hash,
+          purchaseDate: h.created_at,
+        });
+      }
+    }
+
+    const investors: InvestorRecord[] = users.map((u) => ({
+      id: u.id,
+      email: u.email,
+      name: u.name || u.email.split("@")[0],
+      walletAddress: u.wallet_address,
+      kycStatus: u.kyc_status,
+      createdAt: u.created_at,
+    }));
+
     const stats: AdminStats = {
-      totalInvestors: mockInvestors.length,
-      totalValue: mockHoldings.reduce((sum, holding) => sum + holding.totalValue, 0),
-      pendingKycCount: mockInvestors.filter(inv => inv.kycStatus === 'pending').length,
-      verifiedInvestors: mockInvestors.filter(inv => inv.kycStatus === 'verified').length
+      totalInvestors: users.length,
+      totalValue,
+      pendingKycCount: users.filter((u) => u.kyc_status === "pending").length,
+      verifiedInvestors: users.filter((u) => u.kyc_status === "verified")
+        .length,
     };
 
-    // Get KYC queue (pending approvals)
-    const kycQueue = mockInvestors.filter(inv => inv.kycStatus === 'pending');
+    const kycQueue = investors.filter((inv) => inv.kycStatus === "pending");
+
+    // Fetch all listings from DB
+    const allListings = getAllListings();
+    const listings: ListingRecord[] = allListings.map((l) => ({
+      id: l.id,
+      slug: l.slug,
+      title: l.title,
+      publishStatus: l.publishStatus,
+      horseName: l.horse.name,
+      tokenPriceNzd: l.offering.tokenPriceNzd,
+      tokenCount: l.offering.tokenCount,
+    }));
 
     return NextResponse.json({
       stats,
-      investors: mockInvestors,
-      holdings: mockHoldings,
-      kycQueue
+      investors,
+      holdings: allHoldings,
+      kycQueue,
+      listings,
     });
-
   } catch (error) {
-    if (error instanceof Error && error.message === 'Unauthorized') {
+    console.error("Admin API error:", error);
+    return NextResponse.json(
+      { error: "Internal server error" },
+      { status: 500 },
+    );
+  }
+}
+
+/**
+ * PATCH /api/admin — Update listing publish status
+ */
+export async function PATCH(request: NextRequest) {
+  try {
+    const session = await requireAdmin();
+    if (!session) {
       return NextResponse.json(
-        { error: 'Unauthorized - Admin access required' },
-        { status: 401 }
+        { error: "Unauthorized - Admin access required" },
+        { status: 401 },
       );
     }
-    
-    console.error('Admin API error:', error);
+
+    const body = await request.json();
+    const { listingId, status } = body;
+
+    if (!listingId || !status) {
+      return NextResponse.json(
+        { error: "Missing required fields: listingId, status" },
+        { status: 400 },
+      );
+    }
+
+    const validStatuses: MarketplacePublishStatus[] = [
+      "draft",
+      "ready_to_publish",
+      "live",
+      "closed",
+    ];
+    if (!validStatuses.includes(status as MarketplacePublishStatus)) {
+      return NextResponse.json(
+        {
+          error: `Invalid status. Must be one of: ${validStatuses.join(", ")}`,
+        },
+        { status: 400 },
+      );
+    }
+
+    const updated = updateListingStatus(
+      listingId,
+      status as MarketplacePublishStatus,
+    );
+    if (!updated) {
+      return NextResponse.json({ error: "Listing not found" }, { status: 404 });
+    }
+
+    // Revalidate marketplace pages so changes take effect immediately
+    try {
+      revalidatePath("/marketplace");
+      const allListings = getAllListings();
+      for (const l of allListings) {
+        revalidatePath(`/marketplace/${l.slug}`);
+      }
+    } catch {
+      console.warn("[Admin API] revalidatePath failed — cache may be stale");
+    }
+
+    return NextResponse.json({ success: true, listingId, status });
+  } catch (error) {
+    console.error("Admin PATCH error:", error);
     return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
+      { error: "Internal server error" },
+      { status: 500 },
     );
   }
 }

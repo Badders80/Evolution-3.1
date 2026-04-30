@@ -63,8 +63,14 @@ export async function POST(request: NextRequest) {
   // Handle the event
   if (event.type === "checkout.session.completed") {
     const session = event.data.object as Stripe.Checkout.Session;
-    const { listingSlug, listingId, tokenCount, tokenPrice, horseName } =
-      session.metadata || {};
+    const {
+      listingSlug,
+      listingId,
+      tokenCount,
+      tokenPrice,
+      horseName,
+      documentAcknowledgements: documentAcknowledgementsRaw,
+    } = session.metadata || {};
 
     const userEmail = session.customer_email || session.customer_details?.email;
 
@@ -110,6 +116,22 @@ export async function POST(request: NextRequest) {
     const pricePerToken = parseFloat(tokenPrice || "0");
     const totalPriceNzd = tokens * pricePerToken;
 
+    // Parse document acknowledgements from metadata (JSON string → array)
+    let documentAcks: string | null = null;
+    if (documentAcknowledgementsRaw) {
+      try {
+        const parsed = JSON.parse(documentAcknowledgementsRaw);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          documentAcks = JSON.stringify(parsed);
+        }
+      } catch {
+        console.warn(
+          "[Stripe Webhook] Failed to parse documentAcknowledgements:",
+          documentAcknowledgementsRaw,
+        );
+      }
+    }
+
     createHolding({
       id: holdingId,
       user_id: user.id,
@@ -123,6 +145,7 @@ export async function POST(request: NextRequest) {
       stripe_payment_intent_id: (session.payment_intent as string) || null,
       tx_hash: null,
       minted_at: null,
+      document_acknowledgements: documentAcks,
     });
 
     console.log(

@@ -34,6 +34,7 @@ CREATE TABLE IF NOT EXISTS listings (
   application_json TEXT, -- JSON blob for application config
   disclaimers_json TEXT, -- JSON array
   documents_json   TEXT, -- JSON array of OfficialDocument
+  token_contract_address TEXT, -- Forward-compatible: Base ERC-20 address (v1)
   ssot_source_path TEXT,
   ssot_updated_at  TEXT,
   created_at    TEXT DEFAULT (datetime('now')),
@@ -54,6 +55,7 @@ CREATE TABLE IF NOT EXISTS holdings (
   stripe_payment_intent_id TEXT,
   tx_hash       TEXT,
   minted_at     TEXT,
+  document_acknowledgements TEXT, -- Forward-compatible: JSON array of acknowledged doc IDs (v0)
   created_at    TEXT DEFAULT (datetime('now')),
   updated_at    TEXT DEFAULT (datetime('now'))
 );

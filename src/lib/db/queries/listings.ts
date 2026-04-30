@@ -41,9 +41,9 @@ export function upsertListing(listing: MarketplaceListing): void {
       id, slug, title, publish_status, hero_image_src, images_json,
       summary, overview, horse_json, trainer_json, owner_json,
       offering_json, application_json, disclaimers_json, documents_json,
-      ssot_source_path, ssot_updated_at, updated_at
+      token_contract_address, ssot_source_path, ssot_updated_at, updated_at
     ) VALUES (
-      ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, datetime('now')
+      ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, datetime('now')
     )
     ON CONFLICT(id) DO UPDATE SET
       slug = excluded.slug,
@@ -60,6 +60,7 @@ export function upsertListing(listing: MarketplaceListing): void {
       application_json = excluded.application_json,
       disclaimers_json = excluded.disclaimers_json,
       documents_json = excluded.documents_json,
+      token_contract_address = excluded.token_contract_address,
       ssot_source_path = excluded.ssot_source_path,
       ssot_updated_at = excluded.ssot_updated_at,
       updated_at = datetime('now')
@@ -81,9 +82,24 @@ export function upsertListing(listing: MarketplaceListing): void {
     JSON.stringify(listing.application),
     JSON.stringify(listing.disclaimers),
     JSON.stringify(listing.officialDocuments),
+    listing.tokenContractAddress ?? null,
     listing.slug,
     new Date().toISOString(),
   );
+}
+
+export function updateListingStatus(
+  id: string,
+  status: MarketplaceListing["publishStatus"],
+): boolean {
+  const db = getDb();
+  const stmt = db.prepare(`
+    UPDATE listings
+    SET publish_status = ?, updated_at = datetime('now')
+    WHERE id = ?
+  `);
+  const result = stmt.run(status, id);
+  return result.changes > 0;
 }
 
 export function deleteListing(id: string): void {
@@ -161,6 +177,7 @@ function rowToListing(row: Record<string, string | null>): MarketplaceListing {
     ),
     disclaimers: safeParse<string[]>(row.disclaimers_json, []),
     officialDocuments: safeParse(row.documents_json, []),
+    tokenContractAddress: row.token_contract_address ?? undefined,
   };
 }
 
