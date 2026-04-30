@@ -5,11 +5,50 @@ import { MarketplaceStatusBadge } from "@/components/marketplace/MarketplaceStat
 import { FooterBar } from "@/components/site/Footer";
 import { BreadcrumbStructuredData } from "@/components/seo/BreadcrumbStructuredData";
 
+function ItemListJsonLd({
+  listings,
+}: {
+  listings: ReturnType<typeof getAllListings>;
+}) {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    itemListElement: listings.map((listing, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      item: {
+        "@type": "Product",
+        name: listing.title || `${listing.horse.name} — Racehorse Syndicate`,
+        description: listing.summary,
+        url: `https://evolutionstables.nz/marketplace/${listing.slug}`,
+        image: listing.heroImageSrc,
+        offers: {
+          "@type": "Offer",
+          priceCurrency: "NZD",
+          price: listing.offering.tokenPriceNzd.toString(),
+          availability:
+            listing.offering.tokenCount > (listing.offering.percentLeased || 0)
+              ? "https://schema.org/InStock"
+              : "https://schema.org/OutOfStock",
+        },
+      },
+    })),
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+  );
+}
+
 export default function MarketplacePage() {
   const listings = getAllListings("live");
 
   return (
     <>
+      <ItemListJsonLd listings={listings} />
       <BreadcrumbStructuredData
         items={[
           { name: "Home", item: "https://evolutionstables.nz" },

@@ -53,7 +53,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   for (const listing of publicListings) {
     routes.push({
       url: `${baseUrl}/marketplace/${listing.slug}`,
-      lastModified: new Date(listing.updatedAt || Date.now()),
+      lastModified: new Date(),
       changeFrequency: "daily",
       priority: 0.8,
     });

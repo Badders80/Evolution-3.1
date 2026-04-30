@@ -8,7 +8,13 @@ export interface HoldingRow {
   horse_name: string | null;
   tokens_owned: number;
   percent_owned: number;
-  status: "reserved" | "paid" | "minted" | "transferred" | "burned";
+  status:
+    | "reserved"
+    | "paid"
+    | "minted"
+    | "transferred"
+    | "burned"
+    | "kyc_required";
   stripe_session_id: string | null;
   stripe_payment_intent_id: string | null;
   tx_hash: string | null;

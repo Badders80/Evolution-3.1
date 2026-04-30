@@ -13,6 +13,7 @@ CREATE TABLE IF NOT EXISTS users (
   kyc_status    TEXT DEFAULT 'none' CHECK (kyc_status IN ('none', 'pending', 'verified', 'rejected')),
   kyc_verified_at TEXT,
   wallet_address TEXT,
+  openfort_user_id TEXT,
   created_at    TEXT DEFAULT (datetime('now')),
   updated_at    TEXT DEFAULT (datetime('now'))
 );
@@ -50,7 +51,7 @@ CREATE TABLE IF NOT EXISTS holdings (
   horse_name    TEXT,
   tokens_owned  INTEGER DEFAULT 0,
   percent_owned REAL DEFAULT 0,
-  status        TEXT DEFAULT 'reserved' CHECK (status IN ('reserved', 'paid', 'minted', 'transferred', 'burned')),
+  status        TEXT DEFAULT 'reserved' CHECK (status IN ('reserved', 'paid', 'minted', 'transferred', 'burned', 'kyc_required')),
   stripe_session_id TEXT,
   stripe_payment_intent_id TEXT,
   tx_hash       TEXT,
