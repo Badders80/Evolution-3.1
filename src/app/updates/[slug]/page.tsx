@@ -3,7 +3,7 @@ import { Metadata } from "next";
 
 // List of available updates with their HTML file names
 const updates: Record<string, { title: string; file: string }> = {
-  "prudentia-terapa-02may2026": {
+  prudentiaterapa02may2026: {
     title: "Prudentia at Te Rapa - 2 May 2026",
     file: "Prudentia-TeRapa-02May2026.html",
   },
