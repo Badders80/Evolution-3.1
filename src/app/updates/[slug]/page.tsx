@@ -1,5 +1,7 @@
-import { notFound, redirect } from "next/navigation";
+import { notFound } from "next/navigation";
 import { Metadata } from "next";
+import fs from "fs";
+import path from "path";
 
 // List of available updates with their HTML file names
 const updates: Record<string, { title: string; file: string }> = {
@@ -49,11 +51,23 @@ export function generateMetadata({
 export default function UpdatePage({ params }: { params: { slug: string } }) {
   const update = updates[params.slug];
 
-  // If update not found, show 404
   if (!update) {
     notFound();
   }
 
-  // Redirect to the HTML file
-  redirect(`/updates/${update.file}`);
+  // Read the HTML file and render it directly
+  // (redirecting to the .html file causes a 404 because the [slug] route catches it)
+  const filePath = path.join(process.cwd(), "public", "updates", update.file);
+  let htmlContent = "";
+  try {
+    htmlContent = fs.readFileSync(filePath, "utf-8");
+  } catch {
+    notFound();
+  }
+
+  // Extract body content to avoid nested <html>/<head>/<body> tags
+  const bodyMatch = htmlContent.match(/<body[^>]*>([\s\S]*)<\/body>/i);
+  const content = bodyMatch ? bodyMatch[1] : htmlContent;
+
+  return <div dangerouslySetInnerHTML={{ __html: content }} />;
 }
