@@ -6,9 +6,11 @@ import { getListingById } from "@/lib/db/queries/listings";
 
 export const dynamic = "force-dynamic";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "", {
-  typescript: true,
-});
+function getStripe() {
+  return new Stripe(process.env.STRIPE_SECRET_KEY || "", {
+    typescript: true,
+  });
+}
 
 const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET || "";
 
@@ -31,7 +33,11 @@ export async function POST(request: NextRequest) {
 
   try {
     if (webhookSecret && webhookSecret !== "whsec_your_stripe_webhook_secret") {
-      event = stripe.webhooks.constructEvent(payload, signature, webhookSecret);
+      event = getStripe().webhooks.constructEvent(
+        payload,
+        signature,
+        webhookSecret,
+      );
     } else {
       console.warn(
         "[Stripe Webhook] No webhook secret configured — parsing unsigned payload (dev only)",
