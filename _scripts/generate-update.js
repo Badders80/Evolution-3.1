@@ -6,13 +6,13 @@
  * Usage: node generate-update.js < input.json > output.html
  */
 
-const fs = require('fs');
-const path = require('path');
+const fs = require("fs");
+const path = require("path");
 
 // Generate HTML based on update type and content
 function generateUpdate(data) {
   const {
-    updateType = 'investor',
+    updateType = "investor",
     heading,
     subheading,
     content,
@@ -20,7 +20,7 @@ function generateUpdate(data) {
     quoteAttribution,
     imageUrl,
     videoUrl,
-    outputFormat = 'both'
+    outputFormat = "both",
   } = data;
 
   // Generate both email and mobile versions
@@ -28,15 +28,23 @@ function generateUpdate(data) {
   const mobileHtml = generateMobileVersion(data);
 
   // For CLI output, return the requested format
-  if (outputFormat === 'email') return emailHtml;
-  if (outputFormat === 'mobile') return mobileHtml;
+  if (outputFormat === "email") return emailHtml;
+  if (outputFormat === "mobile") return mobileHtml;
 
   // Default: return both (you can split this in your script)
-  return emailHtml + '\n\n<!-- MOBILE VERSION -->\n\n' + mobileHtml;
+  return emailHtml + "\n\n<!-- MOBILE VERSION -->\n\n" + mobileHtml;
 }
 
 function generateEmailVersion(data) {
-  const { heading, subheading, content, quote, quoteAttribution, imageUrl, videoUrl } = data;
+  const {
+    heading,
+    subheading,
+    content,
+    quote,
+    quoteAttribution,
+    imageUrl,
+    videoUrl,
+  } = data;
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -195,32 +203,47 @@ function generateEmailVersion(data) {
 
         <main>
             <h1 class="headline">${heading}</h1>
-            ${subheading ? `<h2 class="subheadline">${subheading}</h2>` : ''}
+            ${subheading ? `<h2 class="subheadline">${subheading}</h2>` : ""}
 
             <div class="content">
-                ${content.split('\n').map(line => line.trim() ? `<p>${line}</p>` : '').join('')}
+                ${content
+                  .split("\n")
+                  .map((line) => (line.trim() ? `<p>${line}</p>` : ""))
+                  .join("")}
             </div>
 
-            ${quote ? `
+            ${
+              quote
+                ? `
             <div class="quote-sidebar">
                 <blockquote>
                     "${quote}"
                 </blockquote>
-                ${quoteAttribution ? `<cite>${quoteAttribution}</cite>` : ''}
+                ${quoteAttribution ? `<cite>${quoteAttribution}</cite>` : ""}
             </div>
-            ` : ''}
+            `
+                : ""
+            }
 
-            ${imageUrl ? `
+            ${
+              imageUrl
+                ? `
             <div class="media-container-landscape">
                 <img src="${imageUrl}" alt="Hero image" class="sidebar-media-image">
             </div>
-            ` : ''}
+            `
+                : ""
+            }
 
-            ${videoUrl ? `
+            ${
+              videoUrl
+                ? `
             <div class="media-container-landscape">
                 <iframe src="${videoUrl}" allowfullscreen></iframe>
             </div>
-            ` : ''}
+            `
+                : ""
+            }
         </main>
 
         <footer>
@@ -243,61 +266,80 @@ function generateMobileVersion(data) {
 // Parse conversational input into structured data
 function parseConversationalInput(text) {
   const data = {
-    updateType: 'investor',
-    heading: '',
-    subheading: '',
-    content: '',
-    quote: '',
-    quoteAttribution: '',
-    imageUrl: '',
-    videoUrl: ''
+    updateType: "investor",
+    heading: "",
+    subheading: "",
+    content: "",
+    quote: "",
+    quoteAttribution: "",
+    imageUrl: "",
+    videoUrl: "",
   };
 
   // Simple line-by-line parsing
-  const lines = text.split('\n').map(line => line.trim()).filter(line => line.length > 0);
+  const lines = text
+    .split("\n")
+    .map((line) => line.trim())
+    .filter((line) => line.length > 0);
 
   for (const line of lines) {
-    if (line.toLowerCase().startsWith('heading:') || line.toLowerCase().startsWith('title:')) {
-      data.heading = line.split(':').slice(1).join(':').trim();
-    } else if (line.toLowerCase().startsWith('subheading:') || line.toLowerCase().startsWith('subtitle:')) {
-      data.subheading = line.split(':').slice(1).join(':').trim();
-    } else if (line.toLowerCase().startsWith('content:') || line.toLowerCase().startsWith('body:')) {
-      data.content = line.split(':').slice(1).join(':').trim();
-    } else if (line.toLowerCase().startsWith('quote:')) {
-      data.quote = line.split(':').slice(1).join(':').trim();
-    } else if (line.toLowerCase().startsWith('attribution:') || line.toLowerCase().startsWith('author:')) {
-      data.quoteAttribution = line.split(':').slice(1).join(':').trim();
-    } else if (line.toLowerCase().startsWith('image:') || line.toLowerCase().startsWith('img:')) {
-      data.imageUrl = line.split(':').slice(1).join(':').trim();
-    } else if (line.toLowerCase().startsWith('video:')) {
-      data.videoUrl = line.split(':').slice(1).join(':').trim();
-    } else if (line.toLowerCase().includes('investor update')) {
-      data.updateType = 'investor';
-    } else if (line.toLowerCase().includes('pre-race')) {
-      data.updateType = 'pre-race';
-    } else if (line.toLowerCase().includes('post-race')) {
-      data.updateType = 'post-race';
-    } else if (line.toLowerCase().includes('nomination')) {
-      data.updateType = 'nomination';
+    if (
+      line.toLowerCase().startsWith("heading:") ||
+      line.toLowerCase().startsWith("title:")
+    ) {
+      data.heading = line.split(":").slice(1).join(":").trim();
+    } else if (
+      line.toLowerCase().startsWith("subheading:") ||
+      line.toLowerCase().startsWith("subtitle:")
+    ) {
+      data.subheading = line.split(":").slice(1).join(":").trim();
+    } else if (
+      line.toLowerCase().startsWith("content:") ||
+      line.toLowerCase().startsWith("body:")
+    ) {
+      data.content = line.split(":").slice(1).join(":").trim();
+    } else if (line.toLowerCase().startsWith("quote:")) {
+      data.quote = line.split(":").slice(1).join(":").trim();
+    } else if (
+      line.toLowerCase().startsWith("attribution:") ||
+      line.toLowerCase().startsWith("author:")
+    ) {
+      data.quoteAttribution = line.split(":").slice(1).join(":").trim();
+    } else if (
+      line.toLowerCase().startsWith("image:") ||
+      line.toLowerCase().startsWith("img:")
+    ) {
+      data.imageUrl = line.split(":").slice(1).join(":").trim();
+    } else if (line.toLowerCase().startsWith("video:")) {
+      data.videoUrl = line.split(":").slice(1).join(":").trim();
+    } else if (line.toLowerCase().includes("investor update")) {
+      data.updateType = "investor";
+    } else if (line.toLowerCase().includes("pre-race")) {
+      data.updateType = "pre-race";
+    } else if (line.toLowerCase().includes("post-race")) {
+      data.updateType = "post-race";
+    } else if (line.toLowerCase().includes("nomination")) {
+      data.updateType = "nomination";
     }
   }
 
   // If no explicit content found, use any remaining text as content
   if (!data.content) {
-    const contentLines = lines.filter(line =>
-      !line.toLowerCase().includes('heading:') &&
-      !line.toLowerCase().includes('subheading:') &&
-      !line.toLowerCase().includes('content:') &&
-      !line.toLowerCase().includes('quote:') &&
-      !line.toLowerCase().includes('attribution:') &&
-      !line.toLowerCase().includes('image:') &&
-      !line.toLowerCase().includes('video:') &&
-      !line.toLowerCase().includes('investor update') &&
-      !line.toLowerCase().includes('pre-race') &&
-      !line.toLowerCase().includes('post-race') &&
-      !line.toLowerCase().includes('nomination')
+    const contentLines = lines.filter(
+      (line) =>
+        !line.toLowerCase().includes("heading:") &&
+        !line.toLowerCase().includes("subheading:") &&
+        !line.toLowerCase().includes("content:") &&
+        !line.toLowerCase().includes("quote:") &&
+        !line.toLowerCase().includes("attribution:") &&
+        !line.toLowerCase().includes("image:") &&
+        !line.toLowerCase().includes("video:") &&
+        !line.toLowerCase().includes("investor update") &&
+        !line.toLowerCase().includes("pre-race") &&
+        !line.toLowerCase().includes("post-race") &&
+        !line.toLowerCase().includes("nomination"),
     );
-    data.content = contentLines.join(' ');
+    data.content = contentLines.join(" ");
   }
 
   return data;
@@ -314,28 +356,30 @@ if (require.main === module) {
   // Allow direct execution with file argument
   if (process.argv[2]) {
     const inputFile = process.argv[2];
-    const input = fs.readFileSync(inputFile, 'utf8');
+    const input = fs.readFileSync(inputFile, "utf8");
     const data = JSON.parse(input);
     const html = generateUpdate(data);
 
     // Write to output file if specified
-    const outputFile = process.argv[3] || `public/updates/${data.updateType}-${new Date().toISOString().split('T')[0]}.html`;
+    const outputFile =
+      process.argv[3] ||
+      `public/updates/${data.updateType}-${new Date().toISOString().split("T")[0]}.html`;
     fs.writeFileSync(outputFile, html);
     console.log(`Generated: ${outputFile}`);
   } else {
     // Read input from stdin
-    let input = '';
-    process.stdin.on('data', chunk => {
+    let input = "";
+    process.stdin.on("data", (chunk) => {
       input += chunk;
     });
 
-    process.stdin.on('end', () => {
+    process.stdin.on("end", () => {
       try {
         const data = JSON.parse(input);
         const html = generateUpdate(data);
         console.log(html);
       } catch (error) {
-        console.error('Error: Please provide valid JSON input');
+        console.error("Error: Please provide valid JSON input");
         console.error('Example: {"heading": "Title", "content": "Body text"}');
         process.exit(1);
       }
@@ -343,4 +387,8 @@ if (require.main === module) {
   }
 }
 
-module.exports = { generateUpdate, generateEmailVersion, generateMobileVersion };
+module.exports = {
+  generateUpdate,
+  generateEmailVersion,
+  generateMobileVersion,
+};

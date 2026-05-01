@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const fs = require('fs');
+const fs = require("fs");
 
 // Simple investor update generator
 function generateInvestorUpdate(data) {
@@ -155,25 +155,36 @@ function generateInvestorUpdate(data) {
         </header>
 
         <main>
-            <h1 class="headline">${data.heading || 'Investor Update'}</h1>
-            ${data.subheading ? `<h2 class="subheadline">${data.subheading}</h2>` : ''}
+            <h1 class="headline">${data.heading || "Investor Update"}</h1>
+            ${data.subheading ? `<h2 class="subheadline">${data.subheading}</h2>` : ""}
             
             <div class="content">
-                ${(data.content || '').split('\n').map(line => line.trim() ? `<p>${line}</p>` : '').join('')}
+                ${(data.content || "")
+                  .split("\n")
+                  .map((line) => (line.trim() ? `<p>${line}</p>` : ""))
+                  .join("")}
             </div>
             
-            ${data.quote ? `
+            ${
+              data.quote
+                ? `
             <div class="quote-sidebar">
                 <blockquote>"${data.quote}"</blockquote>
-                ${data.quoteAttribution ? `<cite>${data.quoteAttribution}</cite>` : ''}
+                ${data.quoteAttribution ? `<cite>${data.quoteAttribution}</cite>` : ""}
             </div>
-            ` : ''}
+            `
+                : ""
+            }
             
-            ${data.imageUrl ? `
+            ${
+              data.imageUrl
+                ? `
             <div class="media-container-landscape">
                 <img src="${data.imageUrl}" alt="Hero image" class="sidebar-media-image">
             </div>
-            ` : ''}
+            `
+                : ""
+            }
         </main>
 
         <footer>
@@ -190,20 +201,22 @@ function generateInvestorUpdate(data) {
 // Main execution
 if (require.main === module) {
   const inputFile = process.argv[2];
-  const outputFile = process.argv[3] || `public/updates/investor-${new Date().toISOString().split('T')[0]}.html`;
-  
+  const outputFile =
+    process.argv[3] ||
+    `public/updates/investor-${new Date().toISOString().split("T")[0]}.html`;
+
   if (!inputFile) {
-    console.error('Usage: node generate-simple.js <input.json> [output.html]');
+    console.error("Usage: node generate-simple.js <input.json> [output.html]");
     process.exit(1);
   }
-  
+
   try {
-    const data = JSON.parse(fs.readFileSync(inputFile, 'utf8'));
+    const data = JSON.parse(fs.readFileSync(inputFile, "utf8"));
     const html = generateInvestorUpdate(data);
     fs.writeFileSync(outputFile, html);
     console.log(`✅ Generated: ${outputFile}`);
   } catch (error) {
-    console.error('Error:', error.message);
+    console.error("Error:", error.message);
     process.exit(1);
   }
 }
