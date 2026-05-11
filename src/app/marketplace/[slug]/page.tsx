@@ -28,13 +28,15 @@ export default async function ListingDetailPage({ params }: Props) {
     disclaimers,
   } = listing;
 
-  const availableShares = Math.max(
-    0,
-    offering.tokenCount - (offering.percentLeased || 0),
-  );
-  const percentAvailable = Math.round(
-    (availableShares / offering.tokenCount) * 100,
-  );
+  const isOwnership = offering.offeringType === "ownership";
+  const isLease = offering.offeringType === "lease" || !offering.offeringType;
+
+  const availableShares = isLease
+    ? Math.max(0, (offering.tokenCount ?? 0) - (offering.percentLeased || 0))
+    : 0;
+  const percentAvailable = isLease
+    ? Math.round((availableShares / (offering.tokenCount ?? 1)) * 100)
+    : (offering.percentAvailable ?? 0);
 
   return (
     <main className="min-h-screen bg-background text-white pt-32 md:pt-40">
@@ -100,35 +102,150 @@ export default async function ListingDetailPage({ params }: Props) {
             </div>
 
             <div className="space-y-2 rounded-xl border border-white/10 bg-white/[0.03] p-5">
-              <h3 className="text-xs uppercase tracking-[0.28em] text-white/40">
-                Syndicate Offering
-              </h3>
-              <div className="grid grid-cols-2 gap-4 pt-2">
-                <div>
-                  <p className="text-xs text-white/40">Price per share</p>
-                  <p className="text-lg font-medium text-[#d4a964]">
-                    ${offering.tokenPriceNzd.toLocaleString()} NZD
-                  </p>
-                </div>
-                <div>
-                  <p className="text-xs text-white/40">Total shares</p>
-                  <p className="text-lg font-medium text-white">
-                    {offering.tokenCount}
-                  </p>
-                </div>
-                <div>
-                  <p className="text-xs text-white/40">Available</p>
-                  <p className="text-lg font-medium text-white">
-                    {availableShares} ({percentAvailable}%)
-                  </p>
-                </div>
-                <div>
-                  <p className="text-xs text-white/40">Total raise</p>
-                  <p className="text-lg font-medium text-white">
-                    ${offering.totalRaiseNzd.toLocaleString()} NZD
-                  </p>
-                </div>
+              <div className="flex items-center justify-between">
+                <h3 className="text-xs uppercase tracking-[0.28em] text-white/40">
+                  {isOwnership ? "Ownership Offering" : "Syndicate Offering"}
+                </h3>
+                <span className="rounded-full border border-white/10 px-2.5 py-0.5 text-[10px] uppercase tracking-widest text-white/40">
+                  {isOwnership ? "Ownership" : "Lease"}
+                </span>
               </div>
+
+              {isOwnership ? (
+                /* ── Ownership Offering Card ── */
+                <div className="space-y-4 pt-2">
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <p className="text-xs text-white/40">Price per 1%</p>
+                      <p className="text-lg font-medium text-[#d4a964]">
+                        ${offering.pricePerOnePercentNzd.toLocaleString()} NZD
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-xs text-white/40">% Available</p>
+                      <p className="text-lg font-medium text-white">
+                        {offering.percentAvailable}%
+                      </p>
+                    </div>
+                    {offering.purchasePriceNzd && (
+                      <div>
+                        <p className="text-xs text-white/40">Purchase price</p>
+                        <p className="text-lg font-medium text-white">
+                          ${offering.purchasePriceNzd.toLocaleString()} NZD
+                        </p>
+                      </div>
+                    )}
+                    {offering.monthlyCostPerOnePercentNzd != null && (
+                      <div>
+                        <p className="text-xs text-white/40">Monthly per 1%</p>
+                        <p className="text-lg font-medium text-white">
+                          $
+                          {offering.monthlyCostPerOnePercentNzd.toLocaleString()}{" "}
+                          NZD
+                        </p>
+                      </div>
+                    )}
+                  </div>
+
+                  {offering.shareSizeOptions &&
+                    offering.shareSizeOptions.length > 0 && (
+                      <div className="space-y-2 pt-2 border-t border-white/10">
+                        <p className="text-xs text-white/40">Share sizes</p>
+                        <div className="flex flex-wrap gap-2">
+                          {offering.shareSizeOptions.map((size) => (
+                            <div
+                              key={size}
+                              className="rounded-lg border border-white/10 bg-white/[0.03] px-3 py-2 text-center"
+                            >
+                              <p className="text-sm font-medium text-white">
+                                {size}%
+                              </p>
+                              <p className="text-xs text-[#d4a964]">
+                                $
+                                {(
+                                  offering.pricePerOnePercentNzd * size
+                                ).toLocaleString()}{" "}
+                                NZD
+                              </p>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                  {offering.monthlyCostPerOnePercentNzd != null &&
+                    offering.monthlyCostPerOnePercentNzd > 0 && (
+                      <div className="rounded-lg border border-white/5 bg-white/[0.02] p-3">
+                        <p className="text-xs text-white/40 mb-1">
+                          Ongoing costs
+                        </p>
+                        <p className="text-sm text-white/70">
+                          $
+                          {offering.monthlyCostPerOnePercentNzd.toLocaleString()}{" "}
+                          NZD per 1% per month
+                          {offering.monthlyCostStartDate && (
+                            <span className="text-white/40">
+                              {" "}
+                              from {offering.monthlyCostStartDate}
+                            </span>
+                          )}
+                        </p>
+                        {offering.managementFeeNzd != null &&
+                          offering.managementFeeNzd > 0 && (
+                            <p className="text-xs text-white/40 mt-1">
+                              Management fee: $
+                              {offering.managementFeeNzd.toLocaleString()}/mo
+                              {offering.managementFeeCapped ? " (capped)" : ""}
+                            </p>
+                          )}
+                      </div>
+                    )}
+
+                  {offering.costsIncludedInBuyIn &&
+                    offering.costsIncludedInBuyIn.length > 0 && (
+                      <div className="rounded-lg border border-white/5 bg-white/[0.02] p-3">
+                        <p className="text-xs text-white/40 mb-1">
+                          Buy-in includes
+                        </p>
+                        <ul className="flex flex-wrap gap-x-3 gap-y-1">
+                          {offering.costsIncludedInBuyIn.map((item, i) => (
+                            <li key={i} className="text-xs text-white/60">
+                              ✓ {item}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                </div>
+              ) : (
+                /* ── Lease Offering Card (original) ── */
+                <div className="grid grid-cols-2 gap-4 pt-2">
+                  <div>
+                    <p className="text-xs text-white/40">Price per share</p>
+                    <p className="text-lg font-medium text-[#d4a964]">
+                      ${(offering.tokenPriceNzd ?? 0).toLocaleString()} NZD
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-xs text-white/40">Total shares</p>
+                    <p className="text-lg font-medium text-white">
+                      {offering.tokenCount ?? 0}
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-xs text-white/40">Available</p>
+                    <p className="text-lg font-medium text-white">
+                      {availableShares} ({percentAvailable}%)
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-xs text-white/40">Total raise</p>
+                    <p className="text-lg font-medium text-white">
+                      ${(offering.totalRaiseNzd ?? 0).toLocaleString()} NZD
+                    </p>
+                  </div>
+                </div>
+              )}
             </div>
 
             <div className="space-y-2">
@@ -159,22 +276,41 @@ export default async function ListingDetailPage({ params }: Props) {
               </p>
             </div>
 
-            {/* Purchase CTA */}
-            <div className="rounded-xl border border-[#d4a964]/30 bg-[#d4a964]/5 p-5">
-              <h3 className="text-sm font-medium text-[#d4a964] mb-2">
-                Interested in this horse?
-              </h3>
-              <p className="text-sm text-white/60 mb-4">
-                Complete KYC verification to purchase shares. Once approved, you
-                can buy instantly via Stripe.
-              </p>
-              <a
-                href="/mystable"
-                className="inline-flex items-center justify-center rounded-lg bg-[#d4a964] px-6 py-3 text-sm font-medium text-black transition hover:bg-[#c49a54]"
-              >
-                Go to MyStable to Purchase
-              </a>
-            </div>
+            {/* CTA */}
+            {isOwnership ? (
+              <div className="rounded-xl border border-[#d4a964]/30 bg-[#d4a964]/5 p-5">
+                <h3 className="text-sm font-medium text-[#d4a964] mb-2">
+                  Interested in this horse?
+                </h3>
+                <p className="text-sm text-white/60 mb-4">
+                  Register your interest and we&apos;ll connect you with the
+                  syndicator. No commitment required — express your interest and
+                  we&apos;ll take it from there.
+                </p>
+                <a
+                  href="/mystable"
+                  className="inline-flex items-center justify-center rounded-lg bg-[#d4a964] px-6 py-3 text-sm font-medium text-black transition hover:bg-[#c49a54]"
+                >
+                  Register Interest
+                </a>
+              </div>
+            ) : (
+              <div className="rounded-xl border border-[#d4a964]/30 bg-[#d4a964]/5 p-5">
+                <h3 className="text-sm font-medium text-[#d4a964] mb-2">
+                  Interested in this horse?
+                </h3>
+                <p className="text-sm text-white/60 mb-4">
+                  Complete KYC verification to purchase shares. Once approved,
+                  you can buy instantly via Stripe.
+                </p>
+                <a
+                  href="/mystable"
+                  className="inline-flex items-center justify-center rounded-lg bg-[#d4a964] px-6 py-3 text-sm font-medium text-black transition hover:bg-[#c49a54]"
+                >
+                  Go to MyStable to Purchase
+                </a>
+              </div>
+            )}
 
             {disclaimers.length > 0 && (
               <div className="space-y-2">
