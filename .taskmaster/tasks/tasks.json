@@ -1,0 +1,126 @@
+{
+  "master": {
+    "tasks": [
+      {
+        "id": 1,
+        "title": "Purge secrets from git history and rotate all keys",
+        "description": "Use BFG Repo-Cleaner to remove .env and .env.local from git history, then rotate all exposed API keys.",
+        "details": "1. Download BFG Repo-Cleaner or use `git filter-repo`.\n2. Remove `.env`, `.env.local`, and any files containing `PRIVATE_KEY`, `SECRET_KEY`, `API_KEY`.\n3. Force-push rewritten history to origin.\n4. Rotate ALL keys that were ever committed: Openfort, Stripe, Didit, Alchemy, admin wallet.\n5. Update `.env.local` with new keys (never commit).\n6. Add `.env*` to `.gitignore` if not already present.\n7. Verify with `git log --all --full-history -- .env*`.",
+        "testStrategy": "`git log --all --full-history -- .env*` returns zero results. Fresh clone does not contain any secrets. All rotated keys are updated in `.env.local` and working.",
+        "priority": "high",
+        "dependencies": [],
+        "status": "pending",
+        "subtasks": [],
+        "updatedAt": "2026-05-07T00:00:00.000Z"
+      },
+      {
+        "id": 2,
+        "title": "Replace admin mock auth with NextAuth + RBAC",
+        "description": "Remove window.prompt() and sessionStorage auth, implement real NextAuth with role-based access control.",
+        "details": "1. Install `next-auth`.\n2. Configure Google OAuth and/or Credentials provider.\n3. Replace `window.prompt()` in `/admin` with real login flow.\n4. Add `role` field to user schema (investor, admin, syndicator).\n5. Protect `/admin` and `/api/admin` routes with middleware checks.\n6. Return real DB data from `/api/admin`, not mock data.\n7. Add logout button.",
+        "testStrategy": "Unauthenticated user accessing `/admin` is redirected to login. Admin user sees real data. Non-admin user gets 403. Logout clears session.",
+        "priority": "high",
+        "dependencies": ["1"],
+        "status": "pending",
+        "subtasks": [],
+        "updatedAt": "2026-05-07T00:00:00.000Z"
+      },
+      {
+        "id": 3,
+        "title": "Build MyStable dashboard",
+        "description": "Replace the Coming Soon placeholder with a real portfolio view: holdings list, horse detail, and token balances.",
+        "details": "1. Query SQLite `holdings` table for the authenticated user.\n2. Display holdings cards: horse name, tokens owned, purchase price, current value (if available).\n3. Link each holding to the horse detail page.\n4. Show KYC status and wallet address.\n5. Add empty state for new users.\n6. Make it mobile-responsive.",
+        "testStrategy": "Logged-in user with holdings sees their portfolio. User with no holdings sees friendly empty state. Data matches SQLite records. Page loads under 2s.",
+        "priority": "high",
+        "dependencies": ["2"],
+        "status": "pending",
+        "subtasks": [],
+        "updatedAt": "2026-05-07T00:00:00.000Z"
+      },
+      {
+        "id": 4,
+        "title": "Build purchase flow UI",
+        "description": "Create a Buy Shares modal with quantity selector, price preview, and Stripe vs wallet payment options.",
+        "details": "1. Add 'Buy Shares' button on `/marketplace/[slug]`.\n2. Open modal on click: quantity input, live price calculation, payment method selector (Stripe / Wallet).\n3. Stripe path: redirect to Stripe Checkout.\n4. Wallet path: connect wallet, approve, mint directly.\n5. Show loading and error states.\n6. On success: redirect to MyStable or show confirmation.\n7. Update holdings in DB.",
+        "testStrategy": "User can select 2 shares at $240 each, see $480 total, pay via Stripe test card, and land on MyStable with new holding. Wallet path works with MetaMask or Openfort.",
+        "priority": "high",
+        "dependencies": ["3"],
+        "status": "pending",
+        "subtasks": [],
+        "updatedAt": "2026-05-07T00:00:00.000Z"
+      },
+      {
+        "id": 5,
+        "title": "Complete Hottathanafantasy end-to-end tokenisation test",
+        "description": "Run the full flow for one real horse: listing creation → checkout → mint → portfolio verification.",
+        "details": "1. Create a listing for Hottathanafantasy in SSOT_Build.\n2. Sync to Evolution_Platform via `/api/marketplace/sync`.\n3. Complete KYC as a test user.\n4. Purchase shares via Stripe.\n5. Verify webhook fires and mint API transfers tokens.\n6. Check MyStable shows the holding with real tx hash.\n7. Document any blockers.",
+        "testStrategy": "Full A→B→C→D→E flow completes in under 5 minutes. Tokens are on-chain. Holding record has real txHash. No manual DB intervention required.",
+        "priority": "high",
+        "dependencies": ["4"],
+        "status": "pending",
+        "subtasks": [],
+        "updatedAt": "2026-05-07T00:00:00.000Z"
+      },
+      {
+        "id": 6,
+        "title": "Add document acknowledgement checkboxes",
+        "description": "Require users to tick PDS, Syndicate Agreement, and HLT Term Sheet before payment.",
+        "details": "1. Add three checkboxes on the purchase modal or a pre-purchase step.\n2. Link each checkbox to the actual document (PDF or DOCX).\n3. Disable 'Proceed to Payment' until all three are checked.\n4. Record acknowledgement in DB (user_id, document_type, timestamp).\n5. Show confirmation on MyStable.",
+        "testStrategy": "Payment button is disabled until all 3 docs acknowledged. Acknowledgement is recorded in DB. Admin can query who acknowledged what. Legal compliance requirement met.",
+        "priority": "medium",
+        "dependencies": ["4"],
+        "status": "pending",
+        "subtasks": [],
+        "updatedAt": "2026-05-07T00:00:00.000Z"
+      },
+      {
+        "id": 7,
+        "title": "Write integration and E2E tests",
+        "description": "Add tests for checkout flow, KYC flow, auth flow, and token mint flow using Vitest and Playwright.",
+        "details": "1. Write Vitest unit tests for `src/lib/db/queries/`.\n2. Write API route tests for `/api/checkout`, `/api/mint`, `/api/kyc/verify`.\n3. Write Playwright E2E test: browse marketplace → view listing → KYC → purchase → MyStable.\n4. Mock Stripe webhook in tests.\n5. Mock Openfort wallet creation in tests.\n6. Run `npm run test` and ensure all pass.",
+        "testStrategy": "`npm run test` passes with >80% coverage on critical paths. Playwright E2E completes in under 60s. CI runs tests on every push.",
+        "priority": "medium",
+        "dependencies": ["5"],
+        "status": "pending",
+        "subtasks": [],
+        "updatedAt": "2026-05-07T00:00:00.000Z"
+      },
+      {
+        "id": 8,
+        "title": "Optimize public assets",
+        "description": "Add Sharp pipeline for WebP/AVIF conversion and reduce the 108MB public folder bloat.",
+        "details": "1. Audit `public/` folder: identify large images, unused assets.\n2. Add `sharp` or `next/image` optimization pipeline.\n3. Convert hero images and syndicate photos to WebP/AVIF.\n4. Remove unused assets.\n5. Add responsive `srcset` for key images.\n6. Target: public folder under 20MB.",
+        "testStrategy": "`public/` folder size < 20MB. Lighthouse performance score > 90. Images load in under 1s on 3G. No visual degradation.",
+        "priority": "medium",
+        "dependencies": [],
+        "status": "pending",
+        "subtasks": [],
+        "updatedAt": "2026-05-07T00:00:00.000Z"
+      },
+      {
+        "id": 9,
+        "title": "Fix npm audit vulnerabilities and type mismatches",
+        "description": "Run npm audit fix, resolve React 18/19 type conflicts, and get build to zero warnings.",
+        "details": "1. Run `npm audit` to list vulnerabilities.\n2. Run `npm audit fix` for auto-fixable issues.\n3. Manually review remaining vulnerabilities (especially critical/high).\n4. Resolve React 18 vs React 19 type mismatches in `package.json` and `node_modules`.\n5. Run `npm run build` and fix any remaining warnings.\n6. Document any unfixable issues with mitigation.",
+        "testStrategy": "`npm audit` shows zero critical/high vulnerabilities. `npm run build` produces zero warnings. `npm run check` passes.",
+        "priority": "medium",
+        "dependencies": [],
+        "status": "pending",
+        "subtasks": [],
+        "updatedAt": "2026-05-07T00:00:00.000Z"
+      },
+      {
+        "id": 10,
+        "title": "Build dynamic OG images and complete sitemap/manifest",
+        "description": "Add Open Graph image generation for marketplace listings and complete SEO metadata.",
+        "details": "1. Create `/marketplace/[slug]/opengraph-image.tsx` using `@vercel/og` or similar.\n2. Generate OG images with horse photo, name, price, and brand logo.\n3. Add `metadata` exports to all pages: title, description, canonical URL.\n4. Generate `sitemap.xml` dynamically from listings.\n5. Update `manifest.json` with correct icons and theme colors.\n6. Add structured data (JSON-LD) for syndicate listings.",
+        "testStrategy": "Sharing a marketplace listing on Twitter/LinkedIn shows correct OG image, title, and description. Sitemap validates with no errors. Lighthouse SEO score > 90.",
+        "priority": "low",
+        "dependencies": ["4"],
+        "status": "pending",
+        "subtasks": [],
+        "updatedAt": "2026-05-07T00:00:00.000Z"
+      }
+    ]
+  }
+}

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body style="margin:0;padding:20px;background:#333333;font-family:'Inter','Helvetica','Arial',sans-serif;">
+
+<table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr>
+    <td align="center">
+
+      <!-- MAIN CONTAINER -->
+      <table width="600" cellpadding="0" cellspacing="0" border="0" style="max-width:600px;width:100%;background:#ffffff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+        
+        <!-- HEADER -->
+        <tr>
+          <td align="center" style="background:#000000;padding:40px 24px 20px 24px;border-radius:12px 12px 0 0;">
+            <img src="https://evolutionstables.nz/updates/Evolution-Stables-Logo-White.png" alt="Evolution Stables" style="height:auto;max-height:80px;display:block;margin:0 auto;">
+            <div style="font-family:'Inter',sans-serif;font-size:10px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#999999;margin-top:12px;text-align:center;">STABLE UPDATE</div>
+          </td>
+        </tr>
+
+        <!-- BODY -->
+        <tr>
+          <td align="center" style="padding:32px 24px;text-align:center;">
+
+            <!-- HEADLINE -->
+            <h1 style="font-family:'Playfair Display',Georgia,serif;font-size:44px;font-weight:400;line-height:1.1;margin:0 0 32px 0;color:#000;letter-spacing:-0.5px;text-align:center;">Same Track, Same Rider - Different Company</h1>
+
+            <!-- SUBHEADLINE -->
+            <p style="font-family:'Playfair Display',Georgia,serif;font-size:20px;font-weight:400;line-height:1.4;color:#000;margin:0 0 32px 0;text-align:center;">Strong Rating 75 test at Te Rapa, tricky inside draw, but reunited with her last-start winning rider</p>
+
+            <!-- BODY 1 -->
+            <p style="font-family:'Inter',sans-serif;font-size:15px;line-height:1.75;color:#1a1a1a;margin:0 0 2.5em 0;text-align:center;">Prudentia returns to Te Rapa this Friday for a genuine test in a strong Rating 75 1400m, again partnered by Masa Hashizume from Barrier 1. She comes off a tough, professional win at the track, where she was strongest late and pulled up sound after a deliberately quiet recovery weekend. Her subsequent work has been fluent and competitive alongside her galloping partners, suggesting she has held both fitness and enthusiasm.</p>
+
+            <!-- DETAIL LINE -->
+            <p style="font-family:'Inter',sans-serif;font-size:15px;line-height:1.75;color:#1a1a1a;margin:0 0 2.5em 0;text-align:center;">| Friday 4:45pm | Race 8, 1400m | Benchmark 75 | Barrier 1 |</p>
+
+            <!-- QUOTE -->
+            <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:0 0 32px 0;">
+              <tr>
+                <td style="background:#000000;padding:32px 24px;border-left:3px solid #d4a964;border-radius:12px;text-align:center;">
+                  <p style="font-family:'Playfair Display',Georgia,serif;font-size:22px;font-style:italic;line-height:1.6;color:#ffffff;margin:0 0 16px 0;font-weight:500;text-align:center;">"She's taken the next step up. Once you're out of maiden grade, you have to find more, and her work suggests she's doing exactly that."</p>
+                  <p style="font-family:'Inter',sans-serif;font-size:11px;font-style:normal;color:#999999;font-weight:600;text-transform:uppercase;letter-spacing:1px;margin:0;text-align:center;">LANCE O'SULLIVAN, TRAINER</p>
+                </td>
+              </tr>
+            </table>
+
+            <!-- LINK -->
+            <p style="font-family:'Inter',sans-serif;font-size:15px;line-height:1.75;color:#1a1a1a;margin:0 0 2.5em 0;text-align:center;"><a href="https://www.tab.co.nz/racing/te-rapa/80aed18d-1f36-4019-ae3c-c57e683e66fe" style="color:#d4a964;text-decoration:underline;">Follow the link for where to watch, updates, and more</a></p>
+
+            <!-- BODY 2 -->
+            <p style="font-family:'Inter',sans-serif;font-size:15px;line-height:1.75;color:#1a1a1a;margin:0 0 2.5em 0;text-align:center;">This race presents a deeper field and a different tactical challenge. From the inside draw, Masa will need to secure a soft run early and then edge into clear air from the 600m so her finish is not blunted on the rail.</p>
+
+            <!-- SIGN-OFF -->
+            <table width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-top:48px;">
+              <tr>
+                <td style="border-top:1px solid #e0e0e0;padding-top:32px;text-align:center;">
+                  <img src="https://evolutionstables.nz/updates/AB_Signiture.png" alt="Alex Baddeley" style="display:block;max-width:160px;height:auto;margin:0 auto 8px auto;">
+                  <p style="font-family:'Inter',sans-serif;font-size:15px;font-weight:600;color:#000;margin:0 0 2px 0;text-align:center;">Alex Baddeley</p>
+                  <p style="font-family:'Inter',sans-serif;font-size:13px;font-weight:400;color:#666;margin:0;text-align:center;">Evolution Stables</p>
+                </td>
+              </tr>
+            </table>
+
+          </td>
+        </tr>
+
+        <!-- FOOTER -->
+        <tr>
+          <td align="center" style="background:#000000;color:#ffffff;padding:40px 24px;text-align:center;border-radius:0 0 12px 12px;">
+            <h2 style="font-family:'Playfair Display',Georgia,serif;font-size:22px;font-weight:400;color:#fff;margin:0 0 12px 0;text-align:center;">The Future of <span style="color:#d4a964;">Ownership</span><br>Has Arrived</h2>
+            <p style="font-family:'Inter',sans-serif;font-size:10px;color:#888;text-transform:uppercase;letter-spacing:1px;margin:0;text-align:center;">Digital-Syndication, by Evolution Stables, Powered By Tokinvest</p>
+          </td>
+        </tr>
+
+      </table>
+
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>

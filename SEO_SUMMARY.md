@@ -1,212 +1,148 @@
 # SEO Implementation Summary
 
-## ✅ What Was Done
+**Last Updated:** May 8, 2026  
+**Status:** Revised after deep audit — see `SEO_SPRINT.md` for implementation plan
 
-### 1. **JSON-LD Structured Data** 
+---
+
+## ✅ What Was Done (v1 — January 2026)
+
+### 1. JSON-LD Structured Data
 **File:** `/src/components/seo/StructuredData.tsx`
 
-Creates invisible code that tells Google:
+Tells search engines:
 - Who you are (Organization)
 - What you do (Digital racehorse ownership)
 - Your social profiles
-- **Press articles about you** ← This is key for SEO
+- Press articles about you
 
-### 2. **Press Mentions Section**
+**Note:** Currently uses `'use client'` — needs to be server-rendered (Track A, Phase 2).
+
+### 2. Press Mentions Section
 **File:** `/src/components/site/PressMentions.tsx`
 
-Elegant "As Featured In" section on your homepage showing:
-- Article titles
-- Publishers
-- Dates
-- Links to articles
+Elegant "As Featured In" section on homepage showing press coverage.
 
-### 3. **Enhanced Meta Tags**
+### 3. Root Metadata
 **File:** `/src/app/layout.tsx`
 
-Better titles, descriptions, and keywords including:
-- "Digital Racehorse Ownership"
-- "Tokenized RWA Platform"
-- "Tokinvest"
-- "Singularry"
-- Open Graph tags for social sharing
+Comprehensive metadata including:
+- Title, description, keywords
+- Open Graph tags
+- Twitter Card tags
+- Canonical URL
+- Robots directives
+- Icons
 
-### 4. **Press Articles Database**
+**Note:** Root metadata is excellent. The issue is that sub-pages don't have unique `generateMetadata` overrides — they all inherit the generic site-wide title/description.
+
+### 4. Press Articles Database
 **File:** `/src/lib/press-articles.ts`
 
-Central place to manage all your press coverage. Add articles here and they appear everywhere automatically.
+Centralized management — add articles here and they appear everywhere.
 
-### 5. **Sitemap & Robots.txt**
+### 5. Sitemap & Robots.txt
 **Files:** `/src/app/sitemap.ts` & `/src/app/robots.ts`
 
-Tells search engines which pages to crawl and how to crawl them.
+Currently only 2–3 URLs in sitemap. Needs expansion to include all public routes.
+
+### 6. Heading Hierarchy Fix
+- Homepage: Hidden `<h1>` for semantic context
+- Marketplace: Hidden `<h1>`
+
+### 7. Viewport Fix
+- Removed `userScalable: false` for accessibility
 
 ---
 
-## 🎯 How This Helps Your SEO
+## 🔴 Current Gaps (May 2026 Audit)
 
-### Without a Media Page
-You asked: *"Can we get articles to show up without having a media page?"*
+### Critical (Must Fix)
 
-**Answer: YES!** Here's how:
+| Gap | Impact | Track |
+|---|---|---|
+| Sub-pages lack unique `generateMetadata` | Every page shows same title in Google | A |
+| FAQ schema client-rendered | Rich results may not appear | A |
+| `StructuredData.tsx` client-rendered | Organization schema may not be indexed | A |
+| Sitemap only 2–3 URLs | Google can't discover pages | A |
+| No loading states | Blank pages, bad UX & CWV | A |
+| No canonical tags on sub-pages | Duplicate content risk | A |
 
-1. **Structured Data Links Articles to Your Brand**
-   - Google sees the articles are about Evolution Stables
-   - Articles appear in search results for your brand
-   - Builds authority and trust
+### Secondary (Should Fix)
 
-2. **Homepage Press Section**
-   - Shows credibility to visitors
-   - Creates natural backlinks
-   - Improves time-on-site metrics
+| Gap | Impact | Track |
+|---|---|---|
+| HTML lang is `en` not `en-NZ` | Missed geo-targeting | A |
+| `dangerouslySetInnerHTML` unsanitized | XSS risk (low: static content) | A |
+| `console.log` in production | Performance + data leak | A |
+| No PWA manifest / OG images | Missing social + PWA features | A |
+| No PostCSS optimization | Bundle bloat | A |
+| Middleware TTFB impact | Slow origin response | A |
 
-3. **SEO Keywords**
-   - Articles mention "Tokinvest" and "Singularry"
-   - Your site now ranks for these terms
-   - Association with reputable publications
+### Marketplace-Specific (Defer to Token Migration)
 
----
-
-## 📊 Expected Results
-
-### Short Term (1-4 weeks)
-- Articles indexed by Google
-- Improved brand search results
-- Better click-through rates
-
-### Medium Term (1-3 months)
-- Higher rankings for target keywords
-- Increased organic traffic
-- More backlinks from press
-
-### Long Term (3-6 months)
-- Established authority in RWA/racing space
-- Knowledge panel in Google
-- Consistent organic growth
+| Gap | Impact | Track |
+|---|---|---|
+| No `generateMetadata` on detail pages | Invisible to Google | B |
+| No `generateStaticParams` | Pages not pre-built | B |
+| Cards don't link to detail pages | No internal linking | B |
+| Poor image alt text | Image SEO missed | B |
+| Mock data in MyStable | Thin content risk | B |
 
 ---
 
-## 🚀 How to Add More Articles
+## 🟣 Evolution_Token Reference Patterns
 
-**Super Simple:**
+The new marketplace codebase already implements several SEO patterns correctly. Use these as reference when building:
 
-1. Open `/src/lib/press-articles.ts`
-2. Add your article:
-```typescript
-{
-  title: 'Article Title',
-  url: 'https://...',
-  publisher: 'Publisher Name',
-  date: '2025-01-15',
-  excerpt: 'Brief description...',
-},
-```
-3. Save
-
-That's it! It updates everywhere automatically.
+| Pattern | Token Implementation | Platform Current |
+|---|---|---|
+| Per-listing metadata | `seoTitle` / `seoDescription` in data model | None |
+| `generateMetadata` | Per-listing with fallback | None |
+| `generateStaticParams` | Pre-builds all listing pages | None |
+| `metadata.title.template` | `"%s | Evolution Stables"` | Static title only |
+| `html lang` | `en-NZ` | `en` |
+| Internal links | Next.js `<Link>` | `<a>` tags |
+| `next/font/google` | Geist + Geist_Mono | Manual font preload |
 
 ---
 
-## 📈 Monitoring Your SEO
+## 🎯 Three-Track Strategy
 
-### Set Up Google Search Console
-1. Go to https://search.google.com/search-console
-2. Add your site
-3. Submit sitemap: `https://evolutionstables.nz/sitemap.xml`
+### Track A — Do Now (Platform-Only)
+Changes to pages that WON'T be replaced by Token migration. Start here.
 
-### Track These Metrics
-- Organic search traffic
-- Keyword rankings
-- Backlinks from articles
-- Click-through rate
+### Track B — Defer to Token Migration
+Marketplace-specific SEO that will be replaced. Don't duplicate effort.
 
----
+### Track C — Add During Token Migration
+SEO requirements to bake into the new codebase from day one.
 
-## 💡 Pro Tips
-
-### 1. Keep Adding Articles
-- Aim for 5-10 quality mentions
-- Update regularly
-- Variety of publications
-
-### 2. Share on Social Media
-- Post articles on X/Instagram
-- Tag the publications
-- Encourage engagement
-
-### 3. Reach Out to Publications
-- Offer expert quotes
-- Pitch story ideas
-- Build relationships
-
-### 4. Create Your Own Content
-- Blog about racing industry
-- Educational guides
-- News commentary
-- Link to external articles naturally
+See `SEO_SPRINT.md` for the full implementation plan.
 
 ---
 
-## 🔍 Technical Details
+## 📊 Quick Metrics
 
-### Files Created/Modified
-
-**New Files:**
-- `/src/components/seo/StructuredData.tsx`
-- `/src/components/site/PressMentions.tsx`
-- `/src/lib/press-articles.ts`
-- `/src/app/sitemap.ts`
-- `/src/app/robots.ts`
-
-**Modified Files:**
-- `/src/app/layout.tsx` (enhanced meta tags + structured data)
-- `/src/app/page.tsx` (added press mentions section)
-
-### Build Status
-✅ All files compile successfully
-✅ No TypeScript errors
-✅ Production build ready
+| Metric | Before | Target |
+|---|---|---|
+| Sitemap URLs | 2–3 | 10+ |
+| Pages with unique metadata | 1 | 10+ |
+| Pages with structured data | 2 | 6+ |
+| Lighthouse SEO | ~70 | 100 |
+| Rich results eligibility | 1 | 4+ |
 
 ---
 
 ## 📚 Documentation
 
-- **Full Guide:** `SEO_GUIDE.md` (comprehensive SEO strategy)
-- **Quick Reference:** `ADDING_PRESS_ARTICLES.md` (how to add articles)
-- **This Summary:** `SEO_SUMMARY.md` (overview)
+- **Sprint Plan:** `SEO_SPRINT.md` — full implementation plan with phases
+- **Audit Report:** `SEO_AUDIT_REPORT.md` — detailed findings with evidence
+- **Checklist:** `SEO_CHECKLIST.md` — actionable checklist
+- **This Summary:** `SEO_SUMMARY.md` — quick overview
+- **SEO Guide:** `SEO_GUIDE.md` — technical implementation guide
+- **Token Reference:** `Evolution_Token/src/app/marketplace/` — reference patterns
 
 ---
 
-## ❓ FAQ
-
-**Q: Will this work without a dedicated media/news page?**
-A: Yes! The structured data and homepage section are enough.
-
-**Q: How long until I see results?**
-A: 2-4 weeks for indexing, 2-3 months for significant ranking improvements.
-
-**Q: Can I add more articles later?**
-A: Absolutely! Just edit `/src/lib/press-articles.ts` anytime.
-
-**Q: Do I need to do anything else?**
-A: Submit your sitemap to Google Search Console and keep adding quality content.
-
----
-
-## 🎉 You're All Set!
-
-Your site now has:
-- ✅ Professional SEO structure
-- ✅ Press coverage integration
-- ✅ Enhanced search visibility
-- ✅ Easy article management
-- ✅ Automatic updates everywhere
-
-**Next Steps:**
-1. Add more articles as you get press coverage
-2. Submit sitemap to Google Search Console
-3. Monitor your rankings
-4. Keep creating great content
-
----
-
-**Questions?** Check the full `SEO_GUIDE.md` for detailed information.
+*Last updated: May 8, 2026*

@@ -1,32 +1,40 @@
-'use client';
+import { Metadata } from "next";
+import Image from "next/image";
 
-import Image from 'next/image';
+export const metadata: Metadata = {
+  title: "Platform Demo | Evolution Stables",
+  description:
+    "Explore the Evolution Stables digital-syndication platform. Discover marketplace listings, information hub, and ownership opportunities.",
+  alternates: {
+    canonical: "/demo",
+  },
+};
 
-export default function Demo() {
+export default function DemoPage() {
   return (
     <main className="min-h-screen bg-black text-white">
       {/* Hero Section */}
       <section className="relative flex h-screen w-full flex-col items-center justify-center overflow-hidden text-center">
-        <div className="absolute inset-0" style={{ filter: 'brightness(0.85)' }}>
+        <div
+          className="absolute inset-0"
+          style={{ filter: "brightness(0.85)" }}
+        >
           <video
             autoPlay
             loop
             muted
             playsInline
             className="h-full w-full object-cover"
-            style={{ transform: 'scale(1.1)' }}
-            ref={(video) => {
-              if (video) {
-                video.playbackRate = 0.7;
-              }
-            }}
+            style={{ transform: "scale(1.1)" }}
           >
             <source src="/images/Jockey-walk-out.mp4" type="video/mp4" />
           </video>
         </div>
         <div className="absolute inset-0 bg-black/50" />
         <div className="relative z-10 px-4">
-          <h1 className="mb-4 text-5xl font-bold text-[#d4af37]">Marketplace</h1>
+          <h1 className="mb-4 text-5xl font-bold text-[#d4af37]">
+            Marketplace
+          </h1>
           <p className="text-lg text-gray-300">
             Discover and own digital assets in the Evolution Stables ecosystem
           </p>
@@ -40,12 +48,17 @@ export default function Demo() {
           <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
             {/* Left: Content */}
             <div>
-              <p className="mb-2 text-xs uppercase tracking-[0.28em] text-white/40">Evolution Stables</p>
-              <h2 className="mb-4 text-4xl font-medium tracking-tight text-white">Marketplace</h2>
+              <p className="mb-2 text-xs uppercase tracking-[0.28em] text-white/40">
+                Evolution Stables
+              </p>
+              <h2 className="mb-4 text-4xl font-medium tracking-tight text-white">
+                Marketplace
+              </h2>
               <p className="text-base leading-relaxed text-white/60">
-                Discover and explore digital-syndication opportunities within the Evolution ecosystem.
-                Browse upcoming offerings, ownership positions, and live data — all designed to make racehorse ownership
-                more accessible and connected.
+                Discover and explore digital-syndication opportunities within
+                the Evolution ecosystem. Browse upcoming offerings, ownership
+                positions, and live data — all designed to make racehorse
+                ownership more accessible and connected.
               </p>
             </div>
 
@@ -62,7 +75,10 @@ export default function Demo() {
                 </thead>
                 <tbody>
                   {Array.from({ length: 5 }).map((_, i) => (
-                    <tr key={i} className="border-b border-gray-800 text-gray-400">
+                    <tr
+                      key={i}
+                      className="border-b border-gray-800 text-gray-400"
+                    >
                       <td className="px-6 py-3">########</td>
                       <td className="px-6 py-3">########</td>
                       <td className="px-6 py-3">########</td>
@@ -74,7 +90,9 @@ export default function Demo() {
 
               {/* Blur overlay */}
               <div className="absolute inset-0 flex items-center justify-center bg-black/40 backdrop-blur-sm">
-                <span className="text-lg font-medium text-gray-300">Coming Soon</span>
+                <span className="text-lg font-medium text-gray-300">
+                  Coming Soon
+                </span>
               </div>
             </div>
           </div>
@@ -83,10 +101,15 @@ export default function Demo() {
           <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
             {/* Left: Content */}
             <div>
-              <p className="mb-2 text-xs uppercase tracking-[0.28em] text-white/40">Evolution Stables</p>
-              <h2 className="mb-4 text-4xl font-medium tracking-tight text-white">Information Hub</h2>
+              <p className="mb-2 text-xs uppercase tracking-[0.28em] text-white/40">
+                Evolution Stables
+              </p>
+              <h2 className="mb-4 text-4xl font-medium tracking-tight text-white">
+                Information Hub
+              </h2>
               <p className="text-base leading-relaxed text-white/60">
-                Stay connected with the latest Evolution news, interviews, and race insights.
+                Stay connected with the latest Evolution news, interviews, and
+                race insights.
               </p>
             </div>
 
@@ -94,14 +117,19 @@ export default function Demo() {
             <div className="relative overflow-hidden rounded-xl border border-white/5">
               <Image
                 src="/images/Gemini_Generated_Image_r4hnnzr4hnnzr4hn.jpg"
-                alt="Information Hub"
+                alt="Evolution Stables Information Hub — latest news and race insights"
                 width={800}
                 height={600}
                 className="h-[400px] w-full object-cover"
+                sizes="(max-width: 1024px) 100vw, 50vw"
               />
               <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/70 to-transparent p-6">
-                <h3 className="mb-1 text-lg font-medium tracking-tight text-white">Latest Insights</h3>
-                <p className="text-sm text-white/60">Curated coverage of races, partnerships, and trends.</p>
+                <h3 className="mb-1 text-lg font-medium tracking-tight text-white">
+                  Latest Insights
+                </h3>
+                <p className="text-sm text-white/60">
+                  Curated coverage of races, partnerships, and trends.
+                </p>
               </div>
             </div>
           </div>

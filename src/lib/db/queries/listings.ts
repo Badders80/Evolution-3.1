@@ -45,8 +45,8 @@ export function upsertListing(listing: MarketplaceListing): void {
     ) VALUES (
       ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, datetime('now')
     )
-    ON CONFLICT(id) DO UPDATE SET
-      slug = excluded.slug,
+    ON CONFLICT(slug) DO UPDATE SET
+      id = excluded.id,
       title = excluded.title,
       publish_status = excluded.publish_status,
       hero_image_src = excluded.hero_image_src,
@@ -132,6 +132,8 @@ function rowToListing(row: Record<string, string | null>): MarketplaceListing {
       entityType: "",
     }),
     offering: safeParse<MarketplaceListing["offering"]>(row.offering_json, {
+      offeringType: "lease",
+      pricePerOnePercentNzd: 0,
       leaseId: "",
       leaseStatus: "",
       startDate: "",
@@ -144,13 +146,13 @@ function rowToListing(row: Record<string, string | null>): MarketplaceListing {
       totalRaiseNzd: 0,
       investorSharePercent: 0,
       ownerSharePercent: 0,
-      pricePerOnePercentNzd: 0,
     }),
     application: safeParse<MarketplaceListing["application"]>(
       row.application_json,
       {
         campaignKey: "",
         sourcePath: "",
+        applicationFlow: "direct_purchase",
         minimumStakePercent: 0,
         maximumStakePercent: 0,
         defaultRequestedStakePercent: 0,

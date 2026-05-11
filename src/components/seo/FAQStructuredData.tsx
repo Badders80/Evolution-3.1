@@ -1,6 +1,4 @@
-'use client';
-
-import React from 'react';
+import React from "react";
 
 interface FAQItem {
   question: string;
@@ -20,13 +18,13 @@ export function FAQStructuredData({ items }: FAQStructuredDataProps) {
   if (!items || items.length === 0) return null;
 
   const faqSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: items.map(item => ({
-      '@type': 'Question',
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: items.map((item) => ({
+      "@type": "Question",
       name: item.question,
       acceptedAnswer: {
-        '@type': 'Answer',
+        "@type": "Answer",
         text: item.answer,
       },
     })),

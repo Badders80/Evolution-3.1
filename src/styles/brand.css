@@ -1,30 +1,68 @@
+/*
+ * Evolution Stables Brand Tokens
+ * SOURCE OF TRUTH: /home/evo/projects/tokens.json
+ * 
+ * This file is manually synced from tokens.json.
+ * When updating palettes, edit tokens.json first, then regenerate this file.
+ * TODO: Add build step to auto-generate from tokens.json
+ */
+
 :root {
+  /* === PRIMARY PALETTE (Default) === */
+  --color-background: #09090b;
+  --color-surface: #0a0a0a;
+  --color-surface-alt: #111111;
+  --color-foreground: #f5f5f5;
+  --color-muted: #a1a1aa;
+  --color-muted-foreground: #737373;
+  --color-border: rgba(255,255,255,0.06);
+
+  /* === BRAND ACCENT === */
   --brand-solid-medium: #d4a964;
   --brand-gold: var(--brand-solid-medium);
+  --brand-gold-hover: #c49a5a;
   --brand-gray: #747474;
   --brand-white: #ffffff;
   --brand-black: #000000;
 
-  /* Semantic palette mapped to Once UI tokens */
-  --color-background: #000000;
-  --color-surface: #0a0a0a;
-  --color-surface-alt: #111111;
-  --color-foreground: var(--neutral-on-background-strong);
-  --color-muted: var(--neutral-on-background-medium);
-  --color-muted-foreground: var(--neutral-on-background-weak);
-  --color-border: var(--neutral-border-medium);
+  /* === SEMANTIC MAPPINGS === */
   --color-primary: var(--brand-solid-medium);
-  --color-primary-foreground: var(--brand-on-solid-strong);
-  --color-accent: var(--accent-solid-medium);
-  --color-accent-foreground: var(--accent-on-solid-strong);
+  --color-primary-foreground: var(--brand-black);
+  --color-accent: var(--brand-solid-medium);
+  --color-accent-foreground: var(--brand-black);
 
-  /* Radii */
+  /* === BACKUP PALETTES (Opt-In) === */
+  /* Navy & Cream — Corporate/Institutional */
+  --palette-navy-background: #0F172A;
+  --palette-navy-surface: #1E293B;
+  --palette-navy-surface-alt: #334155;
+  --palette-navy-foreground: #F8F5F0;
+  --palette-navy-muted: #94A3B8;
+  --palette-navy-border: rgba(248,245,240,0.08);
+
+  /* Emerald & Gold — Growth/Fresh Starts */
+  --palette-emerald-background: #064E3B;
+  --palette-emerald-surface: #065F46;
+  --palette-emerald-surface-alt: #047857;
+  --palette-emerald-foreground: #F5F5F5;
+  --palette-emerald-muted: #6B7280;
+  --palette-emerald-border: rgba(245,245,245,0.08);
+
+  /* Charcoal & Silver — Data/Technical */
+  --palette-charcoal-background: #1a1a1a;
+  --palette-charcoal-surface: #2a2a2a;
+  --palette-charcoal-surface-alt: #3a3a3a;
+  --palette-charcoal-foreground: #e5e5e5;
+  --palette-charcoal-muted: #a0a0a0;
+  --palette-charcoal-border: rgba(229,229,229,0.06);
+
+  /* === RADIUS === */
   --radius-sm: 6px;
   --radius-md: 10px;
   --radius-lg: 14px;
   --radius-xl: 20px;
 
-  /* Spacing unit */
+  /* === SPACING === */
   --space-1: 0.25rem;
   --space-2: 0.5rem;
   --space-3: 0.75rem;
@@ -34,7 +72,7 @@
   --space-12: 3rem;
   --space-16: 4rem;
 
-  /* Shadows */
+  /* === SHADOWS === */
   --shadow-soft: 0 1px 2px rgba(0, 0, 0, 0.25), 0 2px 6px rgba(0, 0, 0, 0.18);
   --shadow-elevated: 0 8px 24px rgba(0, 0, 0, 0.35);
 }

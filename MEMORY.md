@@ -15,7 +15,7 @@
 | Marketplace v0.0 | ✅ | Public listings, open by default | Done |
 | MyStable MVP | 🟡 | Shell exists, needs auth + real data | Human |
 | Auth integration | 🔴 | Deferred per product decision | Human |
-| KYC flow | 🟡 | Didit hosted flow works | Working |
+| KYC flow | ✅ | Stripe Identity hosted flow works (Didit decommissioned 2026-05-05) | Working |
 
 ## Recent Decisions
 
@@ -28,6 +28,7 @@
 | Date | Scope | Deliverable | Verdict |
 |------|-------|-------------|---------|
 | 2026-04-27 | Full codebase — security, SEO, performance, architecture, token readiness | `AUDIT_2026-04-27_TokenReadiness.md` | **NOT production-ready**. Phase 1 (security lockdown) must complete before any token/wallet integration. |
+| 2026-05-11 | Full codebase — production readiness, GAME_PLAN accuracy, security, test coverage | `AUDIT_2026-05-11_ProductionReadiness.md` | **NOT production-ready**. 3 critical GAME_PLAN discrepancies (KYC still Didit, NextAuth v4, admin mock auth). Build is clean. Security foundations in place but secrets still on disk. |
 
 **Key findings from audit:**
 - 3 CRITICAL security issues (secrets in git history, mock admin auth via `sessionStorage`, zero security headers)
@@ -61,6 +62,7 @@
 | SSOT_Build | ← Horse data, listings | API ready |
 | Evolution_Token | ← Token holdings | API ready |
 | Evolution_Token | → KYC status | Webhook ready |
+| Google ADK Agents | ← Agent queries | `stable_hand` via MCP only (v0.0). Public marketplace listings + MyStable holdings (read-only). Session ownership: MCP client (Copilot). Direct ADK runner for backend jobs deferred to v1.0. |
 
 ## Machine Constraints
 

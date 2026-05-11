@@ -1,9 +1,14 @@
 # SEO Implementation Checklist
 
-## ✅ Completed (Already Done)
+**Last Updated:** May 8, 2026  
+**Status:** Revised after deep audit — see `SEO_SPRINT.md` for full details
+
+---
+
+## ✅ Completed (v1 — January 2026)
 
 ### Technical Implementation
-- [x] JSON-LD structured data created
+- [x] JSON-LD structured data created (Organization + WebSite)
 - [x] Press mentions component built
 - [x] Press articles database set up
 - [x] Enhanced meta tags (title, description, keywords)
@@ -14,6 +19,9 @@
 - [x] Homepage integration
 - [x] Mobile responsive design
 - [x] Build verification (no errors)
+- [x] Hidden `<h1>` on homepage and marketplace
+- [x] Viewport scaling fix (removed `userScalable: false`)
+- [x] FAQ structured data component created
 
 ### Content
 - [x] Investing.com article added
@@ -21,289 +29,188 @@
 
 ---
 
-## 🎯 Next Steps (Your Action Items)
+## 🔴 Track A — Do Now (Platform-Only, Migration-Proof)
 
-### Immediate (This Week)
+### Phase 1: Critical SEO Fixes
 
-#### 1. Submit to Google Search Console
-- [ ] Go to https://search.google.com/search-console
-- [ ] Add property: `evolutionstables.nz`
-- [ ] Verify ownership (DNS or HTML file)
-- [ ] Submit sitemap: `https://evolutionstables.nz/sitemap.xml`
-- [ ] Request indexing for homepage
+#### 1.1 Sub-Page Metadata
+- [ ] Add `generateMetadata` to `/about`
+- [ ] Add `generateMetadata` to `/gallery`
+- [ ] Add `generateMetadata` to `/contact`
+- [ ] Add `generateMetadata` to `/press`
+- [ ] Add `generateMetadata` to `/demo`
+- [ ] Add `generateMetadata` to `/marketplace`
+- [ ] Add `generateMetadata` to `/updates/[slug]`
 
-#### 2. Set Up Google Analytics (if not done)
-- [ ] Create GA4 property
-- [ ] Add tracking code to site
-- [ ] Set up conversion goals
-- [ ] Enable e-commerce tracking (if applicable)
+#### 1.2 Title Template
+- [ ] Adopt `metadata.title.template` pattern (`"%s | Evolution Stables"`) in `layout.tsx`
 
-#### 3. Verify Structured Data
-- [ ] Go to https://validator.schema.org/
-- [ ] Enter: `https://evolutionstables.nz`
-- [ ] Check for errors (should be none)
-- [ ] Screenshot for records
+#### 1.3 Sitemap
+- [ ] Add `/about` to sitemap
+- [ ] Add `/gallery` to sitemap
+- [ ] Add `/contact` to sitemap
+- [ ] Add `/demo` to sitemap (or disallow in robots)
+- [ ] Add `/updates` to sitemap
+- [ ] Add dynamic listing slugs (defer marketplace detail pages to Track C)
 
-#### 4. Test Rich Results
-- [ ] Go to https://search.google.com/test/rich-results
-- [ ] Enter your homepage URL
-- [ ] Verify Organization schema detected
-- [ ] Check for warnings
+#### 1.4 Homepage Server/Client Split
+- [ ] Extract FAQ schema to server component
+- [ ] Remove `'use client'` from `FAQStructuredData.tsx`
+
+#### 1.5 Loading States
+- [ ] Create `src/app/about/loading.tsx`
+- [ ] Create `src/app/gallery/loading.tsx`
+- [ ] Create `src/app/contact/loading.tsx`
+- [ ] Create `src/app/press/loading.tsx`
+- [ ] Create `src/app/demo/loading.tsx`
+
+#### 1.6 Error Boundaries
+- [ ] Create `src/app/marketplace/error.tsx`
+- [ ] Create `src/app/updates/error.tsx`
+
+#### 1.7 404 Page
+- [ ] Create `src/app/not-found.tsx` (branded)
+
+#### 1.8 Demo Page Decision
+- [ ] Decide: add `/demo` to sitemap OR disallow in robots
+
+### Phase 2: Structured Data Expansion
+
+- [ ] Remove `'use client'` from `StructuredData.tsx`
+- [ ] Remove `'use client'` from `FAQStructuredData.tsx`
+- [ ] Create `BreadcrumbStructuredData.tsx` (defer if Token migration is imminent)
+- [ ] Add Article schema to press page
+- [ ] Add Article schema to updates pages
+
+### Phase 3: Architecture & Crawlability
+
+- [ ] Add canonical tags to all static routes
+- [ ] Fix HTML lang from `en` to `en-NZ`
+- [ ] Align `metadataBase` with www. domain
+- [ ] Convert `<a>` to `<Link>` for internal links (or defer marketplace to Track B)
+- [ ] Add `noindex` to `/mystable/*`, `/api/*` routes
+- [ ] Verify no `public/robots.txt` conflicts with `src/app/robots.ts`
+
+### Phase 4: Core Web Vitals
+
+- [ ] Add `fetchPriority="high"` to hero image in `HeroSection.tsx`
+- [ ] Add `sizes` attribute to all `<Image fill>` components
+- [ ] Add `loading="lazy"` to below-fold images
+- [ ] Audit middleware for TTFB impact
+
+### Phase 5: Security, Quality & PWA
+
+- [ ] Sanitize `dangerouslySetInnerHTML` with DOMPurify in `updates/[slug]`
+- [ ] Remove `console.log` from production components
+- [ ] Create `src/app/manifest.ts` (PWA manifest)
+- [ ] Create `src/app/opengraph-image.tsx` (dynamic OG images)
+- [ ] Add apple-touch-icon sizes
+- [ ] Add `cssnano` + `postcss-preset-env` to `postcss.config.mjs`
+- [ ] Consider `next/font/google` pattern (replace manual font preload)
+- [ ] Add `seoTitle`/`seoDescription` fields to marketplace data model
+
+### Phase 6: Verification & Deploy
+
+- [ ] `npm run build` — no errors
+- [ ] `npm run lint` — no warnings
+- [ ] Schema validation at https://validator.schema.org/
+- [ ] Rich results test at https://search.google.com/test/rich-results
+- [ ] Lighthouse audit (SEO 100, Performance 90+, Accessibility 95+)
+- [ ] 404 status check with `curl -I`
+- [ ] Submit sitemap to GSC (after marketplace URLs are stable)
+- [ ] Request re-indexing in GSC
+- [ ] Monitor Core Web Vitals for 2 weeks
 
 ---
 
-### Short Term (Next 2-4 Weeks)
+## 🟡 Track B — Defer to Token Migration
 
-#### 5. Add More Press Articles
-- [ ] Review existing press coverage
-- [ ] Add 2-3 more articles to `/src/lib/press-articles.ts`
-- [ ] Include variety of publications
-- [ ] Update dates and excerpts
+Do NOT implement these in Platform — they will be replaced.
 
-#### 6. Social Media Amplification
-- [ ] Share Investing.com article on X
-- [ ] Share on Instagram
-- [ ] Tag @investing and relevant accounts
-- [ ] Create engaging post copy
-
-#### 7. Monitor Initial Results
-- [ ] Check Google Search Console weekly
-- [ ] Track impressions for brand terms
-- [ ] Monitor click-through rates
-- [ ] Note any ranking changes
-
-#### 8. Optimize Images
-- [ ] Add alt tags to all images
-- [ ] Compress large images
-- [ ] Use WebP format where possible
-- [ ] Verify lazy loading works
+- [ ] ~~Add `generateMetadata` to marketplace detail pages~~ → Token has per-listing `seoTitle`/`seoDescription`
+- [ ] ~~Add `generateStaticParams` for marketplace routes~~ → Token already has this
+- [ ] ~~Link marketplace cards to detail pages~~ → Token uses `<Link>` properly
+- [ ] ~~Wrap mock data in `NODE_ENV === 'development'` for MyStable~~ → Token uses auth redirect
+- [ ] ~~Marketplace image alt text improvements~~ → Token has different image handling
+- [ ] ~~Marketplace Product/Offer schema~~ → Implement in Token instead
 
 ---
 
-### Medium Term (Next 1-3 Months)
+## 🟣 Track C — Add During Token Migration
 
-#### 9. Content Strategy
-- [ ] Plan blog/news section (optional)
-- [ ] Create 3-5 educational articles
-- [ ] Write about racehorse ownership
-- [ ] Link to external articles naturally
+Bake SEO into the new codebase from day one.
 
-#### 10. Link Building
-- [ ] Reach out to racing publications
-- [ ] Offer expert quotes/commentary
-- [ ] Guest post opportunities
-- [ ] Partner with industry sites
-
-#### 11. Local SEO (NZ Focus)
-- [ ] Create Google Business Profile
-- [ ] List in NZ business directories
-- [ ] Add location keywords to content
-- [ ] Get listed on racing association sites
-
-#### 12. Technical Optimization
-- [ ] Run Lighthouse audit
-- [ ] Improve page speed (if needed)
-- [ ] Check mobile usability
-- [ ] Fix any accessibility issues
+- [ ] Ensure all Token routes get `generateMetadata` with template pattern
+- [ ] Add `noindex` to `/mystable/*`, `/api/*`, `/mock/*`, `/admin/*`
+- [ ] Add BreadcrumbList + Product/Offer schema to Token marketplace detail pages
+- [ ] Add canonical URLs to all Token routes
+- [ ] Create `sitemap.ts` in Token with dynamic listing slugs
+- [ ] Add `loading.tsx` and `error.tsx` to all Token route groups
+- [ ] Verify Token `robots.ts` disallows `/api/`, `/auth`, `/mystable`, `/mock`, `/admin`
+- [ ] Remove `console.log`/`console.error` from Token production code
+- [ ] Verify Token `<Image>` components have proper `sizes`, `loading`, `alt`
+- [ ] Add Article schema to any blog/updates content in Token
 
 ---
 
-### Long Term (Next 3-6 Months)
+## 🔴 Corrected Items (May 2026 Audit)
 
-#### 13. Advanced Schema Markup
-- [ ] Add FAQ schema to FAQ section
-- [ ] Add Product schema for horses
-- [ ] Add Review schema (if applicable)
-- [ ] Add Event schema for races
+### Previously Believed — Now Corrected
+- ~~"Site-wide metadata vacuum"~~ → Root metadata is excellent. Issue is sub-pages lacking `generateMetadata` overrides.
+- ~~"Homepage entirely `'use client'"~~ → Root layout IS server-rendered. Issue is FAQ schema client-rendered; Organization+WebSite schema is in `<head>`.
+- ~~"No `width`/`height` on `<Image>` components"~~ → All images properly sized. Removed from sprint.
+- ~~"Sitemap only has 2 URLs"~~ → Actually 2–3 (marketplace conditional). Corrected.
 
-#### 14. Content Expansion
-- [ ] Launch blog (if desired)
-- [ ] Create video content
-- [ ] Develop educational resources
-- [ ] Build resource library
-
-#### 15. Authority Building
-- [ ] Podcast appearances
-- [ ] Industry conference speaking
-- [ ] Webinar hosting
-- [ ] Thought leadership articles
-
-#### 16. Analytics Deep Dive
-- [ ] Analyze top-performing pages
-- [ ] Identify high-value keywords
-- [ ] Track conversion funnels
-- [ ] Optimize based on data
+### Newly Discovered Gaps
+- `FAQStructuredData.tsx` is `'use client'` — original sprint missed this
+- `/about`, `/gallery`, `/contact` pages have no `generateMetadata` — sprint missed these
+- `/demo` not in sitemap and not disallowed in robots
+- Internal links use `<a>` instead of `<Link>`
+- `<Image fill>` missing `sizes` attribute
+- Below-fold images missing `loading="lazy"`
+- No `metadata.title.template` pattern
+- No custom `not-found.tsx`
 
 ---
 
 ## 📊 Metrics to Track
 
+### Before / After Targets
+
+| Metric | Before | Target |
+|---|---|---|
+| Sitemap URLs | 2–3 | 10+ |
+| Pages with unique metadata | 1 | 10+ |
+| Pages with structured data | 2 (server-rendered) | 6+ |
+| Lighthouse SEO | ~70 | 100 |
+| Lighthouse Performance | ~75 | 90+ |
+| Lighthouse Accessibility | ~85 | 95+ |
+| CLS | Unknown | < 0.1 |
+| LCP | Unknown | < 2.5s |
+| INP | Unknown | < 200ms |
+| Rich results eligibility | 1 (FAQ, client-rendered) | 4+ |
+
 ### Weekly
-- [ ] Organic search traffic
-- [ ] Keyword rankings (top 10)
-- [ ] Google Search Console impressions
-- [ ] Click-through rate
+- [ ] Check Search Console
+- [ ] Monitor rankings
+- [ ] Review analytics
 
 ### Monthly
-- [ ] Backlinks (quantity & quality)
-- [ ] Domain authority
-- [ ] Page speed scores
-- [ ] Conversion rate from organic
-
-### Quarterly
-- [ ] Overall SEO performance
-- [ ] ROI from organic traffic
-- [ ] Competitor analysis
-- [ ] Strategy adjustments
-
----
-
-## 🎯 Goals & Targets
-
-### 3-Month Goals
-- [ ] 50+ organic visitors/day
-- [ ] Rank #1 for "Evolution Stables"
-- [ ] Top 10 for "digital racehorse ownership"
-- [ ] 5-10 quality backlinks
-
-### 6-Month Goals
-- [ ] 200+ organic visitors/day
-- [ ] Top 5 for "racehorse syndication NZ"
-- [ ] Top 10 for "tokenized racehorse"
-- [ ] 20+ quality backlinks
-
-### 12-Month Goals
-- [ ] 500+ organic visitors/day
-- [ ] Top 3 for multiple target keywords
-- [ ] Knowledge panel in Google
-- [ ] 50+ quality backlinks
-
----
-
-## 🚨 Common Issues & Solutions
-
-### Issue: Articles not showing in search
-**Check:**
-- [ ] Structured data valid?
-- [ ] Sitemap submitted?
-- [ ] Waited 2-4 weeks?
-- [ ] No robots.txt blocking?
-
-### Issue: Low rankings
-**Try:**
-- [ ] More quality content
-- [ ] Better backlinks
-- [ ] Improve page speed
-- [ ] Enhance user engagement
-
-### Issue: No organic traffic
-**Review:**
-- [ ] Keywords too competitive?
-- [ ] Content quality sufficient?
-- [ ] Technical SEO issues?
-- [ ] Indexing problems?
+- [ ] Audit backlinks
+- [ ] Update old content
+- [ ] Check competitors
 
 ---
 
 ## 📚 Resources
 
-### Tools
-- Google Search Console: https://search.google.com/search-console
-- Google Analytics: https://analytics.google.com
-- Schema Validator: https://validator.schema.org
-- Rich Results Test: https://search.google.com/test/rich-results
-- PageSpeed Insights: https://pagespeed.web.dev
-- Ahrefs (backlinks): https://ahrefs.com
-
-### Documentation
-- Your SEO guides in repo:
-  - `SEO_GUIDE.md` - Comprehensive guide
-  - `SEO_SUMMARY.md` - Quick overview
-  - `ADDING_PRESS_ARTICLES.md` - How to add articles
-  - `WHERE_ARTICLES_APPEAR.md` - Visual guide
-
-### Learning
-- Google SEO Starter Guide
-- Schema.org documentation
-- Next.js SEO best practices
-- Ahrefs blog
+- **Sprint Plan:** `SEO_SPRINT.md` — full implementation plan
+- **Audit Report:** `SEO_AUDIT_REPORT.md` — detailed findings
+- **SEO Guide:** `SEO_GUIDE.md` — technical implementation guide
+- **This Checklist:** `SEO_CHECKLIST.md` — action items
+- **Quick Reference:** `SEO_SUMMARY.md` — overview
+- **Token Reference:** `Evolution_Token/src/app/marketplace/` — reference SEO patterns
 
 ---
 
-## 💡 Pro Tips
-
-### Do's ✅
-- Keep adding quality articles
-- Monitor metrics regularly
-- Create valuable content
-- Build genuine relationships
-- Be patient (SEO takes time)
-
-### Don'ts ❌
-- Don't buy backlinks
-- Don't keyword stuff
-- Don't duplicate content
-- Don't ignore mobile users
-- Don't forget about UX
-
----
-
-## 🎉 Quick Wins
-
-### Easy Improvements (Do Now)
-1. [ ] Add alt tags to all images
-2. [ ] Compress images
-3. [ ] Add internal links between pages
-4. [ ] Update meta descriptions
-5. [ ] Fix any broken links
-
-### Medium Effort (This Month)
-1. [ ] Write 2-3 blog posts
-2. [ ] Reach out to 5 publications
-3. [ ] Create social media content
-4. [ ] Optimize page speed
-5. [ ] Build email list
-
----
-
-## 📞 Need Help?
-
-### Questions About:
-- **Adding articles:** See `ADDING_PRESS_ARTICLES.md`
-- **SEO strategy:** See `SEO_GUIDE.md`
-- **Where things appear:** See `WHERE_ARTICLES_APPEAR.md`
-- **Quick overview:** See `SEO_SUMMARY.md`
-
-### Technical Issues:
-- Check build logs
-- Verify file paths
-- Test in development
-- Review console errors
-
----
-
-## 🔄 Regular Maintenance
-
-### Weekly Tasks
-- [ ] Check Search Console
-- [ ] Monitor rankings
-- [ ] Review analytics
-- [ ] Add new content
-
-### Monthly Tasks
-- [ ] Audit backlinks
-- [ ] Update old content
-- [ ] Check competitors
-- [ ] Review strategy
-
-### Quarterly Tasks
-- [ ] Full SEO audit
-- [ ] Strategy review
-- [ ] Goal assessment
-- [ ] Plan next quarter
-
----
-
-**Last Updated:** January 2025
-**Status:** Implementation Complete ✅
-**Next Review:** [Add date 3 months from now]
+*Last updated: May 8, 2026*

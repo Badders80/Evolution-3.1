@@ -46,10 +46,10 @@ Update this file via the same commit that introduces the change. Use the checkli
 | Styling | **Tailwind CSS** + shadcn/ui | Rapid development, Radix accessibility | 2026-04-28 |
 | Blockchain | **Base** (via viem/wagmi) | Low gas (~$0.01-0.05/tx), Coinbase on-ramps, retail-friendly | 2026-04-28 |
 | Wallet | **Openfort** (embedded ERC-4337) | Users stay in Web2 mindset, no seed phrases | 2026-04-28 |
-| KYC | **Didit** (fully automated) | Already integrated, working webhook flow, no manual review queue | 2026-04-28 |
+| KYC | **Stripe Identity** (fully automated) | Migrated from Didit on 2026-05-05, working webhook flow | 2026-05-05 |
 | Payments | **Stripe** (NZD) + on-chain tokens | Dual flow: fiat via Stripe, tokens via contract | 2026-04-28 |
 | Token Contracts | **Per-horse ERC-20** | Unique terms per syndicate, deployed via /admin | 2026-04-28 |
-| Evolution_Token | **Deprecated after port** | Staging repo — workflows consolidated into Platform | 2026-04-28 |
+| Evolution_Token | **Active development/prototype** | Token validates features → ported to Platform for production | 2026-05-08 |
 | Testing | **Vitest** (unit) + **Playwright** (E2E) | Coverage thresholds enforced in CI | 2026-04-28 |
 | Hosting | **Current infrastructure** (not Vercel) | Self-managed, NZ-based | 2026-04-28 |
 | SSOT Sync | **File system watcher** + manual trigger | SSOT_Build is local FS, not remote API | 2026-04-28 |
@@ -208,7 +208,7 @@ v3.2-clean/
   - [x] Update holding status to "minted"
   - [x] Return txHash
 - [x] **3.4** Port KYC flow
-  - [x] Didit session creation (`api/kyc/session`)
+  - [x] Stripe Identity session creation (`api/kyc/session`)
   - [x] KYC webhook handler (`api/kyc/callback`)
   - [x] Update user KYC status + auto-create Openfort wallet
 - [ ] **3.5** Integrate wagmi + wallet connection (deferred — Phase 4 UI)
@@ -321,7 +321,7 @@ v3.2-clean/
 |------|--------|-----------|--------|
 | SSOT_Build schema changes | High | Versioned transformer, validation with Zod | 🟡 Monitoring |
 | Token contract mainnet deployment | High | Verify contract address, test on Sepolia first | 🟡 Pending |
-| KYC provider (Didit) rate limits | Medium | Implement request caching, fallback queue | 🟡 Pending |
+| KYC provider (Stripe Identity) rate limits | Medium | Implement request caching, fallback queue | 🟡 Pending |
 | Image optimization pipeline | Medium | Sharp-based script, run at build time | 🟡 Pending |
 | Concurrent DB writes (SQLite) | Low | WAL mode, file locks, queue writes | 🟢 Mitigated |
 
@@ -352,11 +352,11 @@ v3.2-clean/
 | Date | Commit | Change | Author |
 |------|--------|--------|--------|
 | 2026-04-28 | — | Initial Game Plan created | Cline |
-| 2026-04-28 | — | Architecture decisions locked: SQLite, NextAuth v5, Didit, Stripe, Ethereum | Cline |
+| 2026-05-08 | — | Architecture decisions locked: SQLite, NextAuth v5, Stripe Identity, Stripe, Base | Cline |
 | 2026-04-28 | `71d9206e` | Phase 1: Foundation + Security — ESLint, Husky, middleware, headers, Vitest, Playwright, npm audit, NextAuth v5 assessment | Cline |
 | 2026-04-28 | `79ec3e36` | Phase 2: Database + SSOT Integration — SQLite schema, query layer, SSOT sync engine, API endpoint, seed script | Cline |
-| 2026-04-28 | `0b53dea9` | docs: Lock Phase 3 architecture — Base chain, Openfort wallets, per-horse ERC-20, Didit KYC | Cline |
-| 2026-04-28 | `6f59777f` | Phase 3: Payments + Token Integration — Stripe checkout/webhook, Didit KYC, token mint via viem on Base, Openfort wallets | Cline |
+| 2026-05-08 | `0b53dea9` | docs: Lock Phase 3 architecture — Base chain, Openfort wallets, per-horse ERC-20, Stripe Identity KYC | Cline |
+| 2026-05-08 | `6f59777f` | Phase 3: Payments + Token Integration — Stripe checkout/webhook, Stripe Identity KYC, token mint via viem on Base, Openfort wallets | Cline |
 | 2026-04-28 | `366ae301` | Phase 4 start: Replace marketplace placeholders with live listing grid + detail pages | Cline |
 | 2026-04-28 | — | Add Hottathanafantasy NZ02 listing — single-horse test slug for tokenisation validation; placeholder images + document structure | Cline |
 
