@@ -64,3 +64,63 @@ Visitor → Marketplace → Syndicate Detail → KYC → Checkout → MyStable
 
 <- GAME_PLAN.md
 -> README.md
+
+---
+
+## Deployment Workflow
+
+### Pre-Deployment Checklist
+
+**CRITICAL: Fix everything locally before pushing. Never push incrementally.**
+
+```bash
+# 1. Run local build and catch ALL errors
+npm run build
+
+# 2. Fix ALL TypeScript errors locally
+# (Edit files until build succeeds)
+
+# 3. Verify build succeeds locally
+# ✓ Compiled successfully
+# ✓ No type errors
+
+# 4. Check what's modified
+git status
+
+# 5. Commit EVERYTHING in ONE commit
+git add -A
+git commit -m "Fix: [description]"
+
+# 6. Push ONCE to main
+git push
+
+# 7. Monitor Vercel deployment
+# https://vercel.com/dashboard
+```
+
+### Why This Matters
+
+**❌ Wrong approach (what NOT to do):**
+- Push with errors → Vercel fails → Fix one error → Push again → Repeat
+- Results in: 5+ failed builds, 15+ minutes wasted, whack-a-mole debugging
+
+**✅ Right approach:**
+- Fix all errors locally → One commit → One push → One successful build
+- Results in: 1 build, 2-3 minutes total, done
+
+### Vercel Deployment
+
+1. Push to `main` branch triggers automatic deployment
+2. Monitor at: https://vercel.com/dashboard
+3. Build takes ~2-3 minutes
+4. Production URL: https://evolutionstables.nz
+
+### Rollback (If Needed)
+
+```bash
+# Revert to previous commit
+git revert HEAD
+git push
+
+# Or deploy specific commit via Vercel dashboard
+```
