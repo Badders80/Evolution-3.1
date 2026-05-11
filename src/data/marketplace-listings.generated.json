@@ -21,7 +21,7 @@
         "/images/marketplace/first-gear-3.png",
         "/images/marketplace/first-gear-4.png"
       ],
-      "summary": "Own a stake in First Gear — a promising Bay Gelding by Derryn, trained by Stephen Gray Racing at Copper Belt Lodge.",
+      "summary": "Own a stake in First Gear \u2014 a promising Bay Gelding by Derryn, trained by Stephen Gray Racing at Copper Belt Lodge.",
       "overview": "First Gear is a three-year-old Bay Gelding by Derryn (AUS) out of A'Guin Ace (NZ), currently in active training with Stephen Gray Racing. This offering represents a 10% lease of the horse, split into 20 stake units at $240 per unit, giving investors an 80% share of race-day returns. With a verified NZTR profile and a 12-month lease window, this is an accessible entry point into racehorse ownership.",
       "horse": {
         "id": "horse-first-gear",
@@ -64,7 +64,8 @@
         "totalRaiseNzd": 4800,
         "investorSharePercent": 80,
         "ownerSharePercent": 20,
-        "pricePerOnePercentNzd": 480
+        "pricePerOnePercentNzd": 480,
+        "offeringType": "lease"
       },
       "application": {
         "campaignKey": "marketplace-first-gear",
@@ -74,7 +75,8 @@
         "defaultRequestedStakePercent": 0.5,
         "defaultRequestedUnits": 1,
         "defaultReservationAmountNzd": 240,
-        "defaultStatus": "submitted"
+        "defaultStatus": "submitted",
+        "applicationFlow": "direct_purchase"
       },
       "disclaimers": [
         "All listings are subject to final review before any commitment is accepted.",
@@ -85,7 +87,7 @@
           "id": "doc-first-gear-hlt-term-sheet",
           "listingId": "listing-first-gear",
           "documentType": "hlt_term_sheet",
-          "title": "HLT Term Sheet — First Gear Syndicate",
+          "title": "HLT Term Sheet \u2014 First Gear Syndicate",
           "description": "Horse Lease and Training term sheet outlining key commercial terms for the First Gear syndicate offering.",
           "fileName": "first-gear-hlt-term-sheet.pdf",
           "filePath": "/docs/first-gear/first-gear-hlt-term-sheet.pdf",
@@ -97,7 +99,7 @@
           "id": "doc-first-gear-pds",
           "listingId": "listing-first-gear",
           "documentType": "pds",
-          "title": "Product Disclosure Statement — First Gear",
+          "title": "Product Disclosure Statement \u2014 First Gear",
           "description": "Product Disclosure Statement for the First Gear lease offering, as required under NZ financial markets legislation.",
           "fileName": "first-gear-pds.pdf",
           "filePath": "/docs/first-gear/first-gear-pds.pdf",
@@ -109,7 +111,7 @@
           "id": "doc-first-gear-syndicate-agreement",
           "listingId": "listing-first-gear",
           "documentType": "syndicate_agreement",
-          "title": "Syndicate Agreement — First Gear",
+          "title": "Syndicate Agreement \u2014 First Gear",
           "description": "The syndicate agreement governing co-ownership terms, rights, and obligations for First Gear investors.",
           "fileName": "first-gear-syndicate-agreement.pdf",
           "filePath": "/docs/first-gear/first-gear-syndicate-agreement.pdf",
@@ -131,7 +133,7 @@
         "/images/marketplace/prudentia-3.png",
         "/images/marketplace/prudentia-4.png"
       ],
-      "summary": "Own a stake in Prudentia — a Bay Mare by Proisir, trained by Wexford Stables. An 18-month lease with 5% offered at just $292.50 per unit.",
+      "summary": "Own a stake in Prudentia \u2014 a Bay Mare by Proisir, trained by Wexford Stables. An 18-month lease with 5% offered at just $292.50 per unit.",
       "overview": "Prudentia is a three-year-old Bay Mare by Proisir (AUS) out of Little Bit Irish (NZ), trained by Wexford Stables. This offering represents a 5% lease of the horse, split into 20 stake units at $292.50 per unit, giving investors a 75% share of race-day returns. With a verified NZTR profile and an 18-month lease window through June 2027, this is a compelling opportunity for those looking to enter racehorse ownership at an accessible price point.",
       "horse": {
         "id": "horse-prudentia",
@@ -174,7 +176,8 @@
         "totalRaiseNzd": 5850,
         "investorSharePercent": 75,
         "ownerSharePercent": 25,
-        "pricePerOnePercentNzd": 1170
+        "pricePerOnePercentNzd": 1170,
+        "offeringType": "lease"
       },
       "application": {
         "campaignKey": "marketplace-prudentia",
@@ -184,7 +187,8 @@
         "defaultRequestedStakePercent": 0.25,
         "defaultRequestedUnits": 1,
         "defaultReservationAmountNzd": 292.5,
-        "defaultStatus": "submitted"
+        "defaultStatus": "submitted",
+        "applicationFlow": "direct_purchase"
       },
       "disclaimers": [
         "All listings are subject to final review before any commitment is accepted.",
@@ -195,7 +199,7 @@
           "id": "doc-prudentia-hlt-term-sheet",
           "listingId": "listing-prudentia",
           "documentType": "hlt_term_sheet",
-          "title": "HLT Term Sheet — Prudentia Syndicate",
+          "title": "HLT Term Sheet \u2014 Prudentia Syndicate",
           "description": "Horse Lease and Training term sheet outlining key commercial terms for the Prudentia syndicate offering.",
           "fileName": "prudentia-hlt-term-sheet.pdf",
           "filePath": "/docs/prudentia/prudentia-hlt-term-sheet.pdf",
@@ -207,7 +211,7 @@
           "id": "doc-prudentia-pds",
           "listingId": "listing-prudentia",
           "documentType": "pds",
-          "title": "Product Disclosure Statement — Prudentia",
+          "title": "Product Disclosure Statement \u2014 Prudentia",
           "description": "Product Disclosure Statement for the Prudentia lease offering, as required under NZ financial markets legislation.",
           "fileName": "prudentia-pds.pdf",
           "filePath": "/docs/prudentia/prudentia-pds.pdf",
@@ -219,7 +223,7 @@
           "id": "doc-prudentia-syndicate-agreement",
           "listingId": "listing-prudentia",
           "documentType": "syndicate_agreement",
-          "title": "Syndicate Agreement — Prudentia",
+          "title": "Syndicate Agreement \u2014 Prudentia",
           "description": "The syndicate agreement governing co-ownership terms, rights, and obligations for Prudentia investors.",
           "fileName": "prudentia-syndicate-agreement.pdf",
           "filePath": "/docs/prudentia/prudentia-syndicate-agreement.pdf",
@@ -241,7 +245,7 @@
         "/images/marketplace/hottathanafantasy-3.svg",
         "/images/marketplace/hottathanafantasy-4.svg"
       ],
-      "summary": "Own a stake in Hottathanafantasy — a promising Bay Filly by Contributer (IRE), trained by Wexford Stables. A 16-month lease offering 5% at $280 per unit with 75% investor returns.",
+      "summary": "Own a stake in Hottathanafantasy \u2014 a promising Bay Filly by Contributer (IRE), trained by Wexford Stables. A 16-month lease offering 5% at $280 per unit with 75% investor returns.",
       "overview": "Hottathanafantasy is a two-year-old Bay Filly by Contributer (IRE) out of Whiffle (USA), currently in active training with Wexford Stables. This offering represents a 5% lease of the horse, split into 20 stake units at $280 per unit (0.25% each), giving investors a 75% share of race-day returns. With a verified NZTR profile, a 16-month lease window from March 2026 through July 2027, and an accessible price point, this is a compelling entry into racehorse ownership.",
       "horse": {
         "id": "horse-hottathanafantasy",
@@ -284,7 +288,8 @@
         "totalRaiseNzd": 5600,
         "investorSharePercent": 75,
         "ownerSharePercent": 25,
-        "pricePerOnePercentNzd": 1120
+        "pricePerOnePercentNzd": 1120,
+        "offeringType": "lease"
       },
       "application": {
         "campaignKey": "marketplace-hottathanafantasy",
@@ -294,7 +299,8 @@
         "defaultRequestedStakePercent": 0.25,
         "defaultRequestedUnits": 1,
         "defaultReservationAmountNzd": 280,
-        "defaultStatus": "submitted"
+        "defaultStatus": "submitted",
+        "applicationFlow": "direct_purchase"
       },
       "disclaimers": [
         "All listings are subject to final review before any commitment is accepted.",
@@ -305,7 +311,7 @@
           "id": "doc-hottathanafantasy-hlt-term-sheet",
           "listingId": "listing-hottathanafantasy",
           "documentType": "hlt_term_sheet",
-          "title": "HLT Term Sheet — Hottathanafantasy NZ02",
+          "title": "HLT Term Sheet \u2014 Hottathanafantasy NZ02",
           "description": "Horse Lease and Training term sheet outlining key commercial terms for the Hottathanafantasy NZ02 syndicate offering.",
           "fileName": "hottathanafantasy-hlt-term-sheet.pdf",
           "filePath": "/docs/hottathanafantasy/hottathanafantasy-hlt-term-sheet.pdf",
@@ -317,7 +323,7 @@
           "id": "doc-hottathanafantasy-pds",
           "listingId": "listing-hottathanafantasy",
           "documentType": "pds",
-          "title": "Product Disclosure Statement — Hottathanafantasy",
+          "title": "Product Disclosure Statement \u2014 Hottathanafantasy",
           "description": "Product Disclosure Statement for the Hottathanafantasy lease offering, as required under NZ financial markets legislation.",
           "fileName": "hottathanafantasy-pds.pdf",
           "filePath": "/docs/hottathanafantasy/hottathanafantasy-pds.pdf",
@@ -329,7 +335,7 @@
           "id": "doc-hottathanafantasy-syndicate-agreement",
           "listingId": "listing-hottathanafantasy",
           "documentType": "syndicate_agreement",
-          "title": "Syndicate Agreement — Hottathanafantasy",
+          "title": "Syndicate Agreement \u2014 Hottathanafantasy",
           "description": "The syndicate agreement governing co-ownership terms, rights, and obligations for Hottathanafantasy investors.",
           "fileName": "hottathanafantasy-syndicate-agreement.pdf",
           "filePath": "/docs/hottathanafantasy/hottathanafantasy-syndicate-agreement.pdf",

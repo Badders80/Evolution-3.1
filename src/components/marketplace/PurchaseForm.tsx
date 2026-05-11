@@ -1,14 +1,14 @@
-'use client';
+"use client";
 
-import { FormEvent, useMemo, useState } from 'react';
-import { formatNzd, formatPercent } from '@/lib/marketplace';
+import { FormEvent, useMemo, useState } from "react";
+import { formatNzd, formatPercent } from "@/lib/marketplace";
 import {
   REQUIRED_DOCUMENT_TYPES,
   DOCUMENT_TYPE_LABELS,
   getOfficialDocumentsForListing,
-} from '@/lib/marketplace-documents';
-import type { MarketplaceListing } from '@/types/marketplace';
-import type { StripeCheckoutResult } from '@/types/stripe';
+} from "@/lib/marketplace-documents";
+import type { MarketplaceListing } from "@/types/marketplace";
+import type { StripeCheckoutResult } from "@/types/stripe";
 
 type PurchaseFormProps = {
   listing: MarketplaceListing;
@@ -25,13 +25,13 @@ export function PurchaseForm({ listing }: PurchaseFormProps) {
   const minimumStakePercent = listing.application.minimumStakePercent;
   const maximumStakePercent = listing.application.maximumStakePercent;
 
-  const [fullName, setFullName] = useState('');
-  const [email, setEmail] = useState('');
-  const [phone, setPhone] = useState('');
+  const [fullName, setFullName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const [requestedStakePercent, setRequestedStakePercent] = useState(
     listing.application.defaultRequestedStakePercent,
   );
-  const [notes, setNotes] = useState('');
+  const [notes, setNotes] = useState("");
   const [documentAcknowledgements, setDocumentAcknowledgements] = useState<
     Record<string, boolean>
   >(() => {
@@ -53,12 +53,17 @@ export function PurchaseForm({ listing }: PurchaseFormProps) {
     () =>
       Math.max(
         1,
-        Math.round(requestedStakePercent / listing.offering.stakeUnitPercent),
+        Math.round(
+          requestedStakePercent / (listing.offering.stakeUnitPercent ?? 1),
+        ),
       ),
     [listing.offering.stakeUnitPercent, requestedStakePercent],
   );
   const reservationAmountNzd = useMemo(
-    () => Number((calculatedUnits * listing.offering.tokenPriceNzd).toFixed(2)),
+    () =>
+      Number(
+        (calculatedUnits * (listing.offering.tokenPriceNzd ?? 0)).toFixed(2),
+      ),
     [calculatedUnits, listing.offering.tokenPriceNzd],
   );
 
@@ -73,9 +78,9 @@ export function PurchaseForm({ listing }: PurchaseFormProps) {
     setError(null);
 
     try {
-      const response = await fetch('/api/checkout', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const response = await fetch("/api/checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           listingSlug: listing.slug,
           requestedStakePercent,
@@ -98,14 +103,14 @@ export function PurchaseForm({ listing }: PurchaseFormProps) {
       const data: StripeCheckoutResult = await response.json();
 
       if (!data.ok) {
-        setError(data.error || 'Unable to start checkout. Please try again.');
+        setError(data.error || "Unable to start checkout. Please try again.");
         return;
       }
 
       // Redirect to Stripe Checkout
       window.location.href = data.url;
     } catch {
-      setError('Unable to connect to the payment service. Please try again.');
+      setError("Unable to connect to the payment service. Please try again.");
     } finally {
       setIsSubmitting(false);
     }
@@ -113,11 +118,14 @@ export function PurchaseForm({ listing }: PurchaseFormProps) {
 
   function getDocumentLink(docType: string): string {
     const doc = officialDocuments.find((d) => d.documentType === docType);
-    return doc?.filePath ?? '#';
+    return doc?.filePath ?? "#";
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-5 rounded-3xl border border-[#D4A964]/30 bg-white/[0.03] p-6">
+    <form
+      onSubmit={handleSubmit}
+      className="space-y-5 rounded-3xl border border-[#D4A964]/30 bg-white/[0.03] p-6"
+    >
       <div>
         <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[#D4A964]">
           Reserve Your Stake
@@ -126,7 +134,9 @@ export function PurchaseForm({ listing }: PurchaseFormProps) {
           Purchase an Ownership Stake
         </h3>
         <p className="mt-2 text-sm leading-relaxed text-white/60">
-          Complete the form below to reserve your stake in {listing.horse.name}. You will be directed to our secure payment page to confirm your reservation.
+          Complete the form below to reserve your stake in {listing.horse.name}.
+          You will be directed to our secure payment page to confirm your
+          reservation.
         </p>
       </div>
 
@@ -168,13 +178,13 @@ export function PurchaseForm({ listing }: PurchaseFormProps) {
             type="number"
             min={minimumStakePercent}
             max={maximumStakePercent}
-            step={listing.offering.stakeUnitPercent}
+            step={listing.offering.stakeUnitPercent ?? 1}
             value={requestedStakePercent}
             onChange={(event) =>
               setRequestedStakePercent(
                 clampToStep(
                   Number(event.target.value || minimumStakePercent),
-                  listing.offering.stakeUnitPercent,
+                  listing.offering.stakeUnitPercent ?? 1,
                   maximumStakePercent,
                 ),
               )
@@ -185,19 +195,31 @@ export function PurchaseForm({ listing }: PurchaseFormProps) {
       </div>
 
       <div className="rounded-2xl border border-white/10 bg-black/20 p-4">
-        <p className="text-xs font-semibold uppercase tracking-[0.24em] text-white/40">Reservation Summary</p>
+        <p className="text-xs font-semibold uppercase tracking-[0.24em] text-white/40">
+          Reservation Summary
+        </p>
         <div className="mt-4 grid gap-3 sm:grid-cols-3">
           <p>
             <span className="block text-xs text-white/40">Stake units</span>
-            <span className="mt-1 block font-semibold text-white">{calculatedUnits}</span>
+            <span className="mt-1 block font-semibold text-white">
+              {calculatedUnits}
+            </span>
           </p>
           <p>
-            <span className="block text-xs text-white/40">Stake percentage</span>
-            <span className="mt-1 block font-semibold text-white">{formatPercent(requestedStakePercent)}</span>
+            <span className="block text-xs text-white/40">
+              Stake percentage
+            </span>
+            <span className="mt-1 block font-semibold text-white">
+              {formatPercent(requestedStakePercent)}
+            </span>
           </p>
           <p>
-            <span className="block text-xs text-white/40">Indicative reservation</span>
-            <span className="mt-1 block font-semibold text-white">{formatNzd(reservationAmountNzd)}</span>
+            <span className="block text-xs text-white/40">
+              Indicative reservation
+            </span>
+            <span className="mt-1 block font-semibold text-white">
+              {formatNzd(reservationAmountNzd)}
+            </span>
           </p>
         </div>
       </div>
@@ -235,7 +257,7 @@ export function PurchaseForm({ listing }: PurchaseFormProps) {
               className="mt-1"
             />
             <span>
-              I have read and understood the{' '}
+              I have read and understood the{" "}
               <a
                 href={getDocumentLink(docType)}
                 target="_blank"
@@ -256,7 +278,7 @@ export function PurchaseForm({ listing }: PurchaseFormProps) {
         disabled={isSubmitting || !allDocumentsAcknowledged}
         className="inline-flex items-center justify-center rounded-full bg-[#D4A964] px-5 py-3 text-sm font-semibold text-black transition hover:bg-[#e0b779] disabled:cursor-not-allowed disabled:opacity-60"
       >
-        {isSubmitting ? 'Redirecting to payment…' : 'Reserve Your Stake'}
+        {isSubmitting ? "Redirecting to payment…" : "Reserve Your Stake"}
       </button>
     </form>
   );

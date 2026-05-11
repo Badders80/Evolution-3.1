@@ -1,5 +1,10 @@
 import type { SSOTListing } from "./types";
-import type { MarketplaceListing, OfficialDocument } from "@/types/marketplace";
+import type {
+  MarketplaceListing,
+  OfficialDocument,
+  OfferingType,
+  ApplicationFlow,
+} from "@/types/marketplace";
 
 export function transformSSOTToListing(ssot: SSOTListing): MarketplaceListing {
   return {
@@ -40,6 +45,7 @@ export function transformSSOTToListing(ssot: SSOTListing): MarketplaceListing {
       entityType: ssot.owner.entity_type,
     },
     offering: {
+      offeringType: ssot.offering.offering_type as OfferingType,
       leaseId: ssot.offering.lease_id,
       leaseStatus: ssot.offering.lease_status,
       startDate: ssot.offering.start_date,
@@ -57,11 +63,14 @@ export function transformSSOTToListing(ssot: SSOTListing): MarketplaceListing {
     application: {
       campaignKey: ssot.application.campaign_key,
       sourcePath: ssot.application.source_path,
+      applicationFlow: ssot.application.application_flow as ApplicationFlow,
       minimumStakePercent: ssot.application.minimum_stake_percent,
       maximumStakePercent: ssot.application.maximum_stake_percent,
-      defaultRequestedStakePercent: ssot.application.default_requested_stake_percent,
+      defaultRequestedStakePercent:
+        ssot.application.default_requested_stake_percent,
       defaultRequestedUnits: ssot.application.default_requested_units,
-      defaultReservationAmountNzd: ssot.application.default_reservation_amount_nzd,
+      defaultReservationAmountNzd:
+        ssot.application.default_reservation_amount_nzd,
       defaultStatus: asApplicationStatus(ssot.application.default_status),
     },
     disclaimers: ssot.disclaimers,
@@ -77,14 +86,12 @@ export function transformSSOTToListing(ssot: SSOTListing): MarketplaceListing {
         fileSizeBytes: doc.file_size_bytes,
         version: doc.version,
         publishedAt: doc.published_at,
-      })
+      }),
     ),
   };
 }
 
-function asPublishStatus(
-  value: string
-): MarketplaceListing["publishStatus"] {
+function asPublishStatus(value: string): MarketplaceListing["publishStatus"] {
   const valid = ["draft", "ready_to_publish", "live", "closed"] as const;
   return valid.includes(value as (typeof valid)[number])
     ? (value as MarketplaceListing["publishStatus"])
@@ -92,17 +99,20 @@ function asPublishStatus(
 }
 
 function asApplicationStatus(
-  value: string
+  value: string,
 ): MarketplaceListing["application"]["defaultStatus"] {
-  const valid = ["submitted", "under_review", "reserved_manual", "closed"] as const;
+  const valid = [
+    "submitted",
+    "under_review",
+    "reserved_manual",
+    "closed",
+  ] as const;
   return valid.includes(value as (typeof valid)[number])
     ? (value as MarketplaceListing["application"]["defaultStatus"])
     : "submitted";
 }
 
-function asDocumentType(
-  value: string
-): OfficialDocument["documentType"] {
+function asDocumentType(value: string): OfficialDocument["documentType"] {
   const valid = ["hlt_term_sheet", "pds", "syndicate_agreement"] as const;
   return valid.includes(value as (typeof valid)[number])
     ? (value as OfficialDocument["documentType"])

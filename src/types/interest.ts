@@ -8,8 +8,13 @@ export type InterestPayload = {
   horseName?: string;
   leaseId?: string;
   listingSlug?: string;
-  submissionType?: 'interest' | 'application_reservation';
-  applicationStatus?: 'submitted' | 'under_review' | 'reserved_manual' | 'closed';
+  submissionType?: "interest" | "application_reservation";
+  applicationStatus?:
+    | "submitted"
+    | "under_review"
+    | "reserved_manual"
+    | "closed"
+    | "interest";
   requestedStakePercent?: number;
   requestedUnits?: number;
   reservationAmountNzd?: number;
@@ -21,8 +26,8 @@ export type InterestSubmissionResult = {
   status: string;
   submissionReference?: string;
   delivery?: {
-    googleSheets: 'forwarded' | 'not_configured' | 'failed';
-    localInbox: 'saved' | 'failed' | 'not_applicable';
+    googleSheets: "forwarded" | "not_configured" | "failed";
+    localInbox: "saved" | "failed" | "not_applicable";
   };
   warning?: string;
 };

@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import { FormEvent, useMemo, useState } from 'react';
-import { useInterest } from '@/hooks/useInterest';
-import { formatNzd, formatPercent } from '@/lib/marketplace';
-import type { MarketplaceListing } from '@/types/marketplace';
-import type { InterestSubmissionResult } from '@/types/interest';
+import { FormEvent, useMemo, useState } from "react";
+import { useInterest } from "@/hooks/useInterest";
+import { formatNzd, formatPercent } from "@/lib/marketplace";
+import type { MarketplaceListing } from "@/types/marketplace";
+import type { InterestSubmissionResult } from "@/types/interest";
 
 type StakeApplicationFormProps = {
   listing: MarketplaceListing;
@@ -18,13 +18,13 @@ function clampToStep(value: number, step: number, max: number) {
 export function StakeApplicationForm({ listing }: StakeApplicationFormProps) {
   const minimumStakePercent = listing.application.minimumStakePercent;
   const maximumStakePercent = listing.application.maximumStakePercent;
-  const [fullName, setFullName] = useState('');
-  const [email, setEmail] = useState('');
-  const [phone, setPhone] = useState('');
+  const [fullName, setFullName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const [requestedStakePercent, setRequestedStakePercent] = useState(
     listing.application.defaultRequestedStakePercent,
   );
-  const [notes, setNotes] = useState('');
+  const [notes, setNotes] = useState("");
   const [agreed, setAgreed] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [submissionResult, setSubmissionResult] =
@@ -35,12 +35,17 @@ export function StakeApplicationForm({ listing }: StakeApplicationFormProps) {
     () =>
       Math.max(
         1,
-        Math.round(requestedStakePercent / listing.offering.stakeUnitPercent),
+        Math.round(
+          requestedStakePercent / (listing.offering.stakeUnitPercent ?? 1),
+        ),
       ),
     [listing.offering.stakeUnitPercent, requestedStakePercent],
   );
   const reservationAmountNzd = useMemo(
-    () => Number((calculatedUnits * listing.offering.tokenPriceNzd).toFixed(2)),
+    () =>
+      Number(
+        (calculatedUnits * (listing.offering.tokenPriceNzd ?? 0)).toFixed(2),
+      ),
     [calculatedUnits, listing.offering.tokenPriceNzd],
   );
 
@@ -62,7 +67,7 @@ export function StakeApplicationForm({ listing }: StakeApplicationFormProps) {
         horseName: listing.horse.name,
         leaseId: listing.offering.leaseId,
         listingSlug: listing.slug,
-        submissionType: 'application_reservation',
+        submissionType: "application_reservation",
         applicationStatus: listing.application.defaultStatus,
         requestedStakePercent,
         requestedUnits: calculatedUnits,
@@ -86,33 +91,51 @@ export function StakeApplicationForm({ listing }: StakeApplicationFormProps) {
           Application received
         </h3>
         <p className="mt-3 leading-relaxed text-white/70">
-          Your request for {formatPercent(requestedStakePercent)} in {listing.horse.name} has been logged for manual review.
-          Evolution Stables will confirm next steps directly before any allocation, KYC, or payment process continues.
+          Your request for {formatPercent(requestedStakePercent)} in{" "}
+          {listing.horse.name} has been logged for manual review. Evolution
+          Stables will confirm next steps directly before any allocation, KYC,
+          or payment process continues.
         </p>
         <div className="mt-6 grid gap-3 rounded-2xl border border-white/10 bg-black/20 p-4 sm:grid-cols-2">
           <p>
-            <span className="block text-xs uppercase tracking-[0.24em] text-white/40">Requested Stake</span>
-            <span className="mt-1 block font-semibold text-white">{formatPercent(requestedStakePercent)}</span>
+            <span className="block text-xs uppercase tracking-[0.24em] text-white/40">
+              Requested Stake
+            </span>
+            <span className="mt-1 block font-semibold text-white">
+              {formatPercent(requestedStakePercent)}
+            </span>
           </p>
           <p>
-            <span className="block text-xs uppercase tracking-[0.24em] text-white/40">Reservation Summary</span>
-            <span className="mt-1 block font-semibold text-white">{formatNzd(reservationAmountNzd)}</span>
+            <span className="block text-xs uppercase tracking-[0.24em] text-white/40">
+              Reservation Summary
+            </span>
+            <span className="mt-1 block font-semibold text-white">
+              {formatNzd(reservationAmountNzd)}
+            </span>
           </p>
         </div>
         {submissionResult?.submissionReference ? (
           <p className="mt-4 text-sm text-white/75">
-            Reference: <span className="font-semibold text-white">{submissionResult.submissionReference}</span>
+            Reference:{" "}
+            <span className="font-semibold text-white">
+              {submissionResult.submissionReference}
+            </span>
           </p>
         ) : null}
         {submissionResult?.warning ? (
-          <p className="mt-3 text-sm text-amber-200">{submissionResult.warning}</p>
+          <p className="mt-3 text-sm text-amber-200">
+            {submissionResult.warning}
+          </p>
         ) : null}
       </div>
     );
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-5 rounded-3xl border border-white/10 bg-white/[0.03] p-6">
+    <form
+      onSubmit={handleSubmit}
+      className="space-y-5 rounded-3xl border border-white/10 bg-white/[0.03] p-6"
+    >
       <div>
         <p className="text-xs font-semibold uppercase tracking-[0.28em] text-white/40">
           Apply / Reserve
@@ -121,7 +144,9 @@ export function StakeApplicationForm({ listing }: StakeApplicationFormProps) {
           Request an Ownership Stake
         </h3>
         <p className="mt-2 text-sm leading-relaxed text-white/60">
-          This flow submits a manual application and reservation request only. Evolution Stables will review your request before any KYC or payment step proceeds.
+          This flow submits a manual application and reservation request only.
+          Evolution Stables will review your request before any KYC or payment
+          step proceeds.
         </p>
       </div>
 
@@ -163,13 +188,13 @@ export function StakeApplicationForm({ listing }: StakeApplicationFormProps) {
             type="number"
             min={minimumStakePercent}
             max={maximumStakePercent}
-            step={listing.offering.stakeUnitPercent}
+            step={listing.offering.stakeUnitPercent ?? 1}
             value={requestedStakePercent}
             onChange={(event) =>
               setRequestedStakePercent(
                 clampToStep(
                   Number(event.target.value || minimumStakePercent),
-                  listing.offering.stakeUnitPercent,
+                  listing.offering.stakeUnitPercent ?? 1,
                   maximumStakePercent,
                 ),
               )
@@ -180,19 +205,31 @@ export function StakeApplicationForm({ listing }: StakeApplicationFormProps) {
       </div>
 
       <div className="rounded-2xl border border-white/10 bg-black/20 p-4">
-        <p className="text-xs font-semibold uppercase tracking-[0.24em] text-white/40">Reservation Summary</p>
+        <p className="text-xs font-semibold uppercase tracking-[0.24em] text-white/40">
+          Reservation Summary
+        </p>
         <div className="mt-4 grid gap-3 sm:grid-cols-3">
           <p>
             <span className="block text-xs text-white/40">Stake units</span>
-            <span className="mt-1 block font-semibold text-white">{calculatedUnits}</span>
+            <span className="mt-1 block font-semibold text-white">
+              {calculatedUnits}
+            </span>
           </p>
           <p>
-            <span className="block text-xs text-white/40">Stake percentage</span>
-            <span className="mt-1 block font-semibold text-white">{formatPercent(requestedStakePercent)}</span>
+            <span className="block text-xs text-white/40">
+              Stake percentage
+            </span>
+            <span className="mt-1 block font-semibold text-white">
+              {formatPercent(requestedStakePercent)}
+            </span>
           </p>
           <p>
-            <span className="block text-xs text-white/40">Indicative reservation</span>
-            <span className="mt-1 block font-semibold text-white">{formatNzd(reservationAmountNzd)}</span>
+            <span className="block text-xs text-white/40">
+              Indicative reservation
+            </span>
+            <span className="mt-1 block font-semibold text-white">
+              {formatNzd(reservationAmountNzd)}
+            </span>
           </p>
         </div>
       </div>
@@ -216,7 +253,9 @@ export function StakeApplicationForm({ listing }: StakeApplicationFormProps) {
           className="mt-1"
         />
         <span>
-          I understand this is a manual application and reservation request only, and that no Ownership Stake is allocated until Evolution Stables confirms the next step.
+          I understand this is a manual application and reservation request
+          only, and that no Ownership Stake is allocated until Evolution Stables
+          confirms the next step.
         </span>
       </label>
 
@@ -227,7 +266,7 @@ export function StakeApplicationForm({ listing }: StakeApplicationFormProps) {
         disabled={isSubmitting || !agreed}
         className="inline-flex items-center justify-center rounded-full bg-[#D4A964] px-5 py-3 text-sm font-semibold text-black transition hover:bg-[#e0b779] disabled:cursor-not-allowed disabled:opacity-60"
       >
-        {isSubmitting ? 'Submitting…' : 'Reserve Your Stake'}
+        {isSubmitting ? "Submitting…" : "Reserve Your Stake"}
       </button>
     </form>
   );

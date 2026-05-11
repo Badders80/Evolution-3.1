@@ -1,12 +1,15 @@
-import type { OfficialDocument, OfficialDocumentType } from '@/types/marketplace';
+import type {
+  OfficialDocument,
+  OfficialDocumentType,
+} from "@/types/marketplace";
 
 /**
  * Returns the official documents for a listing, falling back to an empty
  * array if the field is missing (e.g. legacy listings without documents).
  */
-export function getOfficialDocumentsForListing(
-  listing: { officialDocuments?: OfficialDocument[] },
-): OfficialDocument[] {
+export function getOfficialDocumentsForListing(listing: {
+  officialDocuments?: OfficialDocument[];
+}): OfficialDocument[] {
   return listing.officialDocuments ?? [];
 }
 
@@ -24,9 +27,9 @@ export function getDocumentByType(
  * The three document types that must be acknowledged before purchase.
  */
 export const REQUIRED_DOCUMENT_TYPES: OfficialDocumentType[] = [
-  'hlt_term_sheet',
-  'pds',
-  'syndicate_agreement',
+  "hlt_term_sheet",
+  "pds",
+  "syndicate_agreement",
 ];
 
 /**
@@ -34,9 +37,11 @@ export const REQUIRED_DOCUMENT_TYPES: OfficialDocumentType[] = [
  * acknowledgement checkboxes and confirmation emails.
  */
 export const DOCUMENT_TYPE_LABELS: Record<OfficialDocumentType, string> = {
-  hlt_term_sheet: 'HLT Term Sheet',
-  pds: 'Product Disclosure Statement',
-  syndicate_agreement: 'Syndicate Agreement',
+  hlt_term_sheet: "HLT Term Sheet",
+  pds: "Product Disclosure Statement",
+  syndicate_agreement: "Syndicate Agreement",
+  share_purchase_agreement: "Share Purchase Agreement",
+  training_management_agreement: "Training Management Agreement",
 };
 
 /**

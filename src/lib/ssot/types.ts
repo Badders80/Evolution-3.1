@@ -36,6 +36,7 @@ export interface SSOTListing {
     entity_type: string;
   };
   offering: {
+    offering_type: string;
     lease_id: string;
     lease_status: string;
     start_date: string;
@@ -53,6 +54,7 @@ export interface SSOTListing {
   application: {
     campaign_key: string;
     source_path: string;
+    application_flow: string;
     minimum_stake_percent: number;
     maximum_stake_percent: number;
     default_requested_stake_percent: number;
