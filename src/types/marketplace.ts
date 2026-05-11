@@ -1,7 +1,23 @@
-export type MarketplacePublishStatus = 'draft' | 'ready_to_publish' | 'live' | 'closed';
-export type MarketplaceApplicationStatus = 'submitted' | 'under_review' | 'reserved_manual' | 'closed';
+export type MarketplacePublishStatus =
+  | "draft"
+  | "ready_to_publish"
+  | "live"
+  | "closed";
+export type MarketplaceApplicationStatus =
+  | "submitted"
+  | "under_review"
+  | "reserved_manual"
+  | "closed"
+  | "interest";
+export type OfferingType = "lease" | "ownership";
+export type ApplicationFlow = "direct_purchase" | "interest_enquiry";
 
-export type OfficialDocumentType = 'hlt_term_sheet' | 'pds' | 'syndicate_agreement';
+export type OfficialDocumentType =
+  | "hlt_term_sheet"
+  | "pds"
+  | "syndicate_agreement"
+  | "share_purchase_agreement"
+  | "training_management_agreement";
 
 export type OfficialDocument = {
   id: string;
@@ -54,23 +70,36 @@ export type MarketplaceListing = {
     entityType: string;
   };
   offering: {
-    leaseId: string;
-    leaseStatus: string;
-    startDate: string;
-    endDate: string;
-    durationMonths: number;
-    percentLeased: number;
-    tokenCount: number;
-    stakeUnitPercent: number;
-    tokenPriceNzd: number;
-    totalRaiseNzd: number;
-    investorSharePercent: number;
-    ownerSharePercent: number;
+    offeringType: OfferingType;
+    // ── Lease fields (required when offeringType === 'lease') ──
+    leaseId?: string;
+    leaseStatus?: string;
+    startDate?: string;
+    endDate?: string;
+    durationMonths?: number;
+    percentLeased?: number;
+    tokenCount?: number;
+    stakeUnitPercent?: number;
+    tokenPriceNzd?: number;
+    totalRaiseNzd?: number;
+    investorSharePercent?: number;
+    ownerSharePercent?: number;
+    // ── Common / both types ──
     pricePerOnePercentNzd: number;
+    // ── Ownership fields (required when offeringType === 'ownership') ──
+    percentAvailable?: number;
+    shareSizeOptions?: number[];
+    purchasePriceNzd?: number;
+    monthlyCostPerOnePercentNzd?: number;
+    monthlyCostStartDate?: string;
+    costsIncludedInBuyIn?: string[];
+    managementFeeNzd?: number;
+    managementFeeCapped?: boolean;
   };
   application: {
     campaignKey: string;
     sourcePath: string;
+    applicationFlow: ApplicationFlow;
     minimumStakePercent: number;
     maximumStakePercent: number;
     defaultRequestedStakePercent: number;
