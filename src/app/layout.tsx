@@ -4,60 +4,69 @@ import "../styles/brand.css";
 import { NavBar } from "@/components/NavBar";
 import { AppProviders } from "@/providers/app-providers";
 import { StructuredData } from "@/components/seo/StructuredData";
+import { FAQStructuredData } from "@/components/seo/FAQStructuredData";
 import { getPressArticlesForStructuredData } from "@/lib/press-articles";
+import { faqItems } from "@/lib/faq-items";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://evolutionstables.nz"),
-  title: "Evolution Stables - Digital Racehorse Ownership | Tokenized RWA Platform",
-  description: "Own racehorses through digital-syndication. Evolution Stables makes racehorse ownership accessible, transparent, and liquid. Regulated real-world asset (RWA) investing powered by Tokinvest and blockchain technology.",
+  title: {
+    default:
+      "Evolution Stables - Digital Racehorse Ownership | Tokenized RWA Platform",
+    template: "%s | Evolution Stables",
+  },
+  description:
+    "Own racehorses through digital-syndication. Evolution Stables makes racehorse ownership accessible, transparent, and liquid. Regulated real-world asset (RWA) investing powered by Tokinvest and blockchain technology.",
   keywords: [
-    'racehorse ownership',
-    'digital syndication',
-    'tokenized assets',
-    'real world assets',
-    'RWA',
-    'blockchain racing',
-    'fractional ownership',
-    'New Zealand racing',
-    'NZTR',
-    'Tokinvest',
-    'Singularry',
-    'regulated investment',
-    'horse racing investment',
+    "racehorse ownership",
+    "digital syndication",
+    "tokenized assets",
+    "real world assets",
+    "RWA",
+    "blockchain racing",
+    "fractional ownership",
+    "New Zealand racing",
+    "NZTR",
+    "Tokinvest",
+    "Singularry",
+    "regulated investment",
+    "horse racing investment",
   ],
-  authors: [{ name: 'Evolution Stables' }],
-  creator: 'Evolution Stables',
-  publisher: 'Evolution Stables',
+  authors: [{ name: "Evolution Stables" }],
+  creator: "Evolution Stables",
+  publisher: "Evolution Stables",
   alternates: {
-    canonical: '/',
+    canonical: "/",
   },
   openGraph: {
-    type: 'website',
-    locale: 'en_NZ',
-    url: 'https://evolutionstables.nz',
-    siteName: 'Evolution Stables',
-    title: 'Evolution Stables - Digital Racehorse Ownership',
-    description: 'Own racehorses through digital-syndication. Making racehorse ownership accessible, transparent, and liquid.',
+    type: "website",
+    locale: "en_NZ",
+    url: "https://evolutionstables.nz",
+    siteName: "Evolution Stables",
+    title: "Evolution Stables - Digital Racehorse Ownership",
+    description:
+      "Own racehorses through digital-syndication. Making racehorse ownership accessible, transparent, and liquid.",
     images: [
       {
-        url: '/images/Logo-Gold-Favicon.png',
+        url: "/images/Logo-Gold-Favicon.png",
         width: 1200,
         height: 630,
-        alt: 'Evolution Stables Logo',
+        alt: "Evolution Stables Logo",
       },
     ],
   },
   twitter: {
-    card: 'summary_large_image',
-    site: '@EvolutionStables',
-    creator: '@EvolutionStables',
-    title: 'Evolution Stables - Digital Racehorse Ownership',
-    description: 'Own racehorses through digital-syndication. Making racehorse ownership accessible, transparent, and liquid.',
+    card: "summary_large_image",
+    site: "@EvolutionStables",
+    creator: "@EvolutionStables",
+    title: "Evolution Stables - Digital Racehorse Ownership",
+    description:
+      "Own racehorses through digital-syndication. Making racehorse ownership accessible, transparent, and liquid.",
   },
   icons: {
-    icon: '/images/Logo-Gold-Favicon.png',
-    shortcut: '/images/Logo-Gold-Favicon.png',
-    apple: '/images/Logo-Gold-Favicon.png',
+    icon: "/images/Logo-Gold-Favicon.png",
+    shortcut: "/images/Logo-Gold-Favicon.png",
+    apple: "/images/Logo-Gold-Favicon.png",
   },
   robots: {
     index: true,
@@ -65,9 +74,9 @@ export const metadata: Metadata = {
     googleBot: {
       index: true,
       follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
     },
   },
 };
@@ -83,7 +92,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="h-full">
+    <html lang="en-NZ" className="h-full">
       <head>
         <link
           rel="preload"
@@ -93,8 +102,12 @@ export default function RootLayout({
           crossOrigin="anonymous"
         />
         <StructuredData pressArticles={getPressArticlesForStructuredData()} />
+        <FAQStructuredData items={faqItems} />
       </head>
-      <body className="min-h-screen bg-black antialiased" suppressHydrationWarning>
+      <body
+        className="min-h-screen bg-black antialiased"
+        suppressHydrationWarning
+      >
         <AppProviders>
           <NavBar />
           <div className="min-h-screen flex flex-col">
@@ -105,3 +118,4 @@ export default function RootLayout({
     </html>
   );
 }
+// Deployment trigger Tue May 12 10:13:18 NZST 2026
