@@ -1,0 +1,75 @@
+/**
+ * Marketplace & MyStable Design Tokens
+ * Component-specific token layer for the marketplace and mystable pages.
+ * These map to the canonical brand tokens in brand.css and tokens.json.
+ *
+ * IMPORT THIS FILE in your root layout or globals.css:
+ *   @import './marketplace-tokens.css';
+ */
+
+:root {
+    /* ── Surface Hierarchy ── */
+    --marketplace-surface-base: var(--color-background);
+    --marketplace-surface-elevated: var(--color-surface);
+    --marketplace-surface-card: var(--color-surface-alt);
+    --marketplace-surface-card-hover: #151515;
+    --marketplace-surface-overlay: rgba(0, 0, 0, 0.75);
+    --marketplace-surface-scrim: rgba(0, 0, 0, 0.20);
+
+    /* ── Text Colors ── */
+    --marketplace-text-primary: var(--color-foreground);
+    --marketplace-text-secondary: var(--color-muted);
+    --marketplace-text-tertiary: var(--color-muted-foreground);
+    --marketplace-text-inverse: var(--brand-black);
+
+    /* ── Accent (Gold) ── */
+    --marketplace-accent: var(--brand-solid-medium);
+    --marketplace-accent-hover: var(--brand-gold-hover);
+    --marketplace-accent-muted: rgba(212, 169, 100, 0.05);
+    --marketplace-accent-subtle: rgba(212, 169, 100, 0.30);
+
+    /* ── Borders ── */
+    --marketplace-border-subtle: rgba(255, 255, 255, 0.05);
+    --marketplace-border-default: rgba(255, 255, 255, 0.06);
+    --marketplace-border-prominent: rgba(255, 255, 255, 0.10);
+
+    /* ── Status Colors ── */
+    --marketplace-status-racing-text: #34d399;
+    --marketplace-status-racing-bg: rgba(52, 211, 153, 0.10);
+    --marketplace-status-training-text: #60a5fa;
+    --marketplace-status-training-bg: rgba(96, 165, 250, 0.10);
+    --marketplace-status-positive: #34d399;
+    --marketplace-status-negative: #f87171;
+
+    /* ── Shadows ── */
+    --marketplace-shadow-card: 0 28px 120px rgba(0, 0, 0, 0.55);
+    --marketplace-shadow-elevated: 0 30px 120px rgba(0, 0, 0, 0.45);
+    --marketplace-shadow-soft: 0 8px 24px rgba(0, 0, 0, 0.35);
+
+    /* ── Radius ── */
+    --marketplace-radius-sm: 6px;
+    --marketplace-radius-md: 10px;
+    --marketplace-radius-lg: 14px;
+    --marketplace-radius-xl: 20px;
+    --marketplace-radius-2xl: 32px;
+
+    /* ── Spacing ── */
+    --marketplace-section-gap: 6rem;
+    --marketplace-content-gap: 2rem;
+    --marketplace-card-padding: 1.5rem;
+
+    /* ── Typography Scale (page-specific) ── */
+    --marketplace-text-xs: 0.75rem;
+    --marketplace-text-sm: 0.875rem;
+    --marketplace-text-base: 1rem;
+    --marketplace-text-lg: 1.125rem;
+    --marketplace-text-xl: 1.25rem;
+    --marketplace-text-2xl: 1.5rem;
+    --marketplace-text-3xl: 2rem;
+    --marketplace-text-4xl: 2.25rem;
+
+    /* ── Tracking ── */
+    --marketplace-tracking-label: 0.28em;
+    --marketplace-tracking-wide: 0.24em;
+    --marketplace-tracking-wider: 0.1em;
+  }
