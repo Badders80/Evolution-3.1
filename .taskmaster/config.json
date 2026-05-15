@@ -2,22 +2,24 @@
   "models": {
     "main": {
       "provider": "ollama",
-      "modelId": "qwen3.5:latest",
+      "modelId": "qwen3.5:cloud",
       "maxTokens": 64000,
       "temperature": 0.2,
       "baseURL": "http://localhost:11434/api"
     },
     "research": {
-      "provider": "perplexity",
-      "modelId": "sonar",
+      "provider": "ollama",
+      "modelId": "kimi-k2.6:cloud",
       "maxTokens": 8700,
-      "temperature": 0.1
+      "temperature": 0.1,
+      "baseURL": "http://localhost:11434/api"
     },
     "fallback": {
-      "provider": "anthropic",
-      "modelId": "claude-3-7-sonnet-20250219",
+      "provider": "ollama",
+      "modelId": "qwen3-coder:480b",
       "maxTokens": 120000,
-      "temperature": 0.2
+      "temperature": 0.2,
+      "baseURL": "http://localhost:11434/api"
     }
   },
   "global": {

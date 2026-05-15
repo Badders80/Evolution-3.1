@@ -21,42 +21,78 @@ const config: Config = {
       },
       fontSize: {
         // Systematic typography scale (Audi-inspired)
-        'h1': ['3.25rem', { lineHeight: '1.1', letterSpacing: '0.02%', fontWeight: '300' }], // 52px (reduced 13%)
-        'h1-mobile': ['2.625rem', { lineHeight: '1.1', letterSpacing: '0.02%', fontWeight: '300' }], // 42px (reduced 12.5%)
-        'h2': ['2rem', { lineHeight: '1.3', letterSpacing: '0.01%', fontWeight: '400' }], // 32px (reduced 11%)
-        'h2-mobile': ['1.625rem', { lineHeight: '1.3', letterSpacing: '0.01%', fontWeight: '400' }], // 26px (reduced 13%)
-        'h3': ['1.5rem', { lineHeight: '1.5', letterSpacing: '0.01%', fontWeight: '600' }], // 24px
-        'h4': ['1.25rem', { lineHeight: '1.5', letterSpacing: '0.1em', fontWeight: '600' }], // 20px
-        'body-lg': ['1.25rem', { lineHeight: '1.7', letterSpacing: '0', fontWeight: '300' }], // 20px
-        'body': ['1rem', { lineHeight: '1.7', letterSpacing: '0', fontWeight: '400' }], // 16px
-        'body-sm': ['0.875rem', { lineHeight: '1.4', letterSpacing: '0', fontWeight: '400' }], // 14px
-        'label': ['0.75rem', { lineHeight: '1.4', letterSpacing: '0.25em', fontWeight: '500' }], // 12px
-        'subhead': ['1rem', { lineHeight: '1.5', letterSpacing: '0.1em', fontWeight: '500' }], // 16px
+        h1: [
+          "3.25rem",
+          { lineHeight: "1.1", letterSpacing: "0.02%", fontWeight: "300" },
+        ], // 52px (reduced 13%)
+        "h1-mobile": [
+          "2.625rem",
+          { lineHeight: "1.1", letterSpacing: "0.02%", fontWeight: "300" },
+        ], // 42px (reduced 12.5%)
+        h2: [
+          "2rem",
+          { lineHeight: "1.3", letterSpacing: "0.01%", fontWeight: "400" },
+        ], // 32px (reduced 11%)
+        "h2-mobile": [
+          "1.625rem",
+          { lineHeight: "1.3", letterSpacing: "0.01%", fontWeight: "400" },
+        ], // 26px (reduced 13%)
+        h3: [
+          "1.5rem",
+          { lineHeight: "1.5", letterSpacing: "0.01%", fontWeight: "600" },
+        ], // 24px
+        h4: [
+          "1.25rem",
+          { lineHeight: "1.5", letterSpacing: "0.1em", fontWeight: "600" },
+        ], // 20px
+        "body-lg": [
+          "1.25rem",
+          { lineHeight: "1.7", letterSpacing: "0", fontWeight: "300" },
+        ], // 20px
+        body: [
+          "1rem",
+          { lineHeight: "1.7", letterSpacing: "0", fontWeight: "400" },
+        ], // 16px
+        "body-sm": [
+          "0.875rem",
+          { lineHeight: "1.4", letterSpacing: "0", fontWeight: "400" },
+        ], // 14px
+        label: [
+          "0.75rem",
+          { lineHeight: "1.4", letterSpacing: "0.25em", fontWeight: "500" },
+        ], // 12px
+        subhead: [
+          "1rem",
+          { lineHeight: "1.5", letterSpacing: "0.1em", fontWeight: "500" },
+        ], // 16px
       },
       letterSpacing: {
-        'tightest': '-0.015em',
-        'tighter': '-0.01em',
-        'tight': '-0.005em',
-        'normal': '0',
-        'label': '0.1em',
-        'wide': '0.25em',
+        tightest: "-0.015em",
+        tighter: "-0.01em",
+        tight: "-0.005em",
+        normal: "0",
+        label: "0.1em",
+        wide: "0.25em",
+        "mp-label": "var(--marketplace-tracking-label)",
+        "mp-wide": "var(--marketplace-tracking-wide)",
+        "mp-wider": "var(--marketplace-tracking-wider)",
       },
       lineHeight: {
-        'display': '1.2',
-        'heading': '1.5',
-        'body': '1.7',
-        'ui': '1.4',
+        display: "1.2",
+        heading: "1.5",
+        body: "1.7",
+        ui: "1.4",
       },
       typography: {
         DEFAULT: {
           css: {
-            color: 'var(--color-foreground)',
+            color: "var(--color-foreground)",
             h1: { fontFamily: "var(--font-heading)", fontWeight: "600" },
             h2: { fontFamily: "var(--font-heading)", fontWeight: "600" },
             h3: { fontFamily: "var(--font-heading)", fontWeight: "500" },
             p: {
               fontFamily: "var(--font-body)",
-              color: 'var(--color-muted)',
+              color: "var(--color-muted)",
             },
           },
         },
@@ -66,61 +102,109 @@ const config: Config = {
         md: "10px",
         lg: "14px",
         xl: "20px",
+        "mp-sm": "var(--marketplace-radius-sm)",
+        "mp-md": "var(--marketplace-radius-md)",
+        "mp-lg": "var(--marketplace-radius-lg)",
+        "mp-xl": "var(--marketplace-radius-xl)",
+        "mp-2xl": "var(--marketplace-radius-2xl)",
       },
       keyframes: {
         float: {
-          '0%, 100%': { transform: 'translateY(0) translateX(0) rotate(0deg)' },
-          '33%': { transform: 'translateY(-20px) translateX(10px) rotate(2deg)' },
-          '66%': { transform: 'translateY(10px) translateX(-10px) rotate(-2deg)' },
+          "0%, 100%": { transform: "translateY(0) translateX(0) rotate(0deg)" },
+          "33%": {
+            transform: "translateY(-20px) translateX(10px) rotate(2deg)",
+          },
+          "66%": {
+            transform: "translateY(10px) translateX(-10px) rotate(-2deg)",
+          },
         },
-        'tilt': {
-          '0%, 100%': { transform: 'rotate(-2deg)' },
-          '50%': { transform: 'rotate(2deg)' },
+        tilt: {
+          "0%, 100%": { transform: "rotate(-2deg)" },
+          "50%": { transform: "rotate(2deg)" },
         },
-        'shimmer': {
-          '0%': { transform: 'translateX(-100%)' },
-          '100%': { transform: 'translateX(200%)' },
+        shimmer: {
+          "0%": { transform: "translateX(-100%)" },
+          "100%": { transform: "translateX(200%)" },
         },
       },
       animation: {
-        'float': 'float 15s ease-in-out infinite',
-        'float-slow': 'float 20s ease-in-out infinite',
-        'tilt': 'tilt 10s ease-in-out infinite',
-        'shimmer': 'shimmer 8s ease-in-out infinite',
+        float: "float 15s ease-in-out infinite",
+        "float-slow": "float 20s ease-in-out infinite",
+        tilt: "tilt 10s ease-in-out infinite",
+        shimmer: "shimmer 8s ease-in-out infinite",
       },
       backgroundImage: {
-        'gradient-radial': 'radial-gradient(circle at center, var(--tw-gradient-stops))',
+        "gradient-radial":
+          "radial-gradient(circle at center, var(--tw-gradient-stops))",
       },
       colors: {
         // Typography color system aligned with Once UI tokens
-        'text-primary': 'var(--color-foreground)',
-        'text-secondary': 'var(--color-muted)',
-        'text-muted': 'var(--color-muted-foreground)',
+        "text-primary": "var(--color-foreground)",
+        "text-secondary": "var(--color-muted)",
+        "text-muted": "var(--color-muted-foreground)",
 
         brand: {
-          gold: 'var(--brand-solid-medium)',
-          gray: 'var(--brand-gray)',
-          white: 'var(--brand-white)',
-          black: 'var(--brand-black)',
+          gold: "var(--brand-solid-medium)",
+          gray: "var(--brand-gray)",
+          white: "var(--brand-white)",
+          black: "var(--brand-black)",
         },
         primary: {
-          DEFAULT: 'var(--color-primary)',
-          foreground: 'var(--color-primary-foreground)',
+          DEFAULT: "var(--color-primary)",
+          foreground: "var(--color-primary-foreground)",
         },
         accent: {
-          DEFAULT: 'var(--color-accent)',
-          foreground: 'var(--color-accent-foreground)',
+          DEFAULT: "var(--color-accent)",
+          foreground: "var(--color-accent-foreground)",
         },
-        background: 'var(--color-background)',
-        surface: 'var(--color-surface)',
-        surfaceAlt: 'var(--color-surface-alt)',
+        background: "var(--color-background)",
+        surface: "var(--color-surface)",
+        surfaceAlt: "var(--color-surface-alt)",
         muted: {
-          DEFAULT: 'var(--color-muted)',
-          foreground: 'var(--color-muted-foreground)',
+          DEFAULT: "var(--color-muted)",
+          foreground: "var(--color-muted-foreground)",
         },
-        secondary: 'var(--color-muted)',
-        border: 'var(--color-border)',
-        foreground: 'var(--color-foreground)',
+        secondary: "var(--color-muted)",
+        border: "var(--color-border)",
+        foreground: "var(--color-foreground)",
+
+        // Marketplace & MyStable semantic tokens
+        "mp-surface": {
+          base: "var(--marketplace-surface-base)",
+          elevated: "var(--marketplace-surface-elevated)",
+          card: "var(--marketplace-surface-card)",
+          "card-hover": "var(--marketplace-surface-card-hover)",
+          overlay: "var(--marketplace-surface-overlay)",
+          scrim: "var(--marketplace-surface-scrim)",
+        },
+        "mp-text": {
+          primary: "var(--marketplace-text-primary)",
+          secondary: "var(--marketplace-text-secondary)",
+          tertiary: "var(--marketplace-text-tertiary)",
+          inverse: "var(--marketplace-text-inverse)",
+        },
+        "mp-accent": {
+          DEFAULT: "var(--marketplace-accent)",
+          hover: "var(--marketplace-accent-hover)",
+          muted: "var(--marketplace-accent-muted)",
+          subtle: "var(--marketplace-accent-subtle)",
+        },
+        "mp-border": {
+          subtle: "var(--marketplace-border-subtle)",
+          DEFAULT: "var(--marketplace-border-default)",
+          prominent: "var(--marketplace-border-prominent)",
+        },
+        "mp-status": {
+          racing: "var(--marketplace-status-racing-text)",
+          training: "var(--marketplace-status-training-text)",
+          positive: "var(--marketplace-status-positive)",
+          negative: "var(--marketplace-status-negative)",
+        },
+      },
+      boxShadow: {
+        "mp-card": "var(--marketplace-shadow-card)",
+        "mp-elevated": "var(--marketplace-shadow-elevated)",
+        "mp-soft": "var(--marketplace-shadow-soft)",
       },
     },
   },

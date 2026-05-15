@@ -1,12 +1,12 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
-import Image from 'next/image';
-import type { ReactNode } from 'react';
-import type { IconType } from 'react-icons';
-import { LuWorkflow, LuBot, LuCog, LuBrain } from 'react-icons/lu';
-import { BentoGrid, BentoCard } from '@/components/layout/Bento';
-import { FooterBar } from '@/components/site/Footer';
+import { useEffect, useState } from "react";
+import Image from "next/image";
+import type { ReactNode } from "react";
+import type { IconType } from "react-icons";
+import { LuWorkflow, LuBot, LuCog, LuBrain } from "react-icons/lu";
+import { BentoGrid, BentoCard } from "@/components/layout/Bento";
+import { FooterBar } from "@/components/site/Footer";
 
 const iconMap: Record<string, IconType> = {
   digitalSyndication: LuWorkflow,
@@ -21,8 +21,8 @@ const defaultBackground = (
 );
 
 const layoutClassMap = {
-  wide: 'aspect-[4/3] lg:col-span-2 lg:aspect-[2/1]',
-  standard: 'aspect-[4/3] lg:col-span-1 lg:aspect-square',
+  wide: "aspect-[4/3] lg:col-span-2 lg:aspect-[2/1]",
+  standard: "aspect-[4/3] lg:col-span-1 lg:aspect-square",
 };
 
 type ModuleCardConfig = {
@@ -37,41 +37,41 @@ type ModuleCardConfig = {
 
 const fallbackModules: ModuleCardConfig[] = [
   {
-    name: 'Digital Syndication',
+    name: "Digital Syndication",
     description:
-      'Experience tokenised racehorse ownership. Lease or trade verified stakes directly within the Evolution platform.',
-    cta: 'View Marketplace',
-    href: '#',
+      "Experience tokenised racehorse ownership. Lease or trade verified stakes directly within the Evolution platform.",
+    cta: "View Marketplace",
+    href: "#",
     Icon: iconMap.digitalSyndication,
     className: layoutClassMap.wide,
     background: defaultBackground,
   },
   {
-    name: 'Integration & Compliance',
+    name: "Integration & Compliance",
     description:
-      'Built in alignment with NZTR and VARA frameworks, ensuring every trade and syndication is fully compliant.',
-    cta: 'Learn More',
-    href: 'https://tokinvest.capital/report',
+      "Built in alignment with NZTR and VARA frameworks, ensuring every trade and syndication is fully compliant.",
+    cta: "Learn More",
+    href: "https://tokinvest.capital/report",
     Icon: iconMap.integrationCompliance,
     className: layoutClassMap.standard,
     background: defaultBackground,
   },
   {
-    name: 'Analytics & Insights',
+    name: "Analytics & Insights",
     description:
-      'Access data-driven insights into race trends, horse performance, and portfolio value growth.',
-    cta: 'View Insights',
-    href: '#',
+      "Access data-driven insights into race trends, horse performance, and portfolio value growth.",
+    cta: "View Insights",
+    href: "#",
     Icon: iconMap.analyticsInsights,
     className: layoutClassMap.standard,
     background: defaultBackground,
   },
   {
-    name: 'Ownership Dashboard',
+    name: "Ownership Dashboard",
     description:
-      'Track your stable’s performance, prize returns, and active leases through a unified dashboard.',
-    cta: 'Open MyStable',
-    href: '/mystable',
+      "Track your stable’s performance, prize returns, and active leases through a unified dashboard.",
+    cta: "Open MyStable",
+    href: "/mystable",
     Icon: iconMap.ownershipDashboard,
     className: layoutClassMap.wide,
     background: defaultBackground,
@@ -93,41 +93,41 @@ export function LegacyMarketplacePage() {
   }, []);
 
   return (
-    <main className="min-h-screen bg-background pt-32 text-white md:pt-40">
+    <main className="min-h-screen bg-background pt-32 text-mp-text-primary md:pt-40">
       <h1 className="sr-only">
         Evolution Stables Marketplace - Digital Syndication Opportunities
       </h1>
       <div className="mx-auto max-w-7xl space-y-24 px-6 pb-24 md:px-10 lg:px-12">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
           <div className="space-y-4 lg:col-span-1">
-            <p className="mb-2 text-xs uppercase tracking-[0.28em] text-white/40">
+            <p className="mb-2 text-xs uppercase tracking-mp-label text-mp-text-secondary">
               Evolution Stables
             </p>
-            <h2 className="mb-4 text-4xl font-medium tracking-tight text-white">
+            <h2 className="mb-4 text-4xl font-medium tracking-tight text-mp-text-primary">
               Marketplace
             </h2>
-            <p className="text-base leading-relaxed text-white/60">
+            <p className="text-base leading-relaxed text-mp-text-secondary">
               Discover and explore digital-syndication opportunities within the
               Evolution ecosystem. Browse upcoming offerings, ownership
-              positions, and live data, all designed to make racehorse
-              ownership more accessible and connected.
+              positions, and live data, all designed to make racehorse ownership
+              more accessible and connected.
             </p>
           </div>
 
-          <div className="relative min-h-[400px] overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-white/[0.03] via-transparent to-black/80 shadow-[0_30px_120px_rgba(0,0,0,0.45)] lg:col-span-2">
+          <div className="relative min-h-[400px] overflow-hidden rounded-3xl border border-mp-border-prominent bg-gradient-to-br from-white/[0.03] via-transparent to-black/80 shadow-mp-elevated lg:col-span-2">
             <div className="absolute inset-0 z-10">
               <Image
                 src="/images/Mockup-trading-window.png"
                 alt="Evolution Stables Marketplace Trading Interface Mockup"
                 fill
                 className={`object-cover object-center transition-all duration-700 ease-in-out ${
-                  isTransitioning ? 'blur-[1.5px]' : 'blur-0'
+                  isTransitioning ? "blur-[1.5px]" : "blur-0"
                 }`}
                 priority
               />
               <div
                 className={`absolute inset-0 transition-colors duration-700 ${
-                  isTransitioning ? 'bg-black/60' : 'bg-black/20'
+                  isTransitioning ? "bg-black/60" : "bg-black/20"
                 }`}
               />
             </div>
@@ -136,11 +136,11 @@ export function LegacyMarketplacePage() {
 
             <div
               className={`pointer-events-none absolute inset-0 z-20 flex items-center justify-center transition-opacity duration-700 ease-out ${
-                showComingSoon ? 'opacity-100' : 'opacity-0'
+                showComingSoon ? "opacity-100" : "opacity-0"
               }`}
               aria-hidden="true"
             >
-              <p className="text-2xl font-medium tracking-tight text-white/80">
+              <p className="text-2xl font-medium tracking-tight text-mp-text-primary/80">
                 Coming Soon
               </p>
             </div>
@@ -149,21 +149,29 @@ export function LegacyMarketplacePage() {
 
         <section id="modules" className="space-y-12">
           <div className="space-y-4 text-left md:max-w-3xl">
-            <p className="text-xs uppercase tracking-[0.28em] text-white/40">
+            <p className="text-xs uppercase tracking-mp-label text-mp-text-secondary">
               Evolution Stables
             </p>
-            <h2 className="text-3xl font-semibold tracking-tight text-white md:text-4xl">
+            <h2 className="text-3xl font-semibold tracking-tight text-mp-text-primary md:text-4xl">
               Modules
             </h2>
-            <p className="text-base leading-relaxed text-white/60 md:text-lg">
-              Explore the core components powering the Evolution ecosystem
-              from ownership analytics to race insights.
+            <p className="text-base leading-relaxed text-mp-text-secondary md:text-lg">
+              Explore the core components powering the Evolution ecosystem from
+              ownership analytics to race insights.
             </p>
           </div>
 
           <BentoGrid className="auto-rows-auto gap-3 sm:grid-cols-1 md:grid-cols-1 md:gap-4 lg:grid-cols-3">
             {fallbackModules.map(
-              ({ name, description, cta, href, Icon, className, background }) => (
+              ({
+                name,
+                description,
+                cta,
+                href,
+                Icon,
+                className,
+                background,
+              }) => (
                 <BentoCard
                   key={name}
                   name={name}

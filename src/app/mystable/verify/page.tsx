@@ -1,25 +1,25 @@
-import Link from 'next/link';
-import { FooterBar } from '@/components/site/Footer';
+import Link from "next/link";
+import { FooterBar } from "@/components/site/Footer";
 
 export default function VerificationPage() {
   return (
-    <main className="min-h-screen bg-background pt-28 text-white md:pt-36">
+    <main className="min-h-screen bg-background pt-28 text-mp-text-primary md:pt-36">
       <div className="mx-auto max-w-2xl space-y-8 px-6 pb-24 md:px-10">
         <header>
-          <p className="text-xs uppercase tracking-[0.28em] text-[#D4A964]">
+          <p className="text-xs uppercase tracking-mp-label text-mp-accent">
             MyStable
           </p>
           <h1 className="mt-2 text-4xl font-semibold tracking-tight">
             Identity Verification
           </h1>
-          <p className="mt-4 text-base leading-relaxed text-white/60">
+          <p className="mt-4 text-base leading-relaxed text-mp-text-secondary">
             Identity verification helps protect your account and ensures
             compliance with financial regulations. This feature will be powered
             by our verification partner and is coming soon.
           </p>
         </header>
 
-        <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-6">
+        <div className="rounded-2xl border border-mp-border-prominent bg-mp-surface-card p-6">
           <div className="flex items-start gap-4">
             <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-amber-500/10 text-amber-400">
               <svg
@@ -38,10 +38,10 @@ export default function VerificationPage() {
               </svg>
             </div>
             <div>
-              <h2 className="text-lg font-semibold text-white">
+              <h2 className="text-lg font-semibold text-mp-text-primary">
                 Verification Coming Soon
               </h2>
-              <p className="mt-2 text-sm leading-relaxed text-white/60">
+              <p className="mt-2 text-sm leading-relaxed text-mp-text-secondary">
                 We are currently integrating our identity verification partner
                 to provide a seamless, secure KYC experience. Once available,
                 you will be able to complete verification directly from this
@@ -51,25 +51,21 @@ export default function VerificationPage() {
           </div>
         </div>
 
-        <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-6">
-          <h3 className="text-sm font-semibold uppercase tracking-[0.24em] text-white/40">
+        <div className="rounded-2xl border border-mp-border-prominent bg-mp-surface-card p-6">
+          <h3 className="text-sm font-semibold uppercase tracking-mp-wide text-mp-text-tertiary">
             What to expect
           </h3>
-          <ul className="mt-4 space-y-3 text-sm text-white/70">
+          <ul className="mt-4 space-y-3 text-sm text-mp-text-secondary">
             <li className="flex items-start gap-3">
-              <span className="mt-0.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[#D4A964]" />
-              <span>
-                A quick, guided process to verify your identity
-              </span>
+              <span className="mt-0.5 h-1.5 w-1.5 shrink-0 rounded-full bg-mp-accent" />
+              <span>A quick, guided process to verify your identity</span>
             </li>
             <li className="flex items-start gap-3">
-              <span className="mt-0.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[#D4A964]" />
-              <span>
-                Secure document upload with bank-level encryption
-              </span>
+              <span className="mt-0.5 h-1.5 w-1.5 shrink-0 rounded-full bg-mp-accent" />
+              <span>Secure document upload with bank-level encryption</span>
             </li>
             <li className="flex items-start gap-3">
-              <span className="mt-0.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[#D4A964]" />
+              <span className="mt-0.5 h-1.5 w-1.5 shrink-0 rounded-full bg-mp-accent" />
               <span>
                 Real-time verification status updates in your MyStable dashboard
               </span>
@@ -79,7 +75,7 @@ export default function VerificationPage() {
 
         <Link
           href="/mystable"
-          className="inline-flex items-center justify-center rounded-full bg-[#D4A964] px-5 py-3 text-sm font-semibold text-black transition hover:bg-[#e0b779]"
+          className="inline-flex items-center justify-center rounded-full bg-mp-accent px-5 py-3 text-sm font-semibold text-mp-text-inverse transition hover:bg-mp-accent-hover"
         >
           Return to MyStable
         </Link>

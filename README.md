@@ -44,3 +44,8 @@ The project follows a layered architecture:
 4. The `Evolution_Platform` does **not** directly modify the canonical data in `SSOT_Build`.
 
 For more detailed information on the architecture, development stages, agent roles, and more, please refer to the [Evolution Stables Marketplace Orchestration Blueprint](/home/evo/workspace/_docs/agent-stack/EVOLUTION_STABLES_MARKETPLACE_ORCHESTRATION_2026-04-10.md).
+
+## Context Chain
+
+<- inherits from: /home/evo/workspace/AGENTS.md
+-> conventions: /home/evo/workspace/DNA/ops/CONVENTIONS.md
