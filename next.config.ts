@@ -1,7 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  outputFileTracingRoot: __dirname,
+  // Temporarily disabled for build compatibility
+  // outputFileTracingRoot: __dirname,
   experimental: {
     // serverActions: true, // Uncomment if using Server Actions
   },
