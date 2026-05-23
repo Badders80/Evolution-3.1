@@ -149,13 +149,6 @@ export async function POST(req: Request) {
     }
   }
 
-  if (!googleSheetsWebAppUrl && !isMarketplaceSubmission) {
-    return NextResponse.json(
-      { error: "Lead capture is not configured for this environment." },
-      { status: 503 },
-    );
-  }
-
   let submissionReference: string | undefined;
   let googleSheetsStatus: "forwarded" | "not_configured" | "failed" =
     googleSheetsWebAppUrl ? "failed" : "not_configured";
@@ -390,12 +383,57 @@ export async function POST(req: Request) {
     });
   }
 
+  submissionReference = createSubmissionReference();
+
+  let localInboxSaved = false;
+  try {
+    await appendMarketplaceManualOpsEntry({
+      submissionReference,
+      submittedAt: new Date().toISOString(),
+      campaignKey: normalizedCampaignKey,
+      source: normalizedSource ?? "website",
+      fullName: normalizedFullName ?? "",
+      email: normalizedEmail,
+      phone: normalizedPhone ?? "",
+      listingId: "",
+      listingSlug: normalizedListingSlug ?? "",
+      horseId: normalizedHorseId ?? "",
+      horseName: normalizedHorseName ?? "",
+      leaseId: normalizedLeaseId ?? "",
+      requestedStakePercent: normalizedRequestedStakePercent ?? 0,
+      requestedUnits: normalizedRequestedUnits ?? 0,
+      reservationAmountNzd: normalizedReservationAmountNzd ?? 0,
+      applicationStatus: "submitted",
+      notes: `
+**Campaign**: ${normalizedCampaignKey}
+**Source**: ${normalizedSource ?? "website"}
+**Type**: interest_capture
+**Google Sheets**: ${googleSheetsWebAppUrl ? "attempted" : "not configured"}
+${normalizedNotes ?? ""}`.trim(),
+      googleSheetsStatus: googleSheetsWebAppUrl
+        ? "forwarded"
+        : "not_configured",
+      googleSheetsError: "",
+    });
+    localInboxSaved = true;
+  } catch (err) {
+    return NextResponse.json(
+      {
+        error: err instanceof Error ? err.message : "Unable to save submission",
+      },
+      { status: 500 },
+    );
+  }
+
   const captureUrl = googleSheetsWebAppUrl;
   if (!captureUrl) {
-    return NextResponse.json(
-      { error: "Lead capture is not configured for this environment." },
-      { status: 503 },
-    );
+    return NextResponse.json({
+      ok: true,
+      status: "submitted",
+      submissionReference,
+      delivery: { googleSheets: "not_configured", localInbox: "saved" },
+      warning: "Saved to the founder manual ops inbox only.",
+    });
   }
 
   try {
@@ -419,13 +457,18 @@ export async function POST(req: Request) {
         reservationAmountNzd: normalizedReservationAmountNzd,
         notes: normalizedNotes,
         submittedAt: new Date().toISOString(),
+        submissionReference,
       }),
     });
   } catch {
-    return NextResponse.json(
-      { error: "Lead capture service is currently unavailable" },
-      { status: 502 },
-    );
+    return NextResponse.json({
+      ok: true,
+      status: "submitted",
+      submissionReference,
+      delivery: { googleSheets: "failed", localInbox: "saved" },
+      warning:
+        "Saved to the founder manual ops inbox, but the Google Sheets mirror failed.",
+    });
   }
 
   try {
